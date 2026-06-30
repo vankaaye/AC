@@ -41,6 +41,8 @@
     </div>
   </header>
 
+  <main id="main-content">
+
   <!-- ===== HERO ===== -->
   <section class="hero" id="home">
     <div class="hero__bg">
@@ -59,9 +61,9 @@
       </div>
     </div>
     <div class="hero__indicators">
-      <button class="dot active" data-slide="0"></button>
-      <button class="dot" data-slide="1"></button>
-      <button class="dot" data-slide="2"></button>
+      <button class="dot active" data-slide="0" aria-label="Slide 1 of 3"></button>
+      <button class="dot" data-slide="1" aria-label="Slide 2 of 3"></button>
+      <button class="dot" data-slide="2" aria-label="Slide 3 of 3"></button>
     </div>
     <div class="hero__scroll">
       <span>Scroll to explore</span>
@@ -372,13 +374,13 @@
         </div>
       </div>
       <div class="stories__controls">
-        <button class="story-btn" id="storyPrev">&#8592;</button>
+        <button class="story-btn" id="storyPrev" aria-label="Previous testimonial">&#8592;</button>
         <div class="story-dots" id="storyDots">
-          <button class="dot active"></button>
-          <button class="dot"></button>
-          <button class="dot"></button>
+          <button class="dot active" aria-label="Testimonial 1 of 3"></button>
+          <button class="dot" aria-label="Testimonial 2 of 3"></button>
+          <button class="dot" aria-label="Testimonial 3 of 3"></button>
         </div>
-        <button class="story-btn" id="storyNext">&#8594;</button>
+        <button class="story-btn" id="storyNext" aria-label="Next testimonial">&#8594;</button>
       </div>
     </div>
   </section>
@@ -462,36 +464,36 @@
         </div>
       </div>
       <div class="contact__form-wrap">
-        <form class="contact__form" id="contactForm" novalidate>
+        <form class="contact__form" id="contactForm">
           <h3>Book a Free Consultation</h3>
           <div class="form-row">
             <div class="form-group">
               <label for="firstName">First Name *</label>
-              <input type="text" id="firstName" name="firstName" placeholder="Jane" required />
+              <input type="text" id="firstName" name="firstName" placeholder="Jane" autocomplete="given-name" required />
             </div>
             <div class="form-group">
               <label for="lastName">Last Name *</label>
-              <input type="text" id="lastName" name="lastName" placeholder="Smith" required />
+              <input type="text" id="lastName" name="lastName" placeholder="Smith" autocomplete="family-name" required />
             </div>
           </div>
           <div class="form-group">
             <label for="email">Email Address *</label>
-            <input type="email" id="email" name="email" placeholder="jane@email.com" required />
+            <input type="email" id="email" name="email" placeholder="jane@email.com" autocomplete="email" required />
           </div>
           <div class="form-group">
             <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" placeholder="04xx xxx xxx" />
+            <input type="tel" id="phone" name="phone" placeholder="04xx xxx xxx" autocomplete="tel" pattern="[\d\s\-\(\)\+]*" maxlength="15" />
           </div>
           <div class="form-group">
             <label for="service">Service of Interest</label>
             <select id="service" name="service">
               <option value="">Select a service…</option>
-              <option>Residential Aged Care</option>
-              <option>Home Care Package</option>
-              <option>Respite Care</option>
-              <option>Memory & Dementia Care</option>
-              <option>Allied Health & Wellness</option>
-              <option>General Enquiry</option>
+              <option value="residential">Residential Aged Care</option>
+              <option value="home-care">Home Care Package</option>
+              <option value="respite">Respite Care</option>
+              <option value="memory-care">Memory & Dementia Care</option>
+              <option value="allied-health">Allied Health & Wellness</option>
+              <option value="general">General Enquiry</option>
             </select>
           </div>
           <div class="form-group">
@@ -508,6 +510,8 @@
       </div>
     </div>
   </section>
+
+  </main>
 
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
@@ -565,14 +569,14 @@
     </div>
     <div class="footer__bottom">
       <div class="container footer__bottom-inner">
-        <p>© 2024 Thrive Aged Care. All rights reserved. ABN 12 345 678 901</p>
+        <p>© 2026 Thrive Aged Care. All rights reserved. ABN 12 345 678 901</p>
         <p>Providing quality aged care services across Australia</p>
       </div>
     </div>
   </footer>
 
   <!-- ===== FLOATING CTA ===== -->
-  <a href="tel:1800847483" class="float-cta" id="floatCta">
+  <a href="tel:+611800847483" class="float-cta" id="floatCta" aria-label="Call 1800 THRIVE">
     <span>📞</span>
     <span>1800 THRIVE</span>
   </a>
