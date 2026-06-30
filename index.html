@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thrive Aged Care – Live Well, Live Fully</title>
+  <meta name="description" content="Thrive Aged Care provides compassionate, personalised care that empowers older Australians to live with dignity, joy and independence." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== NAV ===== -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#home" class="nav__logo">
+        <span class="logo-leaf">🌿</span>
+        <span class="logo-text">Thrive <strong>Aged Care</strong></span>
+      </a>
+      <nav class="nav__links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#lifestyle">Lifestyle</a>
+        <a href="#team">Our Team</a>
+        <a href="#stories">Stories</a>
+        <a href="#contact" class="btn btn--nav">Contact Us</a>
+      </nav>
+      <button class="nav__burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav__mobile" id="mobileMenu">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#lifestyle">Lifestyle</a>
+      <a href="#team">Our Team</a>
+      <a href="#stories">Stories</a>
+      <a href="#contact">Contact Us</a>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="home">
+    <div class="hero__bg">
+      <img src="https://images.unsplash.com/photo-1576765608866-5b51046452be?w=1800&q=80&auto=format&fit=crop" alt="Happy elderly couple in a sunny garden" class="hero__img hero__img--1 active" />
+      <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1800&q=80&auto=format&fit=crop" alt="Carer holding hands with elderly resident" class="hero__img hero__img--2" />
+      <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=1800&q=80&auto=format&fit=crop" alt="Elderly woman smiling outdoors" class="hero__img hero__img--3" />
+    </div>
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <p class="hero__eyebrow">Compassionate Care · Vibrant Living</p>
+      <h1 class="hero__heading">Where Every Day<br/><em>Truly Thrives</em></h1>
+      <p class="hero__sub">We create warm, joyful communities where older Australians feel safe, valued and completely alive.</p>
+      <div class="hero__cta">
+        <a href="#services" class="btn btn--primary">Explore Our Services</a>
+        <a href="#contact" class="btn btn--ghost">Book a Visit</a>
+      </div>
+    </div>
+    <div class="hero__indicators">
+      <button class="dot active" data-slide="0"></button>
+      <button class="dot" data-slide="1"></button>
+      <button class="dot" data-slide="2"></button>
+    </div>
+    <div class="hero__scroll">
+      <span>Scroll to explore</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ===== STATS STRIP ===== -->
+  <section class="stats">
+    <div class="stats__inner">
+      <div class="stat-item">
+        <span class="stat-num" data-target="25">0</span><span class="stat-suffix">+</span>
+        <p>Years of Care</p>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" data-target="1200">0</span><span class="stat-suffix">+</span>
+        <p>Residents Served</p>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" data-target="98">0</span><span class="stat-suffix">%</span>
+        <p>Family Satisfaction</p>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" data-target="350">0</span><span class="stat-suffix">+</span>
+        <p>Dedicated Staff</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about section" id="about">
+    <div class="container about__grid">
+      <div class="about__images">
+        <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=900&q=80&auto=format&fit=crop" alt="Residents enjoying afternoon tea together" class="about__img about__img--main" />
+        <img src="https://images.unsplash.com/photo-1516307365426-bea591f05011?w=600&q=80&auto=format&fit=crop" alt="Garden walk with carer" class="about__img about__img--accent" />
+        <div class="about__badge">
+          <span class="badge-icon">🏆</span>
+          <strong>Aged Care Quality</strong>
+          <span>Standards Accredited</span>
+        </div>
+      </div>
+      <div class="about__text">
+        <p class="section-eyebrow">Who We Are</p>
+        <h2 class="section-heading">Care That Feels Like <em>Coming Home</em></h2>
+        <p class="about__lead">At Thrive Aged Care, we believe ageing is a chapter to be celebrated — full of connection, purpose and genuine happiness.</p>
+        <p>Founded on the simple idea that every person deserves exceptional care, we combine clinical excellence with the warmth of family. Our communities are vibrant places where friendships flourish, creativity blooms and health is nurtured every single day.</p>
+        <p>We work in close partnership with residents and their families, tailoring every aspect of care to reflect individual stories, preferences and goals.</p>
+        <div class="about__values">
+          <div class="value-pill">
+            <span>💛</span> Compassion First
+          </div>
+          <div class="value-pill">
+            <span>🌱</span> Dignity Always
+          </div>
+          <div class="value-pill">
+            <span>🤝</span> Family Partnership
+          </div>
+          <div class="value-pill">
+            <span>✨</span> Joy in Every Day
+          </div>
+        </div>
+        <a href="#contact" class="btn btn--primary">Learn More About Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section class="services section" id="services">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">What We Offer</p>
+        <h2 class="section-heading">Tailored Care for <em>Every Journey</em></h2>
+        <p class="section-sub">From independent living to comprehensive residential care, we have the right support for every stage of life.</p>
+      </div>
+      <div class="services__grid">
+        <div class="service-card">
+          <div class="service-card__img-wrap">
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=700&q=80&auto=format&fit=crop" alt="Residential care room" />
+            <div class="service-card__tag">Most Popular</div>
+          </div>
+          <div class="service-card__body">
+            <div class="service-icon">🏡</div>
+            <h3>Residential Aged Care</h3>
+            <p>Beautifully appointed private rooms, gourmet dining, 24/7 nursing care and a thriving social calendar — all within a warm, home-like environment.</p>
+            <a href="#contact" class="service-link">Enquire Now →</a>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-card__img-wrap">
+            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=700&q=80&auto=format&fit=crop" alt="Home care visit" />
+          </div>
+          <div class="service-card__body">
+            <div class="service-icon">🏠</div>
+            <h3>Home Care Packages</h3>
+            <p>Stay in the home you love with tailored support — personal care, domestic assistance, meal preparation and social outings delivered your way.</p>
+            <a href="#contact" class="service-link">Enquire Now →</a>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-card__img-wrap">
+            <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=700&q=80&auto=format&fit=crop" alt="Respite care" />
+          </div>
+          <div class="service-card__body">
+            <div class="service-icon">🌸</div>
+            <h3>Respite Care</h3>
+            <p>Short-term stays that give family carers a well-deserved break while your loved one enjoys our full range of activities and expert support.</p>
+            <a href="#contact" class="service-link">Enquire Now →</a>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-card__img-wrap">
+            <img src="https://images.unsplash.com/photo-1576765608866-5b51046452be?w=700&q=80&auto=format&fit=crop" alt="Dementia care" />
+          </div>
+          <div class="service-card__body">
+            <div class="service-icon">🧠</div>
+            <h3>Memory & Dementia Care</h3>
+            <p>Specialist dementia support in purpose-designed, secure environments with sensory gardens, music therapy and dedicated trained carers.</p>
+            <a href="#contact" class="service-link">Enquire Now →</a>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-card__img-wrap">
+            <img src="https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?w=700&q=80&auto=format&fit=crop" alt="Allied health" />
+          </div>
+          <div class="service-card__body">
+            <div class="service-icon">💪</div>
+            <h3>Allied Health & Wellness</h3>
+            <p>Physiotherapy, occupational therapy, podiatry, speech pathology and dietetics — all available on-site for comprehensive wellbeing.</p>
+            <a href="#contact" class="service-link">Enquire Now →</a>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-card__img-wrap">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=700&q=80&auto=format&fit=crop" alt="Social programs" />
+          </div>
+          <div class="service-card__body">
+            <div class="service-icon">🎨</div>
+            <h3>Social & Lifestyle Programs</h3>
+            <p>Art classes, gardening clubs, cooking sessions, live music, bus trips and cultural celebrations — there's always something wonderful happening.</p>
+            <a href="#contact" class="service-link">Enquire Now →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LIFESTYLE BANNER ===== -->
+  <section class="lifestyle section" id="lifestyle">
+    <div class="lifestyle__bg">
+      <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1800&q=80&auto=format&fit=crop" alt="Residents enjoying a group activity outdoors" />
+    </div>
+    <div class="lifestyle__overlay"></div>
+    <div class="container lifestyle__content">
+      <p class="section-eyebrow section-eyebrow--light">Life at Thrive</p>
+      <h2 class="section-heading section-heading--light">A Life Full of <em>Colour & Connection</em></h2>
+      <p class="lifestyle__sub">Our residents don't just live here — they flourish. With a packed calendar of meaningful activities, beautiful spaces and genuine friendships, every day holds something to look forward to.</p>
+      <div class="lifestyle__pillars">
+        <div class="pillar">
+          <div class="pillar__icon">🌿</div>
+          <h4>Wellness</h4>
+          <p>Gentle fitness classes, hydrotherapy, yoga and daily walks in our landscaped gardens.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar__icon">🎭</div>
+          <h4>Culture & Arts</h4>
+          <p>Weekly concerts, theatre outings, painting, pottery and storytelling circles.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar__icon">🍽️</div>
+          <h4>Dining</h4>
+          <p>Chef-prepared seasonal menus with resident input, themed nights and cooking classes.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar__icon">👨‍👩‍👧</div>
+          <h4>Family Life</h4>
+          <p>Open visiting, family barbecues, grandchildren's play areas and family days.</p>
+        </div>
+      </div>
+      <a href="#contact" class="btn btn--primary">Experience Our Lifestyle</a>
+    </div>
+  </section>
+
+  <!-- ===== PHOTO GALLERY ===== -->
+  <section class="gallery section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">Our World</p>
+        <h2 class="section-heading">Moments That <em>Matter</em></h2>
+      </div>
+      <div class="gallery__grid">
+        <div class="gallery__item gallery__item--tall">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80&auto=format&fit=crop" alt="Carer and resident laughing" />
+          <div class="gallery__overlay"><span>Joyful Moments</span></div>
+        </div>
+        <div class="gallery__item">
+          <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=800&q=80&auto=format&fit=crop" alt="Beautiful garden" />
+          <div class="gallery__overlay"><span>Our Gardens</span></div>
+        </div>
+        <div class="gallery__item">
+          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80&auto=format&fit=crop" alt="Comfortable room" />
+          <div class="gallery__overlay"><span>Private Suites</span></div>
+        </div>
+        <div class="gallery__item gallery__item--wide">
+          <img src="https://images.unsplash.com/photo-1543269664-647163ec3d62?w=1000&q=80&auto=format&fit=crop" alt="Group activity" />
+          <div class="gallery__overlay"><span>Community Life</span></div>
+        </div>
+        <div class="gallery__item">
+          <img src="https://images.unsplash.com/photo-1470753937643-efeb931202a9?w=800&q=80&auto=format&fit=crop" alt="Dining experience" />
+          <div class="gallery__overlay"><span>Gourmet Dining</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TEAM ===== -->
+  <section class="team section" id="team">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">Our People</p>
+        <h2 class="section-heading">The Hearts Behind <em>Every Smile</em></h2>
+        <p class="section-sub">Our multidisciplinary team combines expertise with empathy to deliver care that truly makes a difference.</p>
+      </div>
+      <div class="team__grid">
+        <div class="team-card">
+          <div class="team-card__img">
+            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80&auto=format&fit=crop" alt="Dr. Sarah Mitchell" />
+          </div>
+          <div class="team-card__body">
+            <h4>Dr. Sarah Mitchell</h4>
+            <p class="team-card__role">Medical Director</p>
+            <p class="team-card__bio">30 years in geriatric medicine. Sarah champions a holistic approach that treats the whole person — body, mind and spirit.</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-card__img">
+            <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=80&auto=format&fit=crop" alt="James Okafor" />
+          </div>
+          <div class="team-card__body">
+            <h4>James Okafor</h4>
+            <p class="team-card__role">Director of Care</p>
+            <p class="team-card__bio">With a nursing background spanning two continents, James leads our care teams with compassion, rigour and infectious enthusiasm.</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-card__img">
+            <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&q=80&auto=format&fit=crop" alt="Mei-Ling Chen" />
+          </div>
+          <div class="team-card__body">
+            <h4>Mei-Ling Chen</h4>
+            <p class="team-card__role">Lifestyle Coordinator</p>
+            <p class="team-card__bio">A true activities maestro, Mei-Ling designs our vibrant social calendar ensuring every resident finds joy, purpose and belonging.</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-card__img">
+            <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=600&q=80&auto=format&fit=crop" alt="Dr. Tom Alvarez" />
+          </div>
+          <div class="team-card__body">
+            <h4>Dr. Tom Alvarez</h4>
+            <p class="team-card__role">Head Physiotherapist</p>
+            <p class="team-card__bio">Tom's innovative wellness programs keep our residents active and independent, proving that movement truly is medicine.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STORIES / TESTIMONIALS ===== -->
+  <section class="stories section" id="stories">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">Family Stories</p>
+        <h2 class="section-heading">Words from the <em>Families We Serve</em></h2>
+      </div>
+      <div class="stories__slider" id="storiesSlider">
+        <div class="story-card active">
+          <div class="story-card__stars">★★★★★</div>
+          <blockquote>"Moving Mum to Thrive was the best decision we ever made. She's painting again, has made wonderful friends, and is happier than she's been in years. The staff remember the little things — her favourite tea, the songs she loves. It's a gift."</blockquote>
+          <div class="story-card__author">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80&auto=format&fit=crop" alt="Jennifer T." />
+            <div>
+              <strong>Jennifer T.</strong>
+              <span>Daughter of Margaret, Resident since 2021</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-card">
+          <div class="story-card__stars">★★★★★</div>
+          <blockquote>"After Dad's stroke we were terrified about finding the right care. From the first phone call, Thrive made us feel heard. The rehabilitation team got him walking again, and the lifestyle team gave him back his sense of humour. We couldn't ask for more."</blockquote>
+          <div class="story-card__author">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80&auto=format&fit=crop" alt="David K." />
+            <div>
+              <strong>David K.</strong>
+              <span>Son of Robert, Resident since 2022</span>
+            </div>
+          </div>
+        </div>
+        <div class="story-card">
+          <div class="story-card__stars">★★★★★</div>
+          <blockquote>"I was nervous about leaving my own home but Thrive has become my home. I have a full diary, the food is restaurant-quality, and the nurses genuinely care. My family visits often because they love the atmosphere too."</blockquote>
+          <div class="story-card__author">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80&auto=format&fit=crop" alt="Dorothy M." />
+            <div>
+              <strong>Dorothy M.</strong>
+              <span>Resident since 2020</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="stories__controls">
+        <button class="story-btn" id="storyPrev">&#8592;</button>
+        <div class="story-dots" id="storyDots">
+          <button class="dot active"></button>
+          <button class="dot"></button>
+          <button class="dot"></button>
+        </div>
+        <button class="story-btn" id="storyNext">&#8594;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROCESS ===== -->
+  <section class="process section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">Getting Started</p>
+        <h2 class="section-heading">Your Journey to <em>Thrive Begins Here</em></h2>
+      </div>
+      <div class="process__steps">
+        <div class="process-step">
+          <div class="process-step__num">01</div>
+          <div class="process-step__body">
+            <h4>Initial Conversation</h4>
+            <p>Call us or submit an enquiry. Our care advisors will listen to your story and understand your needs with no pressure.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="process-step__num">02</div>
+          <div class="process-step__body">
+            <h4>Personal Visit & Tour</h4>
+            <p>Come see our facilities, meet the team and feel the atmosphere. Bring family — we love meeting everyone.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="process-step__num">03</div>
+          <div class="process-step__body">
+            <h4>Care Assessment</h4>
+            <p>We conduct a thorough assessment to design a personalised care plan perfectly suited to your loved one.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="process-step__num">04</div>
+          <div class="process-step__body">
+            <h4>Welcome Home</h4>
+            <p>Move in day is a celebration. Our team ensures a warm, seamless transition so everyone feels right at home.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="contact section" id="contact">
+    <div class="container contact__grid">
+      <div class="contact__info">
+        <p class="section-eyebrow">Get in Touch</p>
+        <h2 class="section-heading">We'd Love to <em>Hear from You</em></h2>
+        <p>Whether you're exploring options for the first time or ready to make a move, our friendly care advisors are here to guide you every step of the way.</p>
+        <div class="contact__details">
+          <div class="contact-item">
+            <div class="contact-item__icon">📞</div>
+            <div>
+              <strong>Call Us</strong>
+              <span>1800 THRIVE (847 483)</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item__icon">✉️</div>
+            <div>
+              <strong>Email</strong>
+              <span>hello@thriveagedcare.com.au</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item__icon">📍</div>
+            <div>
+              <strong>Locations</strong>
+              <span>Sydney · Melbourne · Brisbane · Perth</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item__icon">🕐</div>
+            <div>
+              <strong>Open Hours</strong>
+              <span>Mon–Fri 8am–6pm · Sat 9am–4pm</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact__form-wrap">
+        <form class="contact__form" id="contactForm" novalidate>
+          <h3>Book a Free Consultation</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name *</label>
+              <input type="text" id="firstName" name="firstName" placeholder="Jane" required />
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name *</label>
+              <input type="text" id="lastName" name="lastName" placeholder="Smith" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" placeholder="jane@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="04xx xxx xxx" />
+          </div>
+          <div class="form-group">
+            <label for="service">Service of Interest</label>
+            <select id="service" name="service">
+              <option value="">Select a service…</option>
+              <option>Residential Aged Care</option>
+              <option>Home Care Package</option>
+              <option>Respite Care</option>
+              <option>Memory & Dementia Care</option>
+              <option>Allied Health & Wellness</option>
+              <option>General Enquiry</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" rows="4" placeholder="Tell us a little about your situation and how we can help…"></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary btn--full">Send Enquiry</button>
+          <p class="form-note">We'll respond within 24 hours. Your information is kept private.</p>
+          <div class="form-success" id="formSuccess">
+            <span>🎉</span>
+            <p>Thank you! We'll be in touch very soon.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="container footer__top-inner">
+        <div class="footer__brand">
+          <a href="#home" class="nav__logo">
+            <span class="logo-leaf">🌿</span>
+            <span class="logo-text">Thrive <strong>Aged Care</strong></span>
+          </a>
+          <p>Compassionate care for older Australians. Accredited. Trusted. Thriving.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer__links">
+          <h5>Services</h5>
+          <ul>
+            <li><a href="#services">Residential Care</a></li>
+            <li><a href="#services">Home Care</a></li>
+            <li><a href="#services">Respite Care</a></li>
+            <li><a href="#services">Memory Care</a></li>
+            <li><a href="#services">Allied Health</a></li>
+          </ul>
+        </div>
+        <div class="footer__links">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#team">Our Team</a></li>
+            <li><a href="#lifestyle">Lifestyle</a></li>
+            <li><a href="#stories">Testimonials</a></li>
+            <li><a href="#contact">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer__links">
+          <h5>Resources</h5>
+          <ul>
+            <li><a href="#contact">Family Guide</a></li>
+            <li><a href="#contact">ACAT Assessment</a></li>
+            <li><a href="#contact">Funding Options</a></li>
+            <li><a href="#contact">FAQ</a></li>
+            <li><a href="#contact">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container footer__bottom-inner">
+        <p>© 2024 Thrive Aged Care. All rights reserved. ABN 12 345 678 901</p>
+        <p>Providing quality aged care services across Australia</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== FLOATING CTA ===== -->
+  <a href="tel:1800847483" class="float-cta" id="floatCta">
+    <span>📞</span>
+    <span>1800 THRIVE</span>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
