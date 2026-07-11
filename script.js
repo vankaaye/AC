@@ -23,26 +23,28 @@ const heroDots = document.querySelectorAll('.hero__indicators .dot');
 let heroIdx = 0;
 let heroTimer;
 
-function goSlide(idx) {
-  heroImgs[heroIdx].classList.remove('active');
-  heroDots[heroIdx].classList.remove('active');
-  heroIdx = (idx + heroImgs.length) % heroImgs.length;
-  heroImgs[heroIdx].classList.add('active');
-  heroDots[heroIdx].classList.add('active');
-}
+if (heroImgs.length && heroDots.length) {
+  function goSlide(idx) {
+    heroImgs[heroIdx].classList.remove('active');
+    heroDots[heroIdx].classList.remove('active');
+    heroIdx = (idx + heroImgs.length) % heroImgs.length;
+    heroImgs[heroIdx].classList.add('active');
+    heroDots[heroIdx].classList.add('active');
+  }
 
-function startHero() {
-  heroTimer = setInterval(() => goSlide(heroIdx + 1), 5000);
-}
+  function startHero() {
+    heroTimer = setInterval(() => goSlide(heroIdx + 1), 5000);
+  }
 
-heroDots.forEach((dot, i) => {
-  dot.addEventListener('click', () => {
-    clearInterval(heroTimer);
-    goSlide(i);
-    startHero();
+  heroDots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      clearInterval(heroTimer);
+      goSlide(i);
+      startHero();
+    });
   });
-});
-startHero();
+  startHero();
+}
 
 /* ===== COUNTER ANIMATION ===== */
 function animateCount(el) {
@@ -93,18 +95,20 @@ const storyCards = document.querySelectorAll('.story-card');
 const storyDots = document.querySelectorAll('#storyDots .dot');
 let storyIdx = 0;
 
-function goStory(idx) {
-  storyCards[storyIdx].classList.remove('active');
-  storyDots[storyIdx].classList.remove('active');
-  storyIdx = (idx + storyCards.length) % storyCards.length;
-  storyCards[storyIdx].classList.add('active');
-  storyDots[storyIdx].classList.add('active');
-}
+if (storyCards.length && storyDots.length) {
+  function goStory(idx) {
+    storyCards[storyIdx].classList.remove('active');
+    storyDots[storyIdx].classList.remove('active');
+    storyIdx = (idx + storyCards.length) % storyCards.length;
+    storyCards[storyIdx].classList.add('active');
+    storyDots[storyIdx].classList.add('active');
+  }
 
-document.getElementById('storyPrev').addEventListener('click', () => goStory(storyIdx - 1));
-document.getElementById('storyNext').addEventListener('click', () => goStory(storyIdx + 1));
-storyDots.forEach((dot, i) => dot.addEventListener('click', () => goStory(i)));
-setInterval(() => goStory(storyIdx + 1), 6000);
+  document.getElementById('storyPrev').addEventListener('click', () => goStory(storyIdx - 1));
+  document.getElementById('storyNext').addEventListener('click', () => goStory(storyIdx + 1));
+  storyDots.forEach((dot, i) => dot.addEventListener('click', () => goStory(i)));
+  setInterval(() => goStory(storyIdx + 1), 6000);
+}
 
 /* ===== CONTACT FORM ===== */
 document.getElementById('contactForm').addEventListener('submit', function(e) {
