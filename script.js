@@ -1,8 +1,8 @@
-/* ===== NAV SCROLL ===== */
+/* ===== NAV SHADOW ===== */
 const nav = document.getElementById('nav');
 const floatCta = document.getElementById('floatCta');
 window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
+  nav.classList.toggle('scrolled', window.scrollY > 10);
   if (floatCta) floatCta.classList.toggle('visible', window.scrollY > 500);
 }, { passive: true });
 
@@ -24,37 +24,10 @@ if (burger && mobileMenu) {
   });
 }
 
-/* ===== HERO SLIDESHOW ===== */
-const heroImgs = document.querySelectorAll('.hero__img');
-const heroDots = document.querySelectorAll('.hero__dots .dot');
-let heroIdx = 0;
-let heroTimer;
-
-if (heroImgs.length && heroDots.length) {
-  const goSlide = idx => {
-    heroImgs[heroIdx].classList.remove('active');
-    heroDots[heroIdx].classList.remove('active');
-    heroIdx = (idx + heroImgs.length) % heroImgs.length;
-    heroImgs[heroIdx].classList.add('active');
-    heroDots[heroIdx].classList.add('active');
-  };
-  const startHero = () => {
-    heroTimer = setInterval(() => goSlide(heroIdx + 1), 6000);
-  };
-  heroDots.forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-      clearInterval(heroTimer);
-      goSlide(i);
-      startHero();
-    });
-  });
-  startHero();
-}
-
 /* ===== STATS COUNTER ===== */
 function animateCount(el) {
   const target = parseInt(el.dataset.target, 10);
-  const duration = 1800;
+  const duration = 1600;
   const step = 16;
   const increment = target / (duration / step);
   let current = 0;
@@ -88,8 +61,8 @@ const revealObserver = new IntersectionObserver(entries => {
 }, { threshold: 0.12 });
 
 document.querySelectorAll(
-  '.service-card, .team-card, .pillar, .gallery__item, .process-step, .stat-item, ' +
-  '.about__text, .about__images, .faq-item, .contact__info, .contact__form-wrap'
+  '.service-card, .team-card, .perk, .tile, .step, .stat-card, ' +
+  '.about__text, .about__photos, .faq-item, .contact__info, .contact__form'
 ).forEach((el, i) => {
   el.classList.add('reveal');
   if (i % 4 === 1) el.classList.add('reveal-delay-1');
@@ -143,17 +116,17 @@ if (contactForm) {
       document.getElementById('formSuccess').classList.add('show');
       btn.style.display = 'none';
       this.querySelectorAll('input, select, textarea').forEach(el => (el.value = ''));
-    }, 1200);
+    }, 1000);
   });
 }
 
-/* ===== SMOOTH ANCHOR SCROLL WITH NAV OFFSET ===== */
+/* ===== SMOOTH ANCHOR SCROLL ===== */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const target = document.querySelector(a.getAttribute('href'));
     if (target) {
       e.preventDefault();
-      window.scrollTo({ top: target.offsetTop - 76, behavior: 'smooth' });
+      window.scrollTo({ top: target.offsetTop - 72, behavior: 'smooth' });
     }
   });
 });
