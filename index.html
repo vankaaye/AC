@@ -3,293 +3,342 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Astro Care – Live Well, Live Fully</title>
-  <meta name="description" content="Astro Care provides compassionate, personalised care that empowers older Australians to live with dignity, joy and independence." />
+  <title>Astro Care – Illuminate Every Moment</title>
+  <meta name="description" content="Astro Care Group Pty Ltd provides extraordinary residential and home aged care across Australia — where compassion, excellence and dignity define every day." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- ===== NAV ===== -->
+  <!-- NAV -->
   <header class="nav" id="nav">
     <div class="nav__inner">
-      <a href="#home" class="nav__logo">
-        <span class="logo-leaf">🌿</span>
-        <span class="logo-text">Astro <strong>Care</strong></span>
+      <a href="#home" class="nav__logo" aria-label="Astro Care — home">
+        <svg class="logo-mark" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+          <line x1="22" y1="3" x2="22" y2="41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="3" y1="13" x2="41" y2="31" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="41" y1="13" x2="3" y2="31" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="22" cy="22" r="4" fill="currentColor"/>
+        </svg>
+        <span class="logo-wordmark">Astro <strong>Care</strong></span>
       </a>
-      <nav class="nav__links">
+      <nav class="nav__links" aria-label="Primary">
         <a href="#about">About</a>
         <a href="#services">Services</a>
         <a href="#lifestyle">Lifestyle</a>
         <a href="#team">Our Team</a>
         <a href="#stories">Stories</a>
-        <a href="#contact" class="btn btn--nav">Contact Us</a>
+        <a href="#contact" class="btn btn--nav">Book a Visit</a>
       </nav>
-      <button class="nav__burger" id="burger" aria-label="Menu">
+      <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
-    <div class="nav__mobile" id="mobileMenu">
+    <div class="nav__mobile" id="mobileMenu" aria-label="Mobile navigation">
       <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#lifestyle">Lifestyle</a>
       <a href="#team">Our Team</a>
       <a href="#stories">Stories</a>
-      <a href="#contact">Contact Us</a>
+      <a href="#contact">Book a Visit</a>
     </div>
   </header>
 
   <main id="main-content">
 
-  <!-- ===== HERO ===== -->
-  <section class="hero" id="home">
+  <!-- HERO -->
+  <section class="hero" id="home" aria-label="Hero">
     <div class="hero__bg">
-      <img src="https://images.unsplash.com/photo-1576765608866-5b51046452be?w=1800&q=80&auto=format&fit=crop" alt="Happy elderly couple in a sunny garden" class="hero__img hero__img--1 active" />
-      <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1800&q=80&auto=format&fit=crop" alt="Carer holding hands with elderly resident" class="hero__img hero__img--2" />
-      <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=1800&q=80&auto=format&fit=crop" alt="Elderly woman smiling outdoors" class="hero__img hero__img--3" />
+      <img src="https://images.unsplash.com/photo-1576765608866-5b51046452be?w=1920&q=85&auto=format&fit=crop" alt="" class="hero__img active" aria-hidden="true" />
+      <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1920&q=85&auto=format&fit=crop" alt="" class="hero__img" aria-hidden="true" />
+      <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=1920&q=85&auto=format&fit=crop" alt="" class="hero__img" aria-hidden="true" />
     </div>
-    <div class="hero__overlay"></div>
+    <div class="hero__overlay" aria-hidden="true"></div>
     <div class="hero__content">
-      <p class="hero__eyebrow">Compassionate Care · Vibrant Living</p>
-      <h1 class="hero__heading">Where Every Day<br/><em>Truly Shines</em></h1>
-      <p class="hero__sub">We create warm, joyful communities where older Australians feel safe, valued and completely alive.</p>
+      <p class="hero__eyebrow">Compassionate Care &nbsp;·&nbsp; Distinguished Living</p>
+      <h1 class="hero__heading">A Life Lived<br><em>Brilliantly</em></h1>
+      <p class="hero__sub">Astro Care sets the gold standard in aged care — where every resident is celebrated, every moment is meaningful, and every day shines.</p>
       <div class="hero__cta">
-        <a href="#services" class="btn btn--primary">Explore Our Services</a>
-        <a href="#contact" class="btn btn--ghost">Book a Visit</a>
+        <a href="#services" class="btn btn--gold">Explore Our Care</a>
+        <a href="#contact" class="btn btn--outline-light">Book a Visit</a>
       </div>
     </div>
-    <div class="hero__indicators">
+    <div class="hero__indicators" aria-label="Slides">
       <button class="dot active" data-slide="0" aria-label="Slide 1 of 3"></button>
       <button class="dot" data-slide="1" aria-label="Slide 2 of 3"></button>
       <button class="dot" data-slide="2" aria-label="Slide 3 of 3"></button>
     </div>
-    <div class="hero__scroll">
-      <span>Scroll to explore</span>
-      <div class="scroll-line"></div>
-    </div>
   </section>
 
-  <!-- ===== STATS STRIP ===== -->
-  <section class="stats">
+  <!-- STATS -->
+  <div class="stats" aria-label="Astro Care at a glance">
     <div class="stats__inner">
       <div class="stat-item">
-        <span class="stat-num" data-target="25">0</span><span class="stat-suffix">+</span>
-        <p>Years of Care</p>
+        <div class="stat-value"><span class="stat-num" data-target="25">0</span><span class="stat-suffix">+</span></div>
+        <p>Years of Excellence</p>
       </div>
       <div class="stat-item">
-        <span class="stat-num" data-target="1200">0</span><span class="stat-suffix">+</span>
-        <p>Residents Served</p>
+        <div class="stat-value"><span class="stat-num" data-target="1200">0</span><span class="stat-suffix">+</span></div>
+        <p>Lives Enriched</p>
       </div>
       <div class="stat-item">
-        <span class="stat-num" data-target="98">0</span><span class="stat-suffix">%</span>
+        <div class="stat-value"><span class="stat-num" data-target="98">0</span><span class="stat-suffix">%</span></div>
         <p>Family Satisfaction</p>
       </div>
       <div class="stat-item">
-        <span class="stat-num" data-target="350">0</span><span class="stat-suffix">+</span>
-        <p>Dedicated Staff</p>
+        <div class="stat-value"><span class="stat-num" data-target="350">0</span><span class="stat-suffix">+</span></div>
+        <p>Dedicated Carers</p>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- ===== ABOUT ===== -->
+  <!-- ABOUT -->
   <section class="about section" id="about">
     <div class="container about__grid">
       <div class="about__images">
-        <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=900&q=80&auto=format&fit=crop" alt="Residents enjoying afternoon tea together" class="about__img about__img--main" />
-        <img src="https://images.unsplash.com/photo-1516307365426-bea591f05011?w=600&q=80&auto=format&fit=crop" alt="Garden walk with carer" class="about__img about__img--accent" />
+        <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=900&q=85&auto=format&fit=crop" alt="Residents sharing a warm afternoon together" class="about__img about__img--main" />
+        <img src="https://images.unsplash.com/photo-1516307365426-bea591f05011?w=600&q=85&auto=format&fit=crop" alt="Carer walking through the garden with a resident" class="about__img about__img--accent" />
         <div class="about__badge">
-          <span class="badge-icon">🏆</span>
+          <svg viewBox="0 0 44 44" fill="none" class="badge-star" aria-hidden="true">
+            <line x1="22" y1="5" x2="22" y2="39" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="5" y1="13.5" x2="39" y2="30.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="39" y1="13.5" x2="5" y2="30.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="22" cy="22" r="3.5" fill="currentColor"/>
+          </svg>
           <strong>Aged Care Quality</strong>
           <span>Standards Accredited</span>
         </div>
       </div>
       <div class="about__text">
-        <p class="section-eyebrow">Who We Are</p>
+        <p class="eyebrow">Who We Are</p>
         <h2 class="section-heading">Care That Feels Like <em>Coming Home</em></h2>
-        <p class="about__lead">At Astro Care, we believe ageing is a chapter to be celebrated — full of connection, purpose and genuine happiness.</p>
-        <p>Founded on the simple idea that every person deserves exceptional care, we combine clinical excellence with the warmth of family. Our communities are vibrant places where friendships flourish, creativity blooms and health is nurtured every single day.</p>
+        <p class="about__lead">At Astro Care, we believe ageing is a chapter to be celebrated — full of connection, purpose and radiant happiness.</p>
+        <p>Founded on the conviction that every person deserves extraordinary care, we combine clinical excellence with the warmth of family. Our communities are vibrant places where friendships flourish, creativity blooms and health is nurtured every single day.</p>
         <p>We work in close partnership with residents and their families, tailoring every aspect of care to reflect individual stories, preferences and goals.</p>
         <div class="about__values">
-          <div class="value-pill">
-            <span>💛</span> Compassion First
+          <div class="value-item">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            <span>Compassion First</span>
           </div>
-          <div class="value-pill">
-            <span>🌱</span> Dignity Always
+          <div class="value-item">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+            <span>Dignity Always</span>
           </div>
-          <div class="value-pill">
-            <span>🤝</span> Family Partnership
+          <div class="value-item">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+            <span>Family Partnership</span>
           </div>
-          <div class="value-pill">
-            <span>✨</span> Joy in Every Day
+          <div class="value-item">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <span>Excellence Always</span>
           </div>
         </div>
-        <a href="#contact" class="btn btn--primary">Learn More About Us</a>
+        <a href="#contact" class="btn btn--forest">Learn More About Us</a>
       </div>
     </div>
   </section>
 
-  <!-- ===== SERVICES ===== -->
+  <!-- SERVICES -->
   <section class="services section" id="services">
     <div class="container">
       <div class="section-header">
-        <p class="section-eyebrow">What We Offer</p>
+        <p class="eyebrow">What We Offer</p>
         <h2 class="section-heading">Tailored Care for <em>Every Journey</em></h2>
         <p class="section-sub">From independent living to comprehensive residential care, we have the right support for every stage of life.</p>
       </div>
       <div class="services__grid">
+
         <div class="service-card">
           <div class="service-card__img-wrap">
-            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=700&q=80&auto=format&fit=crop" alt="Residential care room" />
-            <div class="service-card__tag">Most Popular</div>
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=700&q=85&auto=format&fit=crop" alt="Beautifully appointed private suite" />
+            <span class="service-card__tag">Most Popular</span>
           </div>
           <div class="service-card__body">
-            <div class="service-icon">🏡</div>
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            </div>
             <h3>Residential Aged Care</h3>
-            <p>Beautifully appointed private rooms, gourmet dining, 24/7 nursing care and a thriving social calendar — all within a warm, home-like environment.</p>
-            <a href="#contact" class="service-link">Enquire Now →</a>
+            <p>Beautifully appointed private suites, gourmet dining, 24/7 nursing care and a rich social calendar within a warm, home-like community.</p>
+            <a href="#contact" class="service-link">Enquire Now
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+            </a>
           </div>
         </div>
+
         <div class="service-card">
           <div class="service-card__img-wrap">
-            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=700&q=80&auto=format&fit=crop" alt="Home care visit" />
+            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=700&q=85&auto=format&fit=crop" alt="Carer providing home care support" />
           </div>
           <div class="service-card__body">
-            <div class="service-icon">🏠</div>
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </div>
             <h3>Home Care Packages</h3>
             <p>Stay in the home you love with tailored support — personal care, domestic assistance, meal preparation and social outings delivered your way.</p>
-            <a href="#contact" class="service-link">Enquire Now →</a>
+            <a href="#contact" class="service-link">Enquire Now
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+            </a>
           </div>
         </div>
+
         <div class="service-card">
           <div class="service-card__img-wrap">
-            <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=700&q=80&auto=format&fit=crop" alt="Respite care" />
+            <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=700&q=85&auto=format&fit=crop" alt="Peaceful respite care setting" />
           </div>
           <div class="service-card__body">
-            <div class="service-icon">🌸</div>
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+            </div>
             <h3>Respite Care</h3>
-            <p>Short-term stays that give family carers a well-deserved break while your loved one enjoys our full range of activities and expert support.</p>
-            <a href="#contact" class="service-link">Enquire Now →</a>
+            <p>Short-term stays giving family carers a well-deserved break while your loved one enjoys our full range of activities and expert support.</p>
+            <a href="#contact" class="service-link">Enquire Now
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+            </a>
           </div>
         </div>
+
         <div class="service-card">
           <div class="service-card__img-wrap">
-            <img src="https://images.unsplash.com/photo-1576765608866-5b51046452be?w=700&q=80&auto=format&fit=crop" alt="Dementia care" />
+            <img src="https://images.unsplash.com/photo-1576765608866-5b51046452be?w=700&q=85&auto=format&fit=crop" alt="Memory care specialist garden" />
           </div>
           <div class="service-card__body">
-            <div class="service-icon">🧠</div>
-            <h3>Memory & Dementia Care</h3>
-            <p>Specialist dementia support in purpose-designed, secure environments with sensory gardens, music therapy and dedicated trained carers.</p>
-            <a href="#contact" class="service-link">Enquire Now →</a>
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            </div>
+            <h3>Memory &amp; Dementia Care</h3>
+            <p>Specialist support in purpose-designed, secure environments with sensory gardens, music therapy and dedicated trained carers.</p>
+            <a href="#contact" class="service-link">Enquire Now
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+            </a>
           </div>
         </div>
+
         <div class="service-card">
           <div class="service-card__img-wrap">
-            <img src="https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?w=700&q=80&auto=format&fit=crop" alt="Allied health" />
+            <img src="https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?w=700&q=85&auto=format&fit=crop" alt="Allied health physiotherapy session" />
           </div>
           <div class="service-card__body">
-            <div class="service-icon">💪</div>
-            <h3>Allied Health & Wellness</h3>
-            <p>Physiotherapy, occupational therapy, podiatry, speech pathology and dietetics — all available on-site for comprehensive wellbeing.</p>
-            <a href="#contact" class="service-link">Enquire Now →</a>
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg>
+            </div>
+            <h3>Allied Health &amp; Wellness</h3>
+            <p>Physiotherapy, occupational therapy, podiatry, speech pathology and dietetics — all on-site for comprehensive, whole-person wellbeing.</p>
+            <a href="#contact" class="service-link">Enquire Now
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+            </a>
           </div>
         </div>
+
         <div class="service-card">
           <div class="service-card__img-wrap">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=700&q=80&auto=format&fit=crop" alt="Social programs" />
+            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=700&q=85&auto=format&fit=crop" alt="Residents enjoying group activity" />
           </div>
           <div class="service-card__body">
-            <div class="service-icon">🎨</div>
-            <h3>Social & Lifestyle Programs</h3>
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+            </div>
+            <h3>Social &amp; Lifestyle Programs</h3>
             <p>Art classes, gardening clubs, cooking sessions, live music, bus trips and cultural celebrations — there's always something wonderful happening.</p>
-            <a href="#contact" class="service-link">Enquire Now →</a>
+            <a href="#contact" class="service-link">Enquire Now
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+            </a>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ===== LIFESTYLE BANNER ===== -->
+  <!-- LIFESTYLE -->
   <section class="lifestyle section" id="lifestyle">
     <div class="lifestyle__bg">
-      <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1800&q=80&auto=format&fit=crop" alt="Residents enjoying a group activity outdoors" />
+      <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1800&q=85&auto=format&fit=crop" alt="" aria-hidden="true" />
     </div>
-    <div class="lifestyle__overlay"></div>
+    <div class="lifestyle__overlay" aria-hidden="true"></div>
     <div class="container lifestyle__content">
-      <p class="section-eyebrow section-eyebrow--light">Life at Astro Care</p>
-      <h2 class="section-heading section-heading--light">A Life Full of <em>Colour & Connection</em></h2>
+      <p class="eyebrow eyebrow--light">Life at Astro Care</p>
+      <h2 class="section-heading section-heading--light">A Life Full of <em>Colour &amp; Connection</em></h2>
       <p class="lifestyle__sub">Our residents don't just live here — they flourish. With a packed calendar of meaningful activities, beautiful spaces and genuine friendships, every day holds something to look forward to.</p>
       <div class="lifestyle__pillars">
         <div class="pillar">
-          <div class="pillar__icon">🌿</div>
+          <div class="pillar__icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 008 20C19 20 22 3 22 3c-1 2-8 2-13 5 2.17 1.22 3.88 1.98 5 2z"/></svg>
+          </div>
           <h4>Wellness</h4>
-          <p>Gentle fitness classes, hydrotherapy, yoga and daily walks in our landscaped gardens.</p>
+          <p>Gentle fitness classes, hydrotherapy, yoga and daily walks through our landscaped gardens.</p>
         </div>
         <div class="pillar">
-          <div class="pillar__icon">🎭</div>
-          <h4>Culture & Arts</h4>
-          <p>Weekly concerts, theatre outings, painting, pottery and storytelling circles.</p>
+          <div class="pillar__icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+          </div>
+          <h4>Culture &amp; Arts</h4>
+          <p>Weekly concerts, theatre outings, painting, pottery and storytelling circles for all.</p>
         </div>
         <div class="pillar">
-          <div class="pillar__icon">🍽️</div>
+          <div class="pillar__icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"/></svg>
+          </div>
           <h4>Dining</h4>
           <p>Chef-prepared seasonal menus with resident input, themed nights and cooking classes.</p>
         </div>
         <div class="pillar">
-          <div class="pillar__icon">👨‍👩‍👧</div>
+          <div class="pillar__icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 12.75c1.63 0 3.07.39 4.24.9 1.08.48 1.76 1.56 1.76 2.73V18H6v-1.61c0-1.18.68-2.26 1.76-2.73C8.93 13.14 10.37 12.75 12 12.75zM4 13c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm1.13 1.1c-.37-.06-.74-.1-1.13-.1-.99 0-1.93.21-2.78.58C.48 14.9 0 15.62 0 16.43V18h4.5v-1.61c0-.83.23-1.61.63-2.29zM20 13c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm4 3.43c0-.81-.48-1.53-1.22-1.85A6.95 6.95 0 0020 14c-.39 0-.76.04-1.13.1.4.68.63 1.46.63 2.29V18H24v-1.57zM12 6c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z"/></svg>
+          </div>
           <h4>Family Life</h4>
-          <p>Open visiting, family barbecues, grandchildren's play areas and family days.</p>
+          <p>Open visiting, family barbecues, grandchildren's play areas and regular family days.</p>
         </div>
       </div>
-      <a href="#contact" class="btn btn--primary">Experience Our Lifestyle</a>
+      <a href="#contact" class="btn btn--gold">Experience Our Lifestyle</a>
     </div>
   </section>
 
-  <!-- ===== PHOTO GALLERY ===== -->
+  <!-- GALLERY -->
   <section class="gallery section">
     <div class="container">
       <div class="section-header">
-        <p class="section-eyebrow">Our World</p>
+        <p class="eyebrow">Our World</p>
         <h2 class="section-heading">Moments That <em>Matter</em></h2>
       </div>
       <div class="gallery__grid">
         <div class="gallery__item gallery__item--tall">
-          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80&auto=format&fit=crop" alt="Carer and resident laughing" />
-          <div class="gallery__overlay"><span>Joyful Moments</span></div>
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=85&auto=format&fit=crop" alt="Carer and resident sharing a joyful moment" />
+          <div class="gallery__caption"><span>Joyful Moments</span></div>
         </div>
         <div class="gallery__item">
-          <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=800&q=80&auto=format&fit=crop" alt="Beautiful garden" />
-          <div class="gallery__overlay"><span>Our Gardens</span></div>
+          <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=800&q=85&auto=format&fit=crop" alt="Beautifully maintained garden grounds" />
+          <div class="gallery__caption"><span>Our Gardens</span></div>
         </div>
         <div class="gallery__item">
-          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80&auto=format&fit=crop" alt="Comfortable room" />
-          <div class="gallery__overlay"><span>Private Suites</span></div>
+          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=85&auto=format&fit=crop" alt="Elegant private suite interior" />
+          <div class="gallery__caption"><span>Private Suites</span></div>
         </div>
         <div class="gallery__item gallery__item--wide">
-          <img src="https://images.unsplash.com/photo-1543269664-647163ec3d62?w=1000&q=80&auto=format&fit=crop" alt="Group activity" />
-          <div class="gallery__overlay"><span>Community Life</span></div>
+          <img src="https://images.unsplash.com/photo-1543269664-647163ec3d62?w=1000&q=85&auto=format&fit=crop" alt="Residents enjoying community activities" />
+          <div class="gallery__caption"><span>Community Life</span></div>
         </div>
         <div class="gallery__item">
-          <img src="https://images.unsplash.com/photo-1470753937643-efeb931202a9?w=800&q=80&auto=format&fit=crop" alt="Dining experience" />
-          <div class="gallery__overlay"><span>Gourmet Dining</span></div>
+          <img src="https://images.unsplash.com/photo-1470753937643-efeb931202a9?w=800&q=85&auto=format&fit=crop" alt="Gourmet dining experience" />
+          <div class="gallery__caption"><span>Gourmet Dining</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== TEAM ===== -->
+  <!-- TEAM -->
   <section class="team section" id="team">
     <div class="container">
       <div class="section-header">
-        <p class="section-eyebrow">Our People</p>
+        <p class="eyebrow">Our People</p>
         <h2 class="section-heading">The Hearts Behind <em>Every Smile</em></h2>
-        <p class="section-sub">Our multidisciplinary team combines expertise with empathy to deliver care that truly makes a difference.</p>
+        <p class="section-sub">Our multidisciplinary team combines clinical expertise with genuine compassion to deliver care that truly makes a difference.</p>
       </div>
       <div class="team__grid">
         <div class="team-card">
           <div class="team-card__img">
-            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80&auto=format&fit=crop" alt="Dr. Sarah Mitchell" />
+            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=85&auto=format&fit=crop" alt="Dr Sarah Mitchell, Medical Director" />
           </div>
           <div class="team-card__body">
             <h4>Dr. Sarah Mitchell</h4>
@@ -299,97 +348,123 @@
         </div>
         <div class="team-card">
           <div class="team-card__img">
-            <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=80&auto=format&fit=crop" alt="James Okafor" />
+            <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&q=85&auto=format&fit=crop" alt="James Okafor, Director of Care" />
           </div>
           <div class="team-card__body">
             <h4>James Okafor</h4>
             <p class="team-card__role">Director of Care</p>
-            <p class="team-card__bio">With a nursing background spanning two continents, James leads our care teams with compassion, rigour and infectious enthusiasm.</p>
+            <p class="team-card__bio">A registered nurse with 20 years' experience, James leads our care teams with clarity, purpose and an open door for every family.</p>
           </div>
         </div>
         <div class="team-card">
           <div class="team-card__img">
-            <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&q=80&auto=format&fit=crop" alt="Mei-Ling Chen" />
+            <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=600&q=85&auto=format&fit=crop" alt="Priya Sharma, Head of Wellbeing" />
           </div>
           <div class="team-card__body">
-            <h4>Mei-Ling Chen</h4>
-            <p class="team-card__role">Lifestyle Coordinator</p>
-            <p class="team-card__bio">A true activities maestro, Mei-Ling designs our vibrant social calendar ensuring every resident finds joy, purpose and belonging.</p>
+            <h4>Priya Sharma</h4>
+            <p class="team-card__role">Head of Wellbeing</p>
+            <p class="team-card__bio">Priya designs our lifestyle and wellness programs, ensuring every resident has access to joy, creativity and meaningful engagement.</p>
           </div>
         </div>
         <div class="team-card">
           <div class="team-card__img">
-            <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=600&q=80&auto=format&fit=crop" alt="Dr. Tom Alvarez" />
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=85&auto=format&fit=crop" alt="David Chen, Head of Hospitality" />
           </div>
           <div class="team-card__body">
-            <h4>Dr. Tom Alvarez</h4>
-            <p class="team-card__role">Head Physiotherapist</p>
-            <p class="team-card__bio">Tom's innovative wellness programs keep our residents active and independent, proving that movement truly is medicine.</p>
+            <h4>David Chen</h4>
+            <p class="team-card__role">Head of Hospitality</p>
+            <p class="team-card__bio">A trained chef and former hotel director, David ensures every dining experience and every space reflects the warmth of home.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== STORIES / TESTIMONIALS ===== -->
+  <!-- TESTIMONIALS -->
   <section class="stories section" id="stories">
     <div class="container">
       <div class="section-header">
-        <p class="section-eyebrow">Family Stories</p>
+        <p class="eyebrow">Family Stories</p>
         <h2 class="section-heading">Words from the <em>Families We Serve</em></h2>
       </div>
       <div class="stories__slider" id="storiesSlider">
+
         <div class="story-card active">
-          <div class="story-card__stars">★★★★★</div>
+          <div class="story-card__stars" aria-label="5 out of 5 stars">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
           <blockquote>"Moving Mum to Astro Care was the best decision we ever made. She's painting again, has made wonderful friends, and is happier than she's been in years. The staff remember the little things — her favourite tea, the songs she loves. It's a gift."</blockquote>
           <div class="story-card__author">
-            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80&auto=format&fit=crop" alt="Jennifer T." />
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=85&auto=format&fit=crop" alt="Jennifer T." />
             <div>
               <strong>Jennifer T.</strong>
               <span>Daughter of Margaret, Resident since 2021</span>
             </div>
           </div>
         </div>
+
         <div class="story-card">
-          <div class="story-card__stars">★★★★★</div>
+          <div class="story-card__stars" aria-label="5 out of 5 stars">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
           <blockquote>"After Dad's stroke we were terrified about finding the right care. From the first phone call, Astro Care made us feel heard. The rehabilitation team got him walking again, and the lifestyle team gave him back his sense of humour. We couldn't ask for more."</blockquote>
           <div class="story-card__author">
-            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80&auto=format&fit=crop" alt="David K." />
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=85&auto=format&fit=crop" alt="David K." />
             <div>
               <strong>David K.</strong>
               <span>Son of Robert, Resident since 2022</span>
             </div>
           </div>
         </div>
+
         <div class="story-card">
-          <div class="story-card__stars">★★★★★</div>
+          <div class="story-card__stars" aria-label="5 out of 5 stars">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
           <blockquote>"I was nervous about leaving my own home but Astro Care has become my home. I have a full diary, the food is restaurant-quality, and the nurses genuinely care. My family visits often because they love the atmosphere too."</blockquote>
           <div class="story-card__author">
-            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80&auto=format&fit=crop" alt="Dorothy M." />
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=85&auto=format&fit=crop" alt="Dorothy M." />
             <div>
               <strong>Dorothy M.</strong>
               <span>Resident since 2020</span>
             </div>
           </div>
         </div>
+
       </div>
       <div class="stories__controls">
-        <button class="story-btn" id="storyPrev" aria-label="Previous testimonial">&#8592;</button>
+        <button class="story-btn" id="storyPrev" aria-label="Previous testimonial">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>
+        </button>
         <div class="story-dots" id="storyDots">
           <button class="dot active" aria-label="Testimonial 1 of 3"></button>
           <button class="dot" aria-label="Testimonial 2 of 3"></button>
           <button class="dot" aria-label="Testimonial 3 of 3"></button>
         </div>
-        <button class="story-btn" id="storyNext" aria-label="Next testimonial">&#8594;</button>
+        <button class="story-btn" id="storyNext" aria-label="Next testimonial">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </button>
       </div>
     </div>
   </section>
 
-  <!-- ===== PROCESS ===== -->
+  <!-- PROCESS -->
   <section class="process section">
     <div class="container">
       <div class="section-header">
-        <p class="section-eyebrow">Getting Started</p>
+        <p class="eyebrow">Getting Started</p>
         <h2 class="section-heading">Your Journey to <em>Astro Care Begins Here</em></h2>
       </div>
       <div class="process__steps">
@@ -397,67 +472,75 @@
           <div class="process-step__num">01</div>
           <div class="process-step__body">
             <h4>Initial Conversation</h4>
-            <p>Call us or submit an enquiry. Our care advisors will listen to your story and understand your needs with no pressure.</p>
+            <p>Call us or submit an enquiry. Our care advisors will listen to your story and understand your needs with no pressure, no obligations.</p>
           </div>
         </div>
         <div class="process-step">
           <div class="process-step__num">02</div>
           <div class="process-step__body">
-            <h4>Personal Visit & Tour</h4>
-            <p>Come see our facilities, meet the team and feel the atmosphere. Bring family — we love meeting everyone.</p>
+            <h4>Personal Visit &amp; Tour</h4>
+            <p>Come and see our facilities, meet the team and feel the atmosphere. Bring family — we love meeting everyone.</p>
           </div>
         </div>
         <div class="process-step">
           <div class="process-step__num">03</div>
           <div class="process-step__body">
             <h4>Care Assessment</h4>
-            <p>We conduct a thorough assessment to design a personalised care plan perfectly suited to your loved one.</p>
+            <p>We conduct a thorough assessment to design a personalised care plan perfectly suited to your loved one's needs and preferences.</p>
           </div>
         </div>
         <div class="process-step">
           <div class="process-step__num">04</div>
           <div class="process-step__body">
             <h4>Welcome Home</h4>
-            <p>Move in day is a celebration. Our team ensures a warm, seamless transition so everyone feels right at home.</p>
+            <p>Move-in day is a celebration. Our team ensures a warm, seamless transition so everyone feels right at home from day one.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== CONTACT ===== -->
+  <!-- CONTACT -->
   <section class="contact section" id="contact">
     <div class="container contact__grid">
       <div class="contact__info">
-        <p class="section-eyebrow">Get in Touch</p>
+        <p class="eyebrow">Get in Touch</p>
         <h2 class="section-heading">We'd Love to <em>Hear from You</em></h2>
         <p>Whether you're exploring options for the first time or ready to make a move, our friendly care advisors are here to guide you every step of the way.</p>
         <div class="contact__details">
           <div class="contact-item">
-            <div class="contact-item__icon">📞</div>
+            <div class="contact-item__icon">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            </div>
             <div>
               <strong>Call Us</strong>
               <span>1800 ASTRO (278 762)</span>
             </div>
           </div>
           <div class="contact-item">
-            <div class="contact-item__icon">✉️</div>
+            <div class="contact-item__icon">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </div>
             <div>
               <strong>Email</strong>
               <span>info@astrocare.com.au</span>
             </div>
           </div>
           <div class="contact-item">
-            <div class="contact-item__icon">📍</div>
+            <div class="contact-item__icon">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </div>
             <div>
               <strong>Locations</strong>
               <span>Sydney · Melbourne · Brisbane · Perth</span>
             </div>
           </div>
           <div class="contact-item">
-            <div class="contact-item__icon">🕐</div>
+            <div class="contact-item__icon">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+            </div>
             <div>
-              <strong>Open Hours</strong>
+              <strong>Hours</strong>
               <span>Mon–Fri 8am–6pm · Sat 9am–4pm</span>
             </div>
           </div>
@@ -491,8 +574,8 @@
               <option value="residential">Residential Aged Care</option>
               <option value="home-care">Home Care Package</option>
               <option value="respite">Respite Care</option>
-              <option value="memory-care">Memory & Dementia Care</option>
-              <option value="allied-health">Allied Health & Wellness</option>
+              <option value="memory-care">Memory &amp; Dementia Care</option>
+              <option value="allied-health">Allied Health &amp; Wellness</option>
               <option value="general">General Enquiry</option>
             </select>
           </div>
@@ -500,11 +583,11 @@
             <label for="message">Your Message</label>
             <textarea id="message" name="message" rows="4" placeholder="Tell us a little about your situation and how we can help…"></textarea>
           </div>
-          <button type="submit" class="btn btn--primary btn--full">Send Enquiry</button>
-          <p class="form-note">We'll respond within 24 hours. Your information is kept private.</p>
+          <button type="submit" class="btn btn--forest btn--full">Send Enquiry</button>
+          <p class="form-note">We respond within 24 hours. Your information is kept private.</p>
           <div class="form-success" id="formSuccess">
-            <span>🎉</span>
-            <p>Thank you! We'll be in touch very soon.</p>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            <p>Thank you — we'll be in touch very soon.</p>
           </div>
         </form>
       </div>
@@ -513,25 +596,30 @@
 
   </main>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer__top">
       <div class="container footer__top-inner">
         <div class="footer__brand">
-          <a href="#home" class="nav__logo">
-            <span class="logo-leaf">🌿</span>
-            <span class="logo-text">Astro <strong>Care</strong></span>
+          <a href="#home" class="nav__logo footer__logo" aria-label="Astro Care — home">
+            <svg class="logo-mark" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+              <line x1="22" y1="3" x2="22" y2="41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <line x1="3" y1="13" x2="41" y2="31" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <line x1="41" y1="13" x2="3" y2="31" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="22" cy="22" r="4" fill="currentColor"/>
+            </svg>
+            <span class="logo-wordmark">Astro <strong>Care</strong></span>
           </a>
-          <p>Astro Care Group Pty Ltd. Compassionate care for older Australians. Accredited. Trusted.</p>
+          <p>Astro Care Group Pty Ltd. Extraordinary aged care for older Australians — accredited, trusted and deeply committed to your wellbeing.</p>
           <div class="footer__social">
             <a href="#" aria-label="Facebook">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
             </a>
             <a href="#" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
             </a>
             <a href="#" aria-label="LinkedIn">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
             </a>
           </div>
         </div>
@@ -575,9 +663,9 @@
     </div>
   </footer>
 
-  <!-- ===== FLOATING CTA ===== -->
+  <!-- FLOAT CTA -->
   <a href="tel:+6118002787622" class="float-cta" id="floatCta" aria-label="Call 1800 ASTRO">
-    <span>📞</span>
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
     <span>1800 ASTRO</span>
   </a>
 
