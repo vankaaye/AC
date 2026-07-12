@@ -26,22 +26,22 @@
   aria-label="Chat with Astro Care"
 >
   <!-- Header -->
-  <div class="flex items-center gap-3 p-4" style="background: var(--euca); color: #fff;">
-    <span class="relative inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full" style="background: var(--sun);">
-      <svg class="h-9 w-9" viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#FFC24B"></circle><path d="M13 38 L24 12 L35 38" fill="none" stroke="#24523E" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"></path><path d="M16.5 29.5 h3.3 l1.65 -3.9 l2.4 7.8 l2.1 -5.1 l1.2 1.2 h4.35" fill="none" stroke="#B23E1F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+  <div class="flex items-center gap-2.5 px-4 py-2.5" style="background: var(--euca); color: #fff;">
+    <span class="relative inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full" style="background: #fff;">
+      <svg class="h-6 w-6" viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#FFC24B"></circle><path d="M13 38 L24 12 L35 38" fill="none" stroke="#24523E" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"></path><path d="M16.5 29.5 h3.3 l1.65 -3.9 l2.4 7.8 l2.1 -5.1 l1.2 1.2 h4.35" fill="none" stroke="#B23E1F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
     </span>
     <div class="min-w-0 flex-1">
-      <p class="text-xl font-black leading-tight" style="font-family: var(--font-head);">Astro — our chat helper</p>
-      <p class="text-base opacity-90">Instant answers, any time of day</p>
+      <p class="text-[0.95rem] font-bold leading-tight" style="font-family: var(--font-head);">Astro — chat helper</p>
+      <p class="text-xs opacity-85">Instant answers, any time of day</p>
     </div>
-    <button id="chatClose" class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-3xl font-bold hover:bg-white/15" aria-label="Close chat">×</button>
+    <button id="chatClose" class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xl font-bold hover:bg-white/15" aria-label="Close chat">×</button>
   </div>
 
   <!-- Messages -->
   <div id="chatLog" class="flex-1 space-y-3 overflow-y-auto p-4 sm:max-h-[50vh]" style="min-height: 16rem;" aria-live="polite"></div>
 
   <!-- Quick-reply chips: nobody has to type -->
-  <div id="chatChips" class="flex gap-2 overflow-x-auto px-4 pb-2" style="scrollbar-width: thin;" aria-label="Quick questions"></div>
+  <div id="chatChips" class="grid grid-flow-col grid-rows-2 gap-1.5 overflow-x-auto px-3 pb-2" style="scrollbar-width: thin; grid-auto-columns: max-content;" aria-label="Suggested questions"></div>
 
   <!-- Input -->
   <form id="chatForm" class="flex gap-2 border-t-2 p-3" style="border-color: var(--line); padding-bottom: max(0.75rem, env(safe-area-inset-bottom));">
@@ -333,6 +333,7 @@
           history.push({ role: 'assistant', content: data.reply });
           typing.innerHTML = safeHtml(data.reply);
           log.scrollTop = log.scrollHeight;
+          renderSuggestions(data.suggestions);
         })
         .catch(function () {
           var reply = kbAnswer(text);
@@ -342,13 +343,30 @@
         });
     }
 
+    function renderSuggestions(list) {
+      if (!list || !list.length) return;
+      chips.innerHTML = '';
+      list.forEach(function (q) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = q;
+        b.className = 'shrink-0 whitespace-nowrap rounded-full border px-3 py-1.5 text-[0.8rem] font-semibold';
+        b.style.cssText = 'border-color: var(--euca); color: var(--euca); font-family: var(--font-head); background: var(--bg-card);';
+        b.addEventListener('click', function () {
+          bubble(q, 'you');
+          answer(q);
+        });
+        chips.appendChild(b);
+      });
+    }
+
     function renderChips() {
       chips.innerHTML = '';
       KB.filter(function (i) { return i.chip; }).forEach(function (item) {
         var b = document.createElement('button');
         b.type = 'button';
         b.textContent = item.chip;
-        b.className = 'shrink-0 whitespace-nowrap rounded-full border-2 px-4 py-2 text-base font-bold min-h-11';
+        b.className = 'shrink-0 whitespace-nowrap rounded-full border px-3 py-1.5 text-[0.8rem] font-semibold';
         b.style.cssText = 'border-color: var(--euca); color: var(--euca); font-family: var(--font-head);';
         b.addEventListener('click', function () {
           bubble(item.chip, 'you');
@@ -365,12 +383,15 @@
       panel.classList.remove('hidden');
       panel.classList.add('flex');
       if (openBtn) openBtn.setAttribute('aria-expanded', 'true');
+      /* Focus the input on desktop only — on phones the keyboard
+         would cover the greeting. */
+      var fine = window.matchMedia('(min-width: 640px) and (hover: hover)').matches;
+      if (fine) setTimeout(function () { input.focus(); }, 120);
       if (!greeted) {
         greeted = true;
         renderChips();
         botReply("G'day! I'm <strong>Astro</strong>, the Astro Care chat helper — ask me anything about aged care, funding, fees or our services, day or night. What can I help with? (Prefer a person? <a href='/#contact'>Leave your details</a> and we'll ring you back.)");
       }
-      input.focus();
     }
     function closeChat() {
       panel.classList.add('hidden');

@@ -65,7 +65,11 @@ Formatting — make every answer clean, scannable and pleasant:
 - Markdown links [like this](https://...); site links work too: [fee calculator](/#pricing), [callback form](/#contact), [funding guide](/#funding).
 - No headings. Keep the whole answer concise — lead with the direct answer, then the supporting detail.
 
-Never give personal medical, legal or financial advice — for anything personal, suggest their GP or the callback form. Never invent Astro Care facts (locations, staff names, prices) beyond those above. Never invent numbers — if you can't find a figure, say so and link to where it's published.`;
+Never give personal medical, legal or financial advice — for anything personal, suggest their GP or the callback form. Never invent Astro Care facts (locations, staff names, prices) beyond those above. Never invent numbers — if you can't find a figure, say so and link to where it's published.
+
+FOLLOW-UP SUGGESTIONS — after EVERY answer, end with exactly one final line in this format (it is stripped out and shown as tappable buttons, so the user never has to type):
+SUGGESTIONS: first follow-up question | second follow-up question | third follow-up question
+Rules for suggestions: 3 options, each under 40 characters, natural next questions someone would ask after your answer, phrased from the user's voice (e.g. "How do I apply?", "What does Level 3 cover?").`;
 
 export default {
   async fetch(request, env) {
@@ -191,6 +195,14 @@ export default {
     }
     let text = parts.join('').trim();
 
+    // Pull out the SUGGESTIONS line → tappable follow-up chips.
+    let suggestions = [];
+    const sm = text.match(/\n?SUGGESTIONS:\s*([^\n]+)\s*$/i);
+    if (sm) {
+      suggestions = sm[1].split('|').map((x) => x.trim()).filter((x) => x && x.length <= 60).slice(0, 3);
+      text = text.replace(sm[0], '').trim();
+    }
+
     // Append any cited sources the model didn't already link inline.
     const missing = [...sources].filter(([url]) => !text.includes(url));
     if (missing.length) {
@@ -201,7 +213,7 @@ export default {
       text += `\n\nSources: ${links}`;
     }
 
-    return new Response(JSON.stringify({ reply: text }), {
+    return new Response(JSON.stringify({ reply: text, suggestions }), {
       headers: { ...cors, 'content-type': 'application/json' },
     });
   },
