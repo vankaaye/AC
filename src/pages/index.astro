@@ -1,15 +1,12 @@
 ---
 /**
- * index.astro — Astro Care home page
+ * index.astro — astrocare.com.au (design v2 "AU Modern")
  * ------------------------------------------------------------------
- * Lively, senior-first home page:
- *   Hero → compliance badges → quick help → services grid →
- *   "How to Access Funding" (HCP 1–4 & CHSP) → Pricing Calculator →
- * *   contact/callback form.
- *
- * Every heading and paragraph carries the `readable` class so the
- * Accessibility Panel's Read Aloud mode can speak it on click.
- * No carousels, no hover menus, no fast motion anywhere.
+ * Full-bleed video hero, ambient care videos through the page,
+ * scroll-reveal animations, refined type at normal sizes. Styled
+ * after Australia's best care & government health sites.
+ * Sections: hero → statement → services → how it works → funding
+ * → fee calculator → why us → contact/callback.
  * ------------------------------------------------------------------
  */
 import Layout from '../layouts/Layout.astro';
@@ -17,148 +14,147 @@ import PricingCalculator from '../components/PricingCalculator.astro';
 
 const services = [
   {
-    title: 'Clinical Care',
-    photo: 'https://images.unsplash.com/photo-1584515933487-779824d29309?w=800&q=85&auto=format&fit=crop',
-    alt: "A nurse gently holding an older person's hands",
-    color: 'var(--blue)',
-    soft: 'var(--blue-soft)',
+    id: 'clinical',
+    title: 'Clinical & nursing care',
     text: 'Registered nurses for wound care, medication, health checks and recovery after hospital — in the comfort of home.',
+    video: '/media/loop-clinical.mp4',
+    poster: '/media/poster-clinical.jpg',
+    alt: 'A community nurse chatting warmly with an older man at home',
   },
   {
-    title: 'Social Support',
-    photo: '/media/still-social.jpg',
-    alt: 'A support worker and an older gentleman laughing together over a video call to family',
-    color: 'var(--sun-deep)',
-    soft: 'var(--sun-soft)',
-    text: 'Friendly visits, outings, a hand with the shopping, and someone lovely to share a cuppa and a laugh with.',
+    id: 'social',
+    title: 'Social support & company',
+    text: 'Friendly visits, outings, a hand with the shopping — and someone lovely to share a cuppa and a laugh with.',
+    video: '/media/loop-social.mp4',
+    poster: '/media/poster-social.jpg',
+    alt: 'Three generations of a family sharing a happy moment at the kitchen table',
   },
   {
-    title: 'Domestic Assistance',
-    photo: '/media/still-domestic.jpg',
-    alt: 'A support worker making the bed while an older gentleman relaxes on his couch',
-    color: 'var(--euca)',
-    soft: 'var(--euca-soft)',
+    id: 'domestic',
+    title: 'Domestic assistance',
     text: 'Cleaning, laundry, gardening and small jobs around the house — done cheerfully, so home stays safe and lovely.',
+    video: '/media/loop-domestic.mp4',
+    poster: '/media/poster-domestic.jpg',
+    alt: 'A cheerful helper dancing while tidying a bright living room',
   },
   {
-    title: 'Meal Preparation',
-    photo: '/media/still-meals.jpg',
-    alt: 'A support worker preparing fresh vegetables with an older gentleman in his kitchen',
-    color: 'var(--call)',
-    soft: '#FAE7E0',
-    text: "Tasty, healthy meals cooked in your kitchen just the way you like them — with company while they're made.",
+    id: 'meals',
+    title: 'Meal preparation',
+    text: 'Fresh, tasty meals cooked in your own kitchen, just the way you like them — with good company while they’re made.',
+    video: '/media/loop-meals.mp4',
+    poster: '/media/poster-meals.jpg',
+    alt: 'A grandfather cooking at the stove while his family chats in the kitchen',
   },
 ];
 
+const steps = [
+  ['Say hello', 'Chat with us online or leave your number — we’ll talk through what would genuinely help, no obligation.', '01'],
+  ['We sort the funding', 'We guide you through My Aged Care and handle the paperwork with you. Most Australians over 65 qualify for government funding.', '02'],
+  ['Care begins at home', 'Your support workers arrive when you want them — and everything flexes as your needs change.', '03'],
+];
+
+const funding = [
+  {
+    name: 'Support at Home',
+    tag: 'Most people start here',
+    text: 'The Australian Government’s program for care at home (replacing Home Care Packages). Funding is based on your assessed needs — from about $11,000 to $78,000 a year.',
+  },
+  {
+    name: 'CHSP',
+    tag: 'Entry-level help',
+    text: 'The Commonwealth Home Support Programme suits people who need a little help — cleaning, meals or transport — with a small contribution per service.',
+  },
+  {
+    name: 'Private care',
+    tag: 'No waiting',
+    text: 'Start straight away and switch to government funding when it’s approved. Simple hourly rates, published up front.',
+  },
+];
 ---
 
 <Layout>
-  <!-- ============ HERO ============ -->
-  <section
-    class="py-9 md:py-20"
-    style="background:
-      radial-gradient(ellipse 60% 80% at 90% 0%, var(--sun-soft) 0%, transparent 65%),
-      radial-gradient(ellipse 45% 60% at 0% 100%, var(--euca-soft) 0%, transparent 70%),
-      var(--bg-sand);"
-  >
-    <div class="mx-auto grid w-[min(1220px,100%-2.5rem)] items-center gap-12 lg:grid-cols-[1.15fr_1fr]">
-      <div>
-        <p class="readable mb-2 text-xl font-extrabold md:text-2xl" style="font-family: var(--font-head); color: var(--sun-deep);">
-          G'day! We're Astro Care.
-        </p>
-        <h1 class="readable mb-4 text-4xl sm:text-5xl md:text-6xl">
-          Live happily in your <em class="not-italic" style="color: var(--euca);">own home</em>, with our gentle help.
-        </h1>
-        <p class="readable mb-6 max-w-[44ch] text-xl md:text-2xl" style="color: var(--tx-soft);">
-          We help Australian seniors with nursing, cleaning, meals and good company — funded by the
-          government wherever possible. One friendly phone call is all it takes to start.
-        </p>
-        <div class="mb-9 flex flex-wrap gap-4">
-          <a href="tel:+611800278762" class="btn-sun hc-border !text-xl !px-6 !py-4 md:!text-2xl md:!px-9 md:!py-5">
-            <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            Call Us Now
-          </a>
-          <a href="#funding" class="btn-primary hc-border !text-xl !px-6 !py-4 md:!text-2xl md:!px-9 md:!py-5">How Funding Works</a>
-        </div>
+  <!-- ============ FULL-BLEED VIDEO HERO ============ -->
+  <section class="relative flex min-h-[92svh] items-end overflow-hidden" aria-label="Welcome">
+    <video
+      class="absolute inset-0 h-full w-full object-cover"
+      src="/media/hero-au.mp4"
+      poster="/media/hero-au-poster.jpg"
+      muted loop playsinline autoplay preload="metadata"
+      data-ambient
+      aria-hidden="true"
+    ></video>
+    <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(11,26,32,0.88) 0%, rgba(11,26,32,0.42) 50%, rgba(11,26,32,0.22) 100%), linear-gradient(100deg, rgba(11,26,32,0.35) 0%, transparent 55%);" aria-hidden="true"></div>
 
-        <!-- Compliance badges -->
-        <ul class="flex flex-wrap gap-3" aria-label="Our accreditations">
-          {
-            [
-              ['My Aged Care', 'Approved Provider'],
-              ['NDIS', 'Registered Provider'],
-              ['Quality Standards', 'Aged Care Compliant'],
-            ].map(([strong, rest]) => (
-              <li
-                class="flex min-h-14 items-center gap-3 rounded-2xl border-4 px-4 py-2"
-                style="background: var(--bg-card); border-color: var(--euca);"
-              >
-                <svg class="h-9 w-9 shrink-0" style="color: var(--euca);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" />
-                </svg>
-                <span class="flex flex-col text-lg leading-tight" style="color: var(--tx-soft);">
-                  <strong style="font-family: var(--font-head); color: var(--tx);">{strong}</strong>
-                  {rest}
-                </span>
-              </li>
-            ))
-          }
-        </ul>
+    <div class="relative mx-auto w-[min(1280px,100%-2.5rem)] pb-14 pt-36 md:pb-20">
+      <p class="hero-rise mb-4 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-bold tracking-wide text-white" style="background: rgba(255,255,255,0.16); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.35);">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+        Australian owned &amp; run · My Aged Care approved provider
+      </p>
+      <h1 class="hero-rise max-w-3xl text-[2.6rem] leading-[1.05] font-extrabold tracking-tight sm:text-6xl md:text-7xl" style="color: #fff; text-shadow: 0 2px 24px rgba(11,26,32,0.35);">
+        Care at home,<br />done properly.
+      </h1>
+      <p class="hero-rise-2 mt-5 max-w-xl text-lg text-white/85 md:text-xl">
+        Nursing, everyday help and genuine company for older Australians —
+        government-funded for most people over 65.
+      </p>
+      <div class="hero-rise-3 mt-8 flex flex-wrap items-center gap-3">
+        <a href="#contact" class="btn-sun !px-7 !py-3.5 !text-lg">Get started</a>
+        <a href="#services" class="btn-ghost !px-7 !py-3.5 !text-lg">Explore our services</a>
       </div>
-
-      <div class="relative">
-        <video
-          id="heroVideo"
-          class="aspect-[4/4.2] w-full rounded-[28px] border-8 object-cover"
-          style="border-color: var(--bg-card); box-shadow: var(--shadow);"
-          poster="/media/hero-poster.jpg"
-          muted
-          loop
-          playsinline
-          preload="metadata"
-          width="1440" height="810"
-          aria-label="Our support workers sharing happy moments with a client at home: video calls with family, gentle exercise, cooking together and a reassuring hand"
-        >
-          <source src="/media/hero.mp4" type="video/mp4" />
-        </video>
-        <p
-          class="readable absolute -left-3 bottom-7 flex max-w-[90%] items-center gap-3 rounded-2xl px-5 py-4 text-xl"
-          style="background: var(--bg-card); box-shadow: var(--shadow);"
-        >
-          <svg class="h-9 w-9 shrink-0" viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#2F6B51"></circle><path d="M13 38 L24 12 L35 38" fill="none" stroke="#FFC24B" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"></path><path d="M16.5 29.5 h3.3 l1.65 -3.9 l2.4 7.8 l2.1 -5.1 l1.2 1.2 h4.35" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-          <strong>Australian owned&nbsp;&amp; run</strong> — care with local heart
-        </p>
-      </div>
+      <ul class="hero-rise-3 mt-10 flex flex-wrap gap-x-8 gap-y-2 text-sm font-semibold text-white/75" aria-label="Accreditations">
+        <li>My Aged Care · Approved Provider</li>
+        <li>NDIS · Registered Provider</li>
+        <li>Aged Care Quality Standards · Compliant</li>
+      </ul>
     </div>
   </section>
 
-  <!-- ============ SERVICES ============ -->
-  <section id="services" class="py-10 md:py-16" style="background: var(--bg);">
-    <div class="mx-auto w-[min(1220px,100%-2.5rem)]">
-      <h2 class="readable mb-3 text-3xl md:text-5xl">Our services, <em class="not-italic" style="color: var(--euca);">your way</em></h2>
-      <p class="readable mb-10 max-w-3xl text-xl" style="color: var(--tx-soft);">
-        Pick as much or as little help as you like. We'll fit around your routine — never the other way round.
+  <!-- ============ STATEMENT ============ -->
+  <section class="py-20 md:py-28" style="background: var(--bg);">
+    <div class="mx-auto w-[min(900px,100%-2.5rem)] text-center">
+      <p class="rv text-2xl font-extrabold leading-snug tracking-tight md:text-4xl" style="font-family: var(--font-head);">
+        Getting older shouldn’t mean leaving home.
+        <span style="color: var(--euca);">We make sure it doesn’t.</span>
       </p>
-      <div class="grid gap-7 md:grid-cols-2">
+      <p class="rv rv-d1 mx-auto mt-5 max-w-2xl text-lg" style="color: var(--tx-soft);">
+        We’re a small Australian team that does aged care the way it should be done —
+        the same friendly faces, honest fees, and help that fits around your life.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES (ambient video cards) ============ -->
+  <section id="services" class="py-16 md:py-24" style="background: var(--bg-sand);">
+    <div class="mx-auto w-[min(1280px,100%-2.5rem)]">
+      <div class="mb-12 flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p class="rv mb-2 text-sm font-bold uppercase tracking-widest" style="color: var(--euca);">What we do</p>
+          <h2 class="rv rv-d1 text-3xl md:text-5xl">Our services, your way</h2>
+        </div>
+        <p class="rv rv-d2 max-w-md text-[1.02rem]" style="color: var(--tx-soft);">
+          Pick as much or as little help as you like. We fit around your routine — never the other way round.
+        </p>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2">
         {
-          services.map((s) => (
-            <article
-              class="grid overflow-hidden rounded-3xl border-4 hc-border transition-transform hover:-translate-y-1 sm:grid-cols-[42%_58%]"
-              style="background: var(--bg-card); border-color: var(--line); box-shadow: var(--shadow);"
-            >
-              <img src={s.photo} alt={s.alt} class="h-52 w-full object-cover sm:h-full sm:min-h-52" width="800" height="800" loading="lazy" />
-              <div class="flex flex-col items-start p-7">
-                <span class="mb-3 inline-flex rounded-2xl px-4 py-2 text-lg font-black" style={`background:${s.soft}; color:${s.color}; font-family: var(--font-head);`}>
-                  {s.title}
-                </span>
-                <p class="readable grow text-xl" style="color: var(--tx-soft);">{s.text}</p>
-                <a
-                  href="#contact"
-                  class="mt-4 flex min-h-14 items-center gap-2 border-b-4 text-xl font-extrabold"
-                  style={`border-color: var(--sun); color: var(--blue); font-family: var(--font-head);`}
-                >
-                  Ask about {s.title.toLowerCase()}
-                  <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          services.map((s, i) => (
+            <article class={`vcard rv ${i % 2 ? 'rv-d2' : 'rv-d1'} overflow-hidden rounded-3xl`} style="background: var(--bg-card); box-shadow: var(--shadow);">
+              <div class="vcard-media aspect-[16/9]">
+                <video
+                  src={s.video}
+                  poster={s.poster}
+                  muted loop playsinline preload="none"
+                  data-ambient
+                  aria-label={s.alt}
+                ></video>
+              </div>
+              <div class="p-7">
+                <h3 class="text-xl font-extrabold md:text-2xl">{s.title}</h3>
+                <p class="mt-2.5 text-[1.02rem]" style="color: var(--tx-soft);">{s.text}</p>
+                <a href="#contact" class="mt-4 inline-flex items-center gap-1.5 text-[1.02rem] font-bold underline-offset-4 hover:underline" style="color: var(--euca);">
+                  Ask about this
+                  <svg class="h-4.5 w-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                 </a>
               </div>
             </article>
@@ -168,153 +164,160 @@ const services = [
     </div>
   </section>
 
-  <!-- ============ HOW TO ACCESS FUNDING ============ -->
-  <section id="funding" class="py-10 md:py-16" style="background: var(--euca-soft);">
-    <div class="mx-auto w-[min(1220px,100%-2.5rem)]">
-      <h2 class="readable mb-3 text-3xl md:text-5xl">How to access funding — <em class="not-italic" style="color: var(--euca);">in plain English</em></h2>
-      <p class="readable mb-10 max-w-3xl text-xl" style="color: var(--tx-soft);">
-        The Australian Government helps pay for care at home in two main ways. Don't worry about
-        choosing — call us and we'll work out which suits you, then handle the paperwork together.
-      </p>
-
-      <div class="grid gap-7 lg:grid-cols-2">
-        <!-- HCP pathway -->
-        <div class="rounded-3xl border-t-[12px] p-8" style="background: var(--bg-card); border-color: var(--euca); box-shadow: var(--shadow);">
-          <p class="mb-2 inline-block rounded-full px-4 py-1 text-lg font-black uppercase tracking-wide" style="background: var(--sun); font-family: var(--font-head);">Option 1</p>
-          <h3 class="readable text-3xl mb-2">Home Care Package <span class="text-2xl" style="color: var(--tx-soft);">(HCP, Levels 1–4)</span></h3>
-          <p class="readable mb-6 text-xl" style="color: var(--tx-soft);">
-            Best for <strong style="color: var(--tx);">regular or growing help</strong> — from a few visits a week (Level 1) to daily support (Level 4).
-          </p>
-          <ol class="grid gap-5">
-            {
-              [
-                ['Call My Aged Care on 1800 200 422 — or call us first', "and we'll help you register. It takes about 10 minutes."],
-                ['Have a free assessment at home.', 'A friendly assessor visits and works out your package level (1 to 4).'],
-                ['Choose Astro Care as your provider.', 'We plan your care with you and manage the budget openly.'],
-                ['Your care begins.', 'The same friendly faces, week after week — reviewed with you as needs change.'],
-              ].map(([strong, rest], i) => (
-                <li class="flex items-start gap-4 text-xl">
-                  <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-2xl font-black text-white" style="background: var(--euca); font-family: var(--font-head);">{i + 1}</span>
-                  <p class="readable" style="color: var(--tx-soft);"><strong style="color: var(--tx);">{strong}</strong> {rest}</p>
-                </li>
-              ))
-            }
-          </ol>
-        </div>
-
-        <!-- CHSP pathway -->
-        <div class="rounded-3xl border-t-[12px] p-8" style="background: var(--bg-card); border-color: var(--blue); box-shadow: var(--shadow);">
-          <p class="mb-2 inline-block rounded-full px-4 py-1 text-lg font-black uppercase tracking-wide" style="background: var(--sun); font-family: var(--font-head);">Option 2</p>
-          <h3 class="readable text-3xl mb-2">Commonwealth Home Support <span class="text-2xl" style="color: var(--tx-soft);">(CHSP)</span></h3>
-          <p class="readable mb-6 text-xl" style="color: var(--tx-soft);">
-            Best for <strong style="color: var(--tx);">a little help to stay independent</strong> — like cleaning, meals or transport.
-          </p>
-          <ol class="grid gap-5">
-            {
-              [
-                ['Call us or My Aged Care.', "We'll check you're eligible (most people 65+ are)."],
-                ['Have a quick phone or home chat', 'with an assessor to agree on the services you would like.'],
-                ['Services start — often within days.', 'You pay only a small contribution; the government covers the rest.'],
-              ].map(([strong, rest], i) => (
-                <li class="flex items-start gap-4 text-xl">
-                  <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-2xl font-black text-white" style="background: var(--blue); font-family: var(--font-head);">{i + 1}</span>
-                  <p class="readable" style="color: var(--tx-soft);"><strong style="color: var(--tx);">{strong}</strong> {rest}</p>
-                </li>
-              ))
-            }
-          </ol>
-        </div>
-      </div>
-
-      <div class="mt-8 flex flex-wrap items-center justify-between gap-5 rounded-3xl p-7" style="background: var(--bg-card); box-shadow: var(--shadow);">
-        <p class="readable text-2xl"><strong>Feeling unsure?</strong> That's completely normal — the system confuses everyone. One call sorts it out.</p>
-        <a href="tel:+611800278762" class="btn-sun hc-border !text-2xl">Call 1800 ASTRO (278 762)</a>
+  <!-- ============ HOW IT WORKS ============ -->
+  <section id="how" class="py-16 md:py-24" style="background: var(--bg);">
+    <div class="mx-auto w-[min(1280px,100%-2.5rem)]">
+      <p class="rv mb-2 text-sm font-bold uppercase tracking-widest" style="color: var(--euca);">Getting started</p>
+      <h2 class="rv rv-d1 mb-12 text-3xl md:text-5xl">Three easy steps</h2>
+      <div class="grid gap-6 md:grid-cols-3">
+        {
+          steps.map(([title, text, num], i) => (
+            <div class={`rv ${['', 'rv-d1', 'rv-d2'][i]} rounded-3xl border p-7`} style="border-color: var(--line); background: var(--bg-card);">
+              <span class="text-4xl font-extrabold" style="color: var(--euca); opacity: 0.35; font-family: var(--font-head);">{num}</span>
+              <h3 class="mt-3 text-xl font-extrabold">{title}</h3>
+              <p class="mt-2 text-[1.02rem]" style="color: var(--tx-soft);">{text}</p>
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
 
-  <!-- ============ PRICING & FEE TRANSPARENCY CALCULATOR ============ -->
-  <PricingCalculator />
+  <!-- ============ FUNDING ============ -->
+  <section id="funding" class="py-16 md:py-24" style="background: var(--blue-soft);">
+    <div class="mx-auto w-[min(1280px,100%-2.5rem)]">
+      <div class="mb-12 max-w-2xl">
+        <p class="rv mb-2 text-sm font-bold uppercase tracking-widest" style="color: var(--blue);">Funding</p>
+        <h2 class="rv rv-d1 text-3xl md:text-5xl">The government pays for most of it</h2>
+        <p class="rv rv-d2 mt-4 text-lg" style="color: var(--tx-soft);">
+          Australia has generous support for care at home. We’ll help you find the right door —
+          and do the My Aged Care paperwork with you.
+        </p>
+      </div>
+      <div class="grid gap-6 md:grid-cols-3">
+        {
+          funding.map((f, i) => (
+            <div class={`rv ${['', 'rv-d1', 'rv-d2'][i]} rounded-3xl p-7`} style="background: var(--bg-card); box-shadow: var(--shadow);">
+              <span class="inline-flex rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wide" style="background: var(--blue-soft); color: var(--blue);">{f.tag}</span>
+              <h3 class="mt-3 text-xl font-extrabold">{f.name}</h3>
+              <p class="mt-2 text-[1.02rem]" style="color: var(--tx-soft);">{f.text}</p>
+            </div>
+          ))
+        }
+      </div>
+      <p class="rv mt-8 text-[1.02rem]" style="color: var(--tx-soft);">
+        Not sure which applies to you? <button id="askFundingChat" class="font-bold underline underline-offset-4" style="color: var(--blue);">Ask our chat helper</button> — it answers with real, current figures.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ FEES ============ -->
+  <section id="pricing" class="py-16 md:py-24" style="background: var(--bg);">
+    <div class="mx-auto w-[min(1280px,100%-2.5rem)]">
+      <p class="rv mb-2 text-sm font-bold uppercase tracking-widest" style="color: var(--euca);">Fees</p>
+      <h2 class="rv rv-d1 mb-4 text-3xl md:text-5xl">Honest fees, no surprises</h2>
+      <p class="rv rv-d2 mb-10 max-w-2xl text-lg" style="color: var(--tx-soft);">
+        A <strong>15% care management</strong> and <strong>10% package management</strong> fee — both under the
+        government caps — plus published hourly rates. See exactly where every dollar goes:
+      </p>
+      <div class="rv rv-d2"><PricingCalculator /></div>
+    </div>
+  </section>
+
+  <!-- ============ WHY ASTRO CARE ============ -->
+  <section class="py-16 md:py-24" style="background: var(--bg-sand);">
+    <div class="mx-auto w-[min(1280px,100%-2.5rem)]">
+      <p class="rv mb-2 text-sm font-bold uppercase tracking-widest" style="color: var(--euca);">Why us</p>
+      <h2 class="rv rv-d1 mb-12 text-3xl md:text-5xl">Small team. Big difference.</h2>
+      <div class="grid gap-6 md:grid-cols-3">
+        {
+          [
+            ['The same friendly faces', 'You’ll know your support workers by name — and they’ll know exactly how you take your tea.'],
+            ['Answers any time of day', 'Our chat helper answers anything about aged care instantly, with real figures and sources — 24/7.'],
+            ['Nothing hidden, ever', 'Fees published on this page. A calculator that shows every dollar. No lock-in contracts.'],
+          ].map(([title, text], i) => (
+            <div class={`rv ${['', 'rv-d1', 'rv-d2'][i]} rounded-3xl p-7`} style="background: var(--bg-card); box-shadow: var(--shadow);">
+              <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="var(--euca)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21.35C6.4 17 3 13.5 3 9.9 3 7 5.2 5 8 5c1.6 0 3.1.8 4 2 0.9-1.2 2.4-2 4-2 2.8 0 5 2 5 4.9 0 3.6-3.4 7.1-9 11.45z"/></svg>
+              <h3 class="mt-4 text-xl font-extrabold">{title}</h3>
+              <p class="mt-2 text-[1.02rem]" style="color: var(--tx-soft);">{text}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
 
   <!-- ============ CONTACT / CALLBACK ============ -->
-  <section id="contact" class="py-10 md:py-16" style="background: var(--sun-soft);">
-    <div class="mx-auto w-[min(1220px,100%-2.5rem)]">
-      <h2 class="readable mb-3 text-center text-3xl md:text-5xl">Let's have a <em class="not-italic" style="color: var(--euca);">friendly chat</em></h2>
-      <p class="readable mx-auto mb-10 max-w-2xl text-center text-xl" style="color: var(--tx-soft);">
-        No obligation, no pressure — just honest answers about the help you can get.
-      </p>
-      <div class="grid gap-7 lg:grid-cols-2">
-        <div class="rounded-3xl p-8" style="background: var(--bg-card); box-shadow: var(--shadow);">
-          <h3 class="readable text-3xl mb-5">The quickest way: pick up the phone</h3>
-          <a href="tel:+611800278762" class="btn-primary hc-border w-full !justify-start !text-3xl !py-6 mb-5">
-            <svg class="h-11 w-11 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <span>1800 ASTRO<br /><small class="text-xl font-bold opacity-90">(1800 278 762)</small></span>
+  <section id="contact" class="py-16 md:py-24" style="background: var(--bg);">
+    <div class="mx-auto grid w-[min(1280px,100%-2.5rem)] gap-10 lg:grid-cols-[1fr_1.1fr]">
+      <div class="rv">
+        <p class="mb-2 text-sm font-bold uppercase tracking-widest" style="color: var(--euca);">Contact</p>
+        <h2 class="text-3xl md:text-5xl">Let’s have a chat</h2>
+        <p class="mt-4 max-w-md text-lg" style="color: var(--tx-soft);">
+          No pressure, no obligation — just honest answers about the help you can get.
+        </p>
+        <div class="mt-8 flex flex-col gap-3">
+          <a href="tel:+611800278762" class="btn-call w-fit !px-6 !py-3 !text-lg">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            1800 ASTRO (1800 278 762)
           </a>
-          <p class="readable text-xl mb-4" style="color: var(--tx-soft);">Monday to Friday, 8am – 6pm<br />Saturday, 9am – 4pm</p>
-          <p class="readable text-xl" style="color: var(--tx-soft);">
+          <p class="text-[0.98rem]" style="color: var(--tx-soft);">Mon–Fri 8am–6pm · Sat 9am–4pm · care itself runs 24/7</p>
+          <p class="text-[0.98rem]" style="color: var(--tx-soft);">
             Prefer to write? <a href="mailto:info@astrocare.com.au" class="font-bold underline underline-offset-4" style="color: var(--blue);">info@astrocare.com.au</a>
           </p>
         </div>
-
-        <form id="callbackForm" class="rounded-3xl p-8" style="background: var(--bg-card); box-shadow: var(--shadow);" novalidate>
-          <h3 class="readable text-3xl mb-5">Or ask us to call you</h3>
-          <label class="mb-5 block text-xl font-extrabold" style="font-family: var(--font-head);">
-            Your name
-            <input type="text" name="name" required autocomplete="name" placeholder="e.g. Margaret Smith"
-              class="mt-2 block min-h-16 w-full rounded-2xl border-4 px-5 text-xl"
-              style="border-color: var(--line); background: var(--bg); font-family: var(--font-body);" />
-          </label>
-          <label class="mb-5 block text-xl font-extrabold" style="font-family: var(--font-head);">
-            Your phone number
-            <input type="tel" name="phone" required autocomplete="tel" placeholder="e.g. 0412 345 678"
-              class="mt-2 block min-h-16 w-full rounded-2xl border-4 px-5 text-xl"
-              style="border-color: var(--line); background: var(--bg); font-family: var(--font-body);" />
-          </label>
-          <label class="mb-6 block text-xl font-extrabold" style="font-family: var(--font-head);">
-            What would you like help with?
-            <select name="careType" required
-              class="mt-2 block min-h-16 w-full rounded-2xl border-4 px-5 text-xl"
-              style="border-color: var(--line); background: var(--bg); font-family: var(--font-body);">
-              <option value="" selected disabled>Please choose one…</option>
-              <option>Help around the house</option>
-              <option>Nursing / clinical care</option>
-              <option>Meals</option>
-              <option>Company and outings</option>
-              <option>Getting started with My Aged Care</option>
-              <option>I'm not sure — please guide me</option>
-            </select>
-          </label>
-          <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
-          <button type="submit" class="btn-primary hc-border w-full !text-2xl">Please call me back</button>
-          <p class="mt-3 text-center text-lg" style="color: var(--tx-soft);">We'll ring you within one business day. Your details stay private.</p>
-          <div id="formSuccess" class="mt-4 hidden rounded-2xl border-4 p-5 text-center text-xl" style="background: var(--euca-soft); border-color: var(--euca); color: var(--euca-deep);" role="status">
-            <strong>Thank you — message received!</strong><br />A friendly team member will call you within one business day.
-          </div>
-          <div id="formError" class="mt-4 hidden rounded-2xl border-4 p-5 text-center text-xl" style="background: #fdecea; border-color: #b23e1f; color: #7c2a13;" role="alert">
-            <strong>Sorry — that didn't send.</strong><br />Please email <a href="mailto:info@astrocare.com.au" class="underline">info@astrocare.com.au</a> or ring <a href="tel:+611800278762" class="underline">1800 ASTRO</a>.
-          </div>
-        </form>
       </div>
+
+      <form id="callbackForm" class="rv rv-d1 rounded-3xl p-8" style="background: var(--bg-sand);" novalidate>
+        <h3 class="text-2xl font-extrabold">Ask us to call you</h3>
+        <p class="mt-1 mb-6 text-[0.98rem]" style="color: var(--tx-soft);">We’ll ring you within one business day. Your details stay private.</p>
+        <label class="mb-4 block text-[0.95rem] font-bold">
+          Your name
+          <input type="text" name="name" required autocomplete="name" placeholder="e.g. Margaret Smith"
+            class="mt-1.5 block min-h-13 w-full rounded-xl border px-4 text-[1.02rem]"
+            style="border-color: var(--line); background: var(--bg-card);" />
+        </label>
+        <label class="mb-4 block text-[0.95rem] font-bold">
+          Your phone number
+          <input type="tel" name="phone" required autocomplete="tel" placeholder="e.g. 0412 345 678"
+            class="mt-1.5 block min-h-13 w-full rounded-xl border px-4 text-[1.02rem]"
+            style="border-color: var(--line); background: var(--bg-card);" />
+        </label>
+        <label class="mb-6 block text-[0.95rem] font-bold">
+          What would you like help with?
+          <select name="careType" required
+            class="mt-1.5 block min-h-13 w-full rounded-xl border px-4 text-[1.02rem]"
+            style="border-color: var(--line); background: var(--bg-card);">
+            <option value="" selected disabled>Please choose one…</option>
+            <option>Help around the house</option>
+            <option>Nursing / clinical care</option>
+            <option>Meals</option>
+            <option>Company and outings</option>
+            <option>Getting started with My Aged Care</option>
+            <option>I'm not sure — please guide me</option>
+          </select>
+        </label>
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+        <button type="submit" class="btn-primary w-full !text-lg">Please call me back</button>
+        <div id="formSuccess" class="mt-4 hidden rounded-xl p-4 text-center text-[1.02rem]" style="background: var(--euca-soft); color: var(--euca-deep);" role="status">
+          <strong>Thank you — message received!</strong><br />A friendly team member will call you within one business day.
+        </div>
+        <div id="formError" class="mt-4 hidden rounded-xl p-4 text-center text-[1.02rem]" style="background: #fdecea; color: #7c2a13;" role="alert">
+          <strong>Sorry — that didn't send.</strong><br />Please email <a href="mailto:info@astrocare.com.au" class="underline">info@astrocare.com.au</a> or ring <a href="tel:+611800278762" class="underline">1800 ASTRO</a>.
+        </div>
+      </form>
     </div>
   </section>
 
   <script is:inline>
-    /* Hero video: play only when visible and motion is welcome.
-       Anyone with "reduce motion" set just sees the poster photo. */
+    /* "Ask our chat helper" opens the chat. */
     (function () {
-      var v = document.getElementById('heroVideo');
-      if (!v) return;
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) { v.play().catch(function () {}); }
-          else { v.pause(); }
-        });
-      }, { threshold: 0.25 });
-      io.observe(v);
+      var b = document.getElementById('askFundingChat');
+      var open = document.getElementById('openChat');
+      if (b && open) b.addEventListener('click', function () { open.click(); });
     })();
 
-    /* Callback form → emails info@astrocare.com.au via FormSubmit. */
+    /* Callback form → emails via FormSubmit relay. */
     var form = document.getElementById('callbackForm');
     if (form) {
       form.addEventListener('submit', function (e) {

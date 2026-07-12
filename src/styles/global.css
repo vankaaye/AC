@@ -1,42 +1,42 @@
 @import "tailwindcss";
 
 /* ============================================================
-   ASTRO CARE — Global accessibility-first design system
-   WCAG 2.2 AAA targets: 20px+ body text, 7:1 contrast in
-   high-contrast mode, 56px minimum targets, visible focus.
+   ASTRO CARE — "AU Modern" design system (v2)
+   Styled after the best Australian health & care sites:
+   clean white, deep petrol ink, eucalyptus teal, soft mist
+   sections, one warm accent. Refined type at normal sizes.
 
    Colour is driven entirely by CSS custom properties so the
-   Accessibility Panel can swap the whole palette (normal /
-   high-contrast) with a single [data-contrast] attribute.
-   Text scaling swaps root font-size via [data-scale]; every
-   size on the site is rem-based, so everything scales.
+   Accessibility Panel can still swap the whole palette
+   (normal / high-contrast) with a single [data-contrast]
+   attribute, and text scaling still works via [data-scale].
    ============================================================ */
 
 @theme {
-  --font-head: "Nunito", ui-sans-serif, system-ui, sans-serif;
-  --font-body: "Atkinson Hyperlegible", ui-sans-serif, system-ui, sans-serif;
+  --font-head: "Figtree", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-body: "Figtree", ui-sans-serif, system-ui, -apple-system, sans-serif;
 }
 
 /* ---------- Palette (normal mode) ---------- */
 :root {
-  --bg:          #FFFDF6;  /* warm sand-white   */
-  --bg-sand:     #F7F0E1;  /* soft sand         */
+  --bg:          #FFFFFF;
+  --bg-sand:     #F1F6F4;  /* soft eucalyptus mist (section alt) */
   --bg-card:     #FFFFFF;
-  --tx:          #1E2823;  /* deep eucalyptus-ink, 14.9:1 on --bg */
-  --tx-soft:     #46524B;  /* 7.4:1 on --bg — AAA for body text  */
-  --euca:        #2F6B51;  /* eucalyptus green  */
-  --euca-deep:   #24523E;
-  --euca-soft:   #E7F2EC;
-  --sun:         #FFC24B;  /* sunflower         */
-  --sun-deep:    #8A5B00;  /* AAA-contrast companion for text on sand */
-  --sun-soft:    #FFF3D6;
-  --blue:        #1F5F8B;
-  --blue-soft:   #E3EFF7;
-  --call:        #B23E1F;  /* warm call-to-action red-orange, 5.9:1 with white */
-  --call-deep:   #933218;
-  --line:        #E3DCC9;
-  --focus:       #1F5F8B;
-  --shadow:      0 10px 30px rgba(30, 40, 35, 0.12);
+  --tx:          #142B33;  /* deep petrol ink */
+  --tx-soft:     #4A5E66;
+  --euca:        #0E6B57;  /* eucalyptus teal — brand */
+  --euca-deep:   #0B4A3D;
+  --euca-soft:   #E3F1EC;
+  --sun:         #F2B33D;  /* warm gold accent */
+  --sun-deep:    #7A5800;
+  --sun-soft:    #FBF3DF;
+  --blue:        #1B5E8F;  /* AU government blue */
+  --blue-soft:   #EAF2F9;
+  --call:        #CE4A2B;  /* coral call-to-action */
+  --call-deep:   #A73A20;
+  --line:        #E3EAEC;
+  --focus:       #1B5E8F;
+  --shadow:      0 12px 34px rgba(20, 43, 51, 0.10);
 }
 
 /* ---------- Palette (high-contrast mode) ---------- */
@@ -72,20 +72,26 @@ html[data-scale="200"]   { font-size: 200%; }
 
 body {
   font-family: var(--font-body);
-  font-size: 1.25rem;            /* 20px default; sections use 1.25–1.5rem */
-  line-height: 1.6;
+  font-size: 1.0625rem;          /* 17px — modern, comfortable */
+  line-height: 1.65;
   color: var(--tx);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4 { font-family: var(--font-head); font-weight: 900; line-height: 1.15; color: var(--tx); }
+h1, h2, h3, h4 {
+  font-family: var(--font-head);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--tx);
+}
 
-/* ---------- AAA focus visibility (WCAG 2.4.13 focus appearance) ---------- */
+/* ---------- Focus visibility ---------- */
 a:focus-visible, button:focus-visible, input:focus-visible,
 select:focus-visible, [tabindex]:focus-visible {
-  outline: 4px solid var(--focus);
+  outline: 3px solid var(--focus);
   outline-offset: 3px;
   border-radius: 8px;
 }
@@ -102,6 +108,27 @@ html[data-readaloud="on"] .readable:focus-visible {
   background: var(--sun) !important;
   box-shadow: 0 0 0 6px var(--sun) !important;
   border-radius: 6px;
+}
+
+/* ---------- Scroll-reveal animation system ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .rv {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .rv.in { opacity: 1; transform: none; }
+  .rv-d1 { transition-delay: 0.08s; }
+  .rv-d2 { transition-delay: 0.16s; }
+  .rv-d3 { transition-delay: 0.24s; }
+  .rv-d4 { transition-delay: 0.32s; }
+  .hero-rise { animation: heroRise 1s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .hero-rise-2 { animation: heroRise 1s 0.15s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .hero-rise-3 { animation: heroRise 1s 0.3s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  @keyframes heroRise {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: none; }
+  }
 }
 
 /* ---------- Reduced motion ---------- */
@@ -128,49 +155,77 @@ html[data-readaloud="on"] .readable:focus-visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.7rem;
-  min-height: 3.5rem;             /* 56px minimum target */
-  padding: 1rem 2rem;
+  gap: 0.6rem;
+  min-height: 3rem;
+  padding: 0.8rem 1.7rem;
   border-radius: 999px;
   font-family: var(--font-head);
-  font-weight: 800;
-  font-size: 1.3rem;
+  font-weight: 700;
+  font-size: 1.05rem;
   background: var(--euca);
   color: #fff;
-  transition: background 0.2s, transform 0.2s;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
 }
-.btn-primary:hover { background: var(--euca-deep); transform: translateY(-2px); }
+.btn-primary:hover { background: var(--euca-deep); transform: translateY(-2px); box-shadow: var(--shadow); }
 
 .btn-sun {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.7rem;
-  min-height: 3.5rem;
-  padding: 1rem 2rem;
+  gap: 0.6rem;
+  min-height: 3rem;
+  padding: 0.8rem 1.7rem;
   border-radius: 999px;
   font-family: var(--font-head);
-  font-weight: 800;
-  font-size: 1.3rem;
+  font-weight: 700;
+  font-size: 1.05rem;
   background: var(--sun);
   color: var(--tx);
-  transition: filter 0.2s, transform 0.2s;
+  transition: filter 0.2s, transform 0.2s, box-shadow 0.2s;
 }
-.btn-sun:hover { filter: brightness(1.06); transform: translateY(-2px); }
+.btn-sun:hover { filter: brightness(1.05); transform: translateY(-2px); box-shadow: var(--shadow); }
 
 .btn-call {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.7rem;
-  min-height: 3.5rem;
-  padding: 1rem 1.8rem;
+  gap: 0.6rem;
+  min-height: 3rem;
+  padding: 0.8rem 1.5rem;
   border-radius: 999px;
   font-family: var(--font-head);
-  font-weight: 900;
-  font-size: 1.25rem;
+  font-weight: 700;
+  font-size: 1.02rem;
   background: var(--call);
   color: #fff;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.btn-call:hover { background: var(--call-deep); transform: translateY(-2px); box-shadow: var(--shadow); }
+
+/* Ghost button for dark surfaces (hero) */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 3rem;
+  padding: 0.8rem 1.7rem;
+  border-radius: 999px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(8px);
   transition: background 0.2s, transform 0.2s;
 }
-.btn-call:hover { background: var(--call-deep); transform: translateY(-2px); }
+.btn-ghost:hover { background: rgba(255, 255, 255, 0.26); transform: translateY(-2px); }
+
+/* Ambient video card */
+.vcard-media { position: relative; overflow: hidden; }
+.vcard-media video, .vcard-media img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.vcard:hover .vcard-media video, .vcard:hover .vcard-media img { transform: scale(1.045); }

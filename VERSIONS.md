@@ -6,7 +6,8 @@ so any version can be restored exactly with:
 
 | Version | Status  | URL       | Commit    | Notes |
 |---------|---------|-----------|-----------|-------|
-| v1 — Sunny & senior-first | **LIVE** | `/` | `f4f0387` | Warm eucalyptus/sand/sunflower, 20px+ text, accessibility panel (text size / high contrast / read aloud), HCP-CHSP funding guide, fee calculator, chat helper, logo No. 181 (Monogram A heartbeat). |
+| v2 — AU Modern | **LIVE** | `/` | (this commit) | Australian-style modern: white + petrol ink + eucalyptus teal + My Aged Care blue, Figtree type at normal sizes, full-bleed hero video (older couple in park → nurse helping → family hug → home visit), ambient care video loops in service cards, scroll-reveal animations, slim glassy hide-on-scroll nav, floating chat button. |
+| v1 — Sunny & senior-first | Archived | — | `f64d649` | Warm eucalyptus/sand/sunflower, 20px+ text, oversized senior-first UI, HCP-CHSP funding guide, fee calculator, chat helper, logo No. 181. Restore: `git checkout f64d649 -- src/ public/`. |
 | Test 1 — White minimal + animations | Concept | `/test1` | `ef8c342` | Apple-inspired: primary white, oversized type, scroll reveals with blur, scroll-driven image zoom, parallax, count-ups, dark gradient-number CTA. |
 | Test 2 — Corporate light (ktechify style) | Concept | `/test2` | `2157a7e` | White corporate, Space Grotesk, electric blue #1a56f0, photo hero, floating stats, marquee strip, gradient CTA. |
 | Test 3 — Calm (Apple-style, phone-first) | Concept | `/test3` | (this commit) | Pure white, Apple system fonts, one green accent, phone-first spacing, full-screen chat sheet, real AI chat + working callback form. |
