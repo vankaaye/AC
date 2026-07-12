@@ -11,7 +11,8 @@ so any version can be restored exactly with:
 | v1 — Sunny & senior-first | Archived | — | `f64d649` | Warm eucalyptus/sand/sunflower, 20px+ text, oversized senior-first UI, HCP-CHSP funding guide, fee calculator, chat helper, logo No. 181. Restore: `git checkout f64d649 -- src/ public/`. |
 | Test 1 — White minimal + animations | Concept | `/test1` | `ef8c342` | Apple-inspired: primary white, oversized type, scroll reveals with blur, scroll-driven image zoom, parallax, count-ups, dark gradient-number CTA. |
 | Test 2 — Corporate light (ktechify style) | Concept | `/test2` | `2157a7e` | White corporate, Space Grotesk, electric blue #1a56f0, photo hero, floating stats, marquee strip, gradient CTA. |
-| Test 3 — Calm (Apple-style, phone-first) | Concept | `/test3` | (this commit) | Pure white, Apple system fonts, one green accent, phone-first spacing, full-screen chat sheet, real AI chat + working callback form. |
+| Test 4 — Commission (gov health style) | Concept | `/test4` | (this commit) | Deep-purple government health design language: task tiles, alert banner, flat bordered cards, updates list, formal footer. Modelled on agedcarequality.gov.au (not copied). |
+| Test 3 — Calm (Apple-style, phone-first) | Concept | `/test3` | `84e15e9` | Pure white, Apple system fonts, one green accent, phone-first spacing, full-screen chat sheet, real AI chat + working callback form. |
 
 Earlier full-site iterations (before the Astro rebuild) also live in history:
 

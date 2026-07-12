@@ -1,0 +1,418 @@
+---
+/**
+ * test4.astro — Design concept "Test 4 — Commission"
+ * ------------------------------------------------------------------
+ * Styled after agedcarequality.gov.au / the Australian Government
+ * health design language (not a copy): deep-purple brand band,
+ * flat white cards with thin borders, task-based "I want to…"
+ * tiles, info alert banner, search-first help, calm typography,
+ * formal footer with Acknowledgement of Country.
+ *
+ * This page is a CONCEPT ONLY. See /versions for the design index.
+ * ------------------------------------------------------------------
+ */
+const services = [
+  ['Clinical & nursing care', 'Registered nurses for wounds, medication and recovery after hospital.', '/media/poster-clinical.jpg'],
+  ['Social support & company', 'Friendly visits, outings and someone lovely to share a cuppa with.', '/media/poster-social.jpg'],
+  ['Domestic assistance', 'Cleaning, laundry and small jobs, so home stays safe and lovely.', '/media/poster-domestic.jpg'],
+  ['Meal preparation', 'Fresh meals cooked in your own kitchen, the way you like them.', '/media/poster-meals.jpg'],
+];
+const tasks = [
+  ['Get started with My Aged Care', 'Apply for an assessment — we can do it with you', '#contact'],
+  ['Check what funding I can get', 'Support at Home, CHSP and what they cover', '#funding'],
+  ['See the services available', 'Nursing, company, housework and meals', '#services'],
+  ['Understand the fees', 'Our rates and management fees, published in full', '/#pricing'],
+  ['Talk to a real person', 'Leave your number — we ring back within a day', '#contact'],
+  ['Read official resources', 'My Aged Care, Carer Gateway, advocacy and more', '#resources'],
+];
+const updates = [
+  ['1 November 2025', 'Support at Home has replaced Home Care Packages — existing funding carries over automatically.', 'https://www.health.gov.au/our-work/support-at-home'],
+  ['July 2026', 'Funding classifications now range from about $11,000 to $78,000 per year across eight levels.', 'https://www.health.gov.au/our-work/support-at-home'],
+  ['Ongoing', 'All clinical care under Support at Home is fully government-funded — no contribution for nursing.', 'https://www.myagedcare.gov.au/'],
+];
+const resources = [
+  ['My Aged Care', 'https://www.myagedcare.gov.au/'],
+  ['Eligibility checker', 'https://www.myagedcare.gov.au/am-i-eligible'],
+  ['Support at Home program', 'https://www.health.gov.au/our-work/support-at-home'],
+  ['Services Australia — aged care', 'https://www.servicesaustralia.gov.au/aged-care'],
+  ['Carer Gateway', 'https://www.carergateway.gov.au/'],
+  ['Dementia Australia', 'https://www.dementia.org.au/'],
+  ['Aged Care Quality & Safety Commission', 'https://www.agedcarequality.gov.au/'],
+  ['OPAN — free advocacy', 'https://opan.org.au/'],
+];
+---
+
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Astro Care — Concept Test 4 (Commission style)</title>
+    <meta name="description" content="Design concept Test 4 — Australian government health design language." />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --purple: #4b2e6f;
+        --purple-deep: #372254;
+        --purple-band: #f4f1f8;
+        --magenta: #b0338a;
+        --ink: #232026;
+        --ink-soft: #55505c;
+        --line: #d9d4e0;
+        --link: #4b2e6f;
+        --alert-bg: #eaf1fb;
+        --alert-border: #2e5c9e;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body { font-family: 'Public Sans', -apple-system, 'Segoe UI', Arial, sans-serif; color: var(--ink); background: #fff; font-size: 17px; line-height: 1.6; }
+      .wrap { width: min(1180px, 100% - 40px); margin-inline: auto; }
+      a { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
+      a:hover { text-decoration-thickness: 2.5px; }
+      h1, h2, h3 { line-height: 1.18; font-weight: 700; letter-spacing: -0.01em; }
+
+      .govstrip { background: #232026; color: #fff; font-size: 13px; padding: 7px 0; }
+      .govstrip .wrap { display: flex; flex-wrap: wrap; gap: 4px 18px; }
+
+      .masthead { padding: 18px 0; border-bottom: 1px solid var(--line); }
+      .masthead .wrap { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+      .masthead svg { width: 52px; height: 52px; }
+      .masthead .brand b { font-size: 22px; display: block; color: var(--ink); }
+      .masthead .brand span { font-size: 14px; color: var(--ink-soft); }
+      .masthead .right { margin-left: auto; display: flex; align-items: center; gap: 16px; }
+      .masthead .phone { font-weight: 700; text-decoration: none; font-size: 15px; }
+      .btn {
+        display: inline-flex; align-items: center; gap: 8px; border-radius: 4px; cursor: pointer;
+        padding: 11px 20px; font: 600 15px 'Public Sans', sans-serif; text-decoration: none;
+        border: 2px solid var(--purple); transition: background 0.15s;
+      }
+      .btn--solid { background: var(--purple); color: #fff; }
+      .btn--solid:hover { background: var(--purple-deep); }
+      .btn--ghost { background: #fff; color: var(--purple); }
+      .btn--ghost:hover { background: var(--purple-band); }
+
+      .navband { background: var(--purple); }
+      .navband .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 2px; }
+      .navband a {
+        color: #fff; text-decoration: none; font-weight: 600; font-size: 15px;
+        padding: 13px 16px; display: inline-block; border-bottom: 3px solid transparent;
+      }
+      .navband a:hover, .navband a[aria-current] { background: var(--purple-deep); border-bottom-color: var(--magenta); }
+      .navband form { margin-left: auto; display: flex; padding: 6px 0; }
+      .navband input {
+        border: 0; border-radius: 3px 0 0 3px; padding: 9px 12px; width: min(240px, 50vw);
+        font: 15px 'Public Sans', sans-serif;
+      }
+      .navband button { border: 0; border-radius: 0 3px 3px 0; background: var(--magenta); color: #fff; padding: 0 14px; cursor: pointer; }
+
+      .alert { background: var(--alert-bg); border-left: 6px solid var(--alert-border); }
+      .alert .wrap { display: flex; gap: 12px; padding: 13px 0; font-size: 15px; align-items: baseline; flex-wrap: wrap; }
+      .alert b { color: #1d3f70; }
+
+      .hero { background: var(--purple-band); padding: 52px 0; }
+      .hero .wrap { display: grid; gap: 36px; align-items: center; }
+      @media (min-width: 880px) { .hero .wrap { grid-template-columns: 1.2fr 1fr; } }
+      .hero h1 { font-size: clamp(30px, 4.5vw, 44px); color: var(--ink); max-width: 22ch; }
+      .hero p.lede { margin: 14px 0 24px; font-size: 18px; color: var(--ink-soft); max-width: 48ch; }
+      .hero .cta { display: flex; gap: 12px; flex-wrap: wrap; }
+      .hero figure img { width: 100%; border-radius: 6px; display: block; border: 1px solid var(--line); }
+      .hero figcaption { font-size: 13px; color: var(--ink-soft); margin-top: 8px; }
+
+      section { padding: 52px 0; }
+      .sect-title { font-size: clamp(24px, 3vw, 32px); margin-bottom: 8px; }
+      .sect-sub { color: var(--ink-soft); margin-bottom: 28px; max-width: 62ch; }
+
+      .tasks { display: grid; gap: 14px; }
+      @media (min-width: 680px) { .tasks { grid-template-columns: 1fr 1fr; } }
+      @media (min-width: 1000px) { .tasks { grid-template-columns: 1fr 1fr 1fr; } }
+      .task {
+        background: var(--purple-band); border-radius: 6px; padding: 20px 22px; text-decoration: none;
+        display: flex; justify-content: space-between; gap: 14px; align-items: center;
+        border: 1px solid transparent; transition: border 0.15s, background 0.15s;
+      }
+      .task:hover { border-color: var(--purple); background: #ece6f3; }
+      .task b { color: var(--purple); font-size: 17px; display: block; }
+      .task span { color: var(--ink-soft); font-size: 14px; font-weight: 400; }
+      .task svg { flex-shrink: 0; }
+
+      .cards { display: grid; gap: 18px; }
+      @media (min-width: 680px) { .cards { grid-template-columns: 1fr 1fr; } }
+      @media (min-width: 1000px) { .cards { grid-template-columns: repeat(4, 1fr); } }
+      .card { background: #fff; border: 1px solid var(--line); border-top: 5px solid var(--purple); border-radius: 6px; overflow: hidden; }
+      .card img { width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block; }
+      .card .pad { padding: 18px; }
+      .card h3 { font-size: 17px; margin-bottom: 6px; }
+      .card p { font-size: 14.5px; color: var(--ink-soft); margin-bottom: 10px; }
+      .card a { font-size: 14.5px; font-weight: 600; }
+
+      .grey { background: #f4f4f5; }
+      .fund { display: grid; gap: 18px; }
+      @media (min-width: 880px) { .fund { grid-template-columns: 1fr 1fr 1fr; } }
+      .fundcard { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 22px; }
+      .fundcard .tag { display: inline-block; background: var(--purple-band); color: var(--purple); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; border-radius: 3px; padding: 3px 8px; margin-bottom: 10px; }
+      .fundcard h3 { font-size: 18px; margin-bottom: 6px; }
+      .fundcard p { font-size: 15px; color: var(--ink-soft); }
+
+      .updates li { list-style: none; border-bottom: 1px solid var(--line); padding: 16px 0; display: grid; gap: 4px 24px; }
+      @media (min-width: 720px) { .updates li { grid-template-columns: 140px 1fr; } }
+      .updates time { color: var(--ink-soft); font-size: 14px; font-weight: 600; }
+
+      .reslist { display: grid; gap: 4px 40px; }
+      @media (min-width: 720px) { .reslist { grid-template-columns: 1fr 1fr; } }
+      .reslist a { display: flex; justify-content: space-between; gap: 12px; padding: 13px 4px; border-bottom: 1px solid var(--line); text-decoration: none; font-weight: 600; font-size: 16px; }
+      .reslist a:hover { background: var(--purple-band); }
+
+      .ctaband { background: var(--purple); color: #fff; }
+      .ctaband .wrap { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between; padding: 40px 0; }
+      .ctaband h2 { font-size: clamp(22px, 3vw, 30px); max-width: 24ch; }
+      .ctaband .btn { border-color: #fff; }
+      .ctaband .btn--solid { background: #fff; color: var(--purple); }
+      .ctaband .btn--solid:hover { background: var(--purple-band); }
+      .ctaband .btn--ghost { background: transparent; color: #fff; }
+      .ctaband .btn--ghost:hover { background: rgba(255,255,255,0.12); }
+
+      footer { background: var(--purple-deep); color: #fff; padding: 44px 0 30px; font-size: 15px; }
+      footer .cols { display: grid; gap: 28px; border-bottom: 1px solid rgba(255,255,255,0.25); padding-bottom: 28px; }
+      @media (min-width: 880px) { footer .cols { grid-template-columns: 1.3fr 1fr 1fr; } }
+      footer h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; opacity: 0.7; margin-bottom: 10px; }
+      footer a { color: #fff; }
+      footer .ack { margin-top: 24px; font-size: 14px; opacity: 0.85; max-width: 90ch; }
+      footer .abn { margin-top: 14px; font-size: 13px; opacity: 0.6; }
+
+      .banner { background: #232026; color: #fff; font-size: 13.5px; padding: 8px 14px; text-align: center; }
+      .banner a { color: #9fd3ff; }
+
+      @media (prefers-reduced-motion: no-preference) {
+        .fade { opacity: 0; transform: translateY(14px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade.in { opacity: 1; transform: none; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="banner"><b>Concept · Test 4 "Commission"</b> — government health design language. Not the live site. <a href="/">Live site</a> · <a href="/versions">All versions</a></div>
+
+    <div class="govstrip wrap-full">
+      <div class="wrap">
+        <span><b>Astro Care Group Pty Ltd</b> · My Aged Care approved provider</span>
+        <span>ABN 99 700 192 981</span>
+      </div>
+    </div>
+
+    <header class="masthead">
+      <div class="wrap">
+        <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#4b2e6f"></circle><path d="M13 38 L24 12 L35 38" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"></path><path d="M16.5 29.5 h3.3 l1.65 -3.9 l2.4 7.8 l2.1 -5.1 l1.2 1.2 h4.35" fill="none" stroke="#b0338a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        <div class="brand">
+          <b>Astro Care</b>
+          <span>Aged care &amp; help at home</span>
+        </div>
+        <div class="right">
+          <a class="phone" href="tel:+611800278762">1800 ASTRO (1800 278 762)</a>
+          <a class="btn btn--solid" href="#contact">Request a callback</a>
+        </div>
+      </div>
+    </header>
+
+    <nav class="navband" aria-label="Main menu">
+      <div class="wrap">
+        <a href="#" aria-current="page">Home</a>
+        <a href="#services">Services</a>
+        <a href="#funding">Funding &amp; fees</a>
+        <a href="#resources">Resources</a>
+        <a href="#contact">Contact</a>
+        <form id="qform" role="search">
+          <label for="q" style="position:absolute;left:-9999px;">Ask a question</label>
+          <input id="q" type="text" placeholder="Ask us anything…" autocomplete="off" />
+          <button type="submit" aria-label="Ask">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          </button>
+        </form>
+      </div>
+    </nav>
+
+    <div class="alert" role="note">
+      <div class="wrap">
+        <b>Program update:</b>
+        <span><b>Support at Home</b> replaced Home Care Packages on 1 November 2025. Existing funding carries over automatically. <a href="https://www.health.gov.au/our-work/support-at-home" target="_blank" rel="noopener">What changed</a></span>
+      </div>
+    </div>
+
+    <main id="main">
+      <section class="hero">
+        <div class="wrap">
+          <div class="fade">
+            <h1>Quality care at home, for every Australian</h1>
+            <p class="lede">
+              Nursing, everyday help and genuine company — delivered by a small Australian team
+              and funded by the government for most people over 65.
+            </p>
+            <div class="cta">
+              <a class="btn btn--solid" href="#funding">Check your funding options</a>
+              <a class="btn btn--ghost" href="#services">See our services</a>
+            </div>
+          </div>
+          <figure class="fade">
+            <img src="/media/poster-clinical.jpg" alt="A community nurse doing a health check with an older man at home" width="1280" height="720" />
+            <figcaption>A registered nurse visiting a client at home.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <h2 class="sect-title fade">I want to…</h2>
+          <div class="tasks">
+            {
+              tasks.map(([title, sub, href]) => (
+                <a class="task fade" href={href}>
+                  <span><b>{title}</b><span>{sub}</span></span>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4b2e6f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section id="services" class="grey">
+        <div class="wrap">
+          <h2 class="sect-title fade">Our services</h2>
+          <p class="sect-sub fade">Pick as much or as little help as you like — everything flexes as your needs change.</p>
+          <div class="cards">
+            {
+              services.map(([title, text, img]) => (
+                <article class="card fade">
+                  <img src={img} alt="" loading="lazy" width="640" height="400" />
+                  <div class="pad">
+                    <h3>{title}</h3>
+                    <p>{text}</p>
+                    <a href="#contact">Enquire about this service</a>
+                  </div>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section id="funding">
+        <div class="wrap">
+          <h2 class="sect-title fade">Funding &amp; fees</h2>
+          <p class="sect-sub fade">
+            The government pays for most care at home. We help you find the right door and do the
+            My Aged Care paperwork with you — and every fee we charge is published on our
+            <a href="/#pricing">fee calculator</a>.
+          </p>
+          <div class="fund">
+            <div class="fundcard fade">
+              <span class="tag">Most people start here</span>
+              <h3>Support at Home</h3>
+              <p>Government funding based on your assessed needs — from about $11,000 to $78,000 a year. All clinical care fully funded.</p>
+            </div>
+            <div class="fundcard fade">
+              <span class="tag">Entry-level help</span>
+              <h3>CHSP</h3>
+              <p>The Commonwealth Home Support Programme — a little help like cleaning, meals or transport, with a small contribution per service.</p>
+            </div>
+            <div class="fundcard fade">
+              <span class="tag">No waiting</span>
+              <h3>Private care</h3>
+              <p>Start straight away and switch to government funding when it's approved. Simple hourly rates, published up front.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="grey">
+        <div class="wrap">
+          <h2 class="sect-title fade">Latest updates</h2>
+          <ul class="updates">
+            {
+              updates.map(([date, text, href]) => (
+                <li class="fade">
+                  <time>{date}</time>
+                  <span>{text} <a href={href} target="_blank" rel="noopener">Read more</a></span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </section>
+
+      <section id="resources">
+        <div class="wrap">
+          <h2 class="sect-title fade">Official resources</h2>
+          <p class="sect-sub fade">The services you'll deal with on your aged-care journey — all in one place.</p>
+          <div class="reslist">
+            {
+              resources.map(([name, url]) => (
+                <a class="fade" href={url} target="_blank" rel="noopener noreferrer">
+                  {name}
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4b2e6f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+                </a>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <div class="ctaband" id="contact">
+        <div class="wrap">
+          <h2>Ready to talk about the help you can get?</h2>
+          <div style="display:flex; gap:12px; flex-wrap:wrap;">
+            <a class="btn btn--solid" href="/#contact">Request a callback</a>
+            <a class="btn btn--ghost" href="tel:+611800278762">Call 1800 ASTRO</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <div class="cols">
+          <div>
+            <h3>Astro Care</h3>
+            <p style="opacity:0.85; max-width: 34ch;">Australian owned &amp; run. We help older Australians live well in their own homes.</p>
+          </div>
+          <div>
+            <h3>Talk to us</h3>
+            <p><a href="tel:+611800278762">1800 ASTRO (1800 278 762)</a></p>
+            <p><a href="mailto:info@astrocare.com.au">info@astrocare.com.au</a></p>
+            <p style="opacity:0.7;">Mon–Fri 8am–6pm · Sat 9am–4pm</p>
+          </div>
+          <div>
+            <h3>Explore</h3>
+            <p><a href="#services">Services</a></p>
+            <p><a href="#funding">Funding &amp; fees</a></p>
+            <p><a href="#resources">Resources</a></p>
+          </div>
+        </div>
+        <p class="ack">
+          We acknowledge the Traditional Owners and Custodians of the lands on which we live and
+          work, and pay our respects to Elders past and present. We celebrate the stories, culture
+          and traditions of Aboriginal and Torres Strait Islander peoples.
+        </p>
+        <p class="abn">© 2026 Astro Care Group Pty Ltd · ABN 99 700 192 981</p>
+      </div>
+    </footer>
+
+    <script is:inline>
+      /* Search box → sends the question to the AI chat on the live site. */
+      document.getElementById('qform').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var q = document.getElementById('q').value.trim();
+        location.href = '/?ask=' + encodeURIComponent(q) + '#contact';
+      });
+
+      /* Calm gov-style fades. */
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.fade').forEach(function (el) { io.observe(el); });
+    </script>
+  </body>
+</html>
