@@ -19,7 +19,7 @@
 
 <div
   id="chatPanel"
-  class="fixed inset-x-2 bottom-20 z-[125] hidden max-h-[74vh] flex-col overflow-hidden rounded-3xl border-4 hc-border sm:inset-x-auto sm:right-3 sm:w-[26rem] md:bottom-24"
+  class="fixed inset-0 z-[125] hidden flex-col overflow-hidden hc-border sm:inset-auto sm:bottom-24 sm:right-3 sm:max-h-[74vh] sm:w-[26rem] sm:rounded-3xl sm:border-4"
   style="background: var(--bg-card); border-color: var(--euca); box-shadow: var(--shadow);"
   role="dialog"
   aria-modal="false"
@@ -38,13 +38,13 @@
   </div>
 
   <!-- Messages -->
-  <div id="chatLog" class="flex-1 space-y-3 overflow-y-auto p-4" style="min-height: 16rem; max-height: 50vh;" aria-live="polite"></div>
+  <div id="chatLog" class="flex-1 space-y-3 overflow-y-auto p-4 sm:max-h-[50vh]" style="min-height: 16rem;" aria-live="polite"></div>
 
   <!-- Quick-reply chips: nobody has to type -->
   <div id="chatChips" class="flex gap-2 overflow-x-auto px-4 pb-2" style="scrollbar-width: thin;" aria-label="Quick questions"></div>
 
   <!-- Input -->
-  <form id="chatForm" class="flex gap-2 border-t-2 p-3" style="border-color: var(--line);">
+  <form id="chatForm" class="flex gap-2 border-t-2 p-3" style="border-color: var(--line); padding-bottom: max(0.75rem, env(safe-area-inset-bottom));">
     <label class="sr-only" for="chatInput">Type your question</label>
     <input
       id="chatInput"

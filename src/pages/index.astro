@@ -277,10 +277,14 @@ const services = [
               <option>I'm not sure — please guide me</option>
             </select>
           </label>
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
           <button type="submit" class="btn-primary hc-border w-full !text-2xl">Please call me back</button>
           <p class="mt-3 text-center text-lg" style="color: var(--tx-soft);">We'll ring you within one business day. Your details stay private.</p>
           <div id="formSuccess" class="mt-4 hidden rounded-2xl border-4 p-5 text-center text-xl" style="background: var(--euca-soft); border-color: var(--euca); color: var(--euca-deep);" role="status">
             <strong>Thank you — message received!</strong><br />A friendly team member will call you within one business day.
+          </div>
+          <div id="formError" class="mt-4 hidden rounded-2xl border-4 p-5 text-center text-xl" style="background: #fdecea; border-color: #b23e1f; color: #7c2a13;" role="alert">
+            <strong>Sorry — that didn't send.</strong><br />Please email <a href="mailto:info@astrocare.com.au" class="underline">info@astrocare.com.au</a> or ring <a href="tel:+611800278762" class="underline">1800 ASTRO</a>.
           </div>
         </form>
       </div>
@@ -288,19 +292,39 @@ const services = [
   </section>
 
   <script is:inline>
-    /* Callback form: friendly local confirmation (hook up a backend later). */
+    /* Callback form → emails info@astrocare.com.au via FormSubmit. */
     var form = document.getElementById('callbackForm');
     if (form) {
       form.addEventListener('submit', function (e) {
         e.preventDefault();
+        if (!form.reportValidity()) return;
         var btn = form.querySelector('button[type="submit"]');
         btn.textContent = 'Sending…';
         btn.disabled = true;
-        setTimeout(function () {
-          document.getElementById('formSuccess').classList.remove('hidden');
-          btn.style.display = 'none';
-          form.querySelectorAll('input, select').forEach(function (el) { el.value = ''; });
-        }, 800);
+        var f = new FormData(form);
+        fetch('https://formsubmit.co/ajax/info@astrocare.com.au', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            _subject: 'Callback request from astrocare.com.au',
+            _template: 'table',
+            _honey: f.get('_honey') || '',
+            Name: f.get('name'),
+            Phone: f.get('phone'),
+            'Help needed with': f.get('careType'),
+          }),
+        })
+          .then(function (r) { if (!r.ok) throw new Error('send failed'); return r.json(); })
+          .then(function () {
+            document.getElementById('formSuccess').classList.remove('hidden');
+            btn.style.display = 'none';
+            form.querySelectorAll('input, select').forEach(function (el) { el.value = ''; });
+          })
+          .catch(function () {
+            document.getElementById('formError').classList.remove('hidden');
+            btn.textContent = 'Please call me back';
+            btn.disabled = false;
+          });
       });
     }
   </script>

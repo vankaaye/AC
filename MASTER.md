@@ -59,6 +59,7 @@ Website chat widget ──► Cloudflare Worker (astrocare-chat.astrocare.worker
 | `/hero` | Hero background chooser: 30 numbered images (H1–H30) | Design studio |
 | `/test1` | Design concept: Apple-style white minimal with animations | Concept |
 | `/test2` | Design concept: corporate light (ktechify style) | Concept |
+| `/test3` | Design concept: Calm — Apple-style, phone-first (full-screen chat, working form) | Concept |
 | `/versions` | Index of every design version, with restore info | Reference |
 
 Full restore instructions and commit hashes: see `VERSIONS.md`.
@@ -82,7 +83,15 @@ Full restore instructions and commit hashes: see `VERSIONS.md`.
 - [ ] **Design direction** — keep Version 1, or switch to `/test1` / `/test2` style
 - [ ] **GitHub Pages domain setting** — change to `www.astrocare.com.au` in repo Settings → Pages so "www" always shows (owner-only setting)
 
-## 7. AI chat — operations guide
+## 7. Enquiries (callback form)
+
+- Both callback forms (live site `/#contact` and `/test3`) email **info@astrocare.com.au** via [FormSubmit](https://formsubmit.co) — a free relay, no account needed (temporary setup).
+- info@astrocare.com.au is currently an alias of gopi@ktechify.com.
+- **One-time activation:** the first submission triggers an "Activate Form" email to that inbox — it must be clicked once before enquiries flow.
+- Spam protection: hidden honeypot field. Delivery failure shows the visitor a fallback message with email + phone.
+- Later upgrade path: replace FormSubmit with our own Cloudflare Worker + an email API when ready.
+
+## 8. AI chat — operations guide
 
 - **Worker URL:** `https://astrocare-chat.astrocare.workers.dev` (Cloudflare account: gopi_kv2004@yahoo.com)
 - **Secrets:** the Anthropic API key lives ONLY in Cloudflare (Workers & Pages → astrocare-chat → Settings → Variables and Secrets). **Never put keys in this repo.**
@@ -95,7 +104,7 @@ Full restore instructions and commit hashes: see `VERSIONS.md`.
 - **Guardrails built in:** health-care scope (won't search or answer off-topic), plain English, no personal medical advice, no invented business facts or numbers, conversation trimmed to last 12 turns, answers capped, CORS locked to astrocare.com.au.
 - **Kill switch:** set `AI_ENDPOINT = ''` in `src/components/ChatWidget.astro` and push — chat instantly reverts to built-in answers only.
 
-## 8. Run sheet — everything done so far
+## 9. Run sheet — everything done so far
 
 | Date | What happened | Commit |
 |---|---|---|
@@ -119,9 +128,10 @@ Full restore instructions and commit hashes: see `VERSIONS.md`.
 | 12 Jul 2026 | One-shot worker deploy script | `98522b9` |
 | 12 Jul 2026 | **AI chat switched ON** — worker deployed to Cloudflare, tested live, widget connected | `15e41cf` |
 | 12 Jul 2026 | `MASTER.md` created (this file) | `ba00b4d` |
-| 12 Jul 2026 | **AI upgraded: internet search + sources** — answers budget/eligibility-type questions fully with cited links; callback form promoted over phone calls; chat renders links & bold properly | (this commit) |
+| 12 Jul 2026 | **AI upgraded: internet search + sources** — answers budget/eligibility-type questions fully with cited links; callback form promoted over phone calls; chat renders links & bold properly | `e42f425` |
+| 12 Jul 2026 | **Callback form now emails info@astrocare.com.au** (FormSubmit relay — one-time activation email must be clicked); live chat goes full-screen on phones; new concept `/test3` Calm (Apple-style, phone-first) | (this commit) |
 
-## 9. How to work with this site (quick recipes)
+## 10. How to work with this site (quick recipes)
 
 - **See any change live:** edit → commit → push to `main` → wait 2–3 minutes.
 - **Restore an old design:** find its commit in `VERSIONS.md` → `git checkout <commit> -- src/ public/` → commit & push.

@@ -1,0 +1,417 @@
+---
+/**
+ * test3.astro — Design concept "Test 3 — Calm"
+ * ------------------------------------------------------------------
+ * Apple-grade simplicity, designed phone-first (6.7" screens first,
+ * desktop second): pure white, the system font Apple itself uses,
+ * one accent colour, huge whitespace, nothing cramped.
+ *
+ * Includes the REAL working pieces so it can be judged properly:
+ *   - the AI chat (full-screen sheet on mobile, like iMessage)
+ *   - the callback form (emails info@astrocare.com.au)
+ *
+ * This page is a CONCEPT ONLY. See /versions for the design index.
+ * ------------------------------------------------------------------
+ */
+const services = [
+  ['Clinical care', 'Registered nurses for wounds, medication and recovery — at home.'],
+  ['Social support', 'Company, outings and conversation. The care medicine forgets.'],
+  ['Domestic assistance', 'Cleaning, laundry, gardening. A lovely home, no lifting a finger.'],
+  ['Meal preparation', 'Fresh meals cooked in your kitchen, the way you like them.'],
+];
+const steps = [
+  ['Say hello', 'Chat with us right here, or leave your number and we ring you back.'],
+  ['Get funded', 'We handle the My Aged Care paperwork with you. Most people pay little or nothing.'],
+  ['Live well at home', 'Your care starts — and changes whenever your needs do.'],
+];
+---
+
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Astro Care — Concept Test 3 (Calm)</title>
+    <meta name="description" content="Design concept Test 3 for Astro Care — Apple-style calm, phone-first." />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <style>
+      :root {
+        --ink: #1d1d1f;
+        --ink-soft: #6e6e73;
+        --accent: #157a55;
+        --line: #e8e8ed;
+        --bg-soft: #f5f5f7;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        color: var(--ink);
+        background: #fff;
+        font-size: 19px;
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { width: min(680px, 100% - 44px); margin-inline: auto; }
+      .wrap-wide { width: min(1080px, 100% - 44px); margin-inline: auto; }
+
+      .banner {
+        display: flex; flex-wrap: wrap; gap: 4px 14px; justify-content: center;
+        background: var(--ink); color: #fff; font-size: 14px; padding: 9px 16px; text-align: center;
+      }
+      .banner a { color: #6ee7b7; }
+
+      .nav {
+        position: sticky; top: 0; z-index: 50;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 14px 22px;
+        background: rgba(255, 255, 255, 0.82);
+        backdrop-filter: saturate(180%) blur(20px);
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
+        border-bottom: 1px solid var(--line);
+      }
+      .nav__brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 19px; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
+      .nav__brand svg { width: 34px; height: 34px; }
+      .nav__call {
+        font-size: 17px; font-weight: 600; color: #fff; background: var(--accent);
+        text-decoration: none; padding: 10px 20px; border-radius: 999px;
+      }
+
+      .hero { padding: clamp(72px, 14vh, 150px) 0 clamp(56px, 9vh, 110px); text-align: center; }
+      .hero h1 {
+        font-size: clamp(42px, 11vw, 84px); line-height: 1.04; letter-spacing: -0.025em; font-weight: 700;
+      }
+      .hero h1 em { font-style: normal; color: var(--accent); }
+      .hero p { margin: 26px auto 0; max-width: 30ch; font-size: clamp(20px, 5vw, 26px); color: var(--ink-soft); }
+      .hero__cta { margin-top: 38px; display: flex; flex-direction: column; gap: 14px; align-items: center; }
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+        min-height: 58px; padding: 15px 34px; border-radius: 999px; border: 0;
+        font-size: 20px; font-weight: 600; text-decoration: none; cursor: pointer; width: min(340px, 100%);
+        font-family: inherit;
+      }
+      .btn--fill { background: var(--accent); color: #fff; }
+      .btn--ghost { background: var(--bg-soft); color: var(--ink); }
+
+      .statement { padding: clamp(64px, 12vh, 130px) 0; }
+      .statement p {
+        font-size: clamp(27px, 6.4vw, 44px); line-height: 1.22; font-weight: 700; letter-spacing: -0.02em; text-align: center;
+      }
+      .statement p span { color: var(--ink-soft); }
+
+      .cards { display: grid; gap: 18px; padding-bottom: clamp(56px, 10vh, 110px); }
+      @media (min-width: 760px) { .cards { grid-template-columns: 1fr 1fr; } }
+      .card {
+        background: var(--bg-soft); border-radius: 28px; padding: 34px 28px;
+      }
+      .card h3 { font-size: 25px; letter-spacing: -0.015em; margin-bottom: 8px; }
+      .card p { color: var(--ink-soft); font-size: 19px; }
+
+      .steps { background: var(--bg-soft); padding: clamp(64px, 11vh, 120px) 0; }
+      .steps h2, .contact h2 { font-size: clamp(32px, 7.6vw, 52px); letter-spacing: -0.02em; text-align: center; margin-bottom: clamp(36px, 7vh, 64px); }
+      .step { display: flex; gap: 20px; padding: 26px 0; border-top: 1px solid var(--line); align-items: baseline; }
+      .step:last-child { border-bottom: 1px solid var(--line); }
+      .step b { font-size: 21px; color: var(--accent); font-variant-numeric: tabular-nums; }
+      .step h3 { font-size: 23px; margin-bottom: 6px; letter-spacing: -0.015em; }
+      .step p { color: var(--ink-soft); }
+
+      .contact { padding: clamp(64px, 11vh, 120px) 0; }
+      .field { display: block; margin-bottom: 22px; font-weight: 600; font-size: 17px; }
+      .field input, .field select {
+        margin-top: 8px; display: block; width: 100%; min-height: 58px;
+        border: 1.5px solid #d2d2d7; border-radius: 14px; padding: 0 18px;
+        font-size: 19px; font-family: inherit; background: #fff; color: var(--ink);
+      }
+      .field input:focus, .field select:focus { outline: 3px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+      .form-note { text-align: center; color: var(--ink-soft); font-size: 16px; margin-top: 14px; }
+      .form-msg { display: none; margin-top: 18px; border-radius: 14px; padding: 18px; text-align: center; font-size: 18px; }
+      .form-msg--ok { background: #e8f6ef; color: #0e5a3e; }
+      .form-msg--err { background: #fdecea; color: #8c2f16; }
+      .form-msg a { color: inherit; }
+
+      footer { border-top: 1px solid var(--line); padding: 44px 0 calc(44px + env(safe-area-inset-bottom)); text-align: center; color: var(--ink-soft); font-size: 15px; }
+      footer .wrap { display: grid; gap: 8px; }
+      footer a { color: var(--ink-soft); }
+
+      /* ---------- Chat: full-screen sheet on phones ---------- */
+      .chat-fab {
+        position: fixed; right: 18px; bottom: calc(18px + env(safe-area-inset-bottom)); z-index: 90;
+        display: flex; align-items: center; gap: 10px; border: 0; cursor: pointer;
+        background: var(--ink); color: #fff; font-size: 18px; font-weight: 600; font-family: inherit;
+        padding: 16px 24px; border-radius: 999px; box-shadow: 0 10px 32px rgba(0, 0, 0, 0.22);
+      }
+      .chat {
+        position: fixed; inset: 0; z-index: 100; display: none; flex-direction: column; background: #fff;
+      }
+      .chat.open { display: flex; }
+      @media (min-width: 760px) {
+        .chat { inset: auto 24px 24px auto; width: 420px; height: min(680px, 84vh); border-radius: 24px; border: 1px solid var(--line); box-shadow: 0 24px 70px rgba(0, 0, 0, 0.18); overflow: hidden; }
+      }
+      .chat__head {
+        display: flex; align-items: center; gap: 12px; padding: 16px 20px; padding-top: max(16px, env(safe-area-inset-top));
+        border-bottom: 1px solid var(--line); background: rgba(255,255,255,0.94);
+      }
+      .chat__head svg { width: 38px; height: 38px; }
+      .chat__head h2 { font-size: 19px; letter-spacing: -0.01em; }
+      .chat__head p { font-size: 14px; color: var(--ink-soft); }
+      .chat__close {
+        margin-left: auto; width: 44px; height: 44px; border-radius: 999px; border: 0;
+        background: var(--bg-soft); font-size: 22px; cursor: pointer; color: var(--ink); font-family: inherit;
+      }
+      .chat__log { flex: 1; overflow-y: auto; padding: 22px 20px; display: flex; flex-direction: column; gap: 14px; }
+      .msg { max-width: 86%; padding: 13px 17px; border-radius: 20px; font-size: 18px; line-height: 1.45; overflow-wrap: break-word; }
+      .msg--bot { background: var(--bg-soft); color: var(--ink); border-bottom-left-radius: 6px; align-self: flex-start; }
+      .msg--you { background: var(--accent); color: #fff; border-bottom-right-radius: 6px; align-self: flex-end; }
+      .msg a { color: var(--accent); font-weight: 600; }
+      .msg--you a { color: #fff; }
+      .chat__chips { display: flex; gap: 8px; overflow-x: auto; padding: 0 20px 10px; scrollbar-width: thin; }
+      .chip {
+        flex-shrink: 0; border: 1.5px solid #d2d2d7; background: #fff; color: var(--ink);
+        border-radius: 999px; padding: 9px 16px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit;
+      }
+      .chat__form {
+        display: flex; gap: 10px; padding: 12px 16px; padding-bottom: max(12px, env(safe-area-inset-bottom));
+        border-top: 1px solid var(--line);
+      }
+      .chat__form input {
+        flex: 1; min-width: 0; min-height: 52px; border: 1.5px solid #d2d2d7; border-radius: 999px;
+        padding: 0 20px; font-size: 18px; font-family: inherit;
+      }
+      .chat__form input:focus { outline: 3px solid var(--accent); outline-offset: 1px; }
+      .chat__form button {
+        width: 52px; height: 52px; flex-shrink: 0; border: 0; border-radius: 999px;
+        background: var(--accent); color: #fff; cursor: pointer; display: grid; place-items: center;
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.in { opacity: 1; transform: none; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="banner">
+      <span><strong>Concept · Test 3 “Calm”</strong> — phone-first, Apple-style. Not the live site.</span>
+      <span><a href="/">Live site</a> · <a href="/versions">All versions</a></span>
+    </div>
+
+    <header class="nav">
+      <a class="nav__brand" href="/test3">
+        <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <circle cx="24" cy="24" r="22" fill="#157a55"></circle>
+          <path d="M13 38 L24 12 L35 38" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        Astro Care
+      </a>
+      <a class="nav__call" href="#contact">Contact</a>
+    </header>
+
+    <main>
+      <section class="hero wrap">
+        <h1>Care at home.<br /><em>Simple as that.</em></h1>
+        <p>Nursing, meals, housework and company — funded by the government for most Australians over 65.</p>
+        <div class="hero__cta">
+          <button class="btn btn--fill" data-open-chat type="button">Ask us anything</button>
+          <a class="btn btn--ghost" href="#contact">Request a callback</a>
+        </div>
+      </section>
+
+      <section class="statement wrap reveal">
+        <p>Getting older shouldn’t mean leaving home. <span>We make sure it doesn’t.</span></p>
+      </section>
+
+      <section class="wrap-wide">
+        <div class="cards">
+          {services.map(([title, text]) => (
+            <div class="card reveal">
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section class="steps">
+        <div class="wrap">
+          <h2>Three easy steps</h2>
+          {steps.map(([title, text], i) => (
+            <div class="step reveal">
+              <b>0{i + 1}</b>
+              <div>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section class="contact wrap" id="contact">
+        <h2>We’ll call you</h2>
+        <form id="calmForm" novalidate>
+          <label class="field">Your name
+            <input type="text" name="name" required autocomplete="name" placeholder="Margaret Smith" />
+          </label>
+          <label class="field">Your phone number
+            <input type="tel" name="phone" required autocomplete="tel" placeholder="0412 345 678" />
+          </label>
+          <label class="field">What do you need help with?
+            <select name="careType" required>
+              <option value="" selected disabled>Please choose…</option>
+              <option>Help around the house</option>
+              <option>Nursing / clinical care</option>
+              <option>Meals</option>
+              <option>Company and outings</option>
+              <option>Getting started with My Aged Care</option>
+              <option>I’m not sure — please guide me</option>
+            </select>
+          </label>
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true" />
+          <button class="btn btn--fill" type="submit" style="width: 100%;">Request my callback</button>
+          <p class="form-note">One business day. No pressure, ever.</p>
+          <div class="form-msg form-msg--ok" id="calmOk" role="status"><strong>Thank you.</strong> We’ll ring you within one business day.</div>
+          <div class="form-msg form-msg--err" id="calmErr" role="alert">That didn’t send — please email <a href="mailto:info@astrocare.com.au">info@astrocare.com.au</a>.</div>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <span><strong style="color: var(--ink);">Astro Care Group Pty Ltd</strong> · ABN 99 700 192 981</span>
+        <span><a href="mailto:info@astrocare.com.au">info@astrocare.com.au</a> · <a href="tel:+611800278762">1800 ASTRO</a></span>
+        <span>Australian owned &amp; run</span>
+      </div>
+    </footer>
+
+    <button class="chat-fab" data-open-chat type="button" aria-haspopup="dialog">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Chat
+    </button>
+
+    <div class="chat" id="calmChat" role="dialog" aria-label="Chat with Astro Care">
+      <div class="chat__head">
+        <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <circle cx="24" cy="24" r="22" fill="#157a55"></circle>
+          <path d="M13 38 L24 12 L35 38" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <div>
+          <h2>Astro</h2>
+          <p>Answers anything about aged care</p>
+        </div>
+        <button class="chat__close" id="calmChatClose" aria-label="Close chat">✕</button>
+      </div>
+      <div class="chat__log" id="calmLog" aria-live="polite"></div>
+      <div class="chat__chips" id="calmChips" aria-label="Quick questions"></div>
+      <form class="chat__form" id="calmChatForm">
+        <label class="sr-only" for="calmInput" style="position:absolute;left:-9999px;">Type your question</label>
+        <input id="calmInput" type="text" placeholder="Ask anything…" autocomplete="off" />
+        <button type="submit" aria-label="Send">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg>
+        </button>
+      </form>
+    </div>
+
+    <script is:inline>
+      (function () {
+        /* Scroll reveals */
+        var io = new IntersectionObserver(function (es) {
+          es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+        /* Callback form → info@astrocare.com.au */
+        var form = document.getElementById('calmForm');
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          if (!form.reportValidity()) return;
+          var btn = form.querySelector('button[type="submit"]');
+          btn.textContent = 'Sending…'; btn.disabled = true;
+          var f = new FormData(form);
+          fetch('https://formsubmit.co/ajax/info@astrocare.com.au', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify({
+              _subject: 'Callback request from astrocare.com.au (test3)',
+              _template: 'table', _honey: f.get('_honey') || '',
+              Name: f.get('name'), Phone: f.get('phone'), 'Help needed with': f.get('careType'),
+            }),
+          })
+            .then(function (r) { if (!r.ok) throw 0; return r.json(); })
+            .then(function () { document.getElementById('calmOk').style.display = 'block'; btn.style.display = 'none'; })
+            .catch(function () { document.getElementById('calmErr').style.display = 'block'; btn.textContent = 'Request my callback'; btn.disabled = false; });
+        });
+
+        /* Chat — same live AI as the main site */
+        var AI = 'https://astrocare-chat.astrocare.workers.dev';
+        var chat = document.getElementById('calmChat');
+        var log = document.getElementById('calmLog');
+        var chips = document.getElementById('calmChips');
+        var input = document.getElementById('calmInput');
+        var history = [];
+        var greeted = false;
+
+        function md(text) {
+          var d = document.createElement('div');
+          d.textContent = text;
+          var h = d.innerHTML;
+          h = h.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+          h = h.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+          return h.replace(/\n/g, '<br>');
+        }
+        function bubble(html, who) {
+          var el = document.createElement('div');
+          el.className = 'msg msg--' + who;
+          el.innerHTML = html;
+          log.appendChild(el);
+          log.scrollTop = log.scrollHeight;
+          return el;
+        }
+        function ask(text) {
+          bubble(md(text), 'you');
+          history.push({ role: 'user', content: text });
+          var typing = bubble('…', 'bot');
+          fetch(AI + '/chat', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ messages: history }),
+          })
+            .then(function (r) { if (!r.ok) throw 0; return r.json(); })
+            .then(function (d) {
+              history.push({ role: 'assistant', content: d.reply });
+              typing.innerHTML = md(d.reply);
+              log.scrollTop = log.scrollHeight;
+            })
+            .catch(function () {
+              typing.innerHTML = 'Sorry — I couldn’t reach our helper just now. Please try again, or <a href="#contact">request a callback</a>.';
+            });
+        }
+        ['How does funding work?', 'What does it cost?', 'Am I eligible?', 'What is Support at Home?'].forEach(function (q) {
+          var b = document.createElement('button');
+          b.type = 'button'; b.className = 'chip'; b.textContent = q;
+          b.addEventListener('click', function () { ask(q); });
+          chips.appendChild(b);
+        });
+        document.querySelectorAll('[data-open-chat]').forEach(function (b) {
+          b.addEventListener('click', function () {
+            chat.classList.add('open');
+            if (!greeted) {
+              greeted = true;
+              bubble("G’day — I’m <strong>Astro</strong>. Ask me anything about aged care, funding or fees. I’ll give you a straight answer with sources.", 'bot');
+            }
+            input.focus();
+          });
+        });
+        document.getElementById('calmChatClose').addEventListener('click', function () { chat.classList.remove('open'); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') chat.classList.remove('open'); });
+        document.getElementById('calmChatForm').addEventListener('submit', function (e) {
+          e.preventDefault();
+          var t = input.value.trim();
+          if (!t) return;
+          input.value = '';
+          ask(t);
+        });
+      })();
+    </script>
+  </body>
+</html>
