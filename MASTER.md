@@ -4,7 +4,7 @@
 Everything we've built, how it works, what's decided, what's pending, and a
 run sheet of every change — so anyone can pick this up cold.
 
-*Last updated: 12 July 2026*
+*Last updated: 12 July 2026 (evening)*
 
 ---
 
@@ -90,7 +90,9 @@ Full restore instructions and commit hashes: see `VERSIONS.md`.
 - **Redeploy the worker** (after editing `worker/chat-worker.js`):
   `CLOUDFLARE_API_TOKEN=<token> ANTHROPIC_API_KEY=<key> ./worker/deploy.sh` (see `worker/README.md`)
 - **Costs:** Anthropic — pay-per-use, a few dollars/month expected; Cloudflare — free tier (100k requests/day).
-- **Guardrails built in:** aged-care scope, plain English, no personal medical advice, no invented business facts, conversation trimmed to last 12 turns, answers capped, CORS locked to astrocare.com.au.
+- **Web search:** the AI can search the internet (health-care topics only, max 3 searches per answer, Australian results) and cites sources as clickable links. Anthropic charges US$10 per 1,000 searches on top of normal usage — still expected to total a few dollars/month.
+- **Tone:** answers fully in chat; points to the callback form (/#contact) rather than pushing phone calls (no 24/7 line yet).
+- **Guardrails built in:** health-care scope (won't search or answer off-topic), plain English, no personal medical advice, no invented business facts or numbers, conversation trimmed to last 12 turns, answers capped, CORS locked to astrocare.com.au.
 - **Kill switch:** set `AI_ENDPOINT = ''` in `src/components/ChatWidget.astro` and push — chat instantly reverts to built-in answers only.
 
 ## 8. Run sheet — everything done so far
@@ -116,6 +118,8 @@ Full restore instructions and commit hashes: see `VERSIONS.md`.
 | 12 Jul 2026 | `/hero` chooser (30 images); Test 2 concept (ktechify style); smarter chat answers | `2157a7e` |
 | 12 Jul 2026 | One-shot worker deploy script | `98522b9` |
 | 12 Jul 2026 | **AI chat switched ON** — worker deployed to Cloudflare, tested live, widget connected | `15e41cf` |
+| 12 Jul 2026 | `MASTER.md` created (this file) | `ba00b4d` |
+| 12 Jul 2026 | **AI upgraded: internet search + sources** — answers budget/eligibility-type questions fully with cited links; callback form promoted over phone calls; chat renders links & bold properly | (this commit) |
 
 ## 9. How to work with this site (quick recipes)
 

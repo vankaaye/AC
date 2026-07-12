@@ -193,11 +193,18 @@
       return best ? best.reply : FALLBACK;
     }
 
-    /* Escape AI text, keep line breaks readable. */
+    /* Render AI text safely: escape all HTML first, then re-introduce
+       the tiny markdown subset the AI uses — [links](https://...),
+       **bold** and line breaks. Links open in a new tab. */
     function safeHtml(text) {
       var div = document.createElement('div');
       div.textContent = text;
-      return div.innerHTML.replace(/\n/g, '<br>');
+      var html = div.innerHTML;
+      html = html.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, function (_m, label, url) {
+        return '<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + label + '</a>';
+      });
+      html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      return html.replace(/\n/g, '<br>');
     }
 
     function answer(text) {
@@ -255,7 +262,7 @@
       if (!greeted) {
         greeted = true;
         renderChips();
-        botReply("G'day! I'm <strong>Astro</strong>, the Astro Care chat helper — I give instant answers about funding, fees and our services, day or night. What can I help with? (For anything personal, <a href='tel:+611800278762'>1800 ASTRO</a> is always the warmest option.)");
+        botReply("G'day! I'm <strong>Astro</strong>, the Astro Care chat helper — ask me anything about aged care, funding, fees or our services, day or night. What can I help with? (Prefer a person? <a href='/#contact'>Leave your details</a> and we'll ring you back.)");
       }
       input.focus();
     }
