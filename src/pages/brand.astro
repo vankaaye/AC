@@ -3,7 +3,7 @@
  * brand.astro — astrocare.com.au/brand
  * ------------------------------------------------------------------
  * The Astro Care brand chooser: 20 logo concepts × 5 colourways
- * (100 numbered options), each with a live preview of how it looks
+ * (200 numbered options), each with a live preview of how it looks
  * as the browser-tab icon beside the "Astro Care" name, plus 30
  * numbered tagline options. Pick a number, tell us, done.
  * ------------------------------------------------------------------
@@ -12,48 +12,48 @@ import Layout from '../layouts/Layout.astro';
 
 const tagGroups: [string, [string, string][]][] = [
   [
-    'Care & compassion',
+    'Plain & true — say it straight',
     [
-      ['T1', 'Care for every stage of life.'],
-      ['T2', 'Your health, our heart.'],
-      ['T3', 'Wherever life takes you, care follows.'],
-      ['T4', 'Great care, close to home.'],
-      ['T5', 'Health care with a human touch.'],
-      ['T6', 'People first. Always.'],
-      ['T7', 'Caring for the whole of you.'],
-      ['T8', 'Every life, cared for well.'],
-      ['T9', 'Kind hands. Expert care.'],
-      ['T10', 'Compassion you can count on.'],
+      ['T1', 'Good care. No fuss.'],
+      ['T2', 'We look after people. It\'s that simple.'],
+      ['T3', 'Care done properly.'],
+      ['T4', 'The right help, at the right time.'],
+      ['T5', 'Here when you need us.'],
+      ['T6', 'Straight answers. Gentle care.'],
+      ['T7', 'We turn up. We care. We follow through.'],
+      ['T8', 'It starts with listening.'],
+      ['T9', 'Every visit matters.'],
+      ['T10', 'We make care simple.'],
     ],
   ],
   [
-    'Health & wellbeing',
+    'Warm & personal — the way we\'d say it over a cuppa',
     [
-      ['T11', 'Better days, built on better care.'],
-      ['T12', 'Helping Australians live well.'],
-      ['T13', 'Wellbeing, delivered daily.'],
-      ['T14', "From check-ups to comfort — we're here."],
-      ['T15', 'Health at home, life in full.'],
-      ['T16', 'Stronger health, brighter days.'],
-      ['T17', 'Care today, health for tomorrow.'],
-      ['T18', 'Live well. Age well. Be well.'],
-      ['T19', "Your wellbeing, our life's work."],
-      ['T20', 'Whole-person care, every day.'],
+      ['T11', 'Small team. Big hearts.'],
+      ['T12', 'No call centres. Just people who care.'],
+      ['T13', 'Help that feels human.'],
+      ['T14', 'We treat you like family — because that\'s how care should feel.'],
+      ['T15', 'Looking after you, properly.'],
+      ['T16', 'Care with its sleeves rolled up.'],
+      ['T17', 'Honest hands. Steady care.'],
+      ['T18', 'Because everyone deserves good care.'],
+      ['T19', 'Health care, the way it used to feel.'],
+      ['T20', 'Care you don\'t have to chase.'],
     ],
   ],
   [
-    'Trust & simplicity',
+    'Whole of health — room to grow beyond aged care',
     [
-      ['T21', 'Real people. Real care.'],
-      ['T22', 'Care without the confusion.'],
-      ['T23', "The care you'd choose for your own family."],
-      ['T24', 'Honest care, done properly.'],
-      ['T25', 'One call. Every kind of care.'],
-      ['T26', 'Care you can rely on, day and night.'],
-      ['T27', 'Serious about health. Warm about people.'],
-      ['T28', 'Quality care, right where you need it.'],
-      ['T29', "Australia's friendly face of health care."],
-      ['T30', 'From our family to yours.'],
+      ['T21', 'Care for every stage of life.'],
+      ['T22', 'One team for all your care.'],
+      ['T23', 'From hospital to home, we\'ve got you.'],
+      ['T24', 'Whatever care you need, start here.'],
+      ['T25', 'Your health. Our responsibility.'],
+      ['T26', 'Live well, at every age.'],
+      ['T27', 'Health at home, life in full.'],
+      ['T28', 'Care that grows with you.'],
+      ['T29', 'Good health starts with good people.'],
+      ['T30', 'All of your care, under one roof.'],
     ],
   ],
 ];
@@ -61,18 +61,18 @@ const tagGroups: [string, [string, string][]][] = [
 
 <Layout
   title="Astro Care — Logo & Tagline Options"
-  description="Choose the Astro Care logo (100 numbered options) and tagline (30 options)."
+  description="Choose the Astro Care logo (200 numbered options) and tagline (30 options)."
 >
   <section class="py-10 md:py-14" style="background: var(--bg-sand);">
     <div class="mx-auto w-[min(1220px,100%-2.5rem)]">
       <p class="mb-2 text-lg font-extrabold uppercase tracking-widest" style="font-family: var(--font-head); color: var(--sun-deep);">
         Brand options
       </p>
-      <h1 class="mb-4 text-3xl md:text-5xl">100 logo options &amp; 30 taglines</h1>
+      <h1 class="mb-4 text-3xl md:text-5xl">200 logo options &amp; 30 taglines</h1>
       <p class="max-w-3xl text-xl" style="color: var(--tx-soft);">
         "Astro" is the brand name — the marks below speak to <strong>health care as a whole</strong>:
-        hearts, caring hands, people, wellbeing and protection. Twenty concepts, each in five
-        colourways — <strong>100 numbered options</strong>, each previewed as the icon in a
+        hearts, caring hands, people, wellbeing and protection. Twenty concepts, each in ten
+        colourways — <strong>200 numbered options</strong>, each previewed as the icon in a
         <strong>browser tab</strong> beside the "Astro Care" name. Taglines are at the bottom.
         <strong>To choose, just tell us a logo number and a T-number.</strong>
       </p>
@@ -103,7 +103,7 @@ const tagGroups: [string, [string, string][]][] = [
         ))
       }
       <div class="rounded-3xl border-l-8 p-6 text-xl" style="background: var(--bg-card); border-color: var(--sun); box-shadow: var(--shadow);">
-        <p><strong>How to choose:</strong> tell us a logo number (1–100) and a tagline (T1–T30) — for example, "logo 12 and T5".</p>
+        <p><strong>How to choose:</strong> tell us a logo number (1–200) and a tagline (T1–T30) — for example, "logo 12 and T5".</p>
         <p class="mt-2" style="color: var(--tx-soft);">We'll make it the official mark, the browser-tab icon and the site-wide tagline.</p>
       </div>
     </div>
@@ -170,6 +170,11 @@ const tagGroups: [string, [string, string][]][] = [
       { key: 'C', name: 'Night Sky',   bg: '#1F3A5F', fg: '#FFD98E', ac: '#FFFFFF', ring: null },
       { key: 'D', name: 'Fresh White', bg: '#FFFFFF', fg: '#2F6B51', ac: '#E2A93B', ring: '#2F6B51' },
       { key: 'E', name: 'Terracotta',  bg: '#B95C38', fg: '#FFF3D6', ac: '#FFC24B', ring: null },
+      { key: 'F', name: 'Ocean Teal',  bg: '#0F7E77', fg: '#FFF8E7', ac: '#FFC24B', ring: null },
+      { key: 'G', name: 'Sky Mist',    bg: '#E7F1FA', fg: '#1F5F8B', ac: '#C94F30', ring: '#1F5F8B' },
+      { key: 'H', name: 'Plum',        bg: '#5E4364', fg: '#F5E9D9', ac: '#E8B34B', ring: null },
+      { key: 'I', name: 'Charcoal',    bg: '#2A2E2B', fg: '#F2EFE6', ac: '#FFC24B', ring: null },
+      { key: 'J', name: 'Sage',        bg: '#6E7F5C', fg: '#FFF9EC', ac: '#F2C14E', ring: null },
     ];
 
 
