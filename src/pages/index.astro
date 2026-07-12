@@ -154,6 +154,20 @@ const funding = [
     </div>
   </section>
 
+  <!-- ============ VIDEO DIVIDER — everyday help ============ -->
+  <div class="vdiv">
+    <video src="/media/div-1.mp4" poster="/media/div-1.jpg" muted loop playsinline preload="none" data-ambient aria-hidden="true"></video>
+    <div class="vdiv-scrim" aria-hidden="true"></div>
+    <div class="vdiv-copy">
+      <div class="mx-auto w-[min(1280px,100%-2.5rem)]">
+        <p class="rv text-xl font-extrabold text-white md:text-3xl" style="font-family: var(--font-head); text-shadow: 0 2px 18px rgba(11,26,32,0.55);">
+          The little things, done brilliantly.
+        </p>
+        <p class="rv rv-d1 mt-1 max-w-xl text-[0.95rem] text-white/85">Fresh flowers on a visit, a kettle on, a home kept lovely — that’s care too.</p>
+      </div>
+    </div>
+  </div>
+
   <!-- ============ SERVICES (ambient video cards) ============ -->
   <section id="services" class="py-14 md:py-20" style="background: var(--bg-sand);">
     <div class="sect-rv mx-auto w-[min(1280px,100%-2.5rem)]">
@@ -170,7 +184,7 @@ const funding = [
       <div class="grid gap-6 md:grid-cols-2">
         {
           services.map((s, i) => (
-            <a href="#contact" class={`vcard rv rv-zoom ${i % 2 ? 'rv-d2' : 'rv-d1'} group block overflow-hidden rounded-3xl transition-shadow hover:shadow-xl`} style="background: var(--bg-card); box-shadow: var(--shadow);" aria-label={`${s.title} — enquire now`}>
+            <a href="#contact" class={`vcard rv ${i % 2 ? 'rv-right rv-d2' : 'rv-left rv-d1'} group block overflow-hidden rounded-3xl transition-shadow hover:shadow-xl`} style="background: var(--bg-card); box-shadow: var(--shadow);" aria-label={`${s.title} — enquire now`}>
               <div class="vcard-media aspect-[16/9]" data-zoom>
                 <video
                   src={s.video}
@@ -230,10 +244,10 @@ const funding = [
           and do the My Aged Care paperwork with you.
         </p>
       </div>
-      <div class="grid gap-6 md:grid-cols-3">
+      <div id="fundGrid" class="fund-cycle grid gap-6 md:grid-cols-3">
         {
           funding.map((f, i) => (
-            <a href="#contact" class={`rv ${['', 'rv-d1', 'rv-d2'][i]} group block rounded-3xl p-7 transition-all hover:-translate-y-1 hover:shadow-xl`} style="background: var(--bg-card); box-shadow: var(--shadow);" aria-label={`${f.name} — talk to us about this funding option`}>
+            <a href="#contact" class={`fund-card rv ${['', 'rv-d1', 'rv-d2'][i]} group block rounded-3xl p-7 transition-all hover:-translate-y-1 hover:shadow-xl`} style="background: var(--bg-card); box-shadow: var(--shadow);" aria-label={`${f.name} — talk to us about this funding option`}>
               <span class="inline-flex rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wide" style="background: var(--blue-soft); color: var(--blue);">{f.tag}</span>
               <h3 class="mt-3 text-lg font-extrabold">{f.name}</h3>
               <p class="mt-2 text-[0.95rem]" style="color: var(--tx-soft);">{f.text}</p>
@@ -249,6 +263,20 @@ const funding = [
       </p>
     </div>
   </section>
+
+  <!-- ============ VIDEO DIVIDER — recovery & mobility ============ -->
+  <div class="vdiv">
+    <video src="/media/div-2.mp4" poster="/media/div-2.jpg" muted loop playsinline preload="none" data-ambient aria-hidden="true"></video>
+    <div class="vdiv-scrim" aria-hidden="true"></div>
+    <div class="vdiv-copy">
+      <div class="mx-auto w-[min(1280px,100%-2.5rem)]">
+        <p class="rv text-xl font-extrabold text-white md:text-3xl" style="font-family: var(--font-head); text-shadow: 0 2px 18px rgba(11,26,32,0.55);">
+          Back on your feet, at your pace.
+        </p>
+        <p class="rv rv-d1 mt-1 max-w-xl text-[0.95rem] text-white/85">Nursing and allied-health support that gets you moving again — safely, at home.</p>
+      </div>
+    </div>
+  </div>
 
   <!-- ============ FEES ============ -->
   <section id="pricing" class="py-14 md:py-20" style="background: var(--bg);">
@@ -286,6 +314,20 @@ const funding = [
     </div>
   </section>
 
+
+  <!-- ============ VIDEO DIVIDER — plain-English guidance ============ -->
+  <div class="vdiv">
+    <video src="/media/div-3.mp4" poster="/media/div-3.jpg" muted loop playsinline preload="none" data-ambient aria-hidden="true"></video>
+    <div class="vdiv-scrim" aria-hidden="true"></div>
+    <div class="vdiv-copy">
+      <div class="mx-auto w-[min(1280px,100%-2.5rem)]">
+        <p class="rv text-xl font-extrabold text-white md:text-3xl" style="font-family: var(--font-head); text-shadow: 0 2px 18px rgba(11,26,32,0.55);">
+          Everything explained, nothing assumed.
+        </p>
+        <p class="rv rv-d1 mt-1 max-w-xl text-[0.95rem] text-white/85">We sit down and walk through every option in plain English — as many times as it takes.</p>
+      </div>
+    </div>
+  </div>
 
   <!-- ============ RESOURCES (one-stop shop) ============ -->
   <section id="resources" class="py-14 md:py-20" style="background: var(--bg-sand);">
@@ -331,7 +373,7 @@ const funding = [
   <!-- ============ CONTACT / CALLBACK ============ -->
   <section id="contact" class="py-14 md:py-20" style="background: var(--bg);">
     <div class="sect-rv mx-auto grid w-[min(1280px,100%-2.5rem)] gap-10 lg:grid-cols-[1fr_1.1fr]">
-      <div class="rv">
+      <div class="rv rv-left">
         <p class="mb-2 text-sm font-bold uppercase tracking-widest" style="color: var(--euca);">Contact</p>
         <h2 class="text-2xl md:text-4xl">Let’s have a chat</h2>
         <p class="mt-3 max-w-md text-base" style="color: var(--tx-soft);">
@@ -349,7 +391,7 @@ const funding = [
         </div>
       </div>
 
-      <form id="callbackForm" class="rv rv-d1 rounded-3xl p-8" style="background: var(--bg-sand);" novalidate>
+      <form id="callbackForm" class="rv rv-right rv-d1 rounded-3xl p-8" style="background: var(--bg-sand);" novalidate>
         <h3 class="text-2xl font-extrabold">Ask us to call you</h3>
         <p class="mt-1 mb-6 text-[0.98rem]" style="color: var(--tx-soft);">We’ll ring you within one business day. Your details stay private.</p>
         <label class="mb-4 block text-[0.95rem] font-bold">
@@ -473,6 +515,29 @@ const funding = [
           ? '<path d="M7 5h4v14H7zM13 5h4v14h-4z"/>'
           : '<path d="M8 5v14l11-7z"/>';
       });
+    })();
+
+    /* Funding cards: Stripe-style self-cycling spotlight — each card
+       takes a turn in focus while the section is on screen. Pauses on
+       hover/focus and respects reduced motion. */
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var grid = document.getElementById('fundGrid');
+      if (!grid) return;
+      var cards = Array.from(grid.querySelectorAll('.fund-card'));
+      if (cards.length < 2) return;
+      var idx = 0, timer = null;
+      function tick() {
+        cards.forEach(function (c, i) { c.classList.toggle('fund-on', i === idx); });
+        idx = (idx + 1) % cards.length;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting && !timer) { tick(); timer = setInterval(tick, 3200); }
+          else if (!e.isIntersecting && timer) { clearInterval(timer); timer = null; }
+        });
+      }, { threshold: 0.35 });
+      io.observe(grid);
     })();
 
     /* "Ask our chat helper" opens the chat. */
