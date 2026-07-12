@@ -54,7 +54,7 @@ Website chat widget ──► Cloudflare Worker (astrocare-chat.astrocare.worker
 
 | URL | What it is | Status |
 |---|---|---|
-| `/` | The live website (Version 1 — sunny & senior-first) | **LIVE** |
+| `/` | The live website (Version 3 — modern slate & blue) | **LIVE** |
 | `/brand` | Logo chooser: 350 numbered options + 30 taglines | Design studio |
 | `/hero` | Hero background chooser: 30 numbered images (H1–H30) | Design studio |
 | `/test1` | Design concept: Apple-style white minimal with animations | Concept |
@@ -80,7 +80,6 @@ Full restore instructions and commit hashes: see `VERSIONS.md`.
 - [ ] **Tagline** — pick T1–T30 from `/brand` (footer currently shows "Where every day shines" as placeholder)
 - [ ] **Hero background image** — pick H1–H30 from `/hero`
 - [ ] **Final logo confirmation** — No. 181 in use "for now"; confirm or pick another from `/brand`
-- [ ] **Design direction** — keep Version 1, or switch to `/test1` / `/test2` style
 - [ ] **GitHub Pages domain setting** — change to `www.astrocare.com.au` in repo Settings → Pages so "www" always shows (owner-only setting)
 
 ## 7. Enquiries (callback form)
