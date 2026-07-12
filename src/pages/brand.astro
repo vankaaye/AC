@@ -12,48 +12,48 @@ import Layout from '../layouts/Layout.astro';
 
 const tagGroups: [string, [string, string][]][] = [
   [
-    'Stars & light — plays on the "Astro" name',
+    'Care & compassion',
     [
-      ['T1', 'Where every day shines.'],
-      ['T2', 'Care written in the stars.'],
-      ['T3', 'Guiding light, gentle hands.'],
-      ['T4', 'The brightest years, cared for.'],
-      ['T5', 'Care that revolves around you.'],
-      ['T6', 'Your home. Your stars. Our care.'],
-      ['T7', 'Shining through every season of life.'],
-      ['T8', 'A guiding star for growing older.'],
-      ['T9', 'Light for the years ahead.'],
-      ['T10', 'Under our care, you shine.'],
+      ['T1', 'Care for every stage of life.'],
+      ['T2', 'Your health, our heart.'],
+      ['T3', 'Wherever life takes you, care follows.'],
+      ['T4', 'Great care, close to home.'],
+      ['T5', 'Health care with a human touch.'],
+      ['T6', 'People first. Always.'],
+      ['T7', 'Caring for the whole of you.'],
+      ['T8', 'Every life, cared for well.'],
+      ['T9', 'Kind hands. Expert care.'],
+      ['T10', 'Compassion you can count on.'],
     ],
   ],
   [
-    'Warm & homely — the friendly neighbour voice',
+    'Health & wellbeing',
     [
-      ['T11', 'Care that feels like family.'],
-      ['T12', 'Home is where our heart is.'],
-      ['T13', 'Gentle help, happy days.'],
-      ['T14', "The kettle's always on."],
-      ['T15', 'Big hearts. Little things. Every day.'],
-      ['T16', 'Help at home, hope in every visit.'],
-      ['T17', 'Kindness, delivered daily.'],
-      ['T18', 'Your day, your way — with a hand when you want it.'],
-      ['T19', 'Good days, made easier.'],
-      ['T20', 'Everyday care with old-fashioned heart.'],
+      ['T11', 'Better days, built on better care.'],
+      ['T12', 'Helping Australians live well.'],
+      ['T13', 'Wellbeing, delivered daily.'],
+      ['T14', "From check-ups to comfort — we're here."],
+      ['T15', 'Health at home, life in full.'],
+      ['T16', 'Stronger health, brighter days.'],
+      ['T17', 'Care today, health for tomorrow.'],
+      ['T18', 'Live well. Age well. Be well.'],
+      ['T19', "Your wellbeing, our life's work."],
+      ['T20', 'Whole-person care, every day.'],
     ],
   ],
   [
-    'Trust & plain-spoken — reassurance for families',
+    'Trust & simplicity',
     [
-      ['T21', 'Real people. Real care. Right at home.'],
-      ['T22', "Honest care for life's later years."],
-      ['T23', 'Care without the confusion.'],
-      ['T24', "The care you'd choose for your own mum."],
-      ['T25', 'Serious about care. Warm about everything else.'],
-      ['T26', 'Independence, supported.'],
-      ['T27', 'Growing older, living better.'],
-      ['T28', 'Stay home. Stay you.'],
-      ['T29', "Australia's friendliest way to age well."],
-      ['T30', 'From our family to yours, every single day.'],
+      ['T21', 'Real people. Real care.'],
+      ['T22', 'Care without the confusion.'],
+      ['T23', "The care you'd choose for your own family."],
+      ['T24', 'Honest care, done properly.'],
+      ['T25', 'One call. Every kind of care.'],
+      ['T26', 'Care you can rely on, day and night.'],
+      ['T27', 'Serious about health. Warm about people.'],
+      ['T28', 'Quality care, right where you need it.'],
+      ['T29', "Australia's friendly face of health care."],
+      ['T30', 'From our family to yours.'],
     ],
   ],
 ];
@@ -70,9 +70,10 @@ const tagGroups: [string, [string, string][]][] = [
       </p>
       <h1 class="mb-4 text-3xl md:text-5xl">100 logo options &amp; 30 taglines</h1>
       <p class="max-w-3xl text-xl" style="color: var(--tx-soft);">
-        Twenty logo concepts, each in five colourways — <strong>100 numbered options</strong>. Under
-        every logo is a preview of how it looks as the icon in a <strong>browser tab</strong> beside
-        the "Astro Care" name. Taglines are at the bottom.
+        "Astro" is the brand name — the marks below speak to <strong>health care as a whole</strong>:
+        hearts, caring hands, people, wellbeing and protection. Twenty concepts, each in five
+        colourways — <strong>100 numbered options</strong>, each previewed as the icon in a
+        <strong>browser tab</strong> beside the "Astro Care" name. Taglines are at the bottom.
         <strong>To choose, just tell us a logo number and a T-number.</strong>
       </p>
       <div class="legend mt-5" id="legend"></div>
@@ -171,91 +172,73 @@ const tagGroups: [string, [string, string][]][] = [
       { key: 'E', name: 'Terracotta',  bg: '#B95C38', fg: '#FFF3D6', ac: '#FFC24B', ring: null },
     ];
 
-    function sparkle(cx, cy, r, fill) {
-      var k = r * 0.42;
-      return '<path d="M' + cx + ' ' + (cy - r) +
-        ' C' + (cx + k * 0.28) + ' ' + (cy - k) + ' ' + (cx + k) + ' ' + (cy - k * 0.28) + ' ' + (cx + r) + ' ' + cy +
-        ' C' + (cx + k) + ' ' + (cy + k * 0.28) + ' ' + (cx + k * 0.28) + ' ' + (cy + k) + ' ' + cx + ' ' + (cy + r) +
-        ' C' + (cx - k * 0.28) + ' ' + (cy + k) + ' ' + (cx - k) + ' ' + (cy + k * 0.28) + ' ' + (cx - r) + ' ' + cy +
-        ' C' + (cx - k) + ' ' + (cy - k * 0.28) + ' ' + (cx - k * 0.28) + ' ' + (cy - k) + ' ' + cx + ' ' + (cy - r) + ' Z" fill="' + fill + '"/>';
+
+    function heart(cx, cy, w, fill, stroke) {
+      var h = w * 0.95;
+      var d = 'M' + cx + ' ' + (cy + h * 0.48) +
+        ' C' + (cx - w * 0.5) + ' ' + (cy + h * 0.12) + ' ' + (cx - w * 0.52) + ' ' + (cy - h * 0.28) + ' ' + (cx - w * 0.26) + ' ' + (cy - h * 0.38) +
+        ' A' + (w * 0.26) + ' ' + (w * 0.26) + ' 0 0 1 ' + cx + ' ' + (cy - h * 0.18) +
+        ' A' + (w * 0.26) + ' ' + (w * 0.26) + ' 0 0 1 ' + (cx + w * 0.26) + ' ' + (cy - h * 0.38) +
+        ' C' + (cx + w * 0.52) + ' ' + (cy - h * 0.28) + ' ' + (cx + w * 0.5) + ' ' + (cy + h * 0.12) + ' ' + cx + ' ' + (cy + h * 0.48) + ' Z';
+      return stroke
+        ? '<path d="' + d + '" fill="none" stroke="' + fill + '" stroke-width="2.6" stroke-linejoin="round"/>'
+        : '<path d="' + d + '" fill="' + fill + '"/>';
     }
-    function star5(cx, cy, r, fill) {
-      var pts = [];
-      for (var i = 0; i < 10; i++) {
-        var rad = (i % 2 === 0) ? r : r * 0.42;
-        var a = -Math.PI / 2 + i * Math.PI / 5;
-        pts.push((cx + rad * Math.cos(a)).toFixed(1) + ',' + (cy + rad * Math.sin(a)).toFixed(1));
-      }
-      return '<polygon points="' + pts.join(' ') + '" fill="' + fill + '"/>';
+    function pulse(x, y, w, color) {
+      var u = w / 10;
+      return '<path d="M' + x + ' ' + y + ' h' + (2.2 * u) + ' l' + (1.1 * u) + ' -' + (2.6 * u) +
+        ' l' + (1.6 * u) + ' ' + (5.2 * u) + ' l' + (1.4 * u) + ' -' + (3.4 * u) + ' l' + (0.8 * u) + ' ' + (0.8 * u) +
+        ' h' + (2.9 * u) + '" fill="none" stroke="' + color + '" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>';
     }
-    function compass(cx, cy, r, fill) {
-      var pts = [];
-      for (var i = 0; i < 16; i++) {
-        var rad = (i % 2 === 0) ? r : r * 0.34;
-        var a = -Math.PI / 2 + i * Math.PI / 8;
-        pts.push((cx + rad * Math.cos(a)).toFixed(1) + ',' + (cy + rad * Math.sin(a)).toFixed(1));
-      }
-      return '<polygon points="' + pts.join(' ') + '" fill="' + fill + '"/>';
+    function person(cx, cy, r, fill) {
+      return '<circle cx="' + cx + '" cy="' + (cy - r * 1.1) + '" r="' + (r * 0.62) + '" fill="' + fill + '"/>' +
+        '<path d="M' + (cx - r) + ' ' + (cy + r * 0.9) + ' a' + r + ' ' + r + ' 0 0 1 ' + (2 * r) + ' 0 Z" fill="' + fill + '"/>';
     }
-    function sunRays(fg) {
-      var out = '<circle cx="24" cy="24" r="8.5" fill="' + fg + '"/>';
-      for (var i = 0; i < 12; i++) {
-        var a = i * Math.PI / 6;
-        out += '<line x1="' + (24 + 12.5 * Math.cos(a)).toFixed(1) + '" y1="' + (24 + 12.5 * Math.sin(a)).toFixed(1) +
-               '" x2="' + (24 + 17 * Math.cos(a)).toFixed(1) + '" y2="' + (24 + 17 * Math.sin(a)).toFixed(1) +
-               '" stroke="' + fg + '" stroke-width="2.6" stroke-linecap="round"/>';
-      }
-      return out;
-    }
-    function bloom(fg, ac) {
-      var out = '';
-      for (var i = 0; i < 6; i++) {
-        out += '<ellipse cx="24" cy="15.5" rx="4.6" ry="8.5" fill="' + fg + '" opacity="0.92" transform="rotate(' + (i * 60) + ' 24 24)"/>';
-      }
-      return out + '<circle cx="24" cy="24" r="4.6" fill="' + ac + '"/>';
+    function leaf(cx, cy, rx, ry, rot, fill) {
+      return '<ellipse cx="' + cx + '" cy="' + cy + '" rx="' + rx + '" ry="' + ry + '" fill="' + fill + '" transform="rotate(' + rot + ' ' + cx + ' ' + cy + ')"/>';
     }
 
     var MARKS = [
-      { name: 'Sparkle', note: 'The single guiding star — simple, modern, unmistakable.',
-        draw: function (p) { return sparkle(24, 24, 14, p.fg) + '<circle cx="33.5" cy="14.5" r="2" fill="' + p.ac + '" opacity="0.95"/>'; } },
-      { name: 'Orbit Star', note: 'A star with an orbit ring — care that revolves around you.',
-        draw: function (p) { return '<ellipse cx="24" cy="24" rx="17" ry="7.5" fill="none" stroke="' + p.ac + '" stroke-width="1.6" opacity="0.75" transform="rotate(-24 24 24)"/>' + sparkle(24, 24, 11, p.fg) + '<circle cx="9.5" cy="30" r="2" fill="' + p.ac + '"/>'; } },
-      { name: 'Southern Cross', note: 'Unmistakably Australian — the constellation of home.',
-        draw: function (p) { return sparkle(20, 11, 4.6, p.fg) + sparkle(17, 24, 3.6, p.fg) + sparkle(24, 34, 4.6, p.fg) + sparkle(33, 17, 4.6, p.fg) + sparkle(30.5, 27.5, 2.6, p.ac); } },
-      { name: 'Compass Star', note: 'Eight points of guidance — steady, dependable direction.',
-        draw: function (p) { return compass(24, 24, 15, p.fg) + '<circle cx="24" cy="24" r="3.4" fill="' + p.ac + '"/>'; } },
-      { name: 'Classic Star', note: 'The timeless five-point star, softened and friendly.',
-        draw: function (p) { return star5(24, 25, 14.5, p.fg); } },
-      { name: 'Shooting Star', note: 'A wish granted — energy, optimism, momentum.',
-        draw: function (p) { return '<path d="M6 33 L20 26 M8 39 L19 33 M13 42 L22 38" stroke="' + p.ac + '" stroke-width="2" stroke-linecap="round" fill="none"/>' + sparkle(29, 20, 12, p.fg); } },
-      { name: 'Sunrise', note: 'A new day over the horizon — hope every morning.',
+      { name: 'Heart', note: 'The simplest promise — care, plainly and warmly drawn.',
+        draw: function (p) { return heart(24, 24, 26, p.fg); } },
+      { name: 'Heartbeat', note: 'A heart with a pulse — clinical skill inside human warmth.',
+        draw: function (p) { return heart(24, 24, 28, p.fg, true) + pulse(14, 24.5, 20, p.ac); } },
+      { name: 'Pulse Ring', note: 'A steady heartbeat, held in a circle of care.',
+        draw: function (p) { return '<circle cx="24" cy="24" r="14.5" fill="none" stroke="' + p.fg + '" stroke-width="2.6"/>' + pulse(14.5, 24.5, 19, p.ac); } },
+      { name: 'Cradled Heart', note: 'A hand holding a heart — support without gripping.',
+        draw: function (p) { return heart(24, 18.5, 17, p.fg) + '<path d="M11 29 q6 8 13 8 q7 0 13 -8" fill="none" stroke="' + p.ac + '" stroke-width="2.8" stroke-linecap="round"/><path d="M9 24 q1.5 4.5 5 6.8 M39 24 q-1.5 4.5 -5 6.8" fill="none" stroke="' + p.ac + '" stroke-width="2.8" stroke-linecap="round"/>'; } },
+      { name: 'Circle of Care', note: 'Two arms of a circle around a person — never alone.',
+        draw: function (p) { return '<path d="M24 7 a17 17 0 0 1 15 25" fill="none" stroke="' + p.fg + '" stroke-width="3.2" stroke-linecap="round"/><path d="M24 41 a17 17 0 0 1 -15 -25" fill="none" stroke="' + p.ac + '" stroke-width="3.2" stroke-linecap="round"/>' + person(24, 24, 7.5, p.fg); } },
+      { name: 'Side by Side', note: 'Carer and client together — help as companionship.',
+        draw: function (p) { return person(18, 25, 8, p.fg) + person(31.5, 26.5, 6.2, p.ac); } },
+      { name: 'Family', note: 'Three generations shoulder to shoulder.',
+        draw: function (p) { return person(14, 26, 6.4, p.ac) + person(24, 24.5, 8, p.fg) + person(34, 26.5, 5.6, p.ac); } },
+      { name: 'Soft Cross', note: 'The universal mark of health, rounded and friendly.',
+        draw: function (p) { return '<path d="M19.5 10 h9 a2.5 2.5 0 0 1 2.5 2.5 v7 h7 a2.5 2.5 0 0 1 2.5 2.5 v4 a2.5 2.5 0 0 1 -2.5 2.5 h-7 v7 a2.5 2.5 0 0 1 -2.5 2.5 h-9 a2.5 2.5 0 0 1 -2.5 -2.5 v-7 h-7 A2.5 2.5 0 0 1 7.5 26 v-4 a2.5 2.5 0 0 1 2.5 -2.5 h7 v-7 A2.5 2.5 0 0 1 19.5 10 Z" fill="' + p.fg + '"/>'; } },
+      { name: 'Cross & Heart', note: 'Medicine and kindness in one mark.',
+        draw: function (p) { return '<path d="M19.5 10 h9 a2.5 2.5 0 0 1 2.5 2.5 v7 h7 a2.5 2.5 0 0 1 2.5 2.5 v4 a2.5 2.5 0 0 1 -2.5 2.5 h-7 v7 a2.5 2.5 0 0 1 -2.5 2.5 h-9 a2.5 2.5 0 0 1 -2.5 -2.5 v-7 h-7 A2.5 2.5 0 0 1 7.5 26 v-4 a2.5 2.5 0 0 1 2.5 -2.5 h7 v-7 A2.5 2.5 0 0 1 19.5 10 Z" fill="' + p.fg + '"/>' + heart(24, 24.5, 11, p.ac); } },
+      { name: 'Gum Leaf', note: 'Australian, natural, gentle — health grown from home soil.',
+        draw: function (p) { return leaf(24, 24, 7.5, 15, 28, p.fg) + '<path d="M18 36 Q24 26 30 12" fill="none" stroke="' + p.ac + '" stroke-width="2" stroke-linecap="round"/>'; } },
+      { name: 'Twin Leaves', note: 'Balance and renewal — body and mind cared for together.',
+        draw: function (p) { return leaf(17.5, 26, 5.5, 12, 30, p.fg) + leaf(30.5, 26, 5.5, 12, -30, p.ac) + '<path d="M24 38 v-14" stroke="' + p.fg + '" stroke-width="2.2" stroke-linecap="round"/>'; } },
+      { name: 'Tree of Life', note: 'Growth, roots and shelter across every stage of life.',
+        draw: function (p) { return '<path d="M24 40 V22 M24 28 l-6 -6 M24 25 l6 -6" stroke="' + p.fg + '" stroke-width="2.8" stroke-linecap="round"/><circle cx="24" cy="14" r="6" fill="' + p.ac + '"/><circle cx="14.5" cy="19" r="4.6" fill="' + p.fg + '"/><circle cx="33.5" cy="19" r="4.6" fill="' + p.fg + '"/>'; } },
+      { name: 'Lotus', note: 'Calm and dignity — wellbeing of the whole person.',
+        draw: function (p) { return leaf(24, 20, 5, 10, 0, p.fg) + leaf(15.5, 24, 4.5, 9, 42, p.ac) + leaf(32.5, 24, 4.5, 9, -42, p.ac) + '<path d="M12 33 q12 7 24 0" fill="none" stroke="' + p.fg + '" stroke-width="2.6" stroke-linecap="round"/>'; } },
+      { name: 'Sunrise', note: 'A new day — hope, energy and better health each morning.',
         draw: function (p) { return '<path d="M13 28 a11 11 0 0 1 22 0 Z" fill="' + p.fg + '"/><path d="M24 9 v4.5 M11.5 14 l3.2 3.2 M36.5 14 l-3.2 3.2 M6.5 24.5 h4.5 M37 24.5 h4.5" stroke="' + p.fg + '" stroke-width="2.4" stroke-linecap="round"/><path d="M9 33.5 h30 M14 38.5 h20" stroke="' + p.ac + '" stroke-width="2.4" stroke-linecap="round"/>'; } },
-      { name: 'Golden Sun', note: 'Warmth at the centre of everything.',
-        draw: function (p) { return sunRays(p.fg); } },
-      { name: 'Star in Heart', note: 'A star held inside a heart — care and affection in one.',
-        draw: function (p) { return '<path d="M24 39 C18 34 9.5 28 9.5 20.5 A7.5 7.5 0 0 1 24 17 A7.5 7.5 0 0 1 38.5 20.5 C38.5 28 30 34 24 39 Z" fill="none" stroke="' + p.fg + '" stroke-width="2.6" stroke-linejoin="round"/>' + sparkle(24, 25, 6.5, p.ac); } },
-      { name: 'Heart Glow', note: 'A full heart with a spark of light — love made visible.',
-        draw: function (p) { return '<path d="M24 40 C17.5 34.5 8.5 28.5 8.5 20.5 A8 8 0 0 1 24 16.5 A8 8 0 0 1 39.5 20.5 C39.5 28.5 30.5 34.5 24 40 Z" fill="' + p.fg + '"/>' + sparkle(24, 24.5, 6, p.bg); } },
-      { name: 'Star at Home', note: 'The star under your own roof — help where you live.',
-        draw: function (p) { return '<path d="M10 22 L24 10 L38 22 M13.5 19.5 V37 H34.5 V19.5" fill="none" stroke="' + p.fg + '" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>' + sparkle(24, 27.5, 6, p.ac); } },
-      { name: 'Caring Hands', note: 'Two gentle hands cradling a star — support without gripping.',
-        draw: function (p) { return sparkle(24, 19, 9, p.fg) + '<path d="M10 30 q6 7 14 7 q8 0 14 -7" fill="none" stroke="' + p.ac + '" stroke-width="2.6" stroke-linecap="round"/><path d="M8 25.5 q2.5 4 6 5.4 M40 25.5 q-2.5 4 -6 5.4" fill="none" stroke="' + p.ac + '" stroke-width="2.6" stroke-linecap="round"/>'; } },
-      { name: 'Shield Star', note: 'Protection and safety — clinical trust, warmly drawn.',
-        draw: function (p) { return '<path d="M24 8 C28 10.5 32.5 11.5 36.5 11.8 V24 C36.5 32 31 37 24 40 C17 37 11.5 32 11.5 24 V11.8 C15.5 11.5 20 10.5 24 8 Z" fill="none" stroke="' + p.fg + '" stroke-width="2.6" stroke-linejoin="round"/>' + sparkle(24, 23.5, 7, p.ac); } },
-      { name: 'Moon & Star', note: 'Care around the clock — calm through every night.',
-        draw: function (p) { return '<path d="M27 9.5 a12.5 12.5 0 1 0 9.5 20.5 a14.5 14.5 0 0 1 -9.5 -20.5 Z" fill="' + p.fg + '"/>' + sparkle(33, 16, 5.5, p.ac); } },
-      { name: 'Star Bloom', note: 'A flowering star — growth and life in later years.',
-        draw: function (p) { return bloom(p.fg, p.ac); } },
-      { name: 'Constellation', note: 'Small stars joined into one — a network of carers.',
-        draw: function (p) { return '<path d="M13 33 L22 20 L31 26 L36 13" fill="none" stroke="' + p.ac + '" stroke-width="1.7" stroke-dasharray="1.5 3.5" stroke-linecap="round"/><circle cx="13" cy="33" r="2.6" fill="' + p.fg + '"/><circle cx="22" cy="20" r="3.4" fill="' + p.fg + '"/><circle cx="31" cy="26" r="2.6" fill="' + p.fg + '"/>' + sparkle(36, 13, 5.5, p.fg); } },
-      { name: 'Monogram A', note: 'A confident "A" crowned with a star — a proper wordmark seed.',
-        draw: function (p) { return '<path d="M14 38 L24 14 L34 38 M17.8 29.5 H30.2" fill="none" stroke="' + p.fg + '" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>' + sparkle(24, 9, 4.4, p.ac); } },
-      { name: 'Twin Stars', note: 'A large and a small star together — generations side by side.',
-        draw: function (p) { return sparkle(19.5, 26, 11.5, p.fg) + sparkle(33, 15.5, 6.5, p.ac); } },
-      { name: 'Eucalyptus Star', note: 'Gum leaves beneath a star — native, natural, gentle.',
-        draw: function (p) { return sparkle(24, 15.5, 8, p.fg) + '<ellipse cx="16.5" cy="31.5" rx="4" ry="9" fill="' + p.ac + '" opacity="0.92" transform="rotate(35 16.5 31.5)"/><ellipse cx="31.5" cy="31.5" rx="4" ry="9" fill="' + p.ac + '" opacity="0.92" transform="rotate(-35 31.5 31.5)"/>'; } },
-      { name: 'Open Door Star', note: 'A star shining through an open doorway — welcome, always.',
-        draw: function (p) { return '<rect x="14" y="11" width="20" height="27" rx="2.5" fill="none" stroke="' + p.fg + '" stroke-width="2.6"/><path d="M14 38 L8.5 41.5 M34 38 L39.5 41.5" stroke="' + p.fg + '" stroke-width="2.6" stroke-linecap="round"/>' + sparkle(24, 23, 6.5, p.ac); } },
+      { name: 'Drop of Life', note: 'The essential drop — hydration, blood, life itself.',
+        draw: function (p) { return '<path d="M24 8 C30 17 34 22 34 28.5 a10 10 0 0 1 -20 0 C14 22 18 17 24 8 Z" fill="' + p.fg + '"/>' + heart(24, 28, 9, p.bg); } },
+      { name: 'Shield of Care', note: 'Protection and safety — a heart kept safe.',
+        draw: function (p) { return '<path d="M24 8 C28 10.5 32.5 11.5 36.5 11.8 V24 C36.5 32 31 37 24 40 C17 37 11.5 32 11.5 24 V11.8 C15.5 11.5 20 10.5 24 8 Z" fill="none" stroke="' + p.fg + '" stroke-width="2.6" stroke-linejoin="round"/>' + heart(24, 23.5, 13, p.ac); } },
+      { name: 'Heart at Home', note: 'Care where people most want it — at home.',
+        draw: function (p) { return '<path d="M10 22 L24 10 L38 22 M13.5 19.5 V37 H34.5 V19.5" fill="none" stroke="' + p.fg + '" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>' + heart(24, 27.5, 11, p.ac); } },
+      { name: 'Helping Hand', note: 'An open palm offering a heart — help, freely given.',
+        draw: function (p) { return heart(24, 14.5, 12, p.ac) + '<path d="M13 27 h22 M13 27 v6 a7 7 0 0 0 7 7 h8 a7 7 0 0 0 7 -7 v-6" fill="none" stroke="' + p.fg + '" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 27 v-4 M24 27 v-5 M30 27 v-4" stroke="' + p.fg + '" stroke-width="2.8" stroke-linecap="round"/>'; } },
+      { name: 'Monogram A', note: 'A confident "A" with a heartbeat crossbar.',
+        draw: function (p) { return '<path d="M13 38 L24 12 L35 38" fill="none" stroke="' + p.fg + '" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>' + pulse(16.5, 29.5, 15, p.ac); } },
+      { name: 'Continuum', note: 'An unbroken loop — care that never drops the thread.',
+        draw: function (p) { return '<path d="M24 24 C20 17 10 17 10 24 C10 31 20 31 24 24 C28 17 38 17 38 24 C38 31 28 31 24 24 Z" fill="none" stroke="' + p.fg + '" stroke-width="3" stroke-linejoin="round"/>' + heart(24, 24, 8, p.ac); } },
     ];
 
     function badge(p, inner, size) {
