@@ -84,6 +84,17 @@ const tagGroups: [string, [string, string][]][] = [
     <div class="mx-auto w-[min(1220px,100%-2.5rem)]" id="gallery"></div>
   </section>
 
+  <section class="py-8 md:py-12" style="background: var(--euca-soft);">
+    <div class="mx-auto w-[min(1220px,100%-2.5rem)]">
+      <h2 class="mb-2 text-3xl md:text-4xl">The Monogram "A" studio</h2>
+      <p class="mb-4 max-w-3xl text-xl" style="color: var(--tx-soft);">
+        Fifteen more takes on the letter-A mark (the style of No. 181) — different constructions,
+        same ten colourways. Numbered <strong>201–350</strong>.
+      </p>
+      <div id="galleryA"></div>
+    </div>
+  </section>
+
   <section class="py-10 md:py-14" style="background: var(--bg-sand);">
     <div class="mx-auto w-[min(1220px,100%-2.5rem)]">
       <h2 class="mb-6 text-3xl md:text-4xl">30 tagline options</h2>
@@ -103,7 +114,7 @@ const tagGroups: [string, [string, string][]][] = [
         ))
       }
       <div class="rounded-3xl border-l-8 p-6 text-xl" style="background: var(--bg-card); border-color: var(--sun); box-shadow: var(--shadow);">
-        <p><strong>How to choose:</strong> tell us a logo number (1–200) and a tagline (T1–T30) — for example, "logo 12 and T5".</p>
+        <p><strong>How to choose:</strong> tell us a logo number (1–200, or 201–350 from the Monogram A studio) and a tagline (T1–T30) — for example, "logo 12 and T5".</p>
         <p class="mt-2" style="color: var(--tx-soft);">We'll make it the official mark, the browser-tab icon and the site-wide tagline.</p>
       </div>
     </div>
@@ -257,22 +268,60 @@ const tagGroups: [string, [string, string][]][] = [
       return '<span><i style="background:' + p.bg + ';' + (p.ring ? 'border:2px solid ' + p.ring : '') + '"></i>' + p.key + ' · ' + p.name + '</span>';
     }).join('');
 
-    var html = '';
-    var n = 0;
-    MARKS.forEach(function (m, mi) {
-      html += '<h2 class="brand-family">' + m.name + ' <small>concept ' + (mi + 1) + ' of 20</small></h2>' +
-              '<p class="brand-note">' + m.note + '</p><div class="brand-grid">';
-      PALETTES.forEach(function (p) {
-        n++;
-        var inner = m.draw(p);
-        html += '<div class="brand-card"><span class="num">No. ' + n + '</span>' +
-          badge(p, inner, 84) +
-          '<div class="brand-tab">' + badge(p, inner, 16) + '<span>Astro Care</span><span class="x">×</span></div>' +
-          '<span class="cw">' + m.name + ' · ' + p.name + '</span></div>';
+    var MARKS_A = [
+      { name: 'A · Heart Bar', note: 'The crossbar becomes a heart.',
+        draw: function (p) { return '<path d="M13 38 L24 12 L35 38" fill="none" stroke="' + p.fg + '" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>' + heart(24, 29.5, 9, p.ac); } },
+      { name: 'A · Open Counter', note: 'No crossbar at all — a heart floats in the space.',
+        draw: function (p) { return '<path d="M13 38 L24 12 L35 38" fill="none" stroke="' + p.fg + '" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>' + heart(24, 23, 7, p.ac); } },
+      { name: 'A · Rounded', note: 'Soft curved legs — approachable and modern.',
+        draw: function (p) { return '<path d="M14 38 Q24 6 34 38" fill="none" stroke="' + p.fg + '" stroke-width="3.6" stroke-linecap="round"/><path d="M17.5 29 H30.5" stroke="' + p.ac + '" stroke-width="3.2" stroke-linecap="round"/>'; } },
+      { name: 'a · Lowercase', note: 'A friendly geometric lowercase a.',
+        draw: function (p) { return '<circle cx="21.5" cy="27.5" r="8.5" fill="none" stroke="' + p.fg + '" stroke-width="3.6"/><path d="M30 19.5 V36" stroke="' + p.ac + '" stroke-width="3.6" stroke-linecap="round"/>'; } },
+      { name: 'A in Heart', note: 'The monogram held inside a heart.',
+        draw: function (p) { return heart(24, 23.5, 31, p.fg, true) + '<path d="M18.5 30 L24 17 L29.5 30 M20.8 26 H27.2" fill="none" stroke="' + p.ac + '" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>'; } },
+      { name: 'A in Shield', note: 'Protection around the initial — trusted care.',
+        draw: function (p) { return '<path d="M24 8 C28 10.5 32.5 11.5 36.5 11.8 V24 C36.5 32 31 37 24 40 C17 37 11.5 32 11.5 24 V11.8 C15.5 11.5 20 10.5 24 8 Z" fill="none" stroke="' + p.fg + '" stroke-width="2.6" stroke-linejoin="round"/><path d="M18.5 31 L24 17 L29.5 31 M20.8 27 H27.2" fill="none" stroke="' + p.ac + '" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>'; } },
+      { name: 'A · Home', note: 'The A doubles as a roof with a front door — care at home.',
+        draw: function (p) { return '<path d="M12 38 L24 12 L36 38 M16.5 30 H31.5" fill="none" stroke="' + p.fg + '" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="21.5" y="30" width="5" height="8" rx="1.2" fill="' + p.ac + '"/>'; } },
+      { name: 'A · Together', note: 'Two figures leaning on each other form the A.',
+        draw: function (p) { return '<path d="M16 38 L24 15 M32 38 L24 15" stroke="' + p.fg + '" stroke-width="3.6" stroke-linecap="round"/><circle cx="20" cy="12" r="2.8" fill="' + p.ac + '"/><circle cx="28" cy="12" r="2.8" fill="' + p.ac + '"/><path d="M18 30 Q24 25.5 30 30" fill="none" stroke="' + p.ac + '" stroke-width="3" stroke-linecap="round"/>'; } },
+      { name: 'A · Gum Leaf', note: 'A eucalyptus leaf forms the crossbar.',
+        draw: function (p) { return '<path d="M13 38 L24 12 L35 38" fill="none" stroke="' + p.fg + '" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>' + leaf(24, 29.5, 7.5, 3, -10, p.ac); } },
+      { name: 'A · Sunrise', note: 'A sun rises between the legs of the A.',
+        draw: function (p) { return '<path d="M13 38 L24 12 L35 38" fill="none" stroke="' + p.fg + '" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.5 38 a6.5 6.5 0 0 1 13 0 Z" fill="' + p.ac + '"/><path d="M24 26.5 v3 M18.5 29 l2 2 M29.5 29 l-2 2" stroke="' + p.ac + '" stroke-width="2" stroke-linecap="round"/>'; } },
+      { name: 'A · Ribbon', note: 'A single folded ribbon — crafted and premium.',
+        draw: function (p) { return '<path d="M14 38 L24 12 L34 38" fill="none" stroke="' + p.fg + '" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 12 L19.8 23" stroke="' + p.ac + '" stroke-width="6" stroke-linecap="round"/>'; } },
+      { name: 'AC · Ligature', note: 'A and C joined — Astro Care in one mark.',
+        draw: function (p) { return '<path d="M10.5 38 L19.5 13.5 L28.5 38 M13.8 30 H25.2" fill="none" stroke="' + p.fg + '" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M39 21.5 A8 8 0 1 0 39 31" fill="none" stroke="' + p.ac + '" stroke-width="3.2" stroke-linecap="round"/>'; } },
+      { name: 'A · Forward', note: 'Leaning forward with an underline — momentum and optimism.',
+        draw: function (p) { return '<path d="M15 36 L27.5 11 L35.5 36 M19.5 28 H31" fill="none" stroke="' + p.fg + '" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 41.5 H30" stroke="' + p.ac + '" stroke-width="3.2" stroke-linecap="round"/>'; } },
+      { name: 'A · Medic', note: 'A small health cross sits at the heart of the A.',
+        draw: function (p) { return '<path d="M13 38 L24 12 L35 38 M17.2 29.5 H30.8" fill="none" stroke="' + p.fg + '" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 18 v6 M21 21 h6" stroke="' + p.ac + '" stroke-width="2.8" stroke-linecap="round"/>'; } },
+      { name: 'A · Journey', note: 'A path curves beneath the A — care along the whole road.',
+        draw: function (p) { return '<path d="M13 36 L24 10 L35 36 M17.2 27.5 H30.8" fill="none" stroke="' + p.fg + '" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 41 Q24 34.5 39 41" fill="none" stroke="' + p.ac + '" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="1.5 5"/>'; } },
+    ];
+
+    function renderGallery(marks, mountId, startN, conceptTotal) {
+      var html = '';
+      var n = startN - 1;
+      marks.forEach(function (m, mi) {
+        html += '<h2 class="brand-family">' + m.name + ' <small>concept ' + (mi + 1) + ' of ' + conceptTotal + '</small></h2>' +
+                '<p class="brand-note">' + m.note + '</p><div class="brand-grid">';
+        PALETTES.forEach(function (p) {
+          n++;
+          var inner = m.draw(p);
+          html += '<div class="brand-card"><span class="num">No. ' + n + '</span>' +
+            badge(p, inner, 84) +
+            '<div class="brand-tab">' + badge(p, inner, 16) + '<span>Astro Care</span><span class="x">×</span></div>' +
+            '<span class="cw">' + m.name + ' · ' + p.name + '</span></div>';
+        });
+        html += '</div>';
       });
-      html += '</div>';
-    });
-    var gallery = document.getElementById('gallery');
-    if (gallery) gallery.innerHTML = html;
+      var mount = document.getElementById(mountId);
+      if (mount) mount.innerHTML = html;
+    }
+
+    renderGallery(MARKS, 'gallery', 1, 20);
+    renderGallery(MARKS_A, 'galleryA', 201, 15);
   })();
 </script>
