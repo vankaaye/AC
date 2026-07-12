@@ -28,6 +28,15 @@ const ALLOWED_ORIGINS = [
   'http://localhost:4321', // astro dev
 ];
 
+/**
+ * Where callback-form enquiries are delivered (via the FormSubmit relay).
+ * TEMP: direct to Gopi's inbox because astrocare.com.au has no MX records
+ * yet — the info@ alias can't receive mail until email forwarding is set
+ * up in GoDaddy. Once that's done, change this to info@astrocare.com.au
+ * and redeploy (a fresh FormSubmit activation email will need one click).
+ */
+const CONTACT_EMAIL = 'gopi@ktechify.com';
+
 const SYSTEM_PROMPT = `You are "Astro", the friendly chat helper on astrocare.com.au — the website of Astro Care Group Pty Ltd (ABN 99 700 192 981), an Australian health-care provider whose first service line is aged care and support at home.
 
 Your job: give people genuinely useful, complete answers about health care and aged care in Australia, in warm, plain English an 80-year-old would enjoy reading. You are the main way this business helps people — most things should be resolved right here in the chat.
@@ -48,10 +57,13 @@ Facts about Astro Care you may state:
 - Fees: 15% care management + 10% package management, within government caps; a fee calculator lives at /#pricing.
 - Funding guidance lives at /#funding; the contact/callback form at /#contact. Email info@astrocare.com.au.
 
-Formatting:
-- Markdown links [like this](https://...) and **bold** are supported; use them.
-- Short paragraphs, short bullet lists where they help. No headings, no emojis.
-- Aim for a complete but tidy answer — usually 3–8 sentences plus a link or two.
+Formatting — make every answer clean, scannable and pleasant:
+- **Bold** the key figures and terms people are looking for; *italics* for gentle emphasis; __underline__ only for something that must not be missed.
+- A warm emoji or two per answer is welcome (e.g. ✅ 💚 🏡 📋) — never more than two, never in serious/medical contexts.
+- Prefer short bullet lists over long paragraphs.
+- When comparing options, levels or fees, use a small markdown table (2–3 columns, up to ~8 rows) — e.g. | Level | Funding per year |. Keep cell text short.
+- Markdown links [like this](https://...); site links work too: [fee calculator](/#pricing), [callback form](/#contact), [funding guide](/#funding).
+- No headings. Keep the whole answer concise — lead with the direct answer, then the supporting detail.
 
 Never give personal medical, legal or financial advice — for anything personal, suggest their GP or the callback form. Never invent Astro Care facts (locations, staff names, prices) beyond those above. Never invent numbers — if you can't find a figure, say so and link to where it's published.`;
 
@@ -66,7 +78,8 @@ export default {
     };
 
     if (request.method === 'OPTIONS') return new Response(null, { headers: cors });
-    if (request.method !== 'POST' || new URL(request.url).pathname !== '/chat') {
+    const pathname = new URL(request.url).pathname;
+    if (request.method !== 'POST' || (pathname !== '/chat' && pathname !== '/enquiry')) {
       return new Response('Not found', { status: 404, headers: cors });
     }
     if (!corsOk) return new Response('Forbidden', { status: 403, headers: cors });
@@ -76,6 +89,45 @@ export default {
       body = await request.json();
     } catch {
       return new Response(JSON.stringify({ error: 'bad json' }), { status: 400, headers: cors });
+    }
+
+    /* ---------- /enquiry: callback form → email ---------- */
+    if (pathname === '/enquiry') {
+      const clean = (v, max) => (typeof v === 'string' ? v.trim().slice(0, max) : '');
+      const name = clean(body.name, 120);
+      const phone = clean(body.phone, 40);
+      const careType = clean(body.careType, 120);
+      if (body.honey) return new Response(JSON.stringify({ ok: true }), { headers: { ...cors, 'content-type': 'application/json' } }); // spam bot
+      if (!name || !phone) {
+        return new Response(JSON.stringify({ error: 'missing fields' }), { status: 400, headers: cors });
+      }
+      const fsResp = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Origin: 'https://www.astrocare.com.au',
+          Referer: 'https://www.astrocare.com.au/',
+          'User-Agent': 'Mozilla/5.0 (compatible; AstrocareEnquiryRelay/1.0)',
+        },
+        body: JSON.stringify({
+          _subject: `Callback request: ${name}`,
+          _template: 'table',
+          Name: name,
+          Phone: phone,
+          'Help needed with': careType || '(not specified)',
+          Page: clean(body.page, 200) || 'astrocare.com.au',
+        }),
+      });
+      const detail = await fsResp.text();
+      // "needs Activation" means the relay works but its one-time email
+      // confirmation hasn't been clicked yet — don't fail the visitor.
+      const ok = fsResp.ok && (/"success"\s*:\s*"?true/i.test(detail) || /activation/i.test(detail));
+      if (!ok) console.log('formsubmit error', fsResp.status, detail.slice(0, 200));
+      return new Response(JSON.stringify(ok ? { ok: true } : { error: 'relay' }), {
+        status: ok ? 200 : 502,
+        headers: { ...cors, 'content-type': 'application/json' },
+      });
     }
 
     // Trim and sanitise the conversation the widget sends us.

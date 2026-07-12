@@ -302,16 +302,21 @@ const services = [
         btn.textContent = 'Sending…';
         btn.disabled = true;
         var f = new FormData(form);
-        fetch('https://formsubmit.co/ajax/info@astrocare.com.au', {
+        /* TEMP: direct to Gopi's inbox — astrocare.com.au has no MX records
+           yet, so info@ can't receive mail until GoDaddy email forwarding
+           is set up. Address assembled at runtime to avoid scrapers. */
+        var addr = ['gopi', 'ktechify.com'].join('@');
+        fetch('https://formsubmit.co/ajax/' + addr, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
           body: JSON.stringify({
-            _subject: 'Callback request from astrocare.com.au',
+            _subject: 'Callback request: ' + (f.get('name') || ''),
             _template: 'table',
             _honey: f.get('_honey') || '',
             Name: f.get('name'),
             Phone: f.get('phone'),
             'Help needed with': f.get('careType'),
+            Page: location.href,
           }),
         })
           .then(function (r) { if (!r.ok) throw new Error('send failed'); return r.json(); })

@@ -163,8 +163,18 @@ const steps = [
       .msg { max-width: 86%; padding: 13px 17px; border-radius: 20px; font-size: 18px; line-height: 1.45; overflow-wrap: break-word; }
       .msg--bot { background: var(--bg-soft); color: var(--ink); border-bottom-left-radius: 6px; align-self: flex-start; }
       .msg--you { background: var(--accent); color: #fff; border-bottom-right-radius: 6px; align-self: flex-end; }
-      .msg a { color: var(--accent); font-weight: 600; }
+      .msg a { color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
       .msg--you a { color: #fff; }
+      .msg ul, .msg ol { margin: 0.35em 0 0.35em 1.3em; }
+      .msg li { margin: 0.2em 0; }
+      .msg .md-tablewrap { overflow-x: auto; margin: 0.55em 0; border-radius: 12px; border: 1px solid var(--line); background: #fff; }
+      .msg table { border-collapse: collapse; width: 100%; font-size: 0.92em; }
+      .msg th, .msg td { border-bottom: 1px solid var(--line); padding: 8px 12px; text-align: left; vertical-align: top; }
+      .msg th { font-weight: 700; background: var(--bg-soft); }
+      .msg tr:last-child td { border-bottom: 0; }
+      .chat__form .mic { width: 52px; height: 52px; flex-shrink: 0; border: 1.5px solid #d2d2d7; border-radius: 999px; background: #fff; color: var(--ink); cursor: pointer; display: grid; place-items: center; }
+      .chat__form .mic.mic-live { background: #c0392b; border-color: #c0392b; color: #fff; animation: micpulse 1.2s ease-in-out infinite; }
+      @keyframes micpulse { 50% { opacity: 0.72; } }
       .chat__chips { display: flex; gap: 8px; overflow-x: auto; padding: 0 20px 10px; scrollbar-width: thin; }
       .chip {
         flex-shrink: 0; border: 1.5px solid #d2d2d7; background: #fff; color: var(--ink);
@@ -306,6 +316,9 @@ const steps = [
       <form class="chat__form" id="calmChatForm">
         <label class="sr-only" for="calmInput" style="position:absolute;left:-9999px;">Type your question</label>
         <input id="calmInput" type="text" placeholder="Ask anything…" autocomplete="off" />
+        <button type="button" class="mic" id="calmMic" aria-label="Speak your question" aria-pressed="false" hidden>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+        </button>
         <button type="submit" aria-label="Send">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg>
         </button>
@@ -328,13 +341,15 @@ const steps = [
           var btn = form.querySelector('button[type="submit"]');
           btn.textContent = 'Sending…'; btn.disabled = true;
           var f = new FormData(form);
-          fetch('https://formsubmit.co/ajax/info@astrocare.com.au', {
+          var addr = ['gopi', 'ktechify.com'].join('@'); // TEMP until info@ forwarding exists (no MX yet)
+          fetch('https://formsubmit.co/ajax/' + addr, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
             body: JSON.stringify({
-              _subject: 'Callback request from astrocare.com.au (test3)',
+              _subject: 'Callback request: ' + (f.get('name') || ''),
               _template: 'table', _honey: f.get('_honey') || '',
               Name: f.get('name'), Phone: f.get('phone'), 'Help needed with': f.get('careType'),
+              Page: location.href,
             }),
           })
             .then(function (r) { if (!r.ok) throw 0; return r.json(); })
@@ -354,10 +369,44 @@ const steps = [
         function md(text) {
           var d = document.createElement('div');
           d.textContent = text;
-          var h = d.innerHTML;
-          h = h.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
-          h = h.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-          return h.replace(/\n/g, '<br>');
+          var s = d.innerHTML;
+          var lines = s.split('\n');
+          var out = [];
+          var i = 0;
+          function cells(line) { return line.trim().replace(/^\||\|$/g, '').split('|').map(function (c) { return c.trim(); }); }
+          while (i < lines.length) {
+            if (/^\s*\|.*\|\s*$/.test(lines[i]) && i + 1 < lines.length && /^\s*\|[\s:|-]+\|\s*$/.test(lines[i + 1])) {
+              var t = '<div class="md-tablewrap"><table><thead><tr>';
+              cells(lines[i]).forEach(function (c) { t += '<th>' + c + '</th>'; });
+              t += '</tr></thead><tbody>';
+              i += 2;
+              while (i < lines.length && /^\s*\|.*\|\s*$/.test(lines[i])) {
+                t += '<tr>';
+                cells(lines[i]).forEach(function (c) { t += '<td>' + c + '</td>'; });
+                t += '</tr>';
+                i++;
+              }
+              out.push(t + '</tbody></table></div>');
+            } else { out.push(lines[i]); i++; }
+          }
+          s = out.join('\n');
+          s = s.replace(/(^|\n)((?:[-•] .*(?:\n|$))+)/g, function (_m, pre, block) {
+            return pre + '<ul>' + block.trim().split('\n').map(function (l) { return '<li>' + l.replace(/^[-•] /, '') + '</li>'; }).join('') + '</ul>';
+          });
+          s = s.replace(/(^|\n)((?:\d+[.)] .*(?:\n|$))+)/g, function (_m, pre, block) {
+            return pre + '<ol>' + block.trim().split('\n').map(function (l) { return '<li>' + l.replace(/^\d+[.)] /, '') + '</li>'; }).join('') + '</ol>';
+          });
+          s = s.replace(/\[([^\]]+)\]\(((?:https?:\/\/|\/)[^\s)]+)\)/g, function (_m, label, url) {
+            var ext = url.indexOf('http') === 0;
+            return '<a href="' + url + '"' + (ext ? ' target="_blank" rel="noopener noreferrer"' : '') + '>' + label + '</a>';
+          });
+          s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+          s = s.replace(/(^|[^*\w])\*([^*\n]+)\*/g, '$1<em>$2</em>');
+          s = s.replace(/__([^_\n]+)__/g, '<u>$1</u>');
+          s = s.replace(/\n/g, '<br>');
+          s = s.replace(/(<\/(?:div|ul|ol)>)(?:<br>)+/g, '$1');
+          s = s.replace(/(?:<br>)+(<div class="md-tablewrap">|<ul>|<ol>)/g, '$1');
+          return s;
         }
         function bubble(html, who) {
           var el = document.createElement('div');
@@ -411,6 +460,32 @@ const steps = [
           input.value = '';
           ask(t);
         });
+
+        /* Voice dictation (shown only where the browser supports it). */
+        var mic = document.getElementById('calmMic');
+        var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (mic && SR) {
+          mic.hidden = false;
+          var rec = new SR();
+          rec.lang = 'en-AU';
+          rec.interimResults = true;
+          var listening = false;
+          function stopUI() { listening = false; mic.classList.remove('mic-live'); mic.setAttribute('aria-pressed', 'false'); }
+          rec.onresult = function (e) {
+            var t = '';
+            for (var i = 0; i < e.results.length; i++) t += e.results[i][0].transcript;
+            input.value = t;
+          };
+          rec.onend = function () { stopUI(); if (input.value.trim()) input.focus(); };
+          rec.onerror = stopUI;
+          mic.addEventListener('click', function () {
+            if (listening) { rec.stop(); return; }
+            listening = true;
+            mic.classList.add('mic-live');
+            mic.setAttribute('aria-pressed', 'true');
+            try { rec.start(); } catch (err) { stopUI(); }
+          });
+        }
       })();
     </script>
   </body>

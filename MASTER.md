@@ -85,11 +85,12 @@ Full restore instructions and commit hashes: see `VERSIONS.md`.
 
 ## 7. Enquiries (callback form)
 
-- Both callback forms (live site `/#contact` and `/test3`) email **info@astrocare.com.au** via [FormSubmit](https://formsubmit.co) — a free relay, no account needed (temporary setup).
-- info@astrocare.com.au is currently an alias of gopi@ktechify.com.
-- **One-time activation:** the first submission triggers an "Activate Form" email to that inbox — it must be clicked once before enquiries flow.
+- Both callback forms (live site `/#contact` and `/test3`) deliver by email via [FormSubmit](https://formsubmit.co) — a free relay, no account needed (temporary setup).
+- **Currently delivering to gopi@ktechify.com directly.** Discovered 12 Jul: astrocare.com.au has **no MX records** — the domain cannot receive email at all yet, so info@astrocare.com.au bounces and the intended alias doesn't exist.
+- [ ] **TODO (owner):** set up free email forwarding in GoDaddy (both domains use GoDaddy DNS): GoDaddy → Domain → Email Forwarding → create `info@astrocare.com.au` → `gopi@ktechify.com` (GoDaddy adds the MX records). Then we switch the forms to info@ (one-line change + one activation click).
+- [ ] **TODO (owner):** click the FormSubmit **"Activate Form"** email sent to gopi@ktechify.com — enquiries flow only after this one click. Check spam/junk if missing.
 - Spam protection: hidden honeypot field. Delivery failure shows the visitor a fallback message with email + phone.
-- Later upgrade path: replace FormSubmit with our own Cloudflare Worker + an email API when ready.
+- Note: FormSubmit blocks calls relayed from Cloudflare Workers, so forms post to it directly from the browser (address assembled at runtime to deter scrapers).
 
 ## 8. AI chat — operations guide
 
