@@ -1,0 +1,86 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+/* Hero video candidates — preview loops live in /media/hv/ (960×540).
+   Whichever is chosen gets re-cut from the full-resolution source. */
+const candidates = [
+  { n: 1,  title: 'Current hero — 3-scene montage', desc: 'Social visit → sit-down consult → shared moment. The montage running on the homepage today.', src: 'Pexels 7475245 + 7475237', res: '1080p', current: true },
+  { n: 12, title: 'Alternative montage — arrival, consult, care', desc: 'Groceries at the door → sit-down consult → happy visit. Same shoot, more "services being delivered" energy.', src: 'Pexels 7475251 + 7475237 + 7475245', res: '1080p' },
+  { n: 2,  title: 'The first sit-down chat', desc: 'A carer takes notes while the client talks on his own sofa. Calm, professional, personal.', src: 'Pexels 7475237', res: '1080p' },
+  { n: 3,  title: 'A visit that brightens the day', desc: 'Support worker arrives with fresh flowers; the client lights up. Warm and genuinely joyful.', src: 'Pexels 7475245', res: '1080p' },
+  { n: 4,  title: 'Groceries to the door', desc: 'Shopping handed over with a smile at the front door — everyday practical support.', src: 'Pexels 7475251', res: '1080p' },
+  { n: 5,  title: 'Blood-pressure check at home', desc: 'A nurse checks blood pressure in the client’s living room. Clinical care, home comfort.', src: 'Mixkit 5414', res: '720p' },
+  { n: 6,  title: 'A helping hand on the sofa', desc: 'Carer sits beside the client, supporting and reassuring. Gentle one-on-one attention.', src: 'Mixkit 5559', res: '720p' },
+  { n: 7,  title: 'Working through it together', desc: 'Carer and client go through information on a tablet together — modern, capable care.', src: 'Mixkit 5790', res: '720p' },
+  { n: 8,  title: 'Getting moving again', desc: 'A nurse helps with mobility aids — recovery and independence, handled with patience.', src: 'Mixkit 5798', res: '720p' },
+  { n: 9,  title: 'Explaining the plan', desc: 'A nurse walks the client through a device/plan on the couch. Informative and unhurried.', src: 'Mixkit 5795', res: '720p' },
+  { n: 10, title: 'A spotless home', desc: 'Domestic assistance — vacuuming while the client relaxes. The everyday help families ask about first.', src: 'Mixkit 43373', res: '720p' },
+  { n: 11, title: 'Fresh meals, made with care', desc: 'Close-up of colourful, healthy meal preparation. Appetising and universal.', src: 'Mixkit 40524', res: '720p' },
+];
+---
+
+<Layout
+  title="Hero video candidates — Astro Care"
+  description="Preview reel of candidate hero videos for the Astro Care homepage."
+  noindex={true}
+>
+  <section class="mx-auto max-w-6xl px-4 py-12 md:py-16">
+    <p class="text-sm font-bold uppercase tracking-widest" style="color: var(--euca);">Internal preview</p>
+    <h1 class="mt-2 text-3xl md:text-4xl">Hero video candidates</h1>
+    <p class="mt-3 max-w-3xl text-[1.02rem]" style="color: var(--tx-soft);">
+      Twelve options for the homepage hero. These are compressed 960×540 previews so the page loads fast —
+      the chosen clip gets re-cut from the full-resolution source (1080p where marked). Tell us the
+      <strong>V-number</strong> you want, or ask for a new montage combining any of them.
+    </p>
+
+    <div class="mt-10 grid gap-8 sm:grid-cols-2">
+      {candidates.map((c) => (
+        <figure class="overflow-hidden rounded-2xl border bg-white" style="border-color: var(--line); box-shadow: var(--shadow);">
+          <div class="relative aspect-video bg-slate-900">
+            <video
+              class="h-full w-full object-cover"
+              src={`/media/hv/v${c.n}.mp4`}
+              poster={`/media/hv/v${c.n}.jpg`}
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+            ></video>
+            <span class="absolute left-3 top-3 rounded-full px-3 py-1 text-sm font-extrabold text-white" style="background: var(--euca); font-family: var(--font-head);">V{c.n}</span>
+            {c.current && (
+              <span class="absolute right-3 top-3 rounded-full px-3 py-1 text-xs font-extrabold uppercase tracking-wide" style="background: var(--sun); color: var(--tx); font-family: var(--font-head);">Current hero</span>
+            )}
+          </div>
+          <figcaption class="p-5">
+            <h2 class="text-lg" style="font-family: var(--font-head);">{c.title}</h2>
+            <p class="mt-1.5 text-[0.95rem]" style="color: var(--tx-soft);">{c.desc}</p>
+            <p class="mt-2 text-xs font-semibold uppercase tracking-wide" style="color: var(--tx-soft);">{c.src} · source {c.res}</p>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+
+    <p class="mt-10 rounded-2xl border p-5 text-[0.95rem]" style="border-color: var(--line); background: var(--bg-sand); color: var(--tx-soft);">
+      <strong style="color: var(--tx);">A note on quality:</strong> free stock tops out at 1080p — it looks sharp on
+      phones and laptops but soft on a 4K display. For true 4K hero footage the options are paid stock
+      (roughly $50–100 per clip) or a half-day shoot with a real Astro Care team, which would also give us
+      authentic faces for the whole site.
+    </p>
+  </section>
+
+  <script is:inline>
+    /* Play previews only while on screen — kind to data plans with 12 loops. */
+    (function () {
+      var vids = document.querySelectorAll('video');
+      if (!('IntersectionObserver' in window)) { vids.forEach(function (v) { v.play().catch(function () {}); }); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) e.target.play().catch(function () {});
+          else e.target.pause();
+        });
+      }, { rootMargin: '120px' });
+      vids.forEach(function (v) { io.observe(v); });
+    })();
+  </script>
+</Layout>

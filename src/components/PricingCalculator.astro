@@ -54,7 +54,7 @@ const PKG_MGMT_PCT = 10;     // % of package — capped at 15% by the Commission
     </div>
 
     <div
-      class="mt-8 grid gap-6 rounded-3xl border-4 hc-border p-6 md:p-9 lg:grid-cols-2"
+      class="mt-8 grid gap-6 rounded-3xl border-4 hc-border p-4 sm:p-6 md:p-9 lg:grid-cols-2"
       style="background: var(--bg-card); border-color: var(--line); box-shadow: var(--shadow);"
     >
       <!-- ============ INPUTS ============ -->
@@ -67,7 +67,7 @@ const PKG_MGMT_PCT = 10;     // % of package — capped at 15% by the Commission
             {
               LEVELS.map((l, i) => (
                 <label
-                  class="flex min-h-14 cursor-pointer items-center gap-4 rounded-2xl border-4 px-4 py-3 text-xl font-bold transition-colors has-checked:border-[var(--euca)] has-checked:bg-[var(--euca-soft)]"
+                  class="flex min-h-12 cursor-pointer items-center gap-2.5 rounded-2xl border-2 px-3 py-2.5 text-[0.95rem] sm:text-lg font-bold transition-colors has-checked:border-[var(--euca)] has-checked:bg-[var(--euca-soft)]"
                   style="border-color: var(--line);"
                 >
                   <input
@@ -108,7 +108,7 @@ const PKG_MGMT_PCT = 10;     // % of package — capped at 15% by the Commission
           </legend>
           <div class="flex items-center gap-4">
             <button id="calcLess" class="btn-primary hc-border !min-h-16 !w-16 !p-0 !text-3xl" aria-label="One hour less">−</button>
-            <output id="calcHours" class="min-w-24 text-center text-4xl font-black" style="font-family: var(--font-head);" aria-live="polite">6</output>
+            <output id="calcHours" class="min-w-16 text-center text-3xl font-black" style="font-family: var(--font-head);" aria-live="polite">6</output>
             <button id="calcMore" class="btn-primary hc-border !min-h-16 !w-16 !p-0 !text-3xl" aria-label="One hour more">+</button>
             <span class="text-xl font-bold" style="color: var(--tx-soft);">hours / week</span>
           </div>
@@ -118,7 +118,7 @@ const PKG_MGMT_PCT = 10;     // % of package — capped at 15% by the Commission
       <!-- ============ RESULTS ============ -->
       <div class="rounded-2xl p-6 md:p-8" style="background: var(--euca-soft);" aria-live="polite">
         <h3 class="readable text-2xl mb-5">Your weekly estimate</h3>
-        <dl class="grid gap-4 text-xl">
+        <dl class="grid gap-3 text-[0.95rem] sm:text-lg">
           <div class="flex items-center justify-between gap-4 border-b-2 pb-3" style="border-color: var(--line);">
             <dt>Government subsidy for your package</dt>
             <dd class="whitespace-nowrap text-2xl font-black" style="color: var(--euca);" id="outSubsidy">$361</dd>

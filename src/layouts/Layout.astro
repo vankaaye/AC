@@ -16,11 +16,13 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  noindex?: boolean;
 }
 
 const {
   title = 'Astro Care — Aged Care & Help at Home | Australia',
   description = 'Astro Care Group helps older Australians live well at home — Support at Home, Home Care Packages, nursing, social support, domestic assistance and meals. Australian owned & run.',
+  noindex = false,
 } = Astro.props;
 ---
 
@@ -31,6 +33,7 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -51,7 +54,7 @@ const {
     >
       <div class="mx-auto flex h-14 w-[min(1200px,100%-2rem)] items-center justify-between gap-4">
         <a href="/" class="flex items-center gap-2.5" aria-label="Astro Care — home">
-          <svg class="h-8 w-8" viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#0C6291"></circle><path d="M13 38 L24 12 L35 38" fill="none" stroke="#FFFFFF" opacity="0.95" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"></path><path d="M16.5 29.5 h3.3 l1.65 -3.9 l2.4 7.8 l2.1 -5.1 l1.2 1.2 h4.35" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <svg class="h-8 w-8" viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#0C6291"></circle><path d="M13 38 L24 12 L35 38" fill="none" stroke="#FFFFFF" opacity="0.95" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"></path><path d="M16.5 29.5 h3.3 l1.65 -3.9 l2.4 7.8 l2.1 -5.1 l1.2 1.2 h4.35" fill="none" stroke="#F2B33D" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
           <span class="text-[1.05rem] font-bold tracking-tight" style="font-family: var(--font-head); color: var(--tx);">
             Astro <span style="color: var(--euca);">Care</span>
           </span>
@@ -122,29 +125,29 @@ const {
       <div class="mx-auto grid w-[min(1280px,100%-2.5rem)] gap-10 border-b border-white/15 pb-10 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <a href="/" class="flex items-center gap-2.5" aria-label="Astro Care — back to top">
-            <svg class="h-10 w-10" viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#FFFFFF"></circle><path d="M13 38 L24 12 L35 38" fill="none" stroke="#0C6291" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"></path><path d="M16.5 29.5 h3.3 l1.65 -3.9 l2.4 7.8 l2.1 -5.1 l1.2 1.2 h4.35" fill="none" stroke="#0C6291" stroke-width="2.4" opacity="0.55" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            <svg class="h-10 w-10" viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#FFFFFF"></circle><path d="M13 38 L24 12 L35 38" fill="none" stroke="#0C6291" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"></path><path d="M16.5 29.5 h3.3 l1.65 -3.9 l2.4 7.8 l2.1 -5.1 l1.2 1.2 h4.35" fill="none" stroke="#E8A33D" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
             <span class="text-xl font-extrabold" style="font-family: var(--font-head);">Astro Care</span>
           </a>
-          <p class="mt-4 max-w-sm text-[0.98rem] leading-relaxed text-white/70">
+          <p class="mt-4 max-w-sm text-[0.98rem] leading-relaxed text-white/85">
             Australian owned &amp; run. We help older Australians live well in their own homes —
             with nursing, everyday help and genuine company.
           </p>
         </div>
         <div class="flex flex-col gap-1 text-[0.98rem]">
-          <h3 class="mb-2 text-sm font-bold uppercase tracking-wider text-white/50">Talk to us</h3>
-          <a class="flex min-h-10 items-center text-white/85 underline-offset-4 hover:underline" href="tel:+611800278762">1800 ASTRO (1800 278 762)</a>
-          <a class="flex min-h-10 items-center text-white/85 underline-offset-4 hover:underline" href="mailto:info@astrocare.com.au">info@astrocare.com.au</a>
-          <span class="text-white/60">Mon–Fri 8am–6pm · Sat 9am–4pm</span>
+          <h3 class="mb-2 text-sm font-bold uppercase tracking-wider text-white/70">Talk to us</h3>
+          <a class="flex min-h-10 items-center text-white/95 underline-offset-4 hover:underline" href="tel:+611800278762">1800 ASTRO (1800 278 762)</a>
+          <a class="flex min-h-10 items-center text-white/95 underline-offset-4 hover:underline" href="mailto:info@astrocare.com.au">info@astrocare.com.au</a>
+          <span class="text-white/75">Mon–Fri 8am–6pm · Sat 9am–4pm</span>
         </div>
         <nav class="flex flex-col gap-1 text-[0.98rem]" aria-label="Footer links">
-          <h3 class="mb-2 text-sm font-bold uppercase tracking-wider text-white/50">Explore</h3>
-          <a class="flex min-h-10 items-center text-white/85 underline-offset-4 hover:underline" href="/#services">Our services</a>
-          <a class="flex min-h-10 items-center text-white/85 underline-offset-4 hover:underline" href="/#funding">Funding help</a>
-          <a class="flex min-h-10 items-center text-white/85 underline-offset-4 hover:underline" href="/#pricing">Fees &amp; pricing</a>
-          <a class="flex min-h-10 items-center text-white/85 underline-offset-4 hover:underline" href="/#contact">Contact</a>
+          <h3 class="mb-2 text-sm font-bold uppercase tracking-wider text-white/70">Explore</h3>
+          <a class="flex min-h-10 items-center text-white/95 underline-offset-4 hover:underline" href="/#services">Our services</a>
+          <a class="flex min-h-10 items-center text-white/95 underline-offset-4 hover:underline" href="/#funding">Funding help</a>
+          <a class="flex min-h-10 items-center text-white/95 underline-offset-4 hover:underline" href="/#pricing">Fees &amp; pricing</a>
+          <a class="flex min-h-10 items-center text-white/95 underline-offset-4 hover:underline" href="/#contact">Contact</a>
         </nav>
       </div>
-      <div class="mx-auto flex w-[min(1280px,100%-2.5rem)] flex-wrap justify-between gap-3 pt-6 text-sm text-white/55">
+      <div class="mx-auto flex w-[min(1280px,100%-2.5rem)] flex-wrap justify-between gap-3 pt-6 text-sm text-white/75">
         <p>© 2026 Astro Care Group Pty Ltd · ABN 99 700 192 981</p>
         <p class="max-w-xl">We acknowledge the Traditional Owners of the lands on which we care, and pay our respects to Elders past and present.</p>
       </div>
@@ -191,20 +194,32 @@ const {
         });
       })();
 
-      /* Smooth in-page scrolling with header offset. */
+      /* Smooth in-page scrolling with header offset — updates the URL
+         hash so Back returns to where you were. */
+      function goToHash(hash, push) {
+        var target = document.getElementById(hash);
+        if (!target) return false;
+        window.scrollTo({ top: target.offsetTop - 72, behavior: 'smooth' });
+        target.setAttribute('tabindex', '-1');
+        target.focus({ preventScroll: true });
+        if (push) history.pushState(null, '', '#' + hash);
+        return true;
+      }
       document.querySelectorAll('a[href*="#"]').forEach(function (a) {
         a.addEventListener('click', function (e) {
-          var hash = a.getAttribute('href').split('#')[1];
+          var parts = a.getAttribute('href').split('#');
+          if (parts[0] && parts[0] !== location.pathname && parts[0] !== '/') return;
+          var hash = parts[1];
           if (!hash) return;
-          var target = document.getElementById(hash);
-          if (target) {
-            e.preventDefault();
-            window.scrollTo({ top: target.offsetTop - 72, behavior: 'smooth' });
-            target.setAttribute('tabindex', '-1');
-            target.focus({ preventScroll: true });
-          }
+          if (goToHash(hash, true)) e.preventDefault();
         });
       });
+      window.addEventListener('popstate', function () {
+        var hash = location.hash.replace('#', '');
+        if (hash) goToHash(hash, false);
+        else window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      if (location.hash) setTimeout(function () { goToHash(location.hash.replace('#', ''), false); }, 60);
 
       /* Scroll-reveal: any element with .rv fades up when it enters view. */
       (function () {
@@ -217,7 +232,7 @@ const {
             if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
           });
         }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
-        document.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
+        document.querySelectorAll('.rv, .sect-rv').forEach(function (el) { io.observe(el); });
       })();
 
       /* Ambient videos: play only in view, respect reduced motion. */

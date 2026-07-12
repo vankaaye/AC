@@ -51,7 +51,7 @@
       type="text"
       placeholder="Type a question…"
       autocomplete="off"
-      class="min-h-13 w-full min-w-0 flex-1 rounded-2xl border-4 px-4 text-lg"
+      class="min-h-11 w-full min-w-0 flex-1 rounded-2xl border-2 px-4 text-[0.95rem]"
       style="border-color: var(--line); background: var(--bg); font-family: var(--font-body);"
     />
     <button type="button" id="chatMic" class="hc-border flex !min-h-13 w-13 shrink-0 items-center justify-center rounded-2xl border-4" style="border-color: var(--euca); color: var(--euca); background: var(--bg-card);" aria-label="Speak your question" aria-pressed="false" hidden>
@@ -78,6 +78,7 @@
   #chatLog ul { list-style: disc; }
   #chatLog ol { list-style: decimal; }
   #chatLog li { margin: 0.2em 0; }
+  #chatLog ul.md-sub { list-style: circle; margin: 0.15em 0 0.15em 1.15em; font-size: 0.96em; color: var(--tx-soft); }
   #chatLog .md-tablewrap { overflow-x: auto; margin: 0.55em 0; border-radius: 12px; border: 1.5px solid var(--line); }
   #chatLog table { border-collapse: collapse; width: 100%; font-size: 0.92em; background: #fff; }
   #chatLog th, #chatLog td { border-bottom: 1.5px solid var(--line); padding: 8px 12px; text-align: left; vertical-align: top; }
@@ -190,8 +191,8 @@
     function bubble(html, who) {
       var div = document.createElement('div');
       div.className = who === 'you'
-        ? 'ml-10 rounded-2xl rounded-br-md px-4 py-3 text-lg'
-        : 'mr-6 rounded-2xl rounded-bl-md px-4 py-3 text-lg';
+        ? 'ml-10 rounded-2xl rounded-br-md px-3.5 py-2.5 text-[0.95rem]'
+        : 'mr-6 rounded-2xl rounded-bl-md px-3.5 py-2.5 text-[0.95rem]';
       div.style.cssText = who === 'you'
         ? 'background: var(--euca); color: #fff;'
         : 'background: var(--euca-soft); color: var(--tx);';
@@ -256,10 +257,23 @@
       }
       s = out.join('\n');
 
-      /* Bullet and numbered lists. */
-      s = s.replace(/(^|\n)((?:[-•] .*(?:\n|$))+)/g, function (_m, pre, block) {
-        var items = block.trim().split('\n').map(function (l) { return '<li>' + l.replace(/^[-•] /, '') + '</li>'; }).join('');
-        return pre + '<ul>' + items + '</ul>';
+      /* Bullet lists, with two-space-indented sub-bullets nested inside. */
+      s = s.replace(/(^|\n)((?:[ \t]*[-•] .*(?:\n|$))+)/g, function (_m, pre, block) {
+        var html = '<ul>';
+        var open = false; /* nested <ul> currently open inside the last <li> */
+        block.replace(/\s+$/, '').split('\n').forEach(function (l) {
+          var sub = /^[ \t]+[-•] /.test(l);
+          var item = l.replace(/^[ \t]*[-•] /, '');
+          if (sub) {
+            if (!open) { html = html.replace(/<\/li>$/, ''); html += '<ul class="md-sub">'; open = true; }
+            html += '<li>' + item + '</li>';
+          } else {
+            if (open) { html += '</ul></li>'; open = false; }
+            html += '<li>' + item + '</li>';
+          }
+        });
+        if (open) html += '</ul></li>';
+        return pre + html + '</ul>';
       });
       s = s.replace(/(^|\n)((?:\d+[.)] .*(?:\n|$))+)/g, function (_m, pre, block) {
         var items = block.trim().split('\n').map(function (l) { return '<li>' + l.replace(/^\d+[.)] /, '') + '</li>'; }).join('');
@@ -332,14 +346,14 @@
           if (!data.reply) throw new Error('empty');
           history.push({ role: 'assistant', content: data.reply });
           typing.innerHTML = safeHtml(data.reply);
-          log.scrollTop = log.scrollHeight;
+          log.scrollTop = Math.max(0, typing.offsetTop - 8);
           renderSuggestions(data.suggestions);
         })
         .catch(function () {
           var reply = kbAnswer(text);
           history.push({ role: 'assistant', content: reply.replace(/<[^>]+>/g, '') });
           typing.innerHTML = reply;
-          log.scrollTop = log.scrollHeight;
+          log.scrollTop = Math.max(0, typing.offsetTop - 8);
         });
     }
 
