@@ -153,12 +153,12 @@ const {
     <!-- Floating chat button -->
     <button
       id="openChat"
-      class="fixed bottom-4 right-4 z-[115] flex h-12 w-12 items-center justify-center rounded-full text-white shadow-lg transition-transform hover:-translate-y-0.5"
-      style="background: var(--euca); box-shadow: 0 8px 24px rgba(12,98,145,0.35);"
+      class="fixed bottom-5 right-5 z-[125] flex items-center gap-2 rounded-full px-5 py-3 text-[0.98rem] font-bold text-white shadow-xl transition-transform hover:-translate-y-0.5"
+      style="background: var(--euca); box-shadow: 0 10px 30px rgba(12,98,145,0.4); font-family: var(--font-head);"
       aria-haspopup="dialog" aria-expanded="false" aria-controls="chatPanel"
-      aria-label="Chat with us" title="Chat with us"
     >
-      <svg class="h-5.5 w-5.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Chat with us
     </button>
 
     <ChatWidget />

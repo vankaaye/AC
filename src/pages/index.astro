@@ -132,6 +132,28 @@ const funding = [
     </div>
   </section>
 
+
+  <!-- ============ STATS ============ -->
+  <section class="pb-4 pt-0" style="background: var(--bg);">
+    <div class="mx-auto grid w-[min(1280px,100%-2.5rem)] grid-cols-2 gap-4 md:grid-cols-4">
+      {
+        [
+          ['24/7', 'care available, day and night', '24', '/7'],
+          ['100%', 'fee transparency — calculator on this page', '100', '%'],
+          ['$0', 'lock-in contracts or exit fees', '0', '', '$'],
+          ['1 day', 'to hear back after you reach out', '1', ' day'],
+        ].map(([_, label, num, suffix, prefix], i) => (
+          <div class={`rv ${['', 'rv-d1', 'rv-d2', 'rv-d3'][i]} rounded-2xl border p-5 text-center`} style="border-color: var(--line);">
+            <p class="text-3xl font-extrabold md:text-4xl" style="font-family: var(--font-head); color: var(--euca);">
+              {prefix}<span data-countup={num}>0</span>{suffix}
+            </p>
+            <p class="mt-1 text-[0.85rem]" style="color: var(--tx-soft);">{label}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
   <!-- ============ SERVICES (ambient video cards) ============ -->
   <section id="services" class="py-14 md:py-20" style="background: var(--bg-sand);">
     <div class="mx-auto w-[min(1280px,100%-2.5rem)]">
@@ -148,7 +170,7 @@ const funding = [
       <div class="grid gap-6 md:grid-cols-2">
         {
           services.map((s, i) => (
-            <article class={`vcard rv ${i % 2 ? 'rv-d2' : 'rv-d1'} overflow-hidden rounded-3xl`} style="background: var(--bg-card); box-shadow: var(--shadow);">
+            <a href="#contact" class={`vcard rv rv-zoom ${i % 2 ? 'rv-d2' : 'rv-d1'} group block overflow-hidden rounded-3xl transition-shadow hover:shadow-xl`} style="background: var(--bg-card); box-shadow: var(--shadow);" aria-label={`${s.title} — enquire now`}>
               <div class="vcard-media aspect-[16/9]">
                 <video
                   src={s.video}
@@ -161,12 +183,12 @@ const funding = [
               <div class="p-7">
                 <h3 class="text-lg font-extrabold md:text-xl">{s.title}</h3>
                 <p class="mt-2.5 text-[0.95rem]" style="color: var(--tx-soft);">{s.text}</p>
-                <a href="#contact" class="mt-4 inline-flex items-center gap-1.5 text-[0.95rem] font-bold underline-offset-4 hover:underline" style="color: var(--euca);">
+                <span class="mt-4 inline-flex items-center gap-1.5 text-[0.95rem] font-bold" style="color: var(--euca);">
                   Ask about this
-                  <svg class="h-4.5 w-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                </a>
+                  <svg class="h-4.5 w-4.5 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </span>
               </div>
-            </article>
+            </a>
           ))
         }
       </div>
@@ -206,11 +228,14 @@ const funding = [
       <div class="grid gap-6 md:grid-cols-3">
         {
           funding.map((f, i) => (
-            <div class={`rv ${['', 'rv-d1', 'rv-d2'][i]} rounded-3xl p-7`} style="background: var(--bg-card); box-shadow: var(--shadow);">
+            <a href="#contact" class={`rv ${['', 'rv-d1', 'rv-d2'][i]} group block rounded-3xl p-7 transition-all hover:-translate-y-1 hover:shadow-xl`} style="background: var(--bg-card); box-shadow: var(--shadow);" aria-label={`${f.name} — talk to us about this funding option`}>
               <span class="inline-flex rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wide" style="background: var(--blue-soft); color: var(--blue);">{f.tag}</span>
               <h3 class="mt-3 text-lg font-extrabold">{f.name}</h3>
               <p class="mt-2 text-[0.95rem]" style="color: var(--tx-soft);">{f.text}</p>
-            </div>
+              <span class="mt-3 inline-flex items-center gap-1.5 text-[0.9rem] font-bold" style="color: var(--blue);">Talk to us
+                <svg class="h-4 w-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </span>
+            </a>
           ))
         }
       </div>
@@ -319,6 +344,46 @@ const funding = [
   </section>
 
   <script is:inline>
+    /* Hero parallax: video drifts slower than the page. */
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var v = document.querySelector('section video[data-ambient]');
+      if (!v) return;
+      var ticking = false;
+      window.addEventListener('scroll', function () {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () {
+          var y = window.scrollY;
+          if (y < window.innerHeight * 1.2) v.style.transform = 'translateY(' + y * 0.22 + 'px) scale(1.08)';
+          ticking = false;
+        });
+      }, { passive: true });
+    })();
+
+    /* Count-up numbers when the stats band scrolls into view. */
+    (function () {
+      var els = document.querySelectorAll('[data-countup]');
+      if (!els.length) return;
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          io.unobserve(e.target);
+          var target = parseInt(e.target.getAttribute('data-countup'), 10);
+          if (reduced || target === 0) { e.target.textContent = String(target); return; }
+          var t0 = performance.now();
+          var dur = 1100;
+          (function tick(now) {
+            var p = Math.min(1, (now - t0) / dur);
+            e.target.textContent = String(Math.round(target * (1 - Math.pow(1 - p, 3))));
+            if (p < 1) requestAnimationFrame(tick);
+          })(t0);
+        });
+      }, { threshold: 0.6 });
+      els.forEach(function (el) { io.observe(el); });
+    })();
+
     /* Hero video pause control (WCAG 2.2.2). */
     (function () {
       var v = document.querySelector('section video[data-ambient]');
