@@ -70,12 +70,26 @@
     var openBtn = document.getElementById('openChat');
     var greeted = false;
 
+    /* ---------- AI integration ----------
+       Set AI_ENDPOINT to the deployed Cloudflare Worker URL (see
+       /worker/README.md) to switch the helper from canned answers to
+       full AI. Leave empty to use the built-in knowledge base only.
+       If the AI call fails for any reason, we fall back to the
+       knowledge base automatically — the chat never goes silent.  */
+    var AI_ENDPOINT = '';
+    var history = [];
+
     /* ---------- knowledge base ---------- */
     var KB = [
       {
         keys: ['fund', 'package', 'hcp', 'chsp', 'government', 'subsid', 'my aged care', 'eligib', 'assess', 'acat', 'start', 'begin', 'how do i'],
         chip: 'How does funding work?',
         reply: "Good news — the government helps pay for most care at home. There are two doors in: a <strong>Home Care Package</strong> (for regular, ongoing help — Levels 1 to 4) and the <strong>Commonwealth Home Support Programme</strong> (for a little help, like cleaning or meals). Most Australians over 65 qualify for one of them.<br><br>You don't need to work out which — <a href='/#funding'>see the step-by-step guide</a>, or call <a href='tel:+611800278762'>1800 ASTRO</a> and we'll sort it together, including the My Aged Care paperwork.",
+      },
+      {
+        keys: ['sah', 'support at home', 'new program', 'replac'],
+        chip: 'What is Support at Home?',
+        reply: "<strong>Support at Home</strong> is the Australian Government's new program for care in your own home — it's replacing Home Care Packages. The good news: if you already have a package, you keep your funding, and new applicants go through the same My Aged Care doorway. The paperwork changed more than the care did.<br><br>Call <a href='tel:+611800278762'>1800 ASTRO</a> and we'll explain what it means for you in plain English.",
       },
       {
         keys: ['fee', 'cost', 'price', 'pay', 'charge', 'expensive', 'money', 'dollar', 'management'],
@@ -133,7 +147,7 @@
       }, 550);
     }
 
-    function answer(text) {
+    function kbAnswer(text) {
       var t = text.toLowerCase();
       var best = null, bestScore = 0;
       KB.forEach(function (item) {
@@ -141,7 +155,43 @@
         item.keys.forEach(function (k) { if (t.indexOf(k) !== -1) score++; });
         if (score > bestScore) { bestScore = score; best = item; }
       });
-      botReply(best ? best.reply : FALLBACK);
+      return best ? best.reply : FALLBACK;
+    }
+
+    /* Escape AI text, keep line breaks readable. */
+    function safeHtml(text) {
+      var div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML.replace(/\n/g, '<br>');
+    }
+
+    function answer(text) {
+      history.push({ role: 'user', content: text });
+      if (!AI_ENDPOINT) {
+        var reply = kbAnswer(text);
+        history.push({ role: 'assistant', content: reply.replace(/<[^>]+>/g, '') });
+        botReply(reply);
+        return;
+      }
+      var typing = bubble('<span aria-hidden="true">···</span><span class="sr-only">Astro is typing</span>', 'bot');
+      fetch(AI_ENDPOINT + '/chat', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ messages: history }),
+      })
+        .then(function (r) { if (!r.ok) throw new Error('bad status'); return r.json(); })
+        .then(function (data) {
+          if (!data.reply) throw new Error('empty');
+          history.push({ role: 'assistant', content: data.reply });
+          typing.innerHTML = safeHtml(data.reply);
+          log.scrollTop = log.scrollHeight;
+        })
+        .catch(function () {
+          var reply = kbAnswer(text);
+          history.push({ role: 'assistant', content: reply.replace(/<[^>]+>/g, '') });
+          typing.innerHTML = reply;
+          log.scrollTop = log.scrollHeight;
+        });
     }
 
     function renderChips() {
@@ -154,6 +204,8 @@
         b.style.cssText = 'border-color: var(--euca); color: var(--euca); font-family: var(--font-head);';
         b.addEventListener('click', function () {
           bubble(item.chip, 'you');
+          history.push({ role: 'user', content: item.chip });
+          history.push({ role: 'assistant', content: item.reply.replace(/<[^>]+>/g, '') });
           botReply(item.reply);
         });
         chips.appendChild(b);
