@@ -27,7 +27,7 @@ const services = [
     text: 'Friendly visits, outings, a hand with the shopping — and someone lovely to share a cuppa and a laugh with.',
     video: '/media/loop-social.mp4',
     poster: '/media/poster-social.jpg',
-    alt: 'Three generations of a family sharing a happy moment at the kitchen table',
+    alt: 'A support worker and an older lady smiling over a tablet together on the couch',
   },
   {
     id: 'domestic',
@@ -43,7 +43,7 @@ const services = [
     text: 'Fresh, tasty meals cooked in your own kitchen, just the way you like them — with good company while they’re made.',
     video: '/media/loop-meals.mp4',
     poster: '/media/poster-meals.jpg',
-    alt: 'A grandfather cooking at the stove while his family chats in the kitchen',
+    alt: 'Fresh vegetables being sliced for a home-cooked meal',
   },
 ];
 
@@ -74,34 +74,43 @@ const funding = [
 
 <Layout>
   <!-- ============ FULL-BLEED VIDEO HERO ============ -->
-  <section class="relative flex min-h-[92svh] items-end overflow-hidden" aria-label="Welcome">
+  <section class="relative flex min-h-[78svh] items-end overflow-hidden" aria-label="Welcome">
     <video
       class="absolute inset-0 h-full w-full object-cover"
-      src="/media/hero-au.mp4"
-      poster="/media/hero-au-poster.jpg"
+      src="/media/hero-pro.mp4"
+      poster="/media/hero-pro-poster.jpg"
       muted loop playsinline autoplay preload="metadata"
       data-ambient
       aria-hidden="true"
     ></video>
     <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(11,26,32,0.88) 0%, rgba(11,26,32,0.42) 50%, rgba(11,26,32,0.22) 100%), linear-gradient(100deg, rgba(11,26,32,0.35) 0%, transparent 55%);" aria-hidden="true"></div>
 
-    <div class="relative mx-auto w-[min(1280px,100%-2.5rem)] pb-14 pt-36 md:pb-20">
-      <p class="hero-rise mb-4 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-bold tracking-wide text-white" style="background: rgba(255,255,255,0.16); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.35);">
+    <button
+      id="heroPause"
+      class="absolute bottom-4 right-4 z-10 flex h-9 w-9 items-center justify-center rounded-full text-white"
+      style="background: rgba(15,30,40,0.55); backdrop-filter: blur(6px);"
+      aria-label="Pause background video" aria-pressed="false"
+    >
+      <svg id="heroPauseIcon" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>
+    </button>
+
+    <div class="relative mx-auto w-[min(1280px,100%-2.5rem)] pb-12 pt-32 md:pb-16">
+      <p class="hero-rise mb-4 inline-flex items-center gap-2 rounded-full px-3.5 py-1 text-xs font-bold tracking-wide text-white" style="background: rgba(255,255,255,0.16); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.35);">
         <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
         Australian owned &amp; run · My Aged Care approved provider
       </p>
-      <h1 class="hero-rise max-w-3xl text-[2.6rem] leading-[1.05] font-extrabold tracking-tight sm:text-6xl md:text-7xl" style="color: #fff; text-shadow: 0 2px 24px rgba(11,26,32,0.35);">
+      <h1 class="hero-rise max-w-3xl text-4xl leading-[1.06] font-extrabold tracking-tight sm:text-5xl md:text-6xl" style="color: #fff; text-shadow: 0 2px 24px rgba(11,26,32,0.35);">
         Care at home,<br />done properly.
       </h1>
-      <p class="hero-rise-2 mt-5 max-w-xl text-lg text-white/85 md:text-xl">
+      <p class="hero-rise-2 mt-4 max-w-lg text-base text-white/85 md:text-lg">
         Nursing, everyday help and genuine company for older Australians —
         government-funded for most people over 65.
       </p>
       <div class="hero-rise-3 mt-8 flex flex-wrap items-center gap-3">
-        <a href="#contact" class="btn-sun !px-7 !py-3.5 !text-lg">Get started</a>
-        <a href="#services" class="btn-ghost !px-7 !py-3.5 !text-lg">Explore our services</a>
+        <a href="#contact" class="btn-primary !px-6 !py-3 !text-base" style="background: #fff; color: var(--euca);">Get started</a>
+        <a href="#services" class="btn-ghost !px-6 !py-3 !text-base">Explore our services</a>
       </div>
-      <ul class="hero-rise-3 mt-10 flex flex-wrap gap-x-8 gap-y-2 text-sm font-semibold text-white/75" aria-label="Accreditations">
+      <ul class="hero-rise-3 mt-8 flex flex-wrap gap-x-6 gap-y-1.5 text-xs font-semibold text-white/70" aria-label="Accreditations">
         <li>My Aged Care · Approved Provider</li>
         <li>NDIS · Registered Provider</li>
         <li>Aged Care Quality Standards · Compliant</li>
@@ -110,9 +119,9 @@ const funding = [
   </section>
 
   <!-- ============ STATEMENT ============ -->
-  <section class="py-20 md:py-28" style="background: var(--bg);">
+  <section class="py-16 md:py-20" style="background: var(--bg);">
     <div class="mx-auto w-[min(900px,100%-2.5rem)] text-center">
-      <p class="rv text-2xl font-extrabold leading-snug tracking-tight md:text-4xl" style="font-family: var(--font-head);">
+      <p class="rv text-xl font-extrabold leading-snug tracking-tight md:text-3xl" style="font-family: var(--font-head);">
         Getting older shouldn’t mean leaving home.
         <span style="color: var(--euca);">We make sure it doesn’t.</span>
       </p>
@@ -124,14 +133,14 @@ const funding = [
   </section>
 
   <!-- ============ SERVICES (ambient video cards) ============ -->
-  <section id="services" class="py-16 md:py-24" style="background: var(--bg-sand);">
+  <section id="services" class="py-14 md:py-20" style="background: var(--bg-sand);">
     <div class="mx-auto w-[min(1280px,100%-2.5rem)]">
       <div class="mb-12 flex flex-wrap items-end justify-between gap-4">
         <div>
           <p class="rv mb-2 text-sm font-bold uppercase tracking-widest" style="color: var(--euca);">What we do</p>
-          <h2 class="rv rv-d1 text-3xl md:text-5xl">Our services, your way</h2>
+          <h2 class="rv rv-d1 text-2xl md:text-4xl">Our services, your way</h2>
         </div>
-        <p class="rv rv-d2 max-w-md text-[1.02rem]" style="color: var(--tx-soft);">
+        <p class="rv rv-d2 max-w-md text-[0.95rem]" style="color: var(--tx-soft);">
           Pick as much or as little help as you like. We fit around your routine — never the other way round.
         </p>
       </div>
@@ -150,9 +159,9 @@ const funding = [
                 ></video>
               </div>
               <div class="p-7">
-                <h3 class="text-xl font-extrabold md:text-2xl">{s.title}</h3>
-                <p class="mt-2.5 text-[1.02rem]" style="color: var(--tx-soft);">{s.text}</p>
-                <a href="#contact" class="mt-4 inline-flex items-center gap-1.5 text-[1.02rem] font-bold underline-offset-4 hover:underline" style="color: var(--euca);">
+                <h3 class="text-lg font-extrabold md:text-xl">{s.title}</h3>
+                <p class="mt-2.5 text-[0.95rem]" style="color: var(--tx-soft);">{s.text}</p>
+                <a href="#contact" class="mt-4 inline-flex items-center gap-1.5 text-[0.95rem] font-bold underline-offset-4 hover:underline" style="color: var(--euca);">
                   Ask about this
                   <svg class="h-4.5 w-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                 </a>
@@ -165,17 +174,17 @@ const funding = [
   </section>
 
   <!-- ============ HOW IT WORKS ============ -->
-  <section id="how" class="py-16 md:py-24" style="background: var(--bg);">
+  <section id="how" class="py-14 md:py-20" style="background: var(--bg);">
     <div class="mx-auto w-[min(1280px,100%-2.5rem)]">
       <p class="rv mb-2 text-sm font-bold uppercase tracking-widest" style="color: var(--euca);">Getting started</p>
-      <h2 class="rv rv-d1 mb-12 text-3xl md:text-5xl">Three easy steps</h2>
+      <h2 class="rv rv-d1 mb-12 text-2xl md:text-4xl">Three easy steps</h2>
       <div class="grid gap-6 md:grid-cols-3">
         {
           steps.map(([title, text, num], i) => (
             <div class={`rv ${['', 'rv-d1', 'rv-d2'][i]} rounded-3xl border p-7`} style="border-color: var(--line); background: var(--bg-card);">
               <span class="text-4xl font-extrabold" style="color: var(--euca); opacity: 0.35; font-family: var(--font-head);">{num}</span>
-              <h3 class="mt-3 text-xl font-extrabold">{title}</h3>
-              <p class="mt-2 text-[1.02rem]" style="color: var(--tx-soft);">{text}</p>
+              <h3 class="mt-3 text-lg font-extrabold">{title}</h3>
+              <p class="mt-2 text-[0.95rem]" style="color: var(--tx-soft);">{text}</p>
             </div>
           ))
         }
@@ -184,12 +193,12 @@ const funding = [
   </section>
 
   <!-- ============ FUNDING ============ -->
-  <section id="funding" class="py-16 md:py-24" style="background: var(--blue-soft);">
+  <section id="funding" class="py-14 md:py-20" style="background: var(--blue-soft);">
     <div class="mx-auto w-[min(1280px,100%-2.5rem)]">
       <div class="mb-12 max-w-2xl">
         <p class="rv mb-2 text-sm font-bold uppercase tracking-widest" style="color: var(--blue);">Funding</p>
-        <h2 class="rv rv-d1 text-3xl md:text-5xl">The government pays for most of it</h2>
-        <p class="rv rv-d2 mt-4 text-lg" style="color: var(--tx-soft);">
+        <h2 class="rv rv-d1 text-2xl md:text-4xl">The government pays for most of it</h2>
+        <p class="rv rv-d2 mt-3 text-base" style="color: var(--tx-soft);">
           Australia has generous support for care at home. We’ll help you find the right door —
           and do the My Aged Care paperwork with you.
         </p>
@@ -199,24 +208,24 @@ const funding = [
           funding.map((f, i) => (
             <div class={`rv ${['', 'rv-d1', 'rv-d2'][i]} rounded-3xl p-7`} style="background: var(--bg-card); box-shadow: var(--shadow);">
               <span class="inline-flex rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wide" style="background: var(--blue-soft); color: var(--blue);">{f.tag}</span>
-              <h3 class="mt-3 text-xl font-extrabold">{f.name}</h3>
-              <p class="mt-2 text-[1.02rem]" style="color: var(--tx-soft);">{f.text}</p>
+              <h3 class="mt-3 text-lg font-extrabold">{f.name}</h3>
+              <p class="mt-2 text-[0.95rem]" style="color: var(--tx-soft);">{f.text}</p>
             </div>
           ))
         }
       </div>
-      <p class="rv mt-8 text-[1.02rem]" style="color: var(--tx-soft);">
+      <p class="rv mt-8 text-[0.95rem]" style="color: var(--tx-soft);">
         Not sure which applies to you? <button id="askFundingChat" class="font-bold underline underline-offset-4" style="color: var(--blue);">Ask our chat helper</button> — it answers with real, current figures.
       </p>
     </div>
   </section>
 
   <!-- ============ FEES ============ -->
-  <section id="pricing" class="py-16 md:py-24" style="background: var(--bg);">
+  <section id="pricing" class="py-14 md:py-20" style="background: var(--bg);">
     <div class="mx-auto w-[min(1280px,100%-2.5rem)]">
       <p class="rv mb-2 text-sm font-bold uppercase tracking-widest" style="color: var(--euca);">Fees</p>
-      <h2 class="rv rv-d1 mb-4 text-3xl md:text-5xl">Honest fees, no surprises</h2>
-      <p class="rv rv-d2 mb-10 max-w-2xl text-lg" style="color: var(--tx-soft);">
+      <h2 class="rv rv-d1 mb-4 text-2xl md:text-4xl">Honest fees, no surprises</h2>
+      <p class="rv rv-d2 mb-8 max-w-2xl text-base" style="color: var(--tx-soft);">
         A <strong>15% care management</strong> and <strong>10% package management</strong> fee — both under the
         government caps — plus published hourly rates. See exactly where every dollar goes:
       </p>
@@ -225,10 +234,10 @@ const funding = [
   </section>
 
   <!-- ============ WHY ASTRO CARE ============ -->
-  <section class="py-16 md:py-24" style="background: var(--bg-sand);">
+  <section class="py-14 md:py-20" style="background: var(--bg-sand);">
     <div class="mx-auto w-[min(1280px,100%-2.5rem)]">
       <p class="rv mb-2 text-sm font-bold uppercase tracking-widest" style="color: var(--euca);">Why us</p>
-      <h2 class="rv rv-d1 mb-12 text-3xl md:text-5xl">Small team. Big difference.</h2>
+      <h2 class="rv rv-d1 mb-12 text-2xl md:text-4xl">Small team. Big difference.</h2>
       <div class="grid gap-6 md:grid-cols-3">
         {
           [
@@ -238,8 +247,8 @@ const funding = [
           ].map(([title, text], i) => (
             <div class={`rv ${['', 'rv-d1', 'rv-d2'][i]} rounded-3xl p-7`} style="background: var(--bg-card); box-shadow: var(--shadow);">
               <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="var(--euca)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21.35C6.4 17 3 13.5 3 9.9 3 7 5.2 5 8 5c1.6 0 3.1.8 4 2 0.9-1.2 2.4-2 4-2 2.8 0 5 2 5 4.9 0 3.6-3.4 7.1-9 11.45z"/></svg>
-              <h3 class="mt-4 text-xl font-extrabold">{title}</h3>
-              <p class="mt-2 text-[1.02rem]" style="color: var(--tx-soft);">{text}</p>
+              <h3 class="mt-3 text-base font-extrabold">{title}</h3>
+              <p class="mt-2 text-[0.95rem]" style="color: var(--tx-soft);">{text}</p>
             </div>
           ))
         }
@@ -248,12 +257,12 @@ const funding = [
   </section>
 
   <!-- ============ CONTACT / CALLBACK ============ -->
-  <section id="contact" class="py-16 md:py-24" style="background: var(--bg);">
+  <section id="contact" class="py-14 md:py-20" style="background: var(--bg);">
     <div class="mx-auto grid w-[min(1280px,100%-2.5rem)] gap-10 lg:grid-cols-[1fr_1.1fr]">
       <div class="rv">
         <p class="mb-2 text-sm font-bold uppercase tracking-widest" style="color: var(--euca);">Contact</p>
-        <h2 class="text-3xl md:text-5xl">Let’s have a chat</h2>
-        <p class="mt-4 max-w-md text-lg" style="color: var(--tx-soft);">
+        <h2 class="text-2xl md:text-4xl">Let’s have a chat</h2>
+        <p class="mt-3 max-w-md text-base" style="color: var(--tx-soft);">
           No pressure, no obligation — just honest answers about the help you can get.
         </p>
         <div class="mt-8 flex flex-col gap-3">
@@ -274,19 +283,19 @@ const funding = [
         <label class="mb-4 block text-[0.95rem] font-bold">
           Your name
           <input type="text" name="name" required autocomplete="name" placeholder="e.g. Margaret Smith"
-            class="mt-1.5 block min-h-13 w-full rounded-xl border px-4 text-[1.02rem]"
+            class="mt-1.5 block min-h-13 w-full rounded-xl border px-4 text-[0.95rem]"
             style="border-color: var(--line); background: var(--bg-card);" />
         </label>
         <label class="mb-4 block text-[0.95rem] font-bold">
           Your phone number
           <input type="tel" name="phone" required autocomplete="tel" placeholder="e.g. 0412 345 678"
-            class="mt-1.5 block min-h-13 w-full rounded-xl border px-4 text-[1.02rem]"
+            class="mt-1.5 block min-h-13 w-full rounded-xl border px-4 text-[0.95rem]"
             style="border-color: var(--line); background: var(--bg-card);" />
         </label>
         <label class="mb-6 block text-[0.95rem] font-bold">
           What would you like help with?
           <select name="careType" required
-            class="mt-1.5 block min-h-13 w-full rounded-xl border px-4 text-[1.02rem]"
+            class="mt-1.5 block min-h-13 w-full rounded-xl border px-4 text-[0.95rem]"
             style="border-color: var(--line); background: var(--bg-card);">
             <option value="" selected disabled>Please choose one…</option>
             <option>Help around the house</option>
@@ -299,10 +308,10 @@ const funding = [
         </label>
         <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
         <button type="submit" class="btn-primary w-full !text-lg">Please call me back</button>
-        <div id="formSuccess" class="mt-4 hidden rounded-xl p-4 text-center text-[1.02rem]" style="background: var(--euca-soft); color: var(--euca-deep);" role="status">
+        <div id="formSuccess" class="mt-4 hidden rounded-xl p-4 text-center text-[0.95rem]" style="background: var(--euca-soft); color: var(--euca-deep);" role="status">
           <strong>Thank you — message received!</strong><br />A friendly team member will call you within one business day.
         </div>
-        <div id="formError" class="mt-4 hidden rounded-xl p-4 text-center text-[1.02rem]" style="background: #fdecea; color: #7c2a13;" role="alert">
+        <div id="formError" class="mt-4 hidden rounded-xl p-4 text-center text-[0.95rem]" style="background: #fdecea; color: #7c2a13;" role="alert">
           <strong>Sorry — that didn't send.</strong><br />Please email <a href="mailto:info@astrocare.com.au" class="underline">info@astrocare.com.au</a> or ring <a href="tel:+611800278762" class="underline">1800 ASTRO</a>.
         </div>
       </form>
@@ -310,6 +319,22 @@ const funding = [
   </section>
 
   <script is:inline>
+    /* Hero video pause control (WCAG 2.2.2). */
+    (function () {
+      var v = document.querySelector('section video[data-ambient]');
+      var b = document.getElementById('heroPause');
+      if (!v || !b) return;
+      b.addEventListener('click', function () {
+        var paused = v.paused;
+        if (paused) { v.play().catch(function () {}); } else { v.pause(); }
+        b.setAttribute('aria-pressed', String(!paused ? true : false));
+        b.setAttribute('aria-label', paused ? 'Pause background video' : 'Play background video');
+        document.getElementById('heroPauseIcon').innerHTML = paused
+          ? '<path d="M7 5h4v14H7zM13 5h4v14h-4z"/>'
+          : '<path d="M8 5v14l11-7z"/>';
+      });
+    })();
+
     /* "Ask our chat helper" opens the chat. */
     (function () {
       var b = document.getElementById('askFundingChat');

@@ -13,30 +13,33 @@
    ============================================================ */
 
 @theme {
-  --font-head: "Figtree", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-body: "Figtree", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-head: "Schibsted Grotesk", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-body: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
 }
 
-/* ---------- Palette (normal mode) ---------- */
+/* ---------- Palette (normal mode) ----------
+   Contemporary slate + ocean blue. NOTE: token names are legacy
+   (--euca/--sun/--call) but every value is the new palette — kept
+   so the calculator, chat and accessibility panel restyle for free. */
 :root {
   --bg:          #FFFFFF;
-  --bg-sand:     #F1F6F4;  /* soft eucalyptus mist (section alt) */
+  --bg-sand:     #F4F7F9;  /* cool slate mist (section alt) */
   --bg-card:     #FFFFFF;
-  --tx:          #142B33;  /* deep petrol ink */
-  --tx-soft:     #4A5E66;
-  --euca:        #0E6B57;  /* eucalyptus teal — brand */
-  --euca-deep:   #0B4A3D;
-  --euca-soft:   #E3F1EC;
-  --sun:         #F2B33D;  /* warm gold accent */
-  --sun-deep:    #7A5800;
-  --sun-soft:    #FBF3DF;
-  --blue:        #1B5E8F;  /* AU government blue */
-  --blue-soft:   #EAF2F9;
-  --call:        #CE4A2B;  /* coral call-to-action */
-  --call-deep:   #A73A20;
-  --line:        #E3EAEC;
-  --focus:       #1B5E8F;
-  --shadow:      0 12px 34px rgba(20, 43, 51, 0.10);
+  --tx:          #0F1E28;  /* ink */
+  --tx-soft:     #51626E;
+  --euca:        #0C6291;  /* ocean blue — primary brand */
+  --euca-deep:   #094B70;
+  --euca-soft:   #E8F2F8;
+  --sun:         #E8A33D;  /* restrained amber (used sparingly) */
+  --sun-deep:    #6E4A00;
+  --sun-soft:    #FAF2E2;
+  --blue:        #0C6291;
+  --blue-soft:   #EEF4F8;
+  --call:        #0C6291;  /* calls-to-action share the brand blue */
+  --call-deep:   #094B70;
+  --line:        #E4EAEE;
+  --focus:       #0C6291;
+  --shadow:      0 10px 30px rgba(15, 30, 40, 0.08);
 }
 
 /* ---------- Palette (high-contrast mode) ---------- */
@@ -72,8 +75,8 @@ html[data-scale="200"]   { font-size: 200%; }
 
 body {
   font-family: var(--font-body);
-  font-size: 1.0625rem;          /* 17px — modern, comfortable */
-  line-height: 1.65;
+  font-size: 1rem;               /* 16px — modern, compact */
+  line-height: 1.6;
   color: var(--tx);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
@@ -156,12 +159,12 @@ html[data-readaloud="on"] .readable:focus-visible {
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  min-height: 3rem;
-  padding: 0.8rem 1.7rem;
+  min-height: 2.6rem;
+  padding: 0.6rem 1.4rem;
   border-radius: 999px;
   font-family: var(--font-head);
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   background: var(--euca);
   color: #fff;
   transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
@@ -173,12 +176,12 @@ html[data-readaloud="on"] .readable:focus-visible {
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  min-height: 3rem;
-  padding: 0.8rem 1.7rem;
+  min-height: 2.6rem;
+  padding: 0.6rem 1.4rem;
   border-radius: 999px;
   font-family: var(--font-head);
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   background: var(--sun);
   color: var(--tx);
   transition: filter 0.2s, transform 0.2s, box-shadow 0.2s;
@@ -190,12 +193,12 @@ html[data-readaloud="on"] .readable:focus-visible {
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  min-height: 3rem;
-  padding: 0.8rem 1.5rem;
+  min-height: 2.6rem;
+  padding: 0.6rem 1.25rem;
   border-radius: 999px;
   font-family: var(--font-head);
   font-weight: 700;
-  font-size: 1.02rem;
+  font-size: 0.95rem;
   background: var(--call);
   color: #fff;
   transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
@@ -208,12 +211,12 @@ html[data-readaloud="on"] .readable:focus-visible {
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  min-height: 3rem;
-  padding: 0.8rem 1.7rem;
+  min-height: 2.6rem;
+  padding: 0.6rem 1.4rem;
   border-radius: 999px;
   font-family: var(--font-head);
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   color: #fff;
   background: rgba(255, 255, 255, 0.14);
   border: 1.5px solid rgba(255, 255, 255, 0.55);

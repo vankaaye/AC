@@ -68,7 +68,7 @@ Full restore instructions and commit hashes: see `VERSIONS.md`.
 
 | Decision | Choice | Where |
 |---|---|---|
-| Live design direction | **Version 2 — AU Modern** (Australian style: white/petrol/eucalyptus teal, Figtree, normal text sizes, full-bleed hero video, ambient care videos, scroll animations). v1 archived at commit `f64d649`. | `/` |
+| Live design direction | **Version 3 — Modern slate & blue**: ocean-blue/slate palette, compact 16px UI, Schibsted Grotesk + Instrument Sans, professional-carers-only footage, WCAG hero pause control. Designed for adult-children researchers (per deep research). v2 archived `fac7429`, v1 archived `f64d649`. | `/` |
 | Logo | **No. 181** — Monogram "A" with heartbeat crossbar, Eucalyptus colourway | Header, footer, favicon |
 | Accessibility bar | WCAG 2.2 AAA target: 20px+ base text, 200% text toggle, high contrast, read aloud, 56px targets | Site-wide |
 | Voice | Plain Australian English, warm, no invented facts, no fake reviews (new business) | Site-wide |
@@ -133,6 +133,7 @@ Full restore instructions and commit hashes: see `VERSIONS.md`.
 | 12 Jul 2026 | **Callback form now emails info@astrocare.com.au** (FormSubmit relay — one-time activation email must be clicked); live chat goes full-screen on phones; new concept `/test3` Calm (Apple-style, phone-first) | `84e15e9` |
 | 12 Jul 2026 | Chat: voice dictation mic, rich formatting (tables/bold/emoji), links fixed; enquiries temporarily to gopi@ktechify.com (no MX on astrocare.com.au) | `56b1308` |
 | 12 Jul 2026 | **Hero video** — 13s montage of support workers with a client, from one professional Pexels shoot; service-card photos upgraded to matching stills | `f64d649` |
+| 12 Jul 2026 | **Design v3 "Modern slate & blue" goes LIVE** — owner feedback revamp: green/gold retired for ocean-blue + slate, everything compacted (16px body, slim header, small floating buttons), nav visible on desktop widths, professional-carers-only footage (no family/kid clips, no camera-stares), WCAG pause button on hero video. Research findings applied: design for adult-children researchers; fee transparency stays front and centre. | (this commit) |
 | 12 Jul 2026 | **DESIGN v2 "AU Modern" goes LIVE** — full redesign in the Australian style (per owner's samples: My Aged Care, health.gov.au, Regis): full-bleed hero video (older couple in park, nurse helping, family hug, home visit — Mixkit free commercial licence), ambient care videos in all four service cards, scroll-reveal animations, Figtree type at normal sizes, slim hide-on-scroll glassy nav, My Aged Care-blue funding band, floating chat button. v1 archived at `f64d649`. | (this commit) |
 
 ## 10. How to work with this site (quick recipes)
