@@ -26,24 +26,24 @@ const services = [
   },
   {
     title: 'Social Support',
-    photo: 'https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=800&q=85&auto=format&fit=crop',
-    alt: 'A golden retriever getting a friendly pat',
+    photo: '/media/still-social.jpg',
+    alt: 'A support worker and an older gentleman laughing together over a video call to family',
     color: 'var(--sun-deep)',
     soft: 'var(--sun-soft)',
     text: 'Friendly visits, outings, a hand with the shopping, and someone lovely to share a cuppa and a laugh with.',
   },
   {
     title: 'Domestic Assistance',
-    photo: 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=800&q=85&auto=format&fit=crop',
-    alt: 'A bright, tidy and comfortable living room',
+    photo: '/media/still-domestic.jpg',
+    alt: 'A support worker making the bed while an older gentleman relaxes on his couch',
     color: 'var(--euca)',
     soft: 'var(--euca-soft)',
     text: 'Cleaning, laundry, gardening and small jobs around the house — done cheerfully, so home stays safe and lovely.',
   },
   {
     title: 'Meal Preparation',
-    photo: 'https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?w=800&q=85&auto=format&fit=crop',
-    alt: 'A senior lady preparing fresh food in her sunlit kitchen',
+    photo: '/media/still-meals.jpg',
+    alt: 'A support worker preparing fresh vegetables with an older gentleman in his kitchen',
     color: 'var(--call)',
     soft: '#FAE7E0',
     text: "Tasty, healthy meals cooked in your kitchen just the way you like them — with company while they're made.",
@@ -107,13 +107,20 @@ const services = [
       </div>
 
       <div class="relative">
-        <img
-          src="https://images.unsplash.com/photo-1543333995-a78aea2eee50?w=1000&q=85&auto=format&fit=crop"
-          alt="A happy senior enjoying a sunlit afternoon walk in her garden"
+        <video
+          id="heroVideo"
           class="aspect-[4/4.2] w-full rounded-[28px] border-8 object-cover"
           style="border-color: var(--bg-card); box-shadow: var(--shadow);"
-          width="1000" height="1050"
-        />
+          poster="/media/hero-poster.jpg"
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          width="1440" height="810"
+          aria-label="Our support workers sharing happy moments with a client at home: video calls with family, gentle exercise, cooking together and a reassuring hand"
+        >
+          <source src="/media/hero.mp4" type="video/mp4" />
+        </video>
         <p
           class="readable absolute -left-3 bottom-7 flex max-w-[90%] items-center gap-3 rounded-2xl px-5 py-4 text-xl"
           style="background: var(--bg-card); box-shadow: var(--shadow);"
@@ -292,6 +299,21 @@ const services = [
   </section>
 
   <script is:inline>
+    /* Hero video: play only when visible and motion is welcome.
+       Anyone with "reduce motion" set just sees the poster photo. */
+    (function () {
+      var v = document.getElementById('heroVideo');
+      if (!v) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { v.play().catch(function () {}); }
+          else { v.pause(); }
+        });
+      }, { threshold: 0.25 });
+      io.observe(v);
+    })();
+
     /* Callback form → emails info@astrocare.com.au via FormSubmit. */
     var form = document.getElementById('callbackForm');
     if (form) {

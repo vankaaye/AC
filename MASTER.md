@@ -130,7 +130,9 @@ Full restore instructions and commit hashes: see `VERSIONS.md`.
 | 12 Jul 2026 | **AI chat switched ON** — worker deployed to Cloudflare, tested live, widget connected | `15e41cf` |
 | 12 Jul 2026 | `MASTER.md` created (this file) | `ba00b4d` |
 | 12 Jul 2026 | **AI upgraded: internet search + sources** — answers budget/eligibility-type questions fully with cited links; callback form promoted over phone calls; chat renders links & bold properly | `e42f425` |
-| 12 Jul 2026 | **Callback form now emails info@astrocare.com.au** (FormSubmit relay — one-time activation email must be clicked); live chat goes full-screen on phones; new concept `/test3` Calm (Apple-style, phone-first) | (this commit) |
+| 12 Jul 2026 | **Callback form now emails info@astrocare.com.au** (FormSubmit relay — one-time activation email must be clicked); live chat goes full-screen on phones; new concept `/test3` Calm (Apple-style, phone-first) | `84e15e9` |
+| 12 Jul 2026 | Chat: voice dictation mic, rich formatting (tables/bold/emoji), links fixed; enquiries temporarily to gopi@ktechify.com (no MX on astrocare.com.au) | `56b1308` |
+| 12 Jul 2026 | **Hero video** — 13s montage of support workers with a client (video call laughs, gentle exercise, cooking, reassurance), built from a single professional Pexels shoot (free commercial licence, self-hosted, 1.3 MB, poster + reduced-motion fallback); service-card photos upgraded to matching stills | (this commit) |
 
 ## 10. How to work with this site (quick recipes)
 
