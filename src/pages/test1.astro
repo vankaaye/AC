@@ -1,0 +1,397 @@
+---
+/**
+ * test1.astro — Design concept "Test 1"
+ * ------------------------------------------------------------------
+ * An Apple-inspired direction for astrocare.com.au:
+ * primary-white theme, oversized typography, generous whitespace,
+ * and scroll-driven animation — fade-up reveals, a scroll-scaling
+ * hero image, line-by-line statements, gentle parallax and count-ups.
+ *
+ * This page is a CONCEPT ONLY. It does not replace the live site.
+ * See /versions for the design-version index.
+ * ------------------------------------------------------------------
+ */
+const services = [
+  {
+    k: '01',
+    title: 'Clinical care',
+    text: 'Registered nurses for wounds, medication and recovery — delivered quietly, expertly, at home.',
+    photo: 'https://images.unsplash.com/photo-1584515933487-779824d29309?w=1200&q=85&auto=format&fit=crop',
+    alt: "A nurse gently holding an older person's hands",
+  },
+  {
+    k: '02',
+    title: 'Social support',
+    text: 'Company, outings and conversation. The part of health care that medicine forgets.',
+    photo: 'https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=1200&q=85&auto=format&fit=crop',
+    alt: 'A golden retriever getting a friendly pat',
+  },
+  {
+    k: '03',
+    title: 'Domestic assistance',
+    text: 'Cleaning, laundry, gardening. A safe, lovely home without lifting a finger.',
+    photo: 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=1200&q=85&auto=format&fit=crop',
+    alt: 'A bright, tidy and comfortable living room',
+  },
+  {
+    k: '04',
+    title: 'Meal preparation',
+    text: 'Fresh meals cooked in your own kitchen, exactly the way you like them.',
+    photo: 'https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?w=1200&q=85&auto=format&fit=crop',
+    alt: 'A senior lady preparing fresh food in her sunlit kitchen',
+  },
+];
+---
+
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Astro Care — Concept Test 1</title>
+    <meta name="description" content="Design concept Test 1 for Astro Care — white minimal theme with scroll animations." />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+
+  <body>
+    <!-- Concept banner -->
+    <div class="banner">
+      <span><strong>Concept · Test 1</strong> — white minimal, scroll animations. Not the live site.</span>
+      <span class="banner__links"><a href="/">Live site</a> · <a href="/versions">All versions</a></span>
+    </div>
+
+    <!-- Minimal blur nav -->
+    <header class="nav" id="nav">
+      <a class="nav__brand" href="/test1" aria-label="Astro Care concept home">
+        <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <circle cx="24" cy="24" r="22" fill="#1d1d1f"></circle>
+          <path d="M13 38 L24 12 L35 38" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M16.5 29.5 h3.3 l1.65 -3.9 l2.4 7.8 l2.1 -5.1 l1.2 1.2 h4.35" fill="none" stroke="#34c759" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        Astro Care
+      </a>
+      <nav aria-label="Concept menu">
+        <a href="#services">Services</a>
+        <a href="#numbers">Why us</a>
+        <a href="#fees">Fees</a>
+      </nav>
+      <a class="nav__cta" href="tel:+611800278762">Call 1800 ASTRO</a>
+    </header>
+
+    <main>
+      <!-- ============ HERO ============ -->
+      <section class="hero">
+        <p class="hero__eyebrow load-fade" style="--d: 0.05s">Astro Care</p>
+        <h1>
+          <span class="load-fade" style="--d: 0.15s">Care,</span>
+          <span class="load-fade accent" style="--d: 0.35s">considered.</span>
+        </h1>
+        <p class="hero__sub load-fade" style="--d: 0.55s">
+          Health care designed around people — beginning with beautifully simple aged care at home.
+        </p>
+        <div class="hero__actions load-fade" style="--d: 0.7s">
+          <a class="pill pill--dark" href="tel:+611800278762">Call us</a>
+          <a class="pill pill--ghost" href="#services">Explore <span aria-hidden="true">↓</span></a>
+        </div>
+      </section>
+
+      <!-- ============ SCALING IMAGE ============ -->
+      <section class="zoom" aria-label="Living well at home">
+        <div class="zoom__frame">
+          <img id="zoomImg" src="https://images.unsplash.com/photo-1543333995-a78aea2eee50?w=1800&q=85&auto=format&fit=crop" alt="A senior enjoying a golden afternoon walk in the garden" />
+          <p class="zoom__caption reveal">Live well, at home.</p>
+        </div>
+      </section>
+
+      <!-- ============ STATEMENTS ============ -->
+      <section class="statements" aria-label="What we believe">
+        <p class="statement reveal">No call centres.</p>
+        <p class="statement reveal">No confusion.</p>
+        <p class="statement reveal accent">Just people who care.</p>
+      </section>
+
+      <!-- ============ SERVICES ============ -->
+      <section class="features" id="services">
+        {
+          services.map((s, i) => (
+            <article class={`feature ${i % 2 ? 'feature--flip' : ''}`}>
+              <div class="feature__media reveal">
+                <img src={s.photo} alt={s.alt} loading="lazy" data-parallax />
+              </div>
+              <div class="feature__text">
+                <p class="feature__k reveal">{s.k}</p>
+                <h2 class="reveal">{s.title}</h2>
+                <p class="feature__body reveal">{s.text}</p>
+                <a class="feature__link reveal" href="/#services">Learn more on the live site →</a>
+              </div>
+            </article>
+          ))
+        }
+      </section>
+
+      <!-- ============ NUMBERS ============ -->
+      <section class="numbers" id="numbers" aria-label="Astro Care in numbers">
+        <div class="numbers__grid">
+          <div class="num reveal"><span data-count="24">0</span><small>/7 care, every day of the year</small></div>
+          <div class="num reveal"><span data-count="4">0</span><small>services, one team</small></div>
+          <div class="num reveal"><span data-count="1">0</span><small>phone call to get started</small></div>
+        </div>
+      </section>
+
+      <!-- ============ FEES ============ -->
+      <section class="fees" id="fees">
+        <h2 class="reveal">15% + 10%.<br /><span class="accent">That's the whole fee story.</span></h2>
+        <p class="reveal">Care management and package management — published, capped, explained in plain English before anything begins.</p>
+        <a class="pill pill--dark reveal" href="/#pricing">Try the fee calculator</a>
+      </section>
+
+      <!-- ============ CTA ============ -->
+      <section class="cta">
+        <p class="reveal">Start with a conversation.</p>
+        <a class="cta__phone reveal" href="tel:+611800278762">1800 ASTRO</a>
+        <p class="cta__small reveal">(1800 278 762) · Mon–Fri 8am–6pm · Sat 9am–4pm</p>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <p>© 2026 Astro Care Group Pty Ltd · ABN 99 700 192 981</p>
+      <p><a href="/">Back to the live site</a> · <a href="/versions">Design versions</a></p>
+    </footer>
+
+    <style>
+      /* ---------- Apple-style white system ---------- */
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        background: #ffffff;
+        color: #1d1d1f;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      a { color: inherit; text-decoration: none; }
+      img { display: block; max-width: 100%; }
+      .accent { color: #2F6B51; }
+
+      .banner {
+        display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.4rem 1.5rem;
+        padding: 0.65rem 1.4rem;
+        background: #1d1d1f; color: #f5f5f7;
+        font-size: 0.88rem;
+      }
+      .banner a { text-decoration: underline; text-underline-offset: 3px; }
+
+      .nav {
+        position: sticky; top: 0; z-index: 50;
+        display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+        padding: 0.7rem clamp(1.2rem, 4vw, 3rem);
+        background: rgba(255, 255, 255, 0.72);
+        backdrop-filter: saturate(180%) blur(20px);
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
+        border-bottom: 1px solid #d2d2d7;
+      }
+      .nav__brand { display: flex; align-items: center; gap: 0.55rem; font-weight: 700; font-size: 1.05rem; letter-spacing: -0.01em; }
+      .nav__brand svg { width: 30px; height: 30px; }
+      .nav nav { display: flex; gap: clamp(1rem, 3vw, 2.2rem); font-size: 0.95rem; color: #424245; }
+      .nav nav a:hover { color: #1d1d1f; }
+      .nav__cta {
+        font-size: 0.92rem; font-weight: 600;
+        background: #1d1d1f; color: #fff;
+        padding: 0.5rem 1.1rem; border-radius: 999px;
+        transition: transform 0.25s ease, background 0.25s;
+      }
+      .nav__cta:hover { background: #000; transform: scale(1.04); }
+
+      /* ---------- hero ---------- */
+      .hero {
+        min-height: 88vh;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        text-align: center; padding: 4rem 1.4rem 3rem;
+      }
+      .hero__eyebrow { font-size: 1.1rem; font-weight: 600; color: #6e6e73; margin-bottom: 1rem; letter-spacing: 0.02em; }
+      .hero h1 {
+        font-size: clamp(3.2rem, 11vw, 8.5rem);
+        font-weight: 700; letter-spacing: -0.035em; line-height: 1.02;
+        display: flex; flex-wrap: wrap; gap: 0 1.8rem; justify-content: center;
+      }
+      .hero__sub {
+        max-width: 40ch; margin-top: 1.6rem;
+        font-size: clamp(1.15rem, 2.4vw, 1.6rem); color: #6e6e73; font-weight: 400;
+      }
+      .hero__actions { display: flex; gap: 0.9rem; margin-top: 2.4rem; flex-wrap: wrap; justify-content: center; }
+      .pill {
+        display: inline-flex; align-items: center; gap: 0.5rem;
+        padding: 0.9rem 1.9rem; border-radius: 999px;
+        font-size: 1.05rem; font-weight: 600;
+        transition: transform 0.25s ease, background 0.25s, color 0.25s;
+      }
+      .pill--dark { background: #1d1d1f; color: #fff; }
+      .pill--dark:hover { background: #000; transform: scale(1.045); }
+      .pill--ghost { border: 1px solid #86868b; color: #1d1d1f; }
+      .pill--ghost:hover { border-color: #1d1d1f; transform: scale(1.045); }
+
+      /* load-in cascade */
+      .load-fade { opacity: 0; transform: translateY(26px); animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards; animation-delay: var(--d, 0s); }
+      @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+
+      /* ---------- scroll-scaling image ---------- */
+      .zoom { padding: 2rem clamp(0.8rem, 3vw, 3rem) 5rem; }
+      .zoom__frame { position: relative; border-radius: 28px; overflow: hidden; }
+      .zoom__frame img {
+        width: 100%; aspect-ratio: 16 / 9; object-fit: cover;
+        transform: scale(1.12);
+        will-change: transform;
+      }
+      .zoom__caption {
+        position: absolute; left: clamp(1.2rem, 4vw, 3rem); bottom: clamp(1rem, 3.5vw, 2.6rem);
+        color: #fff; font-size: clamp(1.6rem, 4.5vw, 3.4rem); font-weight: 700; letter-spacing: -0.02em;
+        text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
+      }
+
+      /* ---------- statements ---------- */
+      .statements { padding: clamp(4rem, 10vw, 9rem) 1.4rem; text-align: center; }
+      .statement {
+        font-size: clamp(2.2rem, 7vw, 5.2rem);
+        font-weight: 700; letter-spacing: -0.03em; line-height: 1.12;
+        color: #1d1d1f;
+      }
+      .statement + .statement { margin-top: 0.4em; }
+
+      /* ---------- features ---------- */
+      .features { display: grid; gap: clamp(4rem, 9vw, 8rem); padding: 2rem clamp(1.2rem, 4vw, 3rem) 6rem; max-width: 1240px; margin: 0 auto; }
+      .feature {
+        display: grid; gap: clamp(1.6rem, 4vw, 4rem); align-items: center;
+        grid-template-columns: 1.15fr 1fr;
+      }
+      .feature--flip { grid-template-columns: 1fr 1.15fr; }
+      .feature--flip .feature__media { order: 2; }
+      .feature__media { border-radius: 24px; overflow: hidden; }
+      .feature__media img { width: 100%; aspect-ratio: 4 / 3.2; object-fit: cover; will-change: transform; transform: scale(1.08); }
+      .feature__k { font-size: 1rem; font-weight: 600; color: #86868b; margin-bottom: 0.5rem; }
+      .feature h2 { font-size: clamp(2rem, 4.5vw, 3.4rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.08; }
+      .feature__body { margin-top: 1rem; font-size: clamp(1.1rem, 1.8vw, 1.35rem); color: #6e6e73; max-width: 40ch; }
+      .feature__link { display: inline-block; margin-top: 1.3rem; font-weight: 600; color: #2F6B51; }
+      .feature__link:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+      /* ---------- numbers ---------- */
+      .numbers { background: #f5f5f7; padding: clamp(4rem, 8vw, 7rem) 1.4rem; }
+      .numbers__grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; text-align: center; }
+      .num span { font-size: clamp(3.4rem, 8vw, 6.5rem); font-weight: 700; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+      .num small { display: block; margin-top: 0.3rem; font-size: 1.05rem; color: #6e6e73; }
+
+      /* ---------- fees ---------- */
+      .fees { text-align: center; padding: clamp(5rem, 11vw, 9rem) 1.4rem; max-width: 880px; margin: 0 auto; }
+      .fees h2 { font-size: clamp(2.6rem, 7vw, 5.4rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.06; }
+      .fees p { margin: 1.5rem auto 2.2rem; font-size: clamp(1.1rem, 1.9vw, 1.4rem); color: #6e6e73; max-width: 46ch; }
+
+      /* ---------- cta ---------- */
+      .cta { background: #1d1d1f; color: #f5f5f7; text-align: center; padding: clamp(5rem, 10vw, 8rem) 1.4rem; }
+      .cta > p:first-child { font-size: clamp(1.4rem, 3vw, 2rem); color: #a1a1a6; }
+      .cta__phone {
+        display: inline-block; margin-top: 0.6rem;
+        font-size: clamp(3.4rem, 11vw, 8rem); font-weight: 700; letter-spacing: -0.03em;
+        background: linear-gradient(90deg, #7ee2a8, #34c759, #FFC24B);
+        -webkit-background-clip: text; background-clip: text; color: transparent;
+        transition: transform 0.3s ease;
+      }
+      .cta__phone:hover { transform: scale(1.02); }
+      .cta__small { margin-top: 1rem; color: #86868b; font-size: 1rem; }
+
+      .foot {
+        display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.6rem 1.5rem;
+        padding: 1.6rem clamp(1.2rem, 4vw, 3rem);
+        border-top: 1px solid #d2d2d7;
+        font-size: 0.9rem; color: #6e6e73;
+      }
+      .foot a { text-decoration: underline; text-underline-offset: 3px; }
+
+      /* ---------- scroll reveals ---------- */
+      .reveal { opacity: 0; transform: translateY(34px); filter: blur(6px); transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), filter 0.9s; }
+      .reveal.in { opacity: 1; transform: translateY(0); filter: blur(0); }
+
+      @media (max-width: 780px) {
+        .nav nav { display: none; }
+        .feature, .feature--flip { grid-template-columns: 1fr; }
+        .feature--flip .feature__media { order: 0; }
+        .numbers__grid { grid-template-columns: 1fr; gap: 2rem; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        .load-fade { animation: none; opacity: 1; transform: none; }
+        .reveal { transition: none; opacity: 1; transform: none; filter: none; }
+        .zoom__frame img, .feature__media img { transform: none !important; }
+      }
+    </style>
+
+    <script is:inline>
+      (function () {
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        /* scroll reveals with slight stagger per section */
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              var el = e.target;
+              var siblings = Array.prototype.slice.call(el.parentElement.querySelectorAll('.reveal'));
+              el.style.transitionDelay = (siblings.indexOf(el) % 5) * 0.09 + 's';
+              el.classList.add('in');
+              io.unobserve(el);
+            }
+          });
+        }, { threshold: 0.18 });
+        document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+        if (reduced) return;
+
+        /* scroll-driven zoom + gentle parallax */
+        var zoomImg = document.getElementById('zoomImg');
+        var parallax = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
+        var ticking = false;
+
+        function onScroll() {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(function () {
+            var vh = window.innerHeight;
+            if (zoomImg) {
+              var r = zoomImg.getBoundingClientRect();
+              var progress = Math.min(1, Math.max(0, 1 - (r.top + r.height * 0.5 - vh * 0.5) / vh));
+              zoomImg.style.transform = 'scale(' + (1.12 - 0.12 * progress) + ')';
+            }
+            parallax.forEach(function (img) {
+              var r2 = img.getBoundingClientRect();
+              var centre = (r2.top + r2.height / 2 - vh / 2) / vh;
+              img.style.transform = 'scale(1.08) translateY(' + (centre * -14) + 'px)';
+            });
+            ticking = false;
+          });
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+
+        /* count-ups */
+        var counted = false;
+        var nio = new IntersectionObserver(function (entries) {
+          if (entries[0].isIntersecting && !counted) {
+            counted = true;
+            document.querySelectorAll('[data-count]').forEach(function (el) {
+              var target = parseInt(el.dataset.count, 10);
+              var start = null;
+              function step(t) {
+                if (!start) start = t;
+                var p = Math.min(1, (t - start) / 1200);
+                el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+                if (p < 1) requestAnimationFrame(step);
+              }
+              requestAnimationFrame(step);
+            });
+          }
+        }, { threshold: 0.4 });
+        var numbers = document.querySelector('.numbers');
+        if (numbers) nio.observe(numbers);
+      })();
+    </script>
+  </body>
+</html>

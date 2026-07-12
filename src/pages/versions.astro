@@ -1,0 +1,76 @@
+---
+/**
+ * versions.astro — astrocare.com.au/versions
+ * ------------------------------------------------------------------
+ * The design-version index. Every visual direction we try lives at
+ * its own URL and is recorded here (and as a git tag), so going back
+ * — or comparing side by side — is always one click.
+ * ------------------------------------------------------------------
+ */
+import Layout from '../layouts/Layout.astro';
+
+const versions = [
+  {
+    tag: 'LIVE',
+    name: 'Version 1 — Sunny & senior-first',
+    url: '/',
+    date: 'July 2026',
+    gitTag: 'design-v1',
+    notes:
+      'Warm eucalyptus/sand/sunflower palette, 20px+ text, accessibility panel (text size, high contrast, read aloud), funding guide, fee calculator, chat helper. Built for 80-year-old users.',
+  },
+  {
+    tag: 'CONCEPT',
+    name: 'Test 1 — White minimal with animations',
+    url: '/test1',
+    date: 'July 2026',
+    gitTag: 'design-test1',
+    notes:
+      'Apple-inspired: primary white theme, oversized typography, scroll-driven reveals, image zoom and parallax, count-ups, dark closing section with gradient phone number.',
+  },
+];
+---
+
+<Layout title="Astro Care — Design Versions" description="Index of Astro Care website design versions.">
+  <section class="py-10 md:py-14" style="background: var(--bg-sand);">
+    <div class="mx-auto w-[min(900px,100%-2.5rem)]">
+      <p class="mb-2 text-lg font-extrabold uppercase tracking-widest" style="font-family: var(--font-head); color: var(--sun-deep);">
+        Design studio
+      </p>
+      <h1 class="mb-4 text-3xl md:text-5xl">Website versions</h1>
+      <p class="text-xl" style="color: var(--tx-soft);">
+        Every design direction lives at its own address, so nothing is ever lost. Each one is also
+        saved as a snapshot (git tag) in the code, so we can restore any version exactly, any time.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-10 md:py-14" style="background: var(--bg);">
+    <div class="mx-auto grid w-[min(900px,100%-2.5rem)] gap-6">
+      {
+        versions.map((v) => (
+          <a
+            href={v.url}
+            class="block rounded-3xl border-4 hc-border p-7 transition-transform hover:-translate-y-1"
+            style="background: var(--bg-card); border-color: var(--line); box-shadow: var(--shadow);"
+          >
+            <div class="mb-2 flex flex-wrap items-center gap-3">
+              <span
+                class="rounded-full px-4 py-1 text-base font-black uppercase tracking-wide"
+                style={v.tag === 'LIVE' ? 'background: var(--euca); color: #fff;' : 'background: var(--sun); color: var(--tx);'}
+              >
+                {v.tag}
+              </span>
+              <span class="text-lg" style="color: var(--tx-soft);">{v.date} · snapshot: <code>{v.gitTag}</code></span>
+            </div>
+            <h2 class="text-2xl md:text-3xl">{v.name}</h2>
+            <p class="mt-2 text-xl" style="color: var(--tx-soft);">{v.notes}</p>
+            <p class="mt-3 text-xl font-extrabold" style="font-family: var(--font-head); color: var(--blue);">
+              Open {v.url} →
+            </p>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</Layout>
