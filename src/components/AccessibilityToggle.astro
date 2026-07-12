@@ -1,0 +1,195 @@
+---
+/**
+ * AccessibilityToggle.astro
+ * ------------------------------------------------------------------
+ * The global Accessibility Panel (WCAG 2.2 AAA helper).
+ *
+ * Features:
+ *  - Text scaling 100% → 200% in 25% steps (persists in localStorage).
+ *    Every dimension on the site is rem-based, so scaling the root
+ *    font-size scales the entire interface, not just paragraphs.
+ *  - High-contrast mode: swaps the whole CSS custom-property palette
+ *    to pure black-on-white with AAA-contrast accents.
+ *  - Read Aloud mode: uses the browser's built-in speech synthesis
+ *    (en-AU voice when available). When enabled, any heading or
+ *    paragraph can be clicked to have it read out loud.
+ *
+ * Interaction rules for seniors:
+ *  - The panel opens on CLICK only (no hover-reliant behaviour).
+ *  - Every control is a real <button> with a 56px+ target.
+ *  - State is announced via aria-pressed and visible text labels.
+ * ------------------------------------------------------------------
+ */
+---
+
+<div class="fixed right-3 bottom-28 z-[120]" id="a11yRoot">
+  <!-- The always-visible launcher button -->
+  <button
+    id="a11yLauncher"
+    class="btn-sun hc-border shadow-lg !rounded-2xl flex-col !gap-1 !px-4 !py-3"
+    aria-expanded="false"
+    aria-controls="a11yPanel"
+  >
+    <svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="5" r="2.5"/><path d="M4 9.5h16"/><path d="M12 9.5V15l-3.5 6"/><path d="M12 15l3.5 6"/>
+    </svg>
+    <span class="font-extrabold text-base leading-tight">Accessibility</span>
+  </button>
+
+  <!-- The panel itself -->
+  <div
+    id="a11yPanel"
+    class="hidden absolute bottom-full right-0 mb-3 max-h-[min(78vh,44rem)] w-[22rem] max-w-[92vw] overflow-y-auto rounded-3xl border-4 p-6"
+    style="background: var(--bg-card); border-color: var(--euca); box-shadow: var(--shadow);"
+    role="group"
+    aria-label="Accessibility options"
+  >
+    <h2 class="text-2xl mb-4">Make this site easier</h2>
+
+    <!-- Text size -->
+    <p class="font-bold mb-2" id="a11ySizeLabel">Text size: <span id="a11ySizeValue">100%</span></p>
+    <div class="flex gap-3 mb-5" role="group" aria-labelledby="a11ySizeLabel">
+      <button id="a11ySmaller" class="btn-primary hc-border flex-1 !text-2xl" aria-label="Make text smaller">A−</button>
+      <button id="a11yBigger" class="btn-primary hc-border flex-1 !text-2xl" aria-label="Make text bigger">A+</button>
+    </div>
+
+    <!-- High contrast -->
+    <button id="a11yContrast" class="btn-primary hc-border w-full mb-3 justify-between" aria-pressed="false">
+      <span>High contrast</span>
+      <span data-state class="rounded-full px-3 py-1 text-base font-black" style="background:#fff2; border: 2px solid #fff;">Off</span>
+    </button>
+
+    <!-- Read aloud -->
+    <button id="a11ySpeech" class="btn-primary hc-border w-full mb-3 justify-between" aria-pressed="false">
+      <span>Read aloud</span>
+      <span data-state class="rounded-full px-3 py-1 text-base font-black" style="background:#fff2; border: 2px solid #fff;">Off</span>
+    </button>
+    <p class="text-base mb-4" style="color: var(--tx-soft);">
+      With Read aloud on, click any text on the page and your computer will read it to you.
+    </p>
+
+    <button id="a11yReset" class="btn-sun hc-border w-full">Reset everything</button>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var html = document.documentElement;
+    var SCALES = ['100', '125', '150', '175', '200'];
+
+    /* ---------- persistence helpers ---------- */
+    function save(key, val) { try { localStorage.setItem(key, val); } catch (e) {} }
+    function load(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
+
+    /* ---------- text scaling ---------- */
+    var sizeValue = document.getElementById('a11ySizeValue');
+    function applyScale(scale) {
+      if (scale === '100') html.removeAttribute('data-scale');
+      else html.setAttribute('data-scale', scale);
+      if (sizeValue) sizeValue.textContent = scale + '%';
+      save('astro-a11y-scale', scale);
+    }
+    function currentScale() { return html.getAttribute('data-scale') || '100'; }
+
+    document.getElementById('a11yBigger').addEventListener('click', function () {
+      var i = SCALES.indexOf(currentScale());
+      if (i < SCALES.length - 1) applyScale(SCALES[i + 1]);
+    });
+    document.getElementById('a11ySmaller').addEventListener('click', function () {
+      var i = SCALES.indexOf(currentScale());
+      if (i > 0) applyScale(SCALES[i - 1]);
+    });
+
+    /* ---------- high contrast ---------- */
+    var contrastBtn = document.getElementById('a11yContrast');
+    function applyContrast(on) {
+      if (on) html.setAttribute('data-contrast', 'high');
+      else html.removeAttribute('data-contrast');
+      contrastBtn.setAttribute('aria-pressed', String(on));
+      contrastBtn.querySelector('[data-state]').textContent = on ? 'On' : 'Off';
+      save('astro-a11y-contrast', on ? 'high' : 'off');
+    }
+    contrastBtn.addEventListener('click', function () {
+      applyContrast(html.getAttribute('data-contrast') !== 'high');
+    });
+
+    /* ---------- read aloud (speech synthesis) ---------- */
+    var speechBtn = document.getElementById('a11ySpeech');
+    var speaking = null;
+
+    function pickVoice() {
+      var voices = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
+      return voices.find(function (v) { return v.lang === 'en-AU'; })
+          || voices.find(function (v) { return v.lang && v.lang.indexOf('en') === 0; })
+          || null;
+    }
+
+    function speakElement(el) {
+      if (!window.speechSynthesis) return;
+      window.speechSynthesis.cancel();
+      if (speaking) speaking.classList.remove('is-speaking');
+      var utter = new SpeechSynthesisUtterance(el.textContent.trim());
+      var voice = pickVoice();
+      if (voice) utter.voice = voice;
+      utter.rate = 0.92;                       /* a touch slower for clarity */
+      speaking = el;
+      el.classList.add('is-speaking');
+      utter.onend = utter.onerror = function () {
+        el.classList.remove('is-speaking');
+        if (speaking === el) speaking = null;
+      };
+      window.speechSynthesis.speak(utter);
+    }
+
+    function onReadClick(e) {
+      var el = e.target.closest('.readable');
+      if (el) { e.preventDefault(); speakElement(el); }
+    }
+
+    function applySpeech(on) {
+      if (on) {
+        html.setAttribute('data-readaloud', 'on');
+        document.addEventListener('click', onReadClick, true);
+      } else {
+        html.removeAttribute('data-readaloud');
+        document.removeEventListener('click', onReadClick, true);
+        if (window.speechSynthesis) window.speechSynthesis.cancel();
+        if (speaking) { speaking.classList.remove('is-speaking'); speaking = null; }
+      }
+      speechBtn.setAttribute('aria-pressed', String(on));
+      speechBtn.querySelector('[data-state]').textContent = on ? 'On' : 'Off';
+      save('astro-a11y-speech', on ? 'on' : 'off');
+    }
+    speechBtn.addEventListener('click', function () {
+      applySpeech(html.getAttribute('data-readaloud') !== 'on');
+    });
+
+    /* ---------- panel open/close (click only, no hover) ---------- */
+    var launcher = document.getElementById('a11yLauncher');
+    var panel = document.getElementById('a11yPanel');
+    launcher.addEventListener('click', function () {
+      var open = panel.classList.toggle('hidden') === false;
+      launcher.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !panel.classList.contains('hidden')) {
+        panel.classList.add('hidden');
+        launcher.setAttribute('aria-expanded', 'false');
+        launcher.focus();
+      }
+    });
+
+    /* ---------- reset ---------- */
+    document.getElementById('a11yReset').addEventListener('click', function () {
+      applyScale('100');
+      applyContrast(false);
+      applySpeech(false);
+    });
+
+    /* ---------- restore saved preferences ---------- */
+    var savedScale = load('astro-a11y-scale');
+    if (savedScale && SCALES.indexOf(savedScale) !== -1) applyScale(savedScale);
+    if (load('astro-a11y-contrast') === 'high') applyContrast(true);
+    if (load('astro-a11y-speech') === 'on') applySpeech(true);
+  })();
+</script>
