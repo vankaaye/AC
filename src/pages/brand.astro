@@ -1,0 +1,290 @@
+---
+/**
+ * brand.astro — astrocare.com.au/brand
+ * ------------------------------------------------------------------
+ * The Astro Care brand chooser: 20 logo concepts × 5 colourways
+ * (100 numbered options), each with a live preview of how it looks
+ * as the browser-tab icon beside the "Astro Care" name, plus 30
+ * numbered tagline options. Pick a number, tell us, done.
+ * ------------------------------------------------------------------
+ */
+import Layout from '../layouts/Layout.astro';
+
+const tagGroups: [string, [string, string][]][] = [
+  [
+    'Stars & light — plays on the "Astro" name',
+    [
+      ['T1', 'Where every day shines.'],
+      ['T2', 'Care written in the stars.'],
+      ['T3', 'Guiding light, gentle hands.'],
+      ['T4', 'The brightest years, cared for.'],
+      ['T5', 'Care that revolves around you.'],
+      ['T6', 'Your home. Your stars. Our care.'],
+      ['T7', 'Shining through every season of life.'],
+      ['T8', 'A guiding star for growing older.'],
+      ['T9', 'Light for the years ahead.'],
+      ['T10', 'Under our care, you shine.'],
+    ],
+  ],
+  [
+    'Warm & homely — the friendly neighbour voice',
+    [
+      ['T11', 'Care that feels like family.'],
+      ['T12', 'Home is where our heart is.'],
+      ['T13', 'Gentle help, happy days.'],
+      ['T14', "The kettle's always on."],
+      ['T15', 'Big hearts. Little things. Every day.'],
+      ['T16', 'Help at home, hope in every visit.'],
+      ['T17', 'Kindness, delivered daily.'],
+      ['T18', 'Your day, your way — with a hand when you want it.'],
+      ['T19', 'Good days, made easier.'],
+      ['T20', 'Everyday care with old-fashioned heart.'],
+    ],
+  ],
+  [
+    'Trust & plain-spoken — reassurance for families',
+    [
+      ['T21', 'Real people. Real care. Right at home.'],
+      ['T22', "Honest care for life's later years."],
+      ['T23', 'Care without the confusion.'],
+      ['T24', "The care you'd choose for your own mum."],
+      ['T25', 'Serious about care. Warm about everything else.'],
+      ['T26', 'Independence, supported.'],
+      ['T27', 'Growing older, living better.'],
+      ['T28', 'Stay home. Stay you.'],
+      ['T29', "Australia's friendliest way to age well."],
+      ['T30', 'From our family to yours, every single day.'],
+    ],
+  ],
+];
+---
+
+<Layout
+  title="Astro Care — Logo & Tagline Options"
+  description="Choose the Astro Care logo (100 numbered options) and tagline (30 options)."
+>
+  <section class="py-10 md:py-14" style="background: var(--bg-sand);">
+    <div class="mx-auto w-[min(1220px,100%-2.5rem)]">
+      <p class="mb-2 text-lg font-extrabold uppercase tracking-widest" style="font-family: var(--font-head); color: var(--sun-deep);">
+        Brand options
+      </p>
+      <h1 class="mb-4 text-3xl md:text-5xl">100 logo options &amp; 30 taglines</h1>
+      <p class="max-w-3xl text-xl" style="color: var(--tx-soft);">
+        Twenty logo concepts, each in five colourways — <strong>100 numbered options</strong>. Under
+        every logo is a preview of how it looks as the icon in a <strong>browser tab</strong> beside
+        the "Astro Care" name. Taglines are at the bottom.
+        <strong>To choose, just tell us a logo number and a T-number.</strong>
+      </p>
+      <div class="legend mt-5" id="legend"></div>
+    </div>
+  </section>
+
+  <section class="py-8 md:py-12" style="background: var(--bg);">
+    <div class="mx-auto w-[min(1220px,100%-2.5rem)]" id="gallery"></div>
+  </section>
+
+  <section class="py-10 md:py-14" style="background: var(--bg-sand);">
+    <div class="mx-auto w-[min(1220px,100%-2.5rem)]">
+      <h2 class="mb-6 text-3xl md:text-4xl">30 tagline options</h2>
+      {
+        tagGroups.map(([title, tags]) => (
+          <div class="mb-8">
+            <h3 class="mb-4 text-2xl" style="color: var(--euca);">{title}</h3>
+            <ol class="grid gap-3 md:grid-cols-2">
+              {tags.map(([num, text]) => (
+                <li class="flex items-baseline gap-3 rounded-2xl border-2 px-4 py-3 text-xl" style="background: var(--bg-card); border-color: var(--line);">
+                  <b class="text-lg" style="color: var(--sun-deep); font-variant-numeric: tabular-nums;">{num}</b>
+                  {text}
+                </li>
+              ))}
+            </ol>
+          </div>
+        ))
+      }
+      <div class="rounded-3xl border-l-8 p-6 text-xl" style="background: var(--bg-card); border-color: var(--sun); box-shadow: var(--shadow);">
+        <p><strong>How to choose:</strong> tell us a logo number (1–100) and a tagline (T1–T30) — for example, "logo 12 and T5".</p>
+        <p class="mt-2" style="color: var(--tx-soft);">We'll make it the official mark, the browser-tab icon and the site-wide tagline.</p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style is:global>
+  .legend { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .legend span {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--bg-card); border: 2px solid var(--line);
+    border-radius: 999px; padding: 0.35rem 0.9rem 0.35rem 0.45rem;
+    font-size: 1rem; font-weight: 700;
+  }
+  .legend i { width: 24px; height: 24px; border-radius: 50%; display: inline-block; border: 1px solid rgba(0,0,0,0.15); }
+
+  .brand-family { font-size: 1.5rem; font-weight: 900; font-family: var(--font-head); margin: 2.2rem 0 0.2rem; }
+  .brand-family small { font-weight: 700; color: var(--tx-soft); font-size: 1.05rem; }
+  .brand-note { color: var(--tx-soft); font-size: 1.1rem; margin: 0 0 1rem; max-width: 70ch; }
+
+  .brand-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.8rem;
+  }
+  @media (min-width: 640px) { .brand-grid { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 1rem; } }
+
+  .brand-card {
+    background: var(--bg-card);
+    border: 2px solid var(--line);
+    border-radius: 16px;
+    padding: 1rem 0.85rem 0.85rem;
+    display: flex; flex-direction: column; align-items: center; gap: 0.7rem;
+  }
+  .brand-card .num {
+    align-self: flex-start;
+    font-size: 0.95rem; font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    color: var(--sun-deep);
+    background: var(--sun-soft);
+    border-radius: 8px; padding: 0.1rem 0.55rem;
+  }
+  .brand-card svg.mark { width: 84px; height: 84px; }
+  .brand-tab {
+    display: flex; align-items: center; gap: 0.45rem;
+    width: 100%;
+    background: var(--line);
+    border-radius: 8px 8px 3px 3px;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.85rem; font-weight: 700; color: var(--tx);
+    overflow: hidden; white-space: nowrap;
+  }
+  .brand-tab svg.mini { width: 16px; height: 16px; flex: none; }
+  .brand-tab .x { margin-left: auto; color: var(--tx-soft); font-weight: 400; }
+  .brand-card .cw { font-size: 0.9rem; color: var(--tx-soft); text-align: center; }
+</style>
+
+<script is:inline>
+  /* Generates 20 mark concepts × 5 colourways = 100 numbered logos. */
+  (function () {
+    var PALETTES = [
+      { key: 'A', name: 'Eucalyptus',  bg: '#2F6B51', fg: '#FFC24B', ac: '#FFFFFF', ring: null },
+      { key: 'B', name: 'Sunrise',     bg: '#FFC24B', fg: '#2F6B51', ac: '#B23E1F', ring: null },
+      { key: 'C', name: 'Night Sky',   bg: '#1F3A5F', fg: '#FFD98E', ac: '#FFFFFF', ring: null },
+      { key: 'D', name: 'Fresh White', bg: '#FFFFFF', fg: '#2F6B51', ac: '#E2A93B', ring: '#2F6B51' },
+      { key: 'E', name: 'Terracotta',  bg: '#B95C38', fg: '#FFF3D6', ac: '#FFC24B', ring: null },
+    ];
+
+    function sparkle(cx, cy, r, fill) {
+      var k = r * 0.42;
+      return '<path d="M' + cx + ' ' + (cy - r) +
+        ' C' + (cx + k * 0.28) + ' ' + (cy - k) + ' ' + (cx + k) + ' ' + (cy - k * 0.28) + ' ' + (cx + r) + ' ' + cy +
+        ' C' + (cx + k) + ' ' + (cy + k * 0.28) + ' ' + (cx + k * 0.28) + ' ' + (cy + k) + ' ' + cx + ' ' + (cy + r) +
+        ' C' + (cx - k * 0.28) + ' ' + (cy + k) + ' ' + (cx - k) + ' ' + (cy + k * 0.28) + ' ' + (cx - r) + ' ' + cy +
+        ' C' + (cx - k) + ' ' + (cy - k * 0.28) + ' ' + (cx - k * 0.28) + ' ' + (cy - k) + ' ' + cx + ' ' + (cy - r) + ' Z" fill="' + fill + '"/>';
+    }
+    function star5(cx, cy, r, fill) {
+      var pts = [];
+      for (var i = 0; i < 10; i++) {
+        var rad = (i % 2 === 0) ? r : r * 0.42;
+        var a = -Math.PI / 2 + i * Math.PI / 5;
+        pts.push((cx + rad * Math.cos(a)).toFixed(1) + ',' + (cy + rad * Math.sin(a)).toFixed(1));
+      }
+      return '<polygon points="' + pts.join(' ') + '" fill="' + fill + '"/>';
+    }
+    function compass(cx, cy, r, fill) {
+      var pts = [];
+      for (var i = 0; i < 16; i++) {
+        var rad = (i % 2 === 0) ? r : r * 0.34;
+        var a = -Math.PI / 2 + i * Math.PI / 8;
+        pts.push((cx + rad * Math.cos(a)).toFixed(1) + ',' + (cy + rad * Math.sin(a)).toFixed(1));
+      }
+      return '<polygon points="' + pts.join(' ') + '" fill="' + fill + '"/>';
+    }
+    function sunRays(fg) {
+      var out = '<circle cx="24" cy="24" r="8.5" fill="' + fg + '"/>';
+      for (var i = 0; i < 12; i++) {
+        var a = i * Math.PI / 6;
+        out += '<line x1="' + (24 + 12.5 * Math.cos(a)).toFixed(1) + '" y1="' + (24 + 12.5 * Math.sin(a)).toFixed(1) +
+               '" x2="' + (24 + 17 * Math.cos(a)).toFixed(1) + '" y2="' + (24 + 17 * Math.sin(a)).toFixed(1) +
+               '" stroke="' + fg + '" stroke-width="2.6" stroke-linecap="round"/>';
+      }
+      return out;
+    }
+    function bloom(fg, ac) {
+      var out = '';
+      for (var i = 0; i < 6; i++) {
+        out += '<ellipse cx="24" cy="15.5" rx="4.6" ry="8.5" fill="' + fg + '" opacity="0.92" transform="rotate(' + (i * 60) + ' 24 24)"/>';
+      }
+      return out + '<circle cx="24" cy="24" r="4.6" fill="' + ac + '"/>';
+    }
+
+    var MARKS = [
+      { name: 'Sparkle', note: 'The single guiding star — simple, modern, unmistakable.',
+        draw: function (p) { return sparkle(24, 24, 14, p.fg) + '<circle cx="33.5" cy="14.5" r="2" fill="' + p.ac + '" opacity="0.95"/>'; } },
+      { name: 'Orbit Star', note: 'A star with an orbit ring — care that revolves around you.',
+        draw: function (p) { return '<ellipse cx="24" cy="24" rx="17" ry="7.5" fill="none" stroke="' + p.ac + '" stroke-width="1.6" opacity="0.75" transform="rotate(-24 24 24)"/>' + sparkle(24, 24, 11, p.fg) + '<circle cx="9.5" cy="30" r="2" fill="' + p.ac + '"/>'; } },
+      { name: 'Southern Cross', note: 'Unmistakably Australian — the constellation of home.',
+        draw: function (p) { return sparkle(20, 11, 4.6, p.fg) + sparkle(17, 24, 3.6, p.fg) + sparkle(24, 34, 4.6, p.fg) + sparkle(33, 17, 4.6, p.fg) + sparkle(30.5, 27.5, 2.6, p.ac); } },
+      { name: 'Compass Star', note: 'Eight points of guidance — steady, dependable direction.',
+        draw: function (p) { return compass(24, 24, 15, p.fg) + '<circle cx="24" cy="24" r="3.4" fill="' + p.ac + '"/>'; } },
+      { name: 'Classic Star', note: 'The timeless five-point star, softened and friendly.',
+        draw: function (p) { return star5(24, 25, 14.5, p.fg); } },
+      { name: 'Shooting Star', note: 'A wish granted — energy, optimism, momentum.',
+        draw: function (p) { return '<path d="M6 33 L20 26 M8 39 L19 33 M13 42 L22 38" stroke="' + p.ac + '" stroke-width="2" stroke-linecap="round" fill="none"/>' + sparkle(29, 20, 12, p.fg); } },
+      { name: 'Sunrise', note: 'A new day over the horizon — hope every morning.',
+        draw: function (p) { return '<path d="M13 28 a11 11 0 0 1 22 0 Z" fill="' + p.fg + '"/><path d="M24 9 v4.5 M11.5 14 l3.2 3.2 M36.5 14 l-3.2 3.2 M6.5 24.5 h4.5 M37 24.5 h4.5" stroke="' + p.fg + '" stroke-width="2.4" stroke-linecap="round"/><path d="M9 33.5 h30 M14 38.5 h20" stroke="' + p.ac + '" stroke-width="2.4" stroke-linecap="round"/>'; } },
+      { name: 'Golden Sun', note: 'Warmth at the centre of everything.',
+        draw: function (p) { return sunRays(p.fg); } },
+      { name: 'Star in Heart', note: 'A star held inside a heart — care and affection in one.',
+        draw: function (p) { return '<path d="M24 39 C18 34 9.5 28 9.5 20.5 A7.5 7.5 0 0 1 24 17 A7.5 7.5 0 0 1 38.5 20.5 C38.5 28 30 34 24 39 Z" fill="none" stroke="' + p.fg + '" stroke-width="2.6" stroke-linejoin="round"/>' + sparkle(24, 25, 6.5, p.ac); } },
+      { name: 'Heart Glow', note: 'A full heart with a spark of light — love made visible.',
+        draw: function (p) { return '<path d="M24 40 C17.5 34.5 8.5 28.5 8.5 20.5 A8 8 0 0 1 24 16.5 A8 8 0 0 1 39.5 20.5 C39.5 28.5 30.5 34.5 24 40 Z" fill="' + p.fg + '"/>' + sparkle(24, 24.5, 6, p.bg); } },
+      { name: 'Star at Home', note: 'The star under your own roof — help where you live.',
+        draw: function (p) { return '<path d="M10 22 L24 10 L38 22 M13.5 19.5 V37 H34.5 V19.5" fill="none" stroke="' + p.fg + '" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>' + sparkle(24, 27.5, 6, p.ac); } },
+      { name: 'Caring Hands', note: 'Two gentle hands cradling a star — support without gripping.',
+        draw: function (p) { return sparkle(24, 19, 9, p.fg) + '<path d="M10 30 q6 7 14 7 q8 0 14 -7" fill="none" stroke="' + p.ac + '" stroke-width="2.6" stroke-linecap="round"/><path d="M8 25.5 q2.5 4 6 5.4 M40 25.5 q-2.5 4 -6 5.4" fill="none" stroke="' + p.ac + '" stroke-width="2.6" stroke-linecap="round"/>'; } },
+      { name: 'Shield Star', note: 'Protection and safety — clinical trust, warmly drawn.',
+        draw: function (p) { return '<path d="M24 8 C28 10.5 32.5 11.5 36.5 11.8 V24 C36.5 32 31 37 24 40 C17 37 11.5 32 11.5 24 V11.8 C15.5 11.5 20 10.5 24 8 Z" fill="none" stroke="' + p.fg + '" stroke-width="2.6" stroke-linejoin="round"/>' + sparkle(24, 23.5, 7, p.ac); } },
+      { name: 'Moon & Star', note: 'Care around the clock — calm through every night.',
+        draw: function (p) { return '<path d="M27 9.5 a12.5 12.5 0 1 0 9.5 20.5 a14.5 14.5 0 0 1 -9.5 -20.5 Z" fill="' + p.fg + '"/>' + sparkle(33, 16, 5.5, p.ac); } },
+      { name: 'Star Bloom', note: 'A flowering star — growth and life in later years.',
+        draw: function (p) { return bloom(p.fg, p.ac); } },
+      { name: 'Constellation', note: 'Small stars joined into one — a network of carers.',
+        draw: function (p) { return '<path d="M13 33 L22 20 L31 26 L36 13" fill="none" stroke="' + p.ac + '" stroke-width="1.7" stroke-dasharray="1.5 3.5" stroke-linecap="round"/><circle cx="13" cy="33" r="2.6" fill="' + p.fg + '"/><circle cx="22" cy="20" r="3.4" fill="' + p.fg + '"/><circle cx="31" cy="26" r="2.6" fill="' + p.fg + '"/>' + sparkle(36, 13, 5.5, p.fg); } },
+      { name: 'Monogram A', note: 'A confident "A" crowned with a star — a proper wordmark seed.',
+        draw: function (p) { return '<path d="M14 38 L24 14 L34 38 M17.8 29.5 H30.2" fill="none" stroke="' + p.fg + '" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>' + sparkle(24, 9, 4.4, p.ac); } },
+      { name: 'Twin Stars', note: 'A large and a small star together — generations side by side.',
+        draw: function (p) { return sparkle(19.5, 26, 11.5, p.fg) + sparkle(33, 15.5, 6.5, p.ac); } },
+      { name: 'Eucalyptus Star', note: 'Gum leaves beneath a star — native, natural, gentle.',
+        draw: function (p) { return sparkle(24, 15.5, 8, p.fg) + '<ellipse cx="16.5" cy="31.5" rx="4" ry="9" fill="' + p.ac + '" opacity="0.92" transform="rotate(35 16.5 31.5)"/><ellipse cx="31.5" cy="31.5" rx="4" ry="9" fill="' + p.ac + '" opacity="0.92" transform="rotate(-35 31.5 31.5)"/>'; } },
+      { name: 'Open Door Star', note: 'A star shining through an open doorway — welcome, always.',
+        draw: function (p) { return '<rect x="14" y="11" width="20" height="27" rx="2.5" fill="none" stroke="' + p.fg + '" stroke-width="2.6"/><path d="M14 38 L8.5 41.5 M34 38 L39.5 41.5" stroke="' + p.fg + '" stroke-width="2.6" stroke-linecap="round"/>' + sparkle(24, 23, 6.5, p.ac); } },
+    ];
+
+    function badge(p, inner, size) {
+      var ring = p.ring ? 'stroke="' + p.ring + '" stroke-width="2.5"' : '';
+      return '<svg class="' + (size >= 48 ? 'mark' : 'mini') + '" viewBox="0 0 48 48" width="' + size + '" height="' + size + '" aria-hidden="true">' +
+        '<circle cx="24" cy="24" r="' + (p.ring ? 21.5 : 23) + '" fill="' + p.bg + '" ' + ring + '/>' + inner + '</svg>';
+    }
+
+    var legend = document.getElementById('legend');
+    if (legend) legend.innerHTML = PALETTES.map(function (p) {
+      return '<span><i style="background:' + p.bg + ';' + (p.ring ? 'border:2px solid ' + p.ring : '') + '"></i>' + p.key + ' · ' + p.name + '</span>';
+    }).join('');
+
+    var html = '';
+    var n = 0;
+    MARKS.forEach(function (m, mi) {
+      html += '<h2 class="brand-family">' + m.name + ' <small>concept ' + (mi + 1) + ' of 20</small></h2>' +
+              '<p class="brand-note">' + m.note + '</p><div class="brand-grid">';
+      PALETTES.forEach(function (p) {
+        n++;
+        var inner = m.draw(p);
+        html += '<div class="brand-card"><span class="num">No. ' + n + '</span>' +
+          badge(p, inner, 84) +
+          '<div class="brand-tab">' + badge(p, inner, 16) + '<span>Astro Care</span><span class="x">×</span></div>' +
+          '<span class="cw">' + m.name + ' · ' + p.name + '</span></div>';
+      });
+      html += '</div>';
+    });
+    var gallery = document.getElementById('gallery');
+    if (gallery) gallery.innerHTML = html;
+  })();
+</script>

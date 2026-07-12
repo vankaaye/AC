@@ -75,7 +75,7 @@ const stories = [
 <Layout>
   <!-- ============ HERO ============ -->
   <section
-    class="py-14 md:py-20"
+    class="py-9 md:py-20"
     style="background:
       radial-gradient(ellipse 60% 80% at 90% 0%, var(--sun-soft) 0%, transparent 65%),
       radial-gradient(ellipse 45% 60% at 0% 100%, var(--euca-soft) 0%, transparent 70%),
@@ -83,22 +83,22 @@ const stories = [
   >
     <div class="mx-auto grid w-[min(1220px,100%-2.5rem)] items-center gap-12 lg:grid-cols-[1.15fr_1fr]">
       <div>
-        <p class="readable mb-3 text-2xl font-extrabold" style="font-family: var(--font-head); color: var(--sun-deep);">
+        <p class="readable mb-2 text-xl font-extrabold md:text-2xl" style="font-family: var(--font-head); color: var(--sun-deep);">
           G'day! We're Astro Care.
         </p>
-        <h1 class="readable mb-5 text-5xl md:text-6xl">
+        <h1 class="readable mb-4 text-4xl sm:text-5xl md:text-6xl">
           Live happily in your <em class="not-italic" style="color: var(--euca);">own home</em>, with our gentle help.
         </h1>
-        <p class="readable mb-8 max-w-[44ch] text-2xl" style="color: var(--tx-soft);">
+        <p class="readable mb-6 max-w-[44ch] text-xl md:text-2xl" style="color: var(--tx-soft);">
           We help Australian seniors with nursing, cleaning, meals and good company — funded by the
           government wherever possible. One friendly phone call is all it takes to start.
         </p>
         <div class="mb-9 flex flex-wrap gap-4">
-          <a href="tel:+611800278762" class="btn-sun hc-border !text-2xl !px-9 !py-5">
+          <a href="tel:+611800278762" class="btn-sun hc-border !text-xl !px-6 !py-4 md:!text-2xl md:!px-9 md:!py-5">
             <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             Call Us Now
           </a>
-          <a href="#funding" class="btn-primary hc-border !text-2xl !px-9 !py-5">How Funding Works</a>
+          <a href="#funding" class="btn-primary hc-border !text-xl !px-6 !py-4 md:!text-2xl md:!px-9 md:!py-5">How Funding Works</a>
         </div>
 
         <!-- Compliance badges -->
@@ -146,9 +146,9 @@ const stories = [
   </section>
 
   <!-- ============ SERVICES ============ -->
-  <section id="services" class="py-16" style="background: var(--bg);">
+  <section id="services" class="py-10 md:py-16" style="background: var(--bg);">
     <div class="mx-auto w-[min(1220px,100%-2.5rem)]">
-      <h2 class="readable mb-3 text-4xl md:text-5xl">Our services, <em class="not-italic" style="color: var(--euca);">your way</em></h2>
+      <h2 class="readable mb-3 text-3xl md:text-5xl">Our services, <em class="not-italic" style="color: var(--euca);">your way</em></h2>
       <p class="readable mb-10 max-w-3xl text-xl" style="color: var(--tx-soft);">
         Pick as much or as little help as you like. We'll fit around your routine — never the other way round.
       </p>
@@ -182,9 +182,9 @@ const stories = [
   </section>
 
   <!-- ============ HOW TO ACCESS FUNDING ============ -->
-  <section id="funding" class="py-16" style="background: var(--euca-soft);">
+  <section id="funding" class="py-10 md:py-16" style="background: var(--euca-soft);">
     <div class="mx-auto w-[min(1220px,100%-2.5rem)]">
-      <h2 class="readable mb-3 text-4xl md:text-5xl">How to access funding — <em class="not-italic" style="color: var(--euca);">in plain English</em></h2>
+      <h2 class="readable mb-3 text-3xl md:text-5xl">How to access funding — <em class="not-italic" style="color: var(--euca);">in plain English</em></h2>
       <p class="readable mb-10 max-w-3xl text-xl" style="color: var(--tx-soft);">
         The Australian Government helps pay for care at home in two main ways. Don't worry about
         choosing — call us and we'll work out which suits you, then handle the paperwork together.
@@ -250,9 +250,9 @@ const stories = [
   <PricingCalculator />
 
   <!-- ============ FAMILY STORIES ============ -->
-  <section id="stories" class="py-16" style="background: var(--bg);">
+  <section id="stories" class="py-10 md:py-16" style="background: var(--bg);">
     <div class="mx-auto w-[min(1220px,100%-2.5rem)]">
-      <h2 class="readable mb-10 text-center text-4xl md:text-5xl">Don't take <em class="not-italic" style="color: var(--euca);">our</em> word for it</h2>
+      <h2 class="readable mb-10 text-center text-3xl md:text-5xl">Don't take <em class="not-italic" style="color: var(--euca);">our</em> word for it</h2>
       <div class="grid gap-7 md:grid-cols-3">
         {
           stories.map((s) => (
@@ -275,9 +275,9 @@ const stories = [
   </section>
 
   <!-- ============ CONTACT / CALLBACK ============ -->
-  <section id="contact" class="py-16" style="background: var(--sun-soft);">
+  <section id="contact" class="py-10 md:py-16" style="background: var(--sun-soft);">
     <div class="mx-auto w-[min(1220px,100%-2.5rem)]">
-      <h2 class="readable mb-3 text-center text-4xl md:text-5xl">Let's have a <em class="not-italic" style="color: var(--euca);">friendly chat</em></h2>
+      <h2 class="readable mb-3 text-center text-3xl md:text-5xl">Let's have a <em class="not-italic" style="color: var(--euca);">friendly chat</em></h2>
       <p class="readable mx-auto mb-10 max-w-2xl text-center text-xl" style="color: var(--tx-soft);">
         No obligation, no pressure — just honest answers about the help you can get.
       </p>

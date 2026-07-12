@@ -16,6 +16,7 @@
  * ------------------------------------------------------------------
  */
 import AccessibilityToggle from '../components/AccessibilityToggle.astro';
+import ChatWidget from '../components/ChatWidget.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -53,32 +54,43 @@ const {
       class="sticky top-0 z-[110] border-b-4 hc-border"
       style="background: var(--bg-card); border-color: var(--line);"
     >
-      <div class="mx-auto flex w-[min(1360px,100%-1.5rem)] flex-wrap items-center justify-between gap-x-5 gap-y-2 py-3">
+      <div class="mx-auto flex w-[min(1360px,100%-1rem)] flex-wrap items-center justify-between gap-x-4 gap-y-1 py-2 md:py-3">
         <!-- Brand: logo mark + wordmark (also mirrored in the browser tab favicon) -->
-        <a href="/" class="flex min-h-14 items-center gap-3" aria-label="Astro Care — home">
-          <svg class="h-14 w-14" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <a href="/" class="flex min-h-12 items-center gap-2 md:min-h-14 md:gap-3" aria-label="Astro Care — home">
+          <svg class="h-10 w-10 md:h-14 md:w-14" viewBox="0 0 48 48" fill="none" aria-hidden="true">
             <circle cx="24" cy="24" r="22" fill="var(--euca)"></circle>
             <path d="M24 10c1.2 5.6 4.4 8.8 10 10-5.6 1.2-8.8 4.4-10 10-1.2-5.6-4.4-8.8-10-10 5.6-1.2 8.8-4.4 10-10z" fill="var(--sun)"></path>
             <circle cx="33.5" cy="14.5" r="2.2" fill="#fff" opacity="0.9"></circle>
           </svg>
-          <span class="font-[900] text-3xl" style="font-family: var(--font-head); color: var(--euca);">
+          <span class="font-[900] text-2xl md:text-3xl" style="font-family: var(--font-head); color: var(--euca);">
             Astro <em class="not-italic" style="color: var(--sun-deep);">Care</em>
           </span>
         </a>
 
+        <!-- One-click call, always visible (compact on phones) -->
+        <a href="tel:+611800278762" class="btn-call hc-border order-2 !min-h-12 !px-4 !py-2 !text-lg md:order-3 md:!min-h-14 md:!px-7 md:!py-4 md:!text-xl">
+          <svg class="h-6 w-6 md:h-8 md:w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          <span class="flex flex-col text-left leading-tight">
+            <small class="hidden text-sm font-bold opacity-95 md:inline">Call Us Now — Free</small>
+            1800 ASTRO
+          </span>
+        </a>
+
         <!-- Primary navigation: plain, always-visible links. No dropdowns. -->
-        <nav aria-label="Main menu" class="flex flex-wrap gap-1">
+        <nav aria-label="Main menu" class="order-3 -mx-1 flex w-full flex-wrap gap-0 md:order-2 md:w-auto md:gap-1">
           {
             [
-              ['#services', 'Our Services'],
-              ['#funding', 'Funding Help'],
-              ['#pricing', 'Fees'],
-              ['#stories', 'Families'],
-              ['#contact', 'Contact'],
+              ['/#services', 'Services'],
+              ['/#funding', 'Funding'],
+              ['/#pricing', 'Fees'],
+              ['/#stories', 'Families'],
+              ['/#contact', 'Contact'],
             ].map(([href, label]) => (
               <a
                 href={href}
-                class="flex min-h-14 items-center rounded-2xl px-4 font-extrabold text-xl transition-colors hover:bg-[var(--euca-soft)] hover:text-[var(--euca)]"
+                class="flex min-h-11 items-center rounded-xl px-2.5 text-base font-extrabold transition-colors hover:bg-[var(--euca-soft)] hover:text-[var(--euca)] md:min-h-14 md:rounded-2xl md:px-4 md:text-xl"
                 style="font-family: var(--font-head);"
               >
                 {label}
@@ -86,17 +98,6 @@ const {
             ))
           }
         </nav>
-
-        <!-- One-click call, always visible -->
-        <a href="tel:+611800278762" class="btn-call hc-border">
-          <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-          </svg>
-          <span class="flex flex-col text-left leading-tight">
-            <small class="text-sm font-bold opacity-95">Call Us Now — Free</small>
-            1800 ASTRO (278 762)
-          </span>
-        </a>
       </div>
     </header>
 
@@ -146,29 +147,34 @@ const {
       role="complementary"
       aria-label="Talk to your care coordinator"
     >
-      <div class="mx-auto flex w-[min(1220px,100%-1.5rem)] flex-wrap items-center justify-between gap-x-6 gap-y-3 py-3">
-        <div class="flex items-center gap-4">
-          <img
-            src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=200&q=85&auto=format&fit=crop"
-            alt="Sarah, your local care coordinator"
-            class="h-16 w-16 rounded-full border-4 object-cover"
-            style="border-color: var(--sun);"
-            width="64" height="64" loading="lazy"
-          />
-          <p class="text-xl leading-snug">
-            <strong style="font-family: var(--font-head);">Hello, I'm Sarah — your local care coordinator.</strong><br />
-            <span style="color: var(--tx-soft);">Questions? I'm a real person, and I'd love to help.</span>
-          </p>
-        </div>
-        <div class="flex flex-wrap gap-3">
-          <a href="tel:+611800278762" class="btn-call hc-border">Call 1800-ASTRO-CARE</a>
-          <a href="#contact" class="btn-sun hc-border">Request a Free Callback</a>
+      <div class="mx-auto flex w-[min(1220px,100%-1rem)] items-center gap-3 py-2 md:gap-5 md:py-3">
+        <img
+          src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=200&q=85&auto=format&fit=crop"
+          alt="Sarah, your local care coordinator"
+          class="h-12 w-12 shrink-0 rounded-full border-4 object-cover md:h-16 md:w-16"
+          style="border-color: var(--sun);"
+          width="64" height="64" loading="lazy"
+        />
+        <p class="hidden text-xl leading-snug lg:block lg:flex-1">
+          <strong style="font-family: var(--font-head);">Hello, I'm Sarah — your local care coordinator.</strong><br />
+          <span style="color: var(--tx-soft);">Questions? I'm a real person, and I'd love to help.</span>
+        </p>
+        <div class="flex flex-1 flex-wrap justify-end gap-2 md:gap-3">
+          <a href="tel:+611800278762" class="btn-call hc-border flex-1 !min-h-12 !px-3 !text-base sm:flex-none md:!min-h-14 md:!px-6 md:!text-xl">
+            <span class="md:hidden">Call Sarah — free</span>
+            <span class="hidden md:inline">Call 1800-ASTRO-CARE</span>
+          </a>
+          <button id="openChat" class="btn-sun hc-border flex-1 !min-h-12 !px-3 !text-base sm:flex-none md:!min-h-14 md:!px-6 md:!text-xl" aria-haspopup="dialog" aria-expanded="false" aria-controls="chatPanel">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Chat with us
+          </button>
         </div>
       </div>
     </div>
     <!-- Reserve room so the sticky widget never obscures page content -->
-    <div aria-hidden="true" class="h-32 md:h-28"></div>
+    <div aria-hidden="true" class="h-20 md:h-24"></div>
 
+    <ChatWidget />
     <AccessibilityToggle />
 
     <script is:inline>

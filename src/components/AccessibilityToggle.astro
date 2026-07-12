@@ -22,18 +22,19 @@
  */
 ---
 
-<div class="fixed right-3 bottom-28 z-[120]" id="a11yRoot">
-  <!-- The always-visible launcher button -->
+<div class="fixed right-2 bottom-24 z-[120] md:right-3 md:bottom-32" id="a11yRoot">
+  <!-- The always-visible launcher button (icon-only on phones) -->
   <button
     id="a11yLauncher"
-    class="btn-sun hc-border shadow-lg !rounded-2xl flex-col !gap-1 !px-4 !py-3"
+    class="btn-sun hc-border shadow-lg !rounded-full flex-col !gap-1 !p-3 md:!rounded-2xl md:!px-4 md:!py-3"
     aria-expanded="false"
     aria-controls="a11yPanel"
+    aria-label="Accessibility options"
   >
-    <svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <svg class="w-7 h-7 md:w-9 md:h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <circle cx="12" cy="5" r="2.5"/><path d="M4 9.5h16"/><path d="M12 9.5V15l-3.5 6"/><path d="M12 15l3.5 6"/>
     </svg>
-    <span class="font-extrabold text-base leading-tight">Accessibility</span>
+    <span class="hidden font-extrabold text-base leading-tight md:inline">Accessibility</span>
   </button>
 
   <!-- The panel itself -->
