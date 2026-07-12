@@ -85,7 +85,6 @@ const {
               ['/#services', 'Services'],
               ['/#funding', 'Funding'],
               ['/#pricing', 'Fees'],
-              ['/#stories', 'Families'],
               ['/#contact', 'Contact'],
             ].map(([href, label]) => (
               <a
@@ -145,24 +144,20 @@ const {
       class="fixed bottom-0 left-0 right-0 z-[115] border-t-4 hc-border"
       style="background: var(--bg-card); border-color: var(--sun); box-shadow: 0 -8px 30px rgba(30,40,35,0.15);"
       role="complementary"
-      aria-label="Talk to your care coordinator"
+      aria-label="Talk to us"
     >
       <div class="mx-auto flex w-[min(1220px,100%-1rem)] items-center gap-3 py-2 md:gap-5 md:py-3">
-        <img
-          src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=200&q=85&auto=format&fit=crop"
-          alt="Sarah, your local care coordinator"
-          class="h-12 w-12 shrink-0 rounded-full border-4 object-cover md:h-16 md:w-16"
-          style="border-color: var(--sun);"
-          width="64" height="64" loading="lazy"
-        />
+        <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-4 md:h-16 md:w-16" style="background: var(--euca); border-color: var(--sun);" aria-hidden="true">
+          <svg class="h-7 w-7 md:h-9 md:w-9" style="color: var(--sun);" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c.9 4.2 3.3 6.6 7.5 7.5-4.2.9-6.6 3.3-7.5 7.5-.9-4.2-3.3-6.6-7.5-7.5 4.2-.9 6.6-3.3 7.5-7.5z"/></svg>
+        </span>
         <p class="hidden text-xl leading-snug lg:block lg:flex-1">
-          <strong style="font-family: var(--font-head);">Hello, I'm Sarah — your local care coordinator.</strong><br />
-          <span style="color: var(--tx-soft);">Questions? I'm a real person, and I'd love to help.</span>
+          <strong style="font-family: var(--font-head);">Questions? We're here to help.</strong><br />
+          <span style="color: var(--tx-soft);">Free call, friendly answers — no obligation ever.</span>
         </p>
         <div class="flex flex-1 flex-wrap justify-end gap-2 md:gap-3">
           <a href="tel:+611800278762" class="btn-call hc-border flex-1 !min-h-12 !px-3 !text-base sm:flex-none md:!min-h-14 md:!px-6 md:!text-xl">
-            <span class="md:hidden">Call Sarah — free</span>
-            <span class="hidden md:inline">Call 1800-ASTRO-CARE</span>
+            <span class="md:hidden">Call us — free</span>
+            <span class="hidden md:inline">Call 1800 ASTRO — free</span>
           </a>
           <button id="openChat" class="btn-sun hc-border flex-1 !min-h-12 !px-3 !text-base sm:flex-none md:!min-h-14 md:!px-6 md:!text-xl" aria-haspopup="dialog" aria-expanded="false" aria-controls="chatPanel">
             <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>

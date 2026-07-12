@@ -38,10 +38,10 @@
   </div>
 
   <!-- Messages -->
-  <div id="chatLog" class="flex-1 space-y-3 overflow-y-auto p-4" style="min-height: 14rem;" aria-live="polite"></div>
+  <div id="chatLog" class="flex-1 space-y-3 overflow-y-auto p-4" style="min-height: 16rem; max-height: 50vh;" aria-live="polite"></div>
 
   <!-- Quick-reply chips: nobody has to type -->
-  <div id="chatChips" class="flex flex-wrap gap-2 px-4 pb-2"></div>
+  <div id="chatChips" class="flex gap-2 overflow-x-auto px-4 pb-2" style="scrollbar-width: thin;" aria-label="Quick questions"></div>
 
   <!-- Input -->
   <form id="chatForm" class="flex gap-2 border-t-2 p-3" style="border-color: var(--line);">
@@ -150,7 +150,7 @@
         var b = document.createElement('button');
         b.type = 'button';
         b.textContent = item.chip;
-        b.className = 'rounded-full border-2 px-4 py-2 text-base font-bold min-h-11';
+        b.className = 'shrink-0 whitespace-nowrap rounded-full border-2 px-4 py-2 text-base font-bold min-h-11';
         b.style.cssText = 'border-color: var(--euca); color: var(--euca); font-family: var(--font-head);';
         b.addEventListener('click', function () {
           bubble(item.chip, 'you');

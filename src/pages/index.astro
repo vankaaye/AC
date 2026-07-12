@@ -5,7 +5,7 @@
  * Lively, senior-first home page:
  *   Hero → compliance badges → quick help → services grid →
  *   "How to Access Funding" (HCP 1–4 & CHSP) → Pricing Calculator →
- *   family stories → contact/callback form.
+ * *   contact/callback form.
  *
  * Every heading and paragraph carries the `readable` class so the
  * Accessibility Panel's Read Aloud mode can speak it on click.
@@ -50,26 +50,6 @@ const services = [
   },
 ];
 
-const stories = [
-  {
-    quote:
-      "The staff didn't just care for Mum — they knew her. They knew she took her tea weak, loved Sinatra, and missed her roses. So they planted roses outside her window.",
-    who: 'Helen, daughter of Margaret',
-    tag: 'Home Care Package family',
-  },
-  {
-    quote:
-      "Dad swore he'd never accept help — now he greets his Astro Care visitors like old friends. Because that's what they've become.",
-    who: 'David, son of Robert',
-    tag: 'Home Care Package client',
-  },
-  {
-    quote:
-      'The fees were explained on one page, in plain English, before we signed anything. After two years of confusing brochures, that honesty won us over.',
-    who: 'Priya, daughter of Anand',
-    tag: 'CHSP client',
-  },
-];
 ---
 
 <Layout>
@@ -139,7 +119,7 @@ const stories = [
           style="background: var(--bg-card); box-shadow: var(--shadow);"
         >
           <svg class="h-9 w-9 shrink-0" style="color: var(--sun);" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3c.9 4.2 3.3 6.6 7.5 7.5-4.2.9-6.6 3.3-7.5 7.5-.9-4.2-3.3-6.6-7.5-7.5 4.2-.9 6.6-3.3 7.5-7.5z"/></svg>
-          Rated <strong>4.9 out of 5</strong> by the families we care for
+          <strong>Australian owned&nbsp;&amp; run</strong> — care with local heart
         </p>
       </div>
     </div>
@@ -159,7 +139,7 @@ const stories = [
               class="grid overflow-hidden rounded-3xl border-4 hc-border transition-transform hover:-translate-y-1 sm:grid-cols-[42%_58%]"
               style="background: var(--bg-card); border-color: var(--line); box-shadow: var(--shadow);"
             >
-              <img src={s.photo} alt={s.alt} class="h-full min-h-52 w-full object-cover" width="800" height="800" loading="lazy" />
+              <img src={s.photo} alt={s.alt} class="h-52 w-full object-cover sm:h-full sm:min-h-52" width="800" height="800" loading="lazy" />
               <div class="flex flex-col items-start p-7">
                 <span class="mb-3 inline-flex rounded-2xl px-4 py-2 text-lg font-black" style={`background:${s.soft}; color:${s.color}; font-family: var(--font-head);`}>
                   {s.title}
@@ -248,31 +228,6 @@ const stories = [
 
   <!-- ============ PRICING & FEE TRANSPARENCY CALCULATOR ============ -->
   <PricingCalculator />
-
-  <!-- ============ FAMILY STORIES ============ -->
-  <section id="stories" class="py-10 md:py-16" style="background: var(--bg);">
-    <div class="mx-auto w-[min(1220px,100%-2.5rem)]">
-      <h2 class="readable mb-10 text-center text-3xl md:text-5xl">Don't take <em class="not-italic" style="color: var(--euca);">our</em> word for it</h2>
-      <div class="grid gap-7 md:grid-cols-3">
-        {
-          stories.map((s) => (
-            <figure class="flex flex-col rounded-3xl border-4 hc-border p-7" style="background: var(--bg-card); border-color: var(--line); box-shadow: var(--shadow);">
-              <div class="mb-4 flex gap-1" style="color: var(--sun);" aria-label="Five stars">
-                {[...Array(5)].map(() => (
-                  <svg class="h-7 w-7" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.26L21.5 9.3l-4.75 4.5 1.15 6.7L12 17.25 6.1 20.5l1.15-6.7L2.5 9.3l6.6-1.04z"/></svg>
-                ))}
-              </div>
-              <blockquote class="readable grow text-xl" style="color: var(--tx-soft);">"{s.quote}"</blockquote>
-              <figcaption class="mt-5 text-lg">
-                <strong style="font-family: var(--font-head); color: var(--euca);">{s.who}</strong>
-                <br /><span style="color: var(--tx-soft);">{s.tag}</span>
-              </figcaption>
-            </figure>
-          ))
-        }
-      </div>
-    </div>
-  </section>
 
   <!-- ============ CONTACT / CALLBACK ============ -->
   <section id="contact" class="py-10 md:py-16" style="background: var(--sun-soft);">
