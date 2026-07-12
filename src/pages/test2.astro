@@ -1,0 +1,358 @@
+---
+/**
+ * test2.astro — Design concept "Test 2"
+ * ------------------------------------------------------------------
+ * Styled after ktechify.com (a previous project): light corporate
+ * theme, Space Grotesk display type, electric blue #1a56f0 with
+ * violet and green accents, photo hero with overlay, stats row,
+ * scrolling capability strip, image service cards, numbered
+ * "why us" grid, gradient CTA and a proper contact form.
+ *
+ * CONCEPT ONLY — does not replace the live site. See /versions.
+ * ------------------------------------------------------------------
+ */
+const services = [
+  {
+    title: 'Clinical Care',
+    text: 'Registered nurses for wounds, medication, health checks and post-hospital recovery — delivered at home.',
+    photo: 'https://images.unsplash.com/photo-1584515933487-779824d29309?w=900&q=85&auto=format&fit=crop',
+    alt: "A nurse gently holding an older person's hands",
+  },
+  {
+    title: 'Support at Home',
+    text: 'Domestic assistance, meals, transport and social support under government programs — HCP, Support at Home and CHSP.',
+    photo: 'https://images.unsplash.com/photo-1543333995-a78aea2eee50?w=900&q=85&auto=format&fit=crop',
+    alt: 'A senior enjoying a golden afternoon walk',
+  },
+  {
+    title: 'Wellbeing & Allied Health',
+    text: 'Physio, podiatry, dietetics and gentle exercise programs that keep bodies strong and days bright.',
+    photo: 'https://images.unsplash.com/photo-1544928147-79a2dbc1f389?w=900&q=85&auto=format&fit=crop',
+    alt: 'Friends enjoying a craft afternoon together',
+  },
+];
+
+const streams = ['Aged Care', 'Home Care', 'Dementia Support', 'Respite', 'Palliative Care', 'Allied Health', 'NDIS Supports', 'Carer Support'];
+---
+
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Astro Care — Concept Test 2</title>
+    <meta name="description" content="Design concept Test 2 for Astro Care — corporate light theme in the ktechify style." />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="banner">
+      <span><strong>Concept · Test 2</strong> — ktechify-style corporate light theme. Not the live site.</span>
+      <span><a href="/">Live site</a> · <a href="/versions">All versions</a></span>
+    </div>
+
+    <header class="nav">
+      <a class="nav__brand" href="/test2">
+        <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <circle cx="24" cy="24" r="22" fill="#1a56f0"></circle>
+          <path d="M13 38 L24 12 L35 38" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M16.5 29.5 h3.3 l1.65 -3.9 l2.4 7.8 l2.1 -5.1 l1.2 1.2 h4.35" fill="none" stroke="#6ee7b7" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        Astro&nbsp;Care
+      </a>
+      <nav aria-label="Concept menu">
+        <a href="#services">Services</a>
+        <a href="#why">Why us</a>
+        <a href="#funding">Funding</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn btn--solid" href="tel:+611800278762">Book a Consultation</a>
+    </header>
+
+    <main>
+      <!-- ============ HERO ============ -->
+      <section class="hero">
+        <img class="hero__bg" src="https://images.unsplash.com/photo-1543333995-a78aea2eee50?w=1800&q=85&auto=format&fit=crop" alt="" aria-hidden="true" />
+        <div class="hero__veil" aria-hidden="true"></div>
+        <div class="hero__inner">
+          <p class="hero__eyebrow reveal">Astro Care Group · Australia</p>
+          <h1 class="reveal">Considered care.<br />Every stage of life.</h1>
+          <p class="hero__sub reveal">
+            Clinical care, support at home and wellbeing services — planned properly, priced
+            transparently, delivered by people who turn up.
+          </p>
+          <div class="hero__cta reveal">
+            <a class="btn btn--solid btn--lg" href="tel:+611800278762">Book a Consultation</a>
+            <a class="btn btn--ghost btn--lg" href="#services">Our Services →</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ STATS ============ -->
+      <section class="stats">
+        {
+          [
+            ['24/7', 'nursing availability'],
+            ['4', 'core service lines'],
+            ['15% + 10%', 'capped, published fees'],
+            ['1', 'phone call to start'],
+          ].map(([n, l]) => (
+            <div class="stat reveal">
+              <span>{n}</span>
+              <small>{l}</small>
+            </div>
+          ))
+        }
+      </section>
+
+      <!-- ============ STREAMS MARQUEE ============ -->
+      <section class="streams" aria-label="Care streams">
+        <div class="streams__track">
+          {[...streams, ...streams].map((s) => <span>{s}</span>)}
+        </div>
+      </section>
+
+      <!-- ============ SERVICES ============ -->
+      <section class="section" id="services">
+        <p class="kicker reveal">What we do</p>
+        <h2 class="reveal">Capability, end to end</h2>
+        <div class="cards">
+          {
+            services.map((s) => (
+              <article class="card reveal">
+                <img src={s.photo} alt={s.alt} loading="lazy" />
+                <div class="card__body">
+                  <h3>{s.title}</h3>
+                  <p>{s.text}</p>
+                  <a href="/#services">Explore →</a>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- ============ WHY US ============ -->
+      <section class="section section--alt" id="why">
+        <p class="kicker reveal">Why Astro Care</p>
+        <h2 class="reveal">Built like a partner, not a provider</h2>
+        <div class="why">
+          {
+            [
+              ['01', 'Clinically led', 'Registered nurses shape every care plan — and review it with you each quarter.'],
+              ['02', 'Radically transparent', 'Published fees under the government caps, itemised statements, no surprises.'],
+              ['03', 'One team, all needs', 'From light home help to palliative care — needs change, providers should not.'],
+              ['04', 'Compliance first', 'Aligned with the Aged Care Quality Standards; NDIS registered; My Aged Care approved.'],
+            ].map(([n, t, d]) => (
+              <div class="why__item reveal">
+                <span>{n}</span>
+                <h3>{t}</h3>
+                <p>{d}</p>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- ============ FUNDING ============ -->
+      <section class="section" id="funding">
+        <p class="kicker reveal">Funding</p>
+        <h2 class="reveal">Government-funded, properly explained</h2>
+        <div class="fund">
+          {
+            [
+              ['Register', 'One call to My Aged Care (or to us) starts everything — we handle the paperwork with you.'],
+              ['Assess', 'A free assessment at home determines your funding level. We help you prepare for it.'],
+              ['Begin', 'Choose Astro Care as your provider and care starts — often within days for home services.'],
+            ].map(([t, d], i) => (
+              <div class="fund__step reveal">
+                <span>{i + 1}</span>
+                <h3>{t}</h3>
+                <p>{d}</p>
+              </div>
+            ))
+          }
+        </div>
+        <a class="btn btn--solid reveal" href="/#pricing">Try the fee calculator →</a>
+      </section>
+
+      <!-- ============ CTA ============ -->
+      <section class="cta">
+        <h2 class="reveal">Ready when you are.</h2>
+        <p class="reveal">A free, unhurried conversation about the care you or your family need.</p>
+        <div class="reveal">
+          <a class="btn btn--white btn--lg" href="tel:+611800278762">Call 1800 ASTRO (278 762)</a>
+        </div>
+      </section>
+
+      <!-- ============ CONTACT ============ -->
+      <section class="section" id="contact">
+        <p class="kicker reveal">Contact</p>
+        <h2 class="reveal">Request a call back</h2>
+        <form class="form reveal" id="t2form" novalidate>
+          <div class="form__row">
+            <label>Name<input type="text" name="name" placeholder="Jane Citizen" required /></label>
+            <label>Phone<input type="tel" name="phone" placeholder="04xx xxx xxx" required /></label>
+          </div>
+          <label>What do you need help with?
+            <select name="careType" required>
+              <option value="" selected disabled>Please choose…</option>
+              <option>Clinical / nursing care</option>
+              <option>Support at home</option>
+              <option>Wellbeing & allied health</option>
+              <option>Not sure yet</option>
+            </select>
+          </label>
+          <button type="submit" class="btn btn--solid btn--lg">Send request</button>
+          <p class="form__note" id="t2success" hidden>Thanks — we'll call you within one business day.</p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <p>© 2026 Astro Care Group Pty Ltd · ABN 99 700 192 981</p>
+      <p><a href="/">Back to the live site</a> · <a href="/versions">Design versions</a></p>
+    </footer>
+
+    <style>
+      :root {
+        --blue: #1a56f0;
+        --blue-deep: #1445cc;
+        --violet: #7c3aed;
+        --green: #0ea86e;
+        --ink: #0a0c14;
+        --muted: #6b7a99;
+        --bg: #ffffff;
+        --bg-alt: #f8faff;
+        --line: #e4e9f4;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--ink); background: var(--bg); line-height: 1.6; overflow-x: hidden; }
+      a { color: inherit; text-decoration: none; }
+      img { display: block; max-width: 100%; }
+      h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; line-height: 1.08; letter-spacing: -0.02em; }
+
+      .banner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.4rem 1.5rem; padding: 0.6rem 1.4rem; background: var(--ink); color: #dfe7ff; font-size: 0.88rem; }
+      .banner a { text-decoration: underline; text-underline-offset: 3px; }
+
+      .nav { position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.8rem clamp(1.2rem, 4vw, 3rem); background: rgba(255,255,255,0.9); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+      .nav__brand { display: flex; align-items: center; gap: 0.55rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.15rem; }
+      .nav__brand svg { width: 34px; height: 34px; }
+      .nav nav { display: flex; gap: clamp(0.8rem, 2.5vw, 2rem); font-weight: 600; font-size: 0.95rem; color: var(--muted); }
+      .nav nav a:hover { color: var(--blue); }
+
+      .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.7rem 1.4rem; border-radius: 10px; font-weight: 700; font-size: 0.98rem; transition: transform 0.2s ease, background 0.2s, box-shadow 0.2s; cursor: pointer; border: none; font-family: inherit; }
+      .btn--lg { padding: 0.95rem 1.9rem; font-size: 1.08rem; }
+      .btn--solid { background: var(--blue); color: #fff; box-shadow: 0 8px 24px rgba(26, 86, 240, 0.3); }
+      .btn--solid:hover { background: var(--blue-deep); transform: translateY(-2px); }
+      .btn--ghost { border: 2px solid rgba(255,255,255,0.6); color: #fff; }
+      .btn--ghost:hover { border-color: #fff; transform: translateY(-2px); }
+      .btn--white { background: #fff; color: var(--blue); }
+      .btn--white:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,0,0,0.2); }
+
+      /* hero */
+      .hero { position: relative; min-height: 78vh; display: flex; align-items: center; color: #fff; }
+      .hero__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .hero__veil { position: absolute; inset: 0; background: linear-gradient(100deg, rgba(7, 14, 40, 0.86) 0%, rgba(7, 14, 40, 0.55) 55%, rgba(7, 14, 40, 0.25) 100%); }
+      .hero__inner { position: relative; width: min(1180px, 100% - 2.8rem); margin: 0 auto; padding: 5rem 0; }
+      .hero__eyebrow { font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.85rem; color: #9db8ff; margin-bottom: 1rem; }
+      .hero h1 { font-size: clamp(2.6rem, 6.5vw, 4.8rem); font-weight: 700; }
+      .hero__sub { max-width: 54ch; margin-top: 1.3rem; font-size: clamp(1.05rem, 1.8vw, 1.3rem); color: #dbe4ff; }
+      .hero__cta { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-top: 2rem; }
+
+      /* stats */
+      .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; width: min(1180px, 100% - 2.8rem); margin: -3rem auto 0; position: relative; z-index: 2; }
+      .stat { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 1.4rem 1.2rem; box-shadow: 0 14px 40px rgba(10, 12, 20, 0.08); text-align: center; }
+      .stat span { display: block; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.2rem); color: var(--blue); }
+      .stat small { color: var(--muted); font-weight: 600; font-size: 0.92rem; }
+
+      /* marquee */
+      .streams { overflow: hidden; border-block: 1px solid var(--line); margin-top: 3.5rem; padding: 0.9rem 0; }
+      .streams__track { display: flex; gap: 3rem; width: max-content; animation: slide 28s linear infinite; }
+      .streams__track span { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--muted); white-space: nowrap; }
+      .streams__track span::after { content: '·'; margin-left: 3rem; color: var(--blue); }
+      @keyframes slide { to { transform: translateX(-50%); } }
+
+      /* sections */
+      .section { width: min(1180px, 100% - 2.8rem); margin: 0 auto; padding: clamp(3.5rem, 7vw, 6rem) 0; }
+      .section--alt { width: 100%; background: var(--bg-alt); }
+      .section--alt > * { width: min(1180px, 100% - 2.8rem); margin-inline: auto; }
+      .kicker { font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.85rem; color: var(--blue); margin-bottom: 0.6rem; }
+      .section h2 { font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 700; margin-bottom: 2rem; }
+
+      .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+      .card { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: #fff; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+      .card:hover { transform: translateY(-5px); box-shadow: 0 18px 44px rgba(10, 12, 20, 0.1); }
+      .card img { aspect-ratio: 16 / 10; object-fit: cover; width: 100%; }
+      .card__body { padding: 1.4rem; }
+      .card h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+      .card p { color: var(--muted); font-size: 0.98rem; margin-bottom: 0.9rem; }
+      .card a { font-weight: 700; color: var(--blue); }
+      .card a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+      .why { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; padding-bottom: 1rem; }
+      .why__item { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 1.5rem 1.3rem; }
+      .why__item span { font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--violet); }
+      .why__item h3 { font-size: 1.15rem; margin: 0.5rem 0 0.4rem; }
+      .why__item p { color: var(--muted); font-size: 0.95rem; }
+
+      .fund { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; margin-bottom: 2rem; }
+      .fund__step { border-left: 4px solid var(--green); padding: 0.2rem 0 0.2rem 1.2rem; }
+      .fund__step span { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.6rem; color: var(--green); }
+      .fund__step h3 { font-size: 1.2rem; margin: 0.2rem 0 0.4rem; }
+      .fund__step p { color: var(--muted); font-size: 0.97rem; }
+
+      .cta { text-align: center; color: #fff; padding: clamp(4rem, 8vw, 6.5rem) 1.4rem; background: linear-gradient(115deg, var(--blue) 0%, var(--violet) 100%); }
+      .cta h2 { font-size: clamp(2.2rem, 5vw, 3.6rem); }
+      .cta p { margin: 1rem auto 1.8rem; max-width: 50ch; color: #e4dcff; font-size: 1.15rem; }
+
+      .form { max-width: 640px; }
+      .form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .form label { display: block; font-weight: 700; font-size: 0.95rem; margin-bottom: 1.1rem; }
+      .form input, .form select { display: block; width: 100%; margin-top: 0.35rem; padding: 0.85rem 1rem; font-family: inherit; font-size: 1rem; border: 1.5px solid var(--line); border-radius: 10px; background: var(--bg-alt); }
+      .form input:focus, .form select:focus { outline: 3px solid rgba(26, 86, 240, 0.35); border-color: var(--blue); }
+      .form__note { margin-top: 1rem; font-weight: 700; color: var(--green); }
+
+      .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.6rem 1.5rem; padding: 1.6rem clamp(1.2rem, 4vw, 3rem); border-top: 1px solid var(--line); font-size: 0.9rem; color: var(--muted); }
+      .foot a { text-decoration: underline; text-underline-offset: 3px; }
+
+      .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
+      .reveal.in { opacity: 1; transform: translateY(0); }
+
+      @media (max-width: 900px) {
+        .nav nav { display: none; }
+        .stats { grid-template-columns: 1fr 1fr; }
+        .cards { grid-template-columns: 1fr; }
+        .why { grid-template-columns: 1fr 1fr; }
+        .fund { grid-template-columns: 1fr; }
+        .form__row { grid-template-columns: 1fr; gap: 0; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        .reveal { transition: none; opacity: 1; transform: none; }
+        .streams__track { animation: none; }
+      }
+    </style>
+
+    <script is:inline>
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+      var f = document.getElementById('t2form');
+      if (f) f.addEventListener('submit', function (e) {
+        e.preventDefault();
+        document.getElementById('t2success').hidden = false;
+        f.querySelectorAll('input, select').forEach(function (el) { el.value = ''; });
+      });
+    </script>
+  </body>
+</html>

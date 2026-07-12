@@ -8,6 +8,7 @@ so any version can be restored exactly with:
 |---------|---------|-----------|-----------|-------|
 | v1 — Sunny & senior-first | **LIVE** | `/` | `f4f0387` | Warm eucalyptus/sand/sunflower, 20px+ text, accessibility panel (text size / high contrast / read aloud), HCP-CHSP funding guide, fee calculator, chat helper, logo No. 181 (Monogram A heartbeat). |
 | Test 1 — White minimal + animations | Concept | `/test1` | `ef8c342` | Apple-inspired: primary white, oversized type, scroll reveals with blur, scroll-driven image zoom, parallax, count-ups, dark gradient-number CTA. |
+| Test 2 — Corporate light (ktechify style) | Concept | `/test2` | (this commit) | White corporate, Space Grotesk, electric blue #1a56f0, photo hero, floating stats, marquee strip, gradient CTA. |
 
 Earlier full-site iterations (before the Astro rebuild) also live in history:
 
