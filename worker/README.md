@@ -11,7 +11,15 @@ typical small-business traffic.
    (Billing → add a payment method, then API Keys → Create Key).
 2. A **free Cloudflare account** — https://dash.cloudflare.com/sign-up
 
-## Deploy
+## Deploy (one command)
+```bash
+CLOUDFLARE_API_TOKEN=<token> ANTHROPIC_API_KEY=<key> ./worker/deploy.sh
+```
+The Cloudflare token is created at dash.cloudflare.com → My Profile →
+API Tokens → Create Token → use the **"Edit Cloudflare Workers"**
+template. Neither secret is ever written to this repository.
+
+Or interactively:
 ```bash
 cd worker
 npm install -g wrangler
