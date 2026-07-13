@@ -15,6 +15,32 @@ const candidates = [
   { n: 10, title: 'A spotless home', desc: 'Domestic assistance — vacuuming while the client relaxes. The everyday help families ask about first.', src: 'Mixkit 43373', res: '720p' },
   { n: 11, title: 'Fresh meals, made with care', desc: 'Close-up of colourful, healthy meal preparation. Appetising and universal.', src: 'Mixkit 40524', res: '720p' },
 ];
+
+/* NEW — 20 true-4K candidates. Every source below is native 3840×2160 or
+   4096×2160; the previews here are compressed 960×540 and the chosen clip
+   gets re-cut from the 4K master. */
+const fourK = [
+  { n: 13, title: 'Fresh flowers from the garden', desc: 'A woman gathers flowers by her greenhouse — soft light, genuine contentment.', src: 'Pexels 10049403' },
+  { n: 14, title: 'A quiet coffee together', desc: 'An older couple clink mugs at the kitchen table. Warm, everyday companionship.', src: 'Pexels 6975632' },
+  { n: 15, title: 'Morning coffee & conversation', desc: 'A couple chat over coffee in soft window light. Calm and unhurried.', src: 'Pexels 7231139' },
+  { n: 16, title: 'A good laugh', desc: 'A man breaks into a warm, natural laugh. Pure, unforced joy.', src: 'Pexels 8724449' },
+  { n: 17, title: 'A warm hello', desc: 'A gentle, welcoming portrait of an older woman. Elegant and reassuring.', src: 'Pexels 8724243' },
+  { n: 18, title: 'Good news at the kitchen table', desc: 'A woman lights up reading something at home. Bright and hopeful.', src: 'Pexels 6975702' },
+  { n: 19, title: 'Sharing a memory', desc: 'A smiling man at home, glasses on, mid-story. Character and warmth.', src: 'Pexels 8440979' },
+  { n: 20, title: 'A gentle smile', desc: 'A soft, dignified portrait of an older woman. Understated and human.', src: 'Pexels 6248332' },
+  { n: 21, title: 'A walk in the park', desc: 'An older couple stroll a leafy path together. Active, independent, content.', src: 'Pexels 8970851' },
+  { n: 22, title: 'Out for a stroll', desc: 'Two older friends walk and talk along a park path. Companionship outdoors.', src: 'Pexels 27333136' },
+  { n: 23, title: 'Enjoying the fresh air', desc: 'A man laughs in the open air. Vital and full of life.', src: 'Pexels 27333441' },
+  { n: 24, title: 'A moment in the meadow', desc: 'A man stands smiling in a green field. Peaceful and free.', src: 'Pexels 37386225' },
+  { n: 25, title: 'Tending the garden', desc: 'A woman gardens at her front fence. Staying active in her own space.', src: 'Pexels 7655274' },
+  { n: 26, title: 'A helping hand at home', desc: 'A support worker helps a client settle comfortably. Attentive, respectful care.', src: 'Pexels 7522221' },
+  { n: 27, title: 'Staying active outdoors', desc: 'A group of older people do gentle exercises in a sunny park. Energetic and social.', src: 'Pexels 3191859' },
+  { n: 28, title: 'The exercise class', desc: 'An indoor group stretch class in full swing. Movement, balance, togetherness.', src: 'Pexels 3195810' },
+  { n: 29, title: 'Catching up over coffee', desc: 'Two women chat over coffee in a bright cafe. Friendship and connection.', src: 'Pexels 7017911' },
+  { n: 30, title: 'Feeling herself again', desc: 'A confident, relaxed studio portrait of an older woman. Poised and positive.', src: 'Pexels 8724358' },
+  { n: 31, title: 'An afternoon walk together', desc: 'A couple walk arm in arm through the park. Gentle, everyday closeness.', src: 'Pexels 8970858' },
+  { n: 32, title: 'Friends over lunch', desc: 'Older friends share a meal around a table. Community and good company.', src: 'Pexels 8087301' },
+];
 ---
 
 <Layout
@@ -26,10 +52,36 @@ const candidates = [
     <p class="text-sm font-bold uppercase tracking-widest" style="color: var(--euca);">Internal preview</p>
     <h1 class="mt-2 text-3xl md:text-4xl">Hero video candidates</h1>
     <p class="mt-3 max-w-3xl text-[1.02rem]" style="color: var(--tx-soft);">
-      Ten options for the homepage hero. These are compressed 960×540 previews so the page loads fast —
-      the chosen clip gets re-cut from the full-resolution source (1080p where marked). Tell us the
+      Thirty options for the homepage hero. These are compressed 960×540 previews so the page loads fast —
+      the chosen clip gets re-cut from the full-resolution source. Tell us the
       <strong>V-number</strong> you want, or ask for a new montage combining any of them.
     </p>
+
+    <h2 class="mt-10 text-xl md:text-2xl" style="font-family: var(--font-head);">✨ True 4K collection — 20 new options</h2>
+    <p class="mt-1 mb-6 max-w-3xl text-[0.95rem]" style="color: var(--tx-soft);">
+      Every clip below comes from a native <strong>4K (3840×2160 or 4096×2160)</strong> source — sharp even on
+      big screens. Warm portraits, garden and park scenes, coffee catch-ups, gentle exercise and in-home care.
+    </p>
+
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {fourK.map((c) => (
+        <figure class="overflow-hidden rounded-2xl border bg-white" style="border-color: var(--line); box-shadow: var(--shadow);">
+          <div class="relative aspect-video bg-slate-900">
+            <video class="h-full w-full object-cover" src={`/media/hv/v${c.n}.mp4`} poster={`/media/hv/v${c.n}.jpg`} autoplay muted loop playsinline preload="none"></video>
+            <span class="absolute left-3 top-3 rounded-full px-3 py-1 text-sm font-extrabold text-white" style="background: var(--euca); font-family: var(--font-head);">V{c.n}</span>
+            <span class="absolute right-3 top-3 rounded-full px-2.5 py-1 text-xs font-extrabold uppercase tracking-wide" style="background: var(--sun); color: var(--tx); font-family: var(--font-head);">4K</span>
+          </div>
+          <figcaption class="p-5">
+            <h3 class="text-base" style="font-family: var(--font-head);">{c.title}</h3>
+            <p class="mt-1.5 text-[0.9rem]" style="color: var(--tx-soft);">{c.desc}</p>
+            <p class="mt-2 text-xs font-semibold uppercase tracking-wide" style="color: var(--tx-soft);">{c.src} · 4K source</p>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+
+    <h2 class="mt-14 text-xl md:text-2xl" style="font-family: var(--font-head);">Original 10 (1080p / 720p)</h2>
+    <p class="mt-1 mb-2 max-w-3xl text-[0.95rem]" style="color: var(--tx-soft);">The earlier shortlist, including the montage currently live.</p>
 
     <div class="mt-10 grid gap-8 sm:grid-cols-2">
       {candidates.map((c) => (
@@ -60,10 +112,9 @@ const candidates = [
     </div>
 
     <p class="mt-10 rounded-2xl border p-5 text-[0.95rem]" style="border-color: var(--line); background: var(--bg-sand); color: var(--tx-soft);">
-      <strong style="color: var(--tx);">A note on quality:</strong> free stock tops out at 1080p — it looks sharp on
-      phones and laptops but soft on a 4K display. For true 4K hero footage the options are paid stock
-      (roughly $50–100 per clip) or a half-day shoot with a real Astro Care team, which would also give us
-      authentic faces for the whole site.
+      <strong style="color: var(--tx);">A note on quality:</strong> the 4K collection is genuinely crisp on big screens.
+      The one thing free stock can’t give us is <em>your</em> team’s real faces — for that, a half-day shoot
+      with real Astro Care staff and clients would let us use authentic footage across the whole site.
     </p>
   </section>
 
