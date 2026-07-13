@@ -34,6 +34,15 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="canonical" href={`https://www.astrocare.com.au${Astro.url.pathname}`} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Astro Care" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={`https://www.astrocare.com.au${Astro.url.pathname}`} />
+    <meta property="og:image" content="https://www.astrocare.com.au/media/hero-1080-poster.jpg" />
+    <meta property="og:locale" content="en_AU" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -152,7 +161,7 @@ const {
         </nav>
       </div>
       <div class="mx-auto flex w-[min(1280px,100%-2.5rem)] flex-wrap justify-between gap-3 pt-6 text-sm text-white/75">
-        <p>© 2026 Astro Care Group Pty Ltd · ABN 99 700 192 981</p>
+        <p>© 2026 Astro Care Group Pty Ltd · ABN 99 700 192 981 · <a class="underline underline-offset-4 hover:text-white" href="/privacy">Privacy</a></p>
         <p class="max-w-xl">We acknowledge the Traditional Owners of the lands on which we care, and pay our respects to Elders past and present.</p>
       </div>
     </footer>

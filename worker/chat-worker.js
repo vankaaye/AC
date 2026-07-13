@@ -78,6 +78,21 @@ FOLLOW-UP SUGGESTIONS — after EVERY answer, end with exactly one final line in
 SUGGESTIONS: first follow-up question | second follow-up question | third follow-up question
 Rules for suggestions: 3 options, each under 40 characters, natural next questions someone would ask after your answer, phrased from the user's voice (e.g. "How do I apply?", "What does Level 3 cover?").`;
 
+/* Per-IP rate limit (cost guard). In-memory per isolate — resets when the
+   worker recycles, which is fine: it exists to stop scripted abuse running
+   up the Anthropic bill, not to be a precise quota. */
+const RL_WINDOW_MS = 60 * 60 * 1000; // 1 hour
+const RL_MAX_CHATS_PER_WINDOW = 30;  // generous for a human, hostile to a script
+const rlBuckets = new Map();
+function rateLimited(ip) {
+  const now = Date.now();
+  let b = rlBuckets.get(ip);
+  if (!b || now - b.start > RL_WINDOW_MS) { b = { start: now, count: 0 }; rlBuckets.set(ip, b); }
+  b.count += 1;
+  if (rlBuckets.size > 5000) rlBuckets.clear(); // memory backstop
+  return b.count > RL_MAX_CHATS_PER_WINDOW;
+}
+
 export default {
   async fetch(request, env) {
     const origin = request.headers.get('Origin') || '';
@@ -139,6 +154,14 @@ export default {
         status: ok ? 200 : 502,
         headers: { ...cors, 'content-type': 'application/json' },
       });
+    }
+
+    const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+    if (rateLimited(ip)) {
+      return new Response(JSON.stringify({
+        reply: "You've asked quite a few questions this hour — to keep the service free for everyone we pause here for a little while. Leave your details on the [callback form](/#contact) and a real person will ring you back, or try again shortly. 💚",
+        suggestions: [],
+      }), { headers: { ...cors, 'content-type': 'application/json' } });
     }
 
     // Trim and sanitise the conversation the widget sends us.

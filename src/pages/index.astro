@@ -390,6 +390,35 @@ const funding = [
     </div>
   </section>
 
+  <!-- ============ FAQ ============ -->
+  <section id="faq" class="py-14 md:py-20" style="background: var(--bg);">
+    <div class="sect-rv mx-auto w-[min(900px,100%-2.5rem)]">
+      <p class="rv mb-2 text-sm font-bold uppercase tracking-widest" style="color: var(--euca);">Questions</p>
+      <h2 class="rv rv-d1 mb-8 text-2xl md:text-4xl">The things families ask us first</h2>
+      <div class="rv rv-d2 grid gap-3">
+        {
+          [
+            ['Who is eligible for government-funded care at home?', 'Generally Australians aged 65+ (50+ for Aboriginal and Torres Strait Islander people) who need some help to keep living at home. Eligibility is confirmed through a free My Aged Care assessment — we help you arrange it and sit with you through the process.'],
+            ['How much will home care cost us?', 'For most people the government pays the large majority. Depending on your assessed level, funding ranges from about $11,000 to $78,000 a year. Our management fees are 15% + 10%, under the government caps, and every rate is published on this page — use the calculator above to see exactly where each dollar goes.'],
+            ['What’s the difference between Support at Home and CHSP?', 'CHSP is entry-level help (a clean, meals, transport) with a small contribution per service and no big paperwork. Support at Home is the main program for ongoing care — funding is set by an assessment and covers nursing, personal care and everyday help. We’ll tell you honestly which fits your situation.'],
+            ['How quickly can care start?', 'Privately funded care can start within days. Government-funded care depends on your assessment and the national queue — often weeks to a few months. Many families start small privately and switch when funding is approved, so nobody waits without help.'],
+            ['Do you provide nursing as well as everyday help?', 'Yes — registered nurses for wound care, medication and health checks, alongside personal care, cleaning, meals and social support. One team, one plan, at home.'],
+            ['Can we change or cancel services later?', 'Any time. There are no lock-in contracts and no exit fees — care flexes up, down or off as your needs change.'],
+            ['We’re just starting and it’s confusing. What’s the first step?', 'Say hello. Use the chat for instant answers, or leave your number and we’ll ring you back within one business day, talk through your situation, and handle the My Aged Care paperwork with you — no obligation.'],
+          ].map(([q, a]) => (
+            <details class="group rounded-2xl border px-5 py-1" style="border-color: var(--line); background: var(--bg-card);">
+              <summary class="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 py-2.5 text-[1rem] font-extrabold" style="font-family: var(--font-head);">
+                {q}
+                <svg class="h-5 w-5 shrink-0 transition-transform group-open:rotate-45" viewBox="0 0 24 24" fill="none" stroke="var(--euca)" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+              </summary>
+              <p class="pb-4 text-[0.95rem]" style="color: var(--tx-soft);">{a}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
   <!-- ============ VIDEO LIBRARY (official explainers) ============ -->
   <section id="videos" class="pb-14 pt-2 md:pb-20" style="background: var(--bg-sand);">
     <div class="sect-rv mx-auto w-[min(1280px,100%-2.5rem)]">
@@ -456,7 +485,7 @@ const funding = [
 
       <form id="callbackForm" class="rv rv-right rv-d1 rounded-3xl p-8" style="background: var(--bg-sand);" novalidate>
         <h3 class="text-2xl font-extrabold">Ask us to call you</h3>
-        <p class="mt-1 mb-6 text-[0.98rem]" style="color: var(--tx-soft);">We’ll ring you within one business day. Your details stay private.</p>
+        <p class="mt-1 mb-6 text-[0.98rem]" style="color: var(--tx-soft);">We’ll ring you within one business day. Your details stay private — see our <a href="/privacy" class="font-bold underline underline-offset-4" style="color: var(--blue);">privacy policy</a>.</p>
         <label class="mb-4 block text-[0.95rem] font-bold">
           Your name
           <input type="text" name="name" required autocomplete="name" placeholder="e.g. Margaret Smith"
@@ -494,6 +523,35 @@ const funding = [
       </form>
     </div>
   </section>
+
+  <script type="application/ld+json" is:inline set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'LocalBusiness',
+        '@id': 'https://www.astrocare.com.au/#org',
+        additionalType: 'https://schema.org/HomeHealthCareService',
+        name: 'Astro Care Group Pty Ltd',
+        url: 'https://www.astrocare.com.au/',
+        telephone: '+61 1800 278 762',
+        email: 'info@astrocare.com.au',
+        description: 'Aged care and help at home for older Australians — nursing, personal care, domestic assistance, meals and social support under Support at Home, Home Care Packages and CHSP.',
+        areaServed: 'Australia',
+        priceRange: '$$',
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: [
+          ['Who is eligible for government-funded care at home?', 'Generally Australians aged 65+ (50+ for Aboriginal and Torres Strait Islander people) who need some help to keep living at home. Eligibility is confirmed through a free My Aged Care assessment.'],
+          ['How much will home care cost?', 'The government pays the large majority for most people. Depending on the assessed level, funding ranges from about $11,000 to $78,000 a year. Astro Care charges 15% care management and 10% package management, under the government caps, with all rates published.'],
+          ['What is the difference between Support at Home and CHSP?', 'CHSP is entry-level help such as cleaning, meals or transport with a small contribution per service. Support at Home is the main program for ongoing care at home, with funding set by an assessment.'],
+          ['How quickly can care start?', 'Privately funded care can start within days. Government-funded care depends on the assessment and national queue — often weeks to a few months. Many families start privately and switch when funding is approved.'],
+          ['Do you provide nursing as well as everyday help?', 'Yes — registered nurses for wound care, medication and health checks, alongside personal care, cleaning, meals and social support.'],
+          ['Can services be changed or cancelled later?', 'Yes, any time. There are no lock-in contracts and no exit fees.'],
+        ].map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+      },
+    ],
+  })} />
 
   <script is:inline>
     /* Hero parallax: video drifts slower than the page. */
