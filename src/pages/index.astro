@@ -102,8 +102,8 @@ const funding = [
         Care at home,<br />done properly.
       </h1>
       <p class="hero-rise-2 mt-4 max-w-lg text-base text-white/85 md:text-lg">
-        Nursing, everyday help and genuine company for older Australians —
-        government-funded for most people over 65.
+        Nursing, everyday help and genuine company for older people across
+        Melbourne — government-funded for most over 65.
       </p>
       <div class="hero-rise-3 mt-8 flex flex-wrap items-center gap-3">
         <a href="#contact" class="btn-primary !px-6 !py-3 !text-base" style="background: #fff; color: var(--euca);">Get started</a>
@@ -141,7 +141,7 @@ const funding = [
         <span style="color: var(--euca);">We make sure it doesn’t.</span>
       </p>
       <p class="rv rv-d1 mx-auto mt-5 max-w-2xl text-lg" style="color: var(--tx-soft);">
-        We’re a small Australian team that does aged care the way it should be done —
+        We’re a small Melbourne team that does aged care the way it should be done —
         the same friendly faces, honest fees, and help that fits around your life.
       </p>
     </div>
@@ -345,6 +345,43 @@ const funding = [
     </div>
   </div>
 
+  <!-- ============ OUR STORY ============ -->
+  <section id="about" class="py-14 md:py-20" style="background: var(--bg);">
+    <div class="sect-rv mx-auto grid w-[min(1280px,100%-2.5rem)] items-center gap-10 lg:grid-cols-[1.1fr_1fr]">
+      <div>
+        <p class="rv mb-2 text-sm font-bold uppercase tracking-widest" style="color: var(--euca);">Our story</p>
+        <h2 class="rv rv-d1 text-2xl md:text-4xl">Why we started Astro Care</h2>
+        <div class="rv rv-d2 mt-5 grid gap-4 text-[1.02rem] leading-relaxed" style="color: var(--tx-soft);">
+          <p>
+            Astro Care began the way most good care does — with family. We watched people we love
+            try to navigate the aged-care maze: the acronyms, the waiting lists, the fees nobody
+            would explain in a straight sentence. We thought Melbourne deserved better.
+          </p>
+          <p>
+            So we built the company we wished we'd found. A small team where you know your carers
+            by name and they know how you take your tea. Every fee published right here on this
+            page. Questions answered instantly, day or night — and a real local person on the
+            phone when you want one.
+          </p>
+          <p>
+            We're deliberately small and proudly local. That means every client gets the attention
+            a big provider can't give — and the person helping you has probably driven down your
+            street.
+          </p>
+        </div>
+        <div class="rv rv-d3 mt-6 flex flex-wrap gap-3">
+          <a href="#contact" class="btn-primary">Meet us — no obligation</a>
+          <a href="#pricing" class="btn-ghost !border-2" style="color: var(--euca); border-color: var(--euca); background: transparent; backdrop-filter: none;">See our fees</a>
+        </div>
+      </div>
+      <div class="rv rv-right overflow-hidden rounded-3xl" style="box-shadow: var(--shadow);">
+        <div class="vcard-media aspect-[4/3]" data-zoom>
+          <video src="/media/loop-social.mp4" poster="/media/poster-social.jpg" muted loop playsinline autoplay preload="metadata" data-ambient aria-label="A support worker bringing flowers to a client at home"></video>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ RESOURCES (one-stop shop) ============ -->
   <section id="resources" class="py-14 md:py-20" style="background: var(--bg-sand);">
     <div class="sect-rv mx-auto w-[min(1280px,100%-2.5rem)]">
@@ -398,6 +435,7 @@ const funding = [
       <div class="rv rv-d2 grid gap-3">
         {
           [
+            ['Where does Astro Care operate?', 'Across all of Melbourne — from the inner suburbs to the outer ring. If you’re unsure whether we reach you, ask the chat or leave your number and we’ll confirm straight away.'],
             ['Who is eligible for government-funded care at home?', 'Generally Australians aged 65+ (50+ for Aboriginal and Torres Strait Islander people) who need some help to keep living at home. Eligibility is confirmed through a free My Aged Care assessment — we help you arrange it and sit with you through the process.'],
             ['How much will home care cost us?', 'For most people the government pays the large majority. Depending on your assessed level, funding ranges from about $11,000 to $78,000 a year. Our management fees are 15% + 10%, under the government caps, and every rate is published on this page — use the calculator above to see exactly where each dollar goes.'],
             ['What’s the difference between Support at Home and CHSP?', 'CHSP is entry-level help (a clean, meals, transport) with a small contribution per service and no big paperwork. Support at Home is the main program for ongoing care — funding is set by an assessment and covers nursing, personal care and everyday help. We’ll tell you honestly which fits your situation.'],
@@ -536,12 +574,13 @@ const funding = [
         telephone: '+61 1800 278 762',
         email: 'info@astrocare.com.au',
         description: 'Aged care and help at home for older Australians — nursing, personal care, domestic assistance, meals and social support under Support at Home, Home Care Packages and CHSP.',
-        areaServed: 'Australia',
+        areaServed: { '@type': 'City', name: 'Melbourne' },
         priceRange: '$$',
       },
       {
         '@type': 'FAQPage',
         mainEntity: [
+          ['Where does Astro Care operate?', 'Across all of Melbourne, from the inner suburbs to the outer ring.'],
           ['Who is eligible for government-funded care at home?', 'Generally Australians aged 65+ (50+ for Aboriginal and Torres Strait Islander people) who need some help to keep living at home. Eligibility is confirmed through a free My Aged Care assessment.'],
           ['How much will home care cost?', 'The government pays the large majority for most people. Depending on the assessed level, funding ranges from about $11,000 to $78,000 a year. Astro Care charges 15% care management and 10% package management, under the government caps, with all rates published.'],
           ['What is the difference between Support at Home and CHSP?', 'CHSP is entry-level help such as cleaning, meals or transport with a small contribution per service. Support at Home is the main program for ongoing care at home, with funding set by an assessment.'],
