@@ -125,6 +125,8 @@ Full restore instructions and commit hashes: see `VERSIONS.md`.
 
 | 13 Jul 2026 | **De-duplicated on-page videos** (owner: videos are repeated) — several clips appeared in more than one place; reassigned so every section shows a distinct scene: social card → coffee catch-up (7017911, was the hero flowers clip), step 3 → companion visit (7231132, was the same as personal care's helping-hand 5559), divider 3 → couple over coffee (6786517, was the hero consult clip) with a matching caption. 15 unique clips across the homepage now. | (this commit) |
 
+| 13 Jul 2026 | **Hero brightened** (owner: hero dull from the transparency wash) — replaced the full-frame dark gradient with a **bottom-only** gradient (transparent above 56%), so the top two-thirds of the hero video shows at full vibrancy and only the lower strip is shaded where the text sits. Video reads bright and premium; headline/buttons still legible. (`/hero-bright` sample page kept for reference.) | (this commit) |
+
 ## 9. Run sheet — everything done so far
 
 | Date | What happened | Commit |
