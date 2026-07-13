@@ -314,32 +314,49 @@
       var rec = new SR();
       rec.lang = 'en-AU';
       rec.interimResults = true;
-      var listening = false;
-      function stopUI() {
-        listening = false;
-        mic.classList.remove('mic-live');
-        mic.setAttribute('aria-pressed', 'false');
+      rec.continuous = true;   /* keep listening across pauses/sentences */
+      var listening = false;   /* the user wants the mic on */
+      var finalText = '';      /* everything finalised so far this session */
+      function setUI(on) {
+        mic.classList.toggle('mic-live', on);
+        mic.setAttribute('aria-pressed', String(on));
       }
       rec.onresult = function (e) {
-        var t = '';
-        for (var i = 0; i < e.results.length; i++) t += e.results[i][0].transcript;
-        input.value = t;
+        var interim = '';
+        for (var i = e.resultIndex; i < e.results.length; i++) {
+          var r = e.results[i];
+          if (r.isFinal) finalText += r[0].transcript;
+          else interim += r[0].transcript;
+        }
+        input.value = (finalText + interim).replace(/\s+/g, ' ').trimStart();
       };
-      rec.onend = function () { stopUI(); if (input.value.trim()) input.focus(); };
-      rec.onerror = stopUI;
+      /* Chrome ends recognition on a long silence even in continuous mode —
+         if the user hasn't tapped stop, start it again so it keeps going. */
+      rec.onend = function () {
+        if (listening) { try { rec.start(); return; } catch (e) {} }
+        setUI(false);
+        if (input.value.trim()) input.focus();
+      };
+      rec.onerror = function (e) {
+        /* 'no-speech'/'aborted' are transient — the onend handler will
+           restart if we're still listening. Only a real error stops us. */
+        if (e && (e.error === 'not-allowed' || e.error === 'service-not-allowed')) {
+          listening = false; setUI(false);
+        }
+      };
       mic.addEventListener('click', function () {
-        if (listening) { rec.stop(); return; }
-        listening = true;
-        mic.classList.add('mic-live');
-        mic.setAttribute('aria-pressed', 'true');
-        try { rec.start(); } catch (err) { stopUI(); }
+        if (listening) { listening = false; try { rec.stop(); } catch (e) {} setUI(false); return; }
+        listening = true; finalText = ''; input.value = '';
+        setUI(true);
+        try { rec.start(); } catch (err) { listening = false; setUI(false); }
       });
-      /* Let the rest of the widget force the mic off (e.g. when the chat
-         closes) so the browser stops listening and releases the mic. */
+      /* Let the rest of the widget force the mic fully off (chat close,
+         tab switch, etc.) so the browser stops listening. */
       stopMic = function () {
         if (!listening) return;
+        listening = false;
         try { rec.abort(); } catch (e) { try { rec.stop(); } catch (e2) {} }
-        stopUI();
+        setUI(false);
       };
     })();
 

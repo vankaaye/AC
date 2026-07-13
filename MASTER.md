@@ -75,6 +75,7 @@ Full restore instructions and commit hashes: see `VERSIONS.md`.
 | Voice | Plain Australian English, warm, no invented facts, no fake reviews (new business) | Site-wide |
 | Help persona | Generic "We're here to help" (no invented staff names) | Help bar & chat |
 | Service area | **All of Melbourne** (owner decision 13 Jul) — stated in hero, statement, FAQ, footer, meta description and LocalBusiness areaServed | Site-wide |
+| Colour theme | **Light / Dark / Auto** picker in the accessibility panel; Auto follows the device. Palette via CSS custom properties + `html[data-theme]`. | Site-wide |
 | AI model | Claude Haiku (claude-haiku-4-5) — fast, ~a few $/month at small-business traffic | Worker |
 
 ## 6. Decisions still pending (your picks)
@@ -115,6 +116,8 @@ Full restore instructions and commit hashes: see `VERSIONS.md`.
 | 13 Jul 2026 | **Opening hours reformatted + mic-release fix** (owner: hours hard to read; mic kept listening after closing chat) — the run-on hours line ("Mon–Fri 8am–6pm · Sat…") is now a clean bordered table (Mon–Fri, Saturday, Sunday=Closed, and "Care at home 24/7" highlighted). Voice-dictation mic now stops the moment the chat closes (Escape, ✕, or toggling the pill), plus on tab-hide/pagehide — previously the browser kept listening until the window was closed. | (this commit) |
 
 | 13 Jul 2026 | **Reveals: smooth, both directions, replay + mic always-on desktop** (owner feedback) — reveal now slides+fades for EVERY visitor (moved out of the reduced-motion gate; continuous Ken Burns/parallax still gated), 0.85s GPU-composited ease so it glides not flashes; the observer now adds `.in` on enter and removes it on leave, so reveals replay every time and in both scroll directions. Mic: now always visible incl. desktop (graceful "not supported in this browser" tap message where Web Speech is absent); mic released on chat close, tab-hide, **window blur** (switching app/tab) and pagehide. | (this commit) |
+
+| 13 Jul 2026 | **Mic continuous, one-way reveals, clearer calculator, light/dark/system theme** — (1) voice dictation set to `continuous` with auto-restart on Chrome's silence-timeout, so it keeps listening across sentences instead of stopping after the first; (2) scroll reveals reverted to reveal-once (add `.in`, unobserve) so scrolling back up never re-hides/jumps the text; (3) fee calculator given a plain-English "How this works" intro, "Your details"/"Your weekly estimate" column labels, and an emoji money-flow (💰 government gives → ➖ fees → ✅ left for care → ⏱️ buys N hours); (4) **new Light / Dark / Auto (system) theme** picker in the accessibility panel — full dark palette via `html[data-theme]`, applied pre-paint from localStorage (no flash), respects `prefers-color-scheme` on Auto. | (this commit) |
 
 ## 9. Run sheet — everything done so far
 

@@ -31,6 +31,16 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <script is:inline>
+      /* Apply the saved colour theme before first paint (no flash). */
+      (function () {
+        try {
+          var t = localStorage.getItem('astro-theme') || 'system';
+          document.documentElement.setAttribute('data-theme', t);
+        } catch (e) { document.documentElement.setAttribute('data-theme', 'system'); }
+      })();
+    </script>
+    <meta name="theme-color" content="#0C6291" />
     <title>{title}</title>
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
@@ -248,16 +258,14 @@ const {
           document.querySelectorAll('.rv').forEach(function (el) { el.classList.add('in'); });
           return;
         }
-        /* Add .in when an element scrolls into view and remove it when it
-           leaves, so the reveal replays every time — whether you scroll
-           down to it or back up. Trigger a little before it reaches the
-           edges so it eases in, never snaps. */
+        /* Reveal once as an element scrolls into view (from either
+           direction), then leave it visible for good — so scrolling back
+           up never re-hides or "jumps" the text. */
         var io = new IntersectionObserver(function (entries) {
           entries.forEach(function (e) {
-            if (e.isIntersecting) e.target.classList.add('in');
-            else e.target.classList.remove('in');
+            if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
           });
-        }, { threshold: 0, rootMargin: '-8% 0px -12% 0px' });
+        }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
         document.querySelectorAll('.rv, .sect-rv').forEach(function (el) { io.observe(el); });
       })();
 

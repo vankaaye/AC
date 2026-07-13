@@ -66,6 +66,59 @@ html[data-contrast="high"] {
 html[data-contrast="high"] .hc-border { border-width: 3px !important; border-color: #000 !important; }
 html[data-contrast="high"] img { filter: contrast(1.05); }
 
+/* ---------- Palette (dark mode) ----------
+   Applied when the user picks Dark, or picks System and their device
+   prefers dark. High-contrast mode always wins over dark. */
+html[data-theme="dark"]:not([data-contrast="high"]) {
+  --bg:        #0F1720;
+  --bg-sand:   #17222D;
+  --bg-card:   #1B2733;
+  --tx:        #E9EEF2;
+  --tx-soft:   #A7B7C2;
+  --euca:      #4FA6D6;
+  --euca-deep: #7BC0E6;
+  --euca-soft: #17313F;
+  --sun:       #E8A33D;
+  --sun-deep:  #F0C079;
+  --sun-soft:  #2A2415;
+  --blue:      #4FA6D6;
+  --blue-soft: #17313F;
+  --call:      #4FA6D6;
+  --call-deep: #7BC0E6;
+  --line:      #2B3A47;
+  --focus:     #7BC0E6;
+  --shadow:    0 10px 30px rgba(0, 0, 0, 0.45);
+}
+@media (prefers-color-scheme: dark) {
+  html[data-theme="system"]:not([data-contrast="high"]) {
+    --bg:        #0F1720;
+    --bg-sand:   #17222D;
+    --bg-card:   #1B2733;
+    --tx:        #E9EEF2;
+    --tx-soft:   #A7B7C2;
+    --euca:      #4FA6D6;
+    --euca-deep: #7BC0E6;
+    --euca-soft: #17313F;
+    --sun:       #E8A33D;
+    --sun-deep:  #F0C079;
+    --sun-soft:  #2A2415;
+    --blue:      #4FA6D6;
+    --blue-soft: #17313F;
+    --call:      #4FA6D6;
+    --call-deep: #7BC0E6;
+    --line:      #2B3A47;
+    --focus:     #7BC0E6;
+    --shadow:    0 10px 30px rgba(0, 0, 0, 0.45);
+  }
+}
+/* Header/menu glass surfaces adapt to dark. */
+html[data-theme="dark"] #siteHeader,
+html[data-theme="dark"] #mobileMenu { background: rgba(15, 23, 32, 0.86) !important; }
+@media (prefers-color-scheme: dark) {
+  html[data-theme="system"] #siteHeader,
+  html[data-theme="system"] #mobileMenu { background: rgba(15, 23, 32, 0.86) !important; }
+}
+
 /* ---------- Text scaling (Accessibility Panel) ---------- */
 html                     { font-size: 100%; scroll-behavior: smooth; }
 html[data-scale="85"]    { font-size: 85%; }

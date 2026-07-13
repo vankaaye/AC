@@ -42,8 +42,18 @@ const PKG_MGMT_PCT = 10;     // % of package — capped at 15% by the Commission
   class="grid gap-6 rounded-3xl border hc-border p-4 sm:p-6 lg:grid-cols-2"
   style="background: var(--bg-card); border-color: var(--line); box-shadow: var(--shadow);"
 >
+  <!-- ============ HOW IT WORKS (spans both columns) ============ -->
+  <div class="lg:col-span-2">
+    <p class="rounded-2xl px-4 py-3 text-[0.95rem]" style="background: var(--euca-soft); color: var(--tx);">
+      <strong>How this works:</strong> answer the 3 quick questions below and the panel
+      instantly shows what the government pays you, what Astro Care charges, and roughly how many
+      <strong>hours of care</strong> that buys each week. Nothing is sent anywhere — it's just a guide.
+    </p>
+  </div>
+
   <!-- ============ INPUTS ============ -->
   <div>
+    <p class="mb-4 text-sm font-bold uppercase tracking-widest" style="color: var(--euca);">Your details</p>
     <fieldset class="mb-6">
       <legend class="readable mb-3 text-lg font-black" style="font-family: var(--font-head);">
         1. Your Home Care Package level
@@ -105,26 +115,27 @@ const PKG_MGMT_PCT = 10;     // % of package — capped at 15% by the Commission
 
   <!-- ============ RESULTS ============ -->
   <div class="rounded-2xl p-5 md:p-6" style="background: var(--euca-soft);" aria-live="polite">
-    <h3 class="readable mb-4 text-xl">Your weekly estimate</h3>
+    <p class="mb-1 text-sm font-bold uppercase tracking-widest" style="color: var(--euca);">Your weekly estimate</p>
+    <h3 class="readable mb-4 text-lg" style="color: var(--tx-soft);">Where every dollar goes</h3>
     <dl class="grid gap-2.5 text-[0.95rem]">
       <div class="flex items-center justify-between gap-4 border-b pb-2.5" style="border-color: var(--line);">
-        <dt>Government subsidy for your package</dt>
+        <dt>💰 The government gives you</dt>
         <dd class="whitespace-nowrap text-xl font-black" style="color: var(--euca);" id="outSubsidy">$361</dd>
       </div>
       <div class="flex items-center justify-between gap-4 border-b pb-2.5" style="border-color: var(--line);">
-        <dt>Care Management fee ({CARE_MGMT_PCT}%)<br /><small class="text-[0.82rem]" style="color: var(--tx-soft);">Your nurse-led care plan, reviews &amp; coordination</small></dt>
+        <dt>➖ Care management <span style="color: var(--tx-soft);">({CARE_MGMT_PCT}%)</span><br /><small class="text-[0.82rem]" style="color: var(--tx-soft);">Your nurse-led care plan, reviews &amp; coordination</small></dt>
         <dd class="whitespace-nowrap text-xl font-black" id="outCareMgmt">−$54</dd>
       </div>
       <div class="flex items-center justify-between gap-4 border-b pb-2.5" style="border-color: var(--line);">
-        <dt>Package Management fee ({PKG_MGMT_PCT}%)<br /><small class="text-[0.82rem]" style="color: var(--tx-soft);">Statements, invoicing &amp; compliance</small></dt>
+        <dt>➖ Package management <span style="color: var(--tx-soft);">({PKG_MGMT_PCT}%)</span><br /><small class="text-[0.82rem]" style="color: var(--tx-soft);">Statements, invoicing &amp; compliance</small></dt>
         <dd class="whitespace-nowrap text-xl font-black" id="outPkgMgmt">−$36</dd>
       </div>
-      <div class="flex items-center justify-between gap-4 border-b pb-2.5" style="border-color: var(--line);">
-        <dt class="font-black">Left for your care each week</dt>
+      <div class="flex items-center justify-between gap-4 rounded-xl px-3 py-2" style="background: var(--bg-card);">
+        <dt class="font-black">✅ Left for your actual care</dt>
         <dd class="whitespace-nowrap text-2xl font-black" style="color: var(--euca);" id="outCare">$271</dd>
       </div>
-      <div class="flex items-center justify-between gap-4">
-        <dt>Covers about</dt>
+      <div class="flex items-center justify-between gap-4 pt-1">
+        <dt class="font-bold">⏱️ Which buys about</dt>
         <dd class="whitespace-nowrap text-xl font-black" id="outHours">3.8 hrs/wk</dd>
       </div>
     </dl>
