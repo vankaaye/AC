@@ -235,18 +235,30 @@ const {
         document.querySelectorAll('.rv, .sect-rv').forEach(function (el) { io.observe(el); });
       })();
 
-      /* Ambient videos: play only in view, respect reduced motion. */
+      /* Ambient videos: all carry the autoplay attribute (the only way
+         iOS Safari reliably starts them); this observer pauses them
+         offscreen and restarts them as they come back into view. */
       (function () {
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
         var vids = document.querySelectorAll('video[data-ambient]');
         if (!vids.length) return;
+        vids.forEach(function (v) { v.muted = true; }); /* iOS: property, not just attribute */
+        if (!('IntersectionObserver' in window)) return;
         var io = new IntersectionObserver(function (entries) {
           entries.forEach(function (e) {
             var v = e.target;
-            if (e.isIntersecting) { v.play().catch(function () {}); }
-            else { v.pause(); }
+            if (e.isIntersecting) {
+              var p = v.play();
+              if (p) p.catch(function () {
+                /* not enough data yet — try again once it can play */
+                v.addEventListener('canplay', function once() {
+                  v.removeEventListener('canplay', once);
+                  v.play().catch(function () {});
+                });
+                v.load();
+              });
+            } else { v.pause(); }
           });
-        }, { threshold: 0.2 });
+        }, { threshold: 0.15, rootMargin: '20% 0px' });
         vids.forEach(function (v) { io.observe(v); });
       })();
     </script>

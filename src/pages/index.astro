@@ -19,7 +19,7 @@ const services = [
     text: 'Registered nurses for wound care, medication, health checks and recovery after hospital — in the comfort of home.',
     video: '/media/loop-clinical.mp4',
     poster: '/media/poster-clinical.jpg',
-    alt: 'A community nurse chatting warmly with an older man at home',
+    alt: 'A blood-pressure check during a home nursing visit',
   },
   {
     id: 'social',
@@ -43,7 +43,7 @@ const services = [
     text: 'Fresh, tasty meals cooked in your own kitchen, just the way you like them — with good company while they’re made.',
     video: '/media/loop-meals.mp4',
     poster: '/media/poster-meals.jpg',
-    alt: 'Fresh vegetables being sliced for a home-cooked meal',
+    alt: 'A fresh home-cooked meal of vegetables being handed over',
   },
 ];
 
@@ -156,14 +156,14 @@ const funding = [
 
   <!-- ============ VIDEO DIVIDER — everyday help ============ -->
   <div class="vdiv">
-    <video src="/media/div-1.mp4" poster="/media/div-1.jpg" muted loop playsinline preload="none" data-ambient aria-hidden="true"></video>
+    <video src="/media/div-1.mp4" poster="/media/div-1.jpg" muted loop playsinline autoplay preload="metadata" data-ambient aria-hidden="true"></video>
     <div class="vdiv-scrim" aria-hidden="true"></div>
     <div class="vdiv-copy">
       <div class="mx-auto w-[min(1280px,100%-2.5rem)]">
         <p class="rv text-xl font-extrabold text-white md:text-3xl" style="font-family: var(--font-head); text-shadow: 0 2px 18px rgba(11,26,32,0.55);">
-          The little things, done brilliantly.
+          Confidence with your health, every day.
         </p>
-        <p class="rv rv-d1 mt-1 max-w-xl text-[0.95rem] text-white/85">Fresh flowers on a visit, a kettle on, a home kept lovely — that’s care too.</p>
+        <p class="rv rv-d1 mt-1 max-w-xl text-[0.95rem] text-white/85">Regular checks, medication sorted, someone keeping a caring eye on things.</p>
       </div>
     </div>
   </div>
@@ -189,7 +189,7 @@ const funding = [
                 <video
                   src={s.video}
                   poster={s.poster}
-                  muted loop playsinline preload="none"
+                  muted loop playsinline autoplay preload="metadata"
                   data-ambient
                   aria-label={s.alt}
                 ></video>
@@ -219,7 +219,7 @@ const funding = [
           steps.map(([title, text, num], i) => (
             <div class={`rv rv-zoom ${['', 'rv-d1', 'rv-d2'][i]} overflow-hidden rounded-3xl border`} style="border-color: var(--line); background: var(--bg-card);">
               <div class="vcard-media aspect-[16/8]" data-zoom>
-                <video src={`/media/step-${i + 1}.mp4`} poster={`/media/step-${i + 1}.jpg`} muted loop playsinline preload="none" data-ambient aria-hidden="true"></video>
+                <video src={`/media/step-${i + 1}.mp4`} poster={`/media/step-${i + 1}.jpg`} muted loop playsinline autoplay preload="metadata" data-ambient aria-hidden="true"></video>
               </div>
               <div class="p-6">
                 <span class="text-3xl font-extrabold" style="color: var(--euca); opacity: 0.35; font-family: var(--font-head);">{num}</span>
@@ -266,7 +266,7 @@ const funding = [
 
   <!-- ============ VIDEO DIVIDER — recovery & mobility ============ -->
   <div class="vdiv">
-    <video src="/media/div-2.mp4" poster="/media/div-2.jpg" muted loop playsinline preload="none" data-ambient aria-hidden="true"></video>
+    <video src="/media/div-2.mp4" poster="/media/div-2.jpg" muted loop playsinline autoplay preload="metadata" data-ambient aria-hidden="true"></video>
     <div class="vdiv-scrim" aria-hidden="true"></div>
     <div class="vdiv-copy">
       <div class="mx-auto w-[min(1280px,100%-2.5rem)]">
@@ -317,7 +317,7 @@ const funding = [
 
   <!-- ============ VIDEO DIVIDER — plain-English guidance ============ -->
   <div class="vdiv">
-    <video src="/media/div-3.mp4" poster="/media/div-3.jpg" muted loop playsinline preload="none" data-ambient aria-hidden="true"></video>
+    <video src="/media/div-3.mp4" poster="/media/div-3.jpg" muted loop playsinline autoplay preload="metadata" data-ambient aria-hidden="true"></video>
     <div class="vdiv-scrim" aria-hidden="true"></div>
     <div class="vdiv-copy">
       <div class="mx-auto w-[min(1280px,100%-2.5rem)]">
