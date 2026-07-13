@@ -46,7 +46,15 @@
     role="group"
     aria-label="Accessibility options"
   >
-    <h2 class="text-2xl mb-4">Make this site easier</h2>
+    <button
+      id="a11yClose"
+      class="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border-2"
+      style="border-color: var(--line); color: var(--tx);"
+      aria-label="Close accessibility options"
+    >
+      <svg class="h-4.5 w-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+    <h2 class="text-2xl mb-4 pr-10">Make this site easier</h2>
 
     <!-- Text size -->
     <p class="font-bold mb-2" id="a11ySizeLabel">Text size: <span id="a11ySizeValue">100%</span></p>
@@ -77,7 +85,7 @@
 <script is:inline>
   (function () {
     var html = document.documentElement;
-    var SCALES = ['100', '125', '150', '175', '200'];
+    var SCALES = ['85', '100', '125', '150', '175', '200'];
 
     /* ---------- persistence helpers ---------- */
     function save(key, val) { try { localStorage.setItem(key, val); } catch (e) {} }
@@ -172,6 +180,11 @@
     launcher.addEventListener('click', function () {
       var open = panel.classList.toggle('hidden') === false;
       launcher.setAttribute('aria-expanded', String(open));
+    });
+    document.getElementById('a11yClose').addEventListener('click', function () {
+      panel.classList.add('hidden');
+      launcher.setAttribute('aria-expanded', 'false');
+      launcher.focus();
     });
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && !panel.classList.contains('hidden')) {

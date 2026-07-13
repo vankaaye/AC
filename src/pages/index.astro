@@ -378,6 +378,45 @@ const funding = [
     </div>
   </section>
 
+  <!-- ============ VIDEO LIBRARY (official explainers) ============ -->
+  <section id="videos" class="pb-14 pt-2 md:pb-20" style="background: var(--bg-sand);">
+    <div class="sect-rv mx-auto w-[min(1280px,100%-2.5rem)]">
+      <h2 class="rv mb-3 text-xl md:text-2xl">Prefer to watch? Straight from the government</h2>
+      <p class="rv rv-d1 mb-8 max-w-2xl text-[0.95rem]" style="color: var(--tx-soft);">
+        Short official videos that explain how aged care works — from the Department of Health and the
+        Quality &amp; Safety Commission.
+      </p>
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          [
+            ['GV8O_GBUhI0', 'My Aged Care — the aged care assessment', 'Australian Dept of Health'],
+            ['xb3E3mgDCe8', 'Preparing for your assessment', 'Australian Dept of Health'],
+            ['2OQETSwsRzs', 'Support at Home — how contributions work', 'Australian Dept of Health'],
+            ['3vne8GVKvFA', 'A new era of aged care', 'Quality & Safety Commission'],
+          ].map(([id, title, channel], i) => (
+            <figure class={`rv ${['', 'rv-d1', 'rv-d2', 'rv-d3'][i]} overflow-hidden rounded-2xl border`} style="border-color: var(--line); background: var(--bg-card); box-shadow: var(--shadow);">
+              <div class="aspect-video">
+                <iframe
+                  src={`https://www.youtube-nocookie.com/embed/${id}`}
+                  title={title}
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  class="h-full w-full"
+                  style="border: 0;"
+                ></iframe>
+              </div>
+              <figcaption class="p-4">
+                <p class="text-[0.95rem] font-extrabold" style="font-family: var(--font-head);">{title}</p>
+                <p class="mt-0.5 text-[0.8rem]" style="color: var(--tx-soft);">{channel} · YouTube</p>
+              </figcaption>
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
   <!-- ============ CONTACT / CALLBACK ============ -->
   <section id="contact" class="py-14 md:py-20" style="background: var(--bg);">
     <div class="sect-rv mx-auto grid w-[min(1280px,100%-2.5rem)] gap-10 lg:grid-cols-[1fr_1.1fr]">
@@ -388,9 +427,9 @@ const funding = [
           No pressure, no obligation — just honest answers about the help you can get.
         </p>
         <div class="mt-8 flex flex-col gap-3">
-          <button id="askContactChat" type="button" class="btn-sun w-fit !px-6 !py-3 !text-lg">
-            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            Ask our AI helper — instant answers
+          <button id="askContactChat" type="button" class="btn-sun w-fit !px-4 !py-2 !text-[0.95rem]">
+            <svg class="h-4.5 w-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Astro Chat — instant answers
           </button>
           <a href="tel:+611800278762" class="btn-call w-fit !px-6 !py-3 !text-lg">
             <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
