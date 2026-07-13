@@ -4,3 +4,8 @@ compatibility_date = "2026-06-01"
 
 # Secrets (set once, never committed):
 #   wrangler secret put ANTHROPIC_API_KEY
+
+# First-party analytics counters (daily page views, chats, enquiries)
+[[kv_namespaces]]
+binding = "STATS"
+id = "69bd600a44e04379ba00a83a53fb1664"

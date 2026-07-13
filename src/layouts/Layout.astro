@@ -181,6 +181,17 @@ const {
     <AccessibilityToggle />
 
     <script is:inline>
+      /* First-party page-view beacon (counts only, no cookies, no IDs).
+         Skipped on localhost so testing doesn't pollute the numbers. */
+      (function () {
+        if (/^(localhost|127\.)/.test(location.hostname)) return;
+        try {
+          navigator.sendBeacon
+            ? navigator.sendBeacon('https://astrocare-chat.astrocare.workers.dev/hit', 'pv')
+            : fetch('https://astrocare-chat.astrocare.workers.dev/hit', { method: 'POST', body: 'pv', keepalive: true });
+        } catch (e) {}
+      })();
+
       /* Header stays visible at all times (owner request) — it only
          gains a slightly stronger shadow once the page is scrolled. */
       (function () {

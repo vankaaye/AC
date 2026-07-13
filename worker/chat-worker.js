@@ -93,8 +93,44 @@ function rateLimited(ip) {
   return b.count > RL_MAX_CHATS_PER_WINDOW;
 }
 
+/* First-party analytics: daily counters in KV. No cookies, no IPs stored —
+   just "how many" per day. bump() failures are swallowed so analytics can
+   never break chat or enquiries. */
+function bump(env, ctx, key) {
+  if (!env.STATS) return;
+  const day = new Date().toISOString().slice(0, 10);
+  const full = `d:${day}:${key}`;
+  ctx.waitUntil(
+    env.STATS.get(full).then((v) =>
+      env.STATS.put(full, String((parseInt(v || '0', 10) || 0) + 1), { expirationTtl: 60 * 60 * 24 * 400 })
+    ).catch(() => {})
+  );
+}
+
+async function statsReport(env, cors) {
+  const days = [];
+  for (let i = 0; i < 14; i++) {
+    const d = new Date(Date.now() - i * 864e5).toISOString().slice(0, 10);
+    days.push(d);
+  }
+  const keys = ['views', 'chats', 'enquiries'];
+  const rows = await Promise.all(days.map(async (d) => {
+    const vals = await Promise.all(keys.map((k) => env.STATS.get(`d:${d}:${k}`)));
+    return { day: d, views: +(vals[0] || 0), chats: +(vals[1] || 0), enquiries: +(vals[2] || 0) };
+  }));
+  const html = `<!doctype html><meta name="robots" content="noindex"><meta charset="utf-8">
+  <title>Astro Care — site stats</title>
+  <style>body{font:15px/1.5 system-ui;max-width:560px;margin:3rem auto;padding:0 1rem;color:#0F1E28}
+  table{border-collapse:collapse;width:100%}td,th{padding:.45rem .7rem;border-bottom:1px solid #E4EAEE;text-align:right}
+  th:first-child,td:first-child{text-align:left}th{background:#F4F7F9}</style>
+  <h2>Last 14 days</h2><table><tr><th>Day</th><th>Page views</th><th>Chats</th><th>Enquiries</th></tr>
+  ${rows.map((r) => `<tr><td>${r.day}</td><td>${r.views}</td><td>${r.chats}</td><td>${r.enquiries}</td></tr>`).join('')}
+  </table><p style="color:#51626E">Counts only — no visitor identities, no cookies.</p>`;
+  return new Response(html, { headers: { ...cors, 'content-type': 'text/html; charset=utf-8' } });
+}
+
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const origin = request.headers.get('Origin') || '';
     const corsOk = ALLOWED_ORIGINS.includes(origin);
     const cors = {
@@ -105,6 +141,18 @@ export default {
 
     if (request.method === 'OPTIONS') return new Response(null, { headers: cors });
     const pathname = new URL(request.url).pathname;
+
+    /* Page-view beacon — fire-and-forget from the site. */
+    if (pathname === '/hit' && request.method === 'POST') {
+      if (corsOk) bump(env, ctx, 'views');
+      return new Response(null, { status: 204, headers: cors });
+    }
+
+    /* Owner dashboard: /stats (unlisted, counts only). */
+    if (pathname === '/stats' && request.method === 'GET' && env.STATS) {
+      return statsReport(env, cors);
+    }
+
     if (request.method !== 'POST' || (pathname !== '/chat' && pathname !== '/enquiry')) {
       return new Response('Not found', { status: 404, headers: cors });
     }
@@ -127,6 +175,7 @@ export default {
       if (!name || !phone) {
         return new Response(JSON.stringify({ error: 'missing fields' }), { status: 400, headers: cors });
       }
+      bump(env, ctx, 'enquiries');
       const fsResp = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
         method: 'POST',
         headers: {
@@ -173,6 +222,7 @@ export default {
     if (!messages.length || messages[messages.length - 1].role !== 'user') {
       return new Response(JSON.stringify({ error: 'no user message' }), { status: 400, headers: cors });
     }
+    bump(env, ctx, 'chats');
 
     const callAnthropic = (msgs) =>
       fetch('https://api.anthropic.com/v1/messages', {
