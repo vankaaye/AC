@@ -108,6 +108,8 @@ Full restore instructions and commit hashes: see `VERSIONS.md`.
 
 - **Visitor stats (first-party, no cookies):** open `https://astrocare-chat.astrocare.workers.dev/stats` — daily page views, chats and enquiries for the last 14 days. Counts only, no visitor identities; localhost visits excluded. Data lives in Cloudflare KV (namespace `astrocare-stats`).
 
+| 13 Jul 2026 | **Animations fixed for everyone** (owner: "no animations anywhere") — root cause: every reveal/Ken Burns/funding-cycle animation was gated behind `prefers-reduced-motion: no-preference`, so a device with **Reduce Motion ON** (very common on iPhone) saw a fully static site. Rebuilt the system: a **gentle opacity fade now runs for all visitors including Reduce-Motion** (accessible — opacity only, no movement), with the bold slide/blur/zoom + Ken Burns layered on only when motion is allowed; reveals made bolder (46px rise, 8px blur); the **Stripe-style funding-card spotlight cycle now runs regardless of the motion setting**. Verified in both modes via Playwright. | (this commit) |
+
 ## 9. Run sheet — everything done so far
 
 | Date | What happened | Commit |

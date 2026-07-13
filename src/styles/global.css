@@ -114,26 +114,27 @@ html[data-readaloud="on"] .readable:focus-visible {
   border-radius: 6px;
 }
 
-/* ---------- Scroll-reveal animation system ---------- */
+/* ---------- Scroll-reveal animation system ----------
+   BASE (every visitor, incl. Reduce Motion): a gentle opacity fade —
+   so the site is never dead-static. The bold slide / blur / zoom is
+   layered on only when the visitor hasn't asked to reduce motion. */
+.rv, .sect-rv { opacity: 0; transition: opacity 0.8s ease, transform 1s cubic-bezier(0.16, 1, 0.3, 1), filter 1s cubic-bezier(0.16, 1, 0.3, 1); }
+.rv.in, .sect-rv.in { opacity: 1; }
+.rv-d1 { transition-delay: 0.10s; }
+.rv-d2 { transition-delay: 0.20s; }
+.rv-d3 { transition-delay: 0.30s; }
+.rv-d4 { transition-delay: 0.40s; }
+
 @media (prefers-reduced-motion: no-preference) {
-  .rv {
-    opacity: 0;
-    transform: translateY(38px);
-    filter: blur(7px);
-    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .rv.in { opacity: 1; transform: none; filter: none; }
-  .rv-zoom { transform: translateY(38px) scale(0.955); }
+  .rv { transform: translateY(46px); filter: blur(8px); }
+  .rv.in { transform: none; filter: none; }
+  .rv-zoom { transform: translateY(46px) scale(0.92); }
   .rv-zoom.in { transform: none; }
-  .sect-rv {
-    opacity: 0;
-    transform: translateY(30px) scale(0.99);
-    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .sect-rv.in { opacity: 1; transform: none; }
+  .sect-rv { transform: translateY(40px) scale(0.985); }
+  .sect-rv.in { transform: none; }
   /* Directional reveals (ktechify style) */
-  .rv-left  { transform: translateX(-50px); }
-  .rv-right { transform: translateX(50px);  }
+  .rv-left  { transform: translateX(-64px); }
+  .rv-right { transform: translateX(64px);  }
   .rv-left.in, .rv-right.in { transform: none; }
   /* Ken Burns drift on every media tile — three varied paths so
      neighbouring cards never move in lockstep (ktechify style). */
@@ -157,10 +158,6 @@ html[data-readaloud="on"] .readable:focus-visible {
   /* Full-bleed video divider bands between sections */
   .vdiv video { animation: kb-a 10s ease-in-out infinite alternate; }
   .vdiv:nth-of-type(2n) video { animation: kb-c 9s ease-in-out infinite alternate; }
-  .rv-d1 { transition-delay: 0.08s; }
-  .rv-d2 { transition-delay: 0.16s; }
-  .rv-d3 { transition-delay: 0.24s; }
-  .rv-d4 { transition-delay: 0.32s; }
   .hero-rise { animation: heroRise 1s cubic-bezier(0.16, 1, 0.3, 1) both; }
   .hero-rise-2 { animation: heroRise 1s 0.15s cubic-bezier(0.16, 1, 0.3, 1) both; }
   .hero-rise-3 { animation: heroRise 1s 0.3s cubic-bezier(0.16, 1, 0.3, 1) both; }
@@ -170,10 +167,15 @@ html[data-readaloud="on"] .readable:focus-visible {
   }
 }
 
-/* ---------- Reduced motion ---------- */
+/* ---------- Reduced motion ----------
+   Kill continuous / large motion, but KEEP a gentle reveal fade so
+   the page still feels alive (opacity only — no movement). */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+  .rv, .sect-rv { transition: opacity 0.7s ease !important; }
+  .hero-rise, .hero-rise-2, .hero-rise-3 { animation: fadeInSoft 0.7s ease both !important; }
+  @keyframes fadeInSoft { from { opacity: 0; } to { opacity: 1; } }
 }
 
 /* ---------- Shared component classes ---------- */
