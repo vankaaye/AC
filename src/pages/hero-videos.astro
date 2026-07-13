@@ -23,21 +23,21 @@ const fourK = [
   { n: 13, title: 'Fresh flowers from the garden', desc: 'A woman gathers flowers by her greenhouse — soft light, genuine contentment.', src: 'Pexels 10049403' },
   { n: 14, title: 'A quiet coffee together', desc: 'An older couple clink mugs at the kitchen table. Warm, everyday companionship.', src: 'Pexels 6975632' },
   { n: 15, title: 'Morning coffee & conversation', desc: 'A couple chat over coffee in soft window light. Calm and unhurried.', src: 'Pexels 7231139' },
-  { n: 16, title: 'A good laugh', desc: 'A man breaks into a warm, natural laugh. Pure, unforced joy.', src: 'Pexels 8724449' },
-  { n: 17, title: 'A warm hello', desc: 'A gentle, welcoming portrait of an older woman. Elegant and reassuring.', src: 'Pexels 8724243' },
+  { n: 16, title: 'A steady hand up', desc: 'A carer gently helps a client rise from his chair. Mobility support, done with care.', src: 'Pexels 7522214', carer: true },
+  { n: 17, title: 'Helping him walk', desc: 'Two support workers steady a client as he walks. Safe, patient, hands-on care.', src: 'Pexels 7522219', carer: true },
   { n: 18, title: 'Good news at the kitchen table', desc: 'A woman lights up reading something at home. Bright and hopeful.', src: 'Pexels 6975702' },
-  { n: 19, title: 'Sharing a memory', desc: 'A smiling man at home, glasses on, mid-story. Character and warmth.', src: 'Pexels 8440979' },
-  { n: 20, title: 'A gentle smile', desc: 'A soft, dignified portrait of an older woman. Understated and human.', src: 'Pexels 6248332' },
+  { n: 19, title: 'Gentle exercises together', desc: 'A carer guides a client through arm stretches with a band. Recovery and movement.', src: 'Pexels 7517378', carer: true },
+  { n: 20, title: 'A reassuring hand', desc: 'A support worker steadies and comforts a client on the sofa. Warm, attentive care.', src: 'Pexels 7522204', carer: true },
   { n: 21, title: 'A walk in the park', desc: 'An older couple stroll a leafy path together. Active, independent, content.', src: 'Pexels 8970851' },
   { n: 22, title: 'Out for a stroll', desc: 'Two older friends walk and talk along a park path. Companionship outdoors.', src: 'Pexels 27333136' },
-  { n: 23, title: 'Enjoying the fresh air', desc: 'A man laughs in the open air. Vital and full of life.', src: 'Pexels 27333441' },
-  { n: 24, title: 'A moment in the meadow', desc: 'A man stands smiling in a green field. Peaceful and free.', src: 'Pexels 37386225' },
+  { n: 23, title: 'Comfort and support', desc: 'A carer sits close, hand on shoulder, reassuring her client. One-on-one attention.', src: 'Pexels 7517387', carer: true },
+  { n: 24, title: 'Serving a fresh meal', desc: 'A support worker brings a home-cooked meal to the table. Everyday help, delivered warmly.', src: 'Pexels 6948633', carer: true },
   { n: 25, title: 'Tending the garden', desc: 'A woman gardens at her front fence. Staying active in her own space.', src: 'Pexels 7655274' },
   { n: 26, title: 'A helping hand at home', desc: 'A support worker helps a client settle comfortably. Attentive, respectful care.', src: 'Pexels 7522221' },
   { n: 27, title: 'Staying active outdoors', desc: 'A group of older people do gentle exercises in a sunny park. Energetic and social.', src: 'Pexels 3191859' },
   { n: 28, title: 'The exercise class', desc: 'An indoor group stretch class in full swing. Movement, balance, togetherness.', src: 'Pexels 3195810' },
   { n: 29, title: 'Catching up over coffee', desc: 'Two women chat over coffee in a bright cafe. Friendship and connection.', src: 'Pexels 7017911' },
-  { n: 30, title: 'Feeling herself again', desc: 'A confident, relaxed studio portrait of an older woman. Poised and positive.', src: 'Pexels 8724358' },
+  { n: 30, title: 'A friendly visit and a chat', desc: 'A support worker sits and talks warmly with her client over a cuppa. Company that matters.', src: 'Pexels 7231132', carer: true },
   { n: 31, title: 'An afternoon walk together', desc: 'A couple walk arm in arm through the park. Gentle, everyday closeness.', src: 'Pexels 8970858' },
   { n: 32, title: 'Friends over lunch', desc: 'Older friends share a meal around a table. Community and good company.', src: 'Pexels 8087301' },
 ];
@@ -60,7 +60,8 @@ const fourK = [
     <h2 class="mt-10 text-xl md:text-2xl" style="font-family: var(--font-head);">✨ True 4K collection — 20 new options</h2>
     <p class="mt-1 mb-6 max-w-3xl text-[0.95rem]" style="color: var(--tx-soft);">
       Every clip below comes from a native <strong>4K (3840×2160 or 4096×2160)</strong> source — sharp even on
-      big screens. Warm portraits, garden and park scenes, coffee catch-ups, gentle exercise and in-home care.
+      big screens. A mix of <strong>🤝 care in action</strong> (a support worker actually helping — walking,
+      exercises, meals, a friendly visit) and happy clients living well at home (gardens, park walks, coffee).
     </p>
 
     <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -70,6 +71,9 @@ const fourK = [
             <video class="h-full w-full object-cover" src={`/media/hv/v${c.n}.mp4`} poster={`/media/hv/v${c.n}.jpg`} autoplay muted loop playsinline preload="none"></video>
             <span class="absolute left-3 top-3 rounded-full px-3 py-1 text-sm font-extrabold text-white" style="background: var(--euca); font-family: var(--font-head);">V{c.n}</span>
             <span class="absolute right-3 top-3 rounded-full px-2.5 py-1 text-xs font-extrabold uppercase tracking-wide" style="background: var(--sun); color: var(--tx); font-family: var(--font-head);">4K</span>
+            {c.carer && (
+              <span class="absolute bottom-3 left-3 rounded-full px-2.5 py-1 text-xs font-extrabold text-white" style="background: rgba(12,98,145,0.9); font-family: var(--font-head);">🤝 Care in action</span>
+            )}
           </div>
           <figcaption class="p-5">
             <h3 class="text-base" style="font-family: var(--font-head);">{c.title}</h3>
