@@ -20,6 +20,8 @@ const services = [
     video: '/media/loop-clinical.mp4',
     poster: '/media/poster-clinical.jpg',
     alt: 'A blood-pressure check during a home nursing visit',
+    includes: ['Wound care & dressings', 'Medication management & Webster packs', 'Health checks — blood pressure, diabetes & more', 'Recovery support after a hospital stay', 'Continence care', 'Working alongside your GP'],
+    note: 'Delivered by registered nurses. Usually covered by a Home Care Package or Support at Home.',
   },
   {
     id: 'personal',
@@ -28,6 +30,8 @@ const services = [
     video: '/media/loop-personal.mp4',
     poster: '/media/loop-personal.jpg',
     alt: 'A support worker helping a client comfortably at home',
+    includes: ['Showering & bathing', 'Dressing & grooming', 'Toileting & continence support', 'Help getting in and out of bed', 'Safe transfers & mobility'],
+    note: 'Gentle, respectful help at your own pace — a core service under Support at Home and CHSP.',
   },
   {
     id: 'allied',
@@ -36,6 +40,8 @@ const services = [
     video: '/media/loop-allied.mp4',
     poster: '/media/loop-allied.jpg',
     alt: 'An allied-health worker guiding a client through gentle exercises',
+    includes: ['Physiotherapy & tailored exercise', 'Occupational therapy & home assessments', 'Falls prevention', 'Podiatry (foot care)', 'Speech & dietetics on referral'],
+    note: 'Helps you stay strong and steady after illness, surgery or a fall.',
   },
   {
     id: 'social',
@@ -44,6 +50,8 @@ const services = [
     video: '/media/loop-social.mp4',
     poster: '/media/poster-social.jpg',
     alt: 'A support worker arriving to visit an older lady relaxing in her armchair',
+    includes: ['Friendly home visits', 'Outings & day trips', 'Staying in touch with family', 'Hobbies, games & a cuppa', 'Community & group activities'],
+    note: 'Company matters as much as care — this helps beat isolation.',
   },
   {
     id: 'domestic',
@@ -52,6 +60,8 @@ const services = [
     video: '/media/loop-domestic.mp4',
     poster: '/media/poster-domestic.jpg',
     alt: 'A cheerful helper tidying a bright living room',
+    includes: ['Vacuuming, mopping & dusting', 'Washing, ironing & linen', 'Kitchen & bathroom cleaning', 'Light gardening & outdoor tidy-ups', 'Rubbish & recycling'],
+    note: 'Keeps home safe and comfortable — one of the most-requested everyday services.',
   },
   {
     id: 'meals',
@@ -60,6 +70,8 @@ const services = [
     video: '/media/loop-meals.mp4',
     poster: '/media/poster-meals.jpg',
     alt: 'A fresh home-cooked meal of vegetables being handed over',
+    includes: ['Fresh meals cooked in your kitchen', 'Meals to suit your diet & tastes', 'Help with shopping & groceries', 'Stocking the fridge & pantry', 'Company while you eat'],
+    note: 'Good nutrition, your way — supporting independence and wellbeing.',
   },
   {
     id: 'transport',
@@ -68,6 +80,8 @@ const services = [
     video: '/media/loop-transport.mp4',
     poster: '/media/loop-transport.jpg',
     alt: 'An older couple out for a walk in the park',
+    includes: ['Lifts to medical appointments', 'Trips to the shops or bank', 'Social outings & visits', 'Someone to accompany & wait with you', 'A steady hand to and from the car'],
+    note: 'Stay connected and independent, with friendly company along the way.',
   },
   {
     id: 'respite',
@@ -76,6 +90,8 @@ const services = [
     video: '/media/loop-respite.mp4',
     poster: '/media/loop-respite.jpg',
     alt: 'A support worker spending time with a client at home',
+    includes: ['A few hours\' respite', 'Overnight & sleepover care', 'Planned or emergency breaks', 'In-home support or short stays', 'Peace of mind for family carers'],
+    note: 'So family carers can rest, knowing their loved one is in good hands.',
   },
 ];
 
@@ -231,7 +247,7 @@ const funding = [
       <div class="grid gap-6 md:grid-cols-2">
         {
           services.map((s, i) => (
-            <a href="#contact" class={`vcard rv ${i % 2 ? 'rv-right rv-d2' : 'rv-left rv-d1'} group block overflow-hidden rounded-3xl transition-shadow hover:shadow-xl`} style="background: var(--bg-card); box-shadow: var(--shadow);" aria-label={`${s.title} — enquire now`}>
+            <button type="button" data-service={s.id} class={`vcard rv ${i % 2 ? 'rv-right rv-d2' : 'rv-left rv-d1'} group block w-full overflow-hidden rounded-3xl text-left transition-shadow hover:shadow-xl`} style="background: var(--bg-card); box-shadow: var(--shadow);" aria-label={`${s.title} — see what's included`} aria-haspopup="dialog">
               <div class="vcard-media aspect-[16/9]" data-zoom>
                 <video
                   src={s.video}
@@ -245,13 +261,37 @@ const funding = [
                 <h3 class="text-lg font-extrabold md:text-xl">{s.title}</h3>
                 <p class="mt-2.5 text-[0.95rem]" style="color: var(--tx-soft);">{s.text}</p>
                 <span class="mt-4 inline-flex items-center gap-1.5 text-[0.95rem] font-bold" style="color: var(--euca);">
-                  Ask about this
+                  See what's included
                   <svg class="h-4.5 w-4.5 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                 </span>
               </div>
-            </a>
+            </button>
           ))
         }
+      </div>
+    </div>
+
+    <!-- Service detail dialog (populated on tile click) -->
+    <div id="svcModal" class="fixed inset-0 z-[200] hidden items-end justify-center sm:items-center" role="dialog" aria-modal="true" aria-labelledby="svcTitle">
+      <div id="svcBackdrop" class="absolute inset-0" style="background: rgba(8,16,22,0.6); backdrop-filter: blur(3px);"></div>
+      <div class="relative m-0 flex max-h-[92vh] w-full flex-col overflow-hidden rounded-t-3xl sm:m-4 sm:max-w-2xl sm:rounded-3xl" style="background: var(--bg-card); box-shadow: 0 30px 80px rgba(8,16,22,0.4);">
+        <div class="relative aspect-video shrink-0 bg-slate-900">
+          <video id="svcVideo" class="h-full w-full object-cover" muted loop playsinline></video>
+          <button id="svcClose" type="button" class="absolute right-3 top-3 flex h-10 w-10 items-center justify-center rounded-full text-white" style="background: rgba(8,16,22,0.55); backdrop-filter: blur(6px);" aria-label="Close">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+          </button>
+        </div>
+        <div class="overflow-y-auto p-6 md:p-8">
+          <h3 id="svcTitle" class="text-2xl font-extrabold md:text-3xl"></h3>
+          <p id="svcText" class="mt-2 text-[1rem]" style="color: var(--tx-soft);"></p>
+          <p class="mt-6 mb-2 text-sm font-bold uppercase tracking-widest" style="color: var(--euca);">What's included</p>
+          <ul id="svcList" class="grid gap-2 sm:grid-cols-2"></ul>
+          <p id="svcNote" class="mt-5 rounded-2xl p-4 text-[0.95rem]" style="background: var(--euca-soft); color: var(--tx);"></p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a id="svcContact" href="#contact" class="btn-primary">Ask us to call you</a>
+            <button id="svcAsk" type="button" class="btn-sun">Ask Astro Chat about this</button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -638,7 +678,75 @@ const funding = [
     ],
   })} />
 
+  <script type="application/json" id="svcData" set:html={JSON.stringify(
+    services.map((s) => ({ id: s.id, title: s.title, text: s.text, video: s.video, poster: s.poster, includes: s.includes, note: s.note }))
+  )}></script>
+
   <script is:inline>
+    /* Service detail dialog — opens on tile click with full detail. */
+    (function () {
+      var modal = document.getElementById('svcModal');
+      if (!modal) return;
+      var data = {};
+      try { JSON.parse(document.getElementById('svcData').textContent).forEach(function (s) { data[s.id] = s; }); } catch (e) { return; }
+      var vid = document.getElementById('svcVideo');
+      var lastFocus = null;
+
+      function open(id) {
+        var s = data[id];
+        if (!s) return;
+        document.getElementById('svcTitle').textContent = s.title;
+        document.getElementById('svcText').textContent = s.text;
+        document.getElementById('svcNote').textContent = s.note;
+        var ul = document.getElementById('svcList');
+        ul.innerHTML = '';
+        s.includes.forEach(function (item) {
+          var li = document.createElement('li');
+          li.className = 'flex items-start gap-2 text-[0.95rem]';
+          li.innerHTML = '<svg class="mt-0.5 h-4.5 w-4.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="var(--euca)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>' + item + '</span>';
+          ul.appendChild(li);
+        });
+        vid.poster = s.poster;
+        vid.src = s.video;
+        vid.play().catch(function () {});
+        document.getElementById('svcAsk').setAttribute('data-ask', 'Tell me more about ' + s.title.toLowerCase() + ' at Astro Care');
+        lastFocus = document.activeElement;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+        document.getElementById('svcClose').focus();
+      }
+      function close() {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = '';
+        try { vid.pause(); vid.removeAttribute('src'); vid.load(); } catch (e) {}
+        if (lastFocus) lastFocus.focus();
+      }
+
+      document.querySelectorAll('[data-service]').forEach(function (btn) {
+        btn.addEventListener('click', function () { open(btn.getAttribute('data-service')); });
+      });
+      document.getElementById('svcClose').addEventListener('click', close);
+      document.getElementById('svcBackdrop').addEventListener('click', close);
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.classList.contains('hidden')) close(); });
+      /* "Ask Astro Chat about this" → close, open chat, pre-ask the question. */
+      document.getElementById('svcAsk').addEventListener('click', function () {
+        var q = this.getAttribute('data-ask');
+        close();
+        var openChat = document.getElementById('openChat');
+        if (openChat) {
+          openChat.click();
+          var input = document.getElementById('chatInput');
+          var form = document.getElementById('chatForm');
+          if (input && form) setTimeout(function () {
+            input.value = q;
+            form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+          }, 350);
+        }
+      });
+    })();
+
     /* Hero parallax: video drifts slower than the page. */
     (function () {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;

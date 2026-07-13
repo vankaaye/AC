@@ -121,6 +121,8 @@ Full restore instructions and commit hashes: see `VERSIONS.md`.
 
 | 13 Jul 2026 | **Header light/dark toggle, slower reveals, 8 services** — moved theme control to a sun/moon **toggle in the header top-right** and dropped the System/Auto option (just Light/Dark, default light); removed the appearance picker from the accessibility panel. Reveals **slowed to 1.25s** with a gentler ease so they no longer rush. **"What we do" expanded from 4 to 8 services** — added Personal care, Allied health & therapy, Transport & getting out, and Respite & overnight care (4 new 1280×720 video loops encoded), better reflecting the full Support-at-Home offering. | (this commit) |
 
+| 13 Jul 2026 | **Service tiles now open a detail dialog** (owner: tiles should show more, not just jump to contact) — each "What we do" tile now opens a modal with the service video, full description, a "What's included" checklist (5–6 items each), a funding/how-it-works note, and two CTAs: "Ask us to call you" (→ callback form) and "Ask Astro Chat about this" (opens the chat and auto-asks about that service). Accessible dialog: Escape/✕/backdrop close, focus managed, body scroll locked, video pauses on close. | (this commit) |
+
 ## 9. Run sheet — everything done so far
 
 | Date | What happened | Commit |
