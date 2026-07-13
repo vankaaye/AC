@@ -123,6 +123,8 @@ Full restore instructions and commit hashes: see `VERSIONS.md`.
 
 | 13 Jul 2026 | **Service tiles now open a detail dialog** (owner: tiles should show more, not just jump to contact) — each "What we do" tile now opens a modal with the service video, full description, a "What's included" checklist (5–6 items each), a funding/how-it-works note, and two CTAs: "Ask us to call you" (→ callback form) and "Ask Astro Chat about this" (opens the chat and auto-asks about that service). Accessible dialog: Escape/✕/backdrop close, focus managed, body scroll locked, video pauses on close. | (this commit) |
 
+| 13 Jul 2026 | **De-duplicated on-page videos** (owner: videos are repeated) — several clips appeared in more than one place; reassigned so every section shows a distinct scene: social card → coffee catch-up (7017911, was the hero flowers clip), step 3 → companion visit (7231132, was the same as personal care's helping-hand 5559), divider 3 → couple over coffee (6786517, was the hero consult clip) with a matching caption. 15 unique clips across the homepage now. | (this commit) |
+
 ## 9. Run sheet — everything done so far
 
 | Date | What happened | Commit |
