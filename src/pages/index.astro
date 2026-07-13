@@ -603,13 +603,16 @@ const funding = [
       io.observe(grid);
     })();
 
-    /* "Ask our chat helper" buttons open the chat. */
+    /* "Ask our chat helper" buttons open the chat. The chat widget is
+       rendered later in the body (in the layout), so resolve #openChat
+       at click time — resolving it here would find nothing. */
     (function () {
-      var open = document.getElementById('openChat');
-      if (!open) return;
       ['askFundingChat', 'askContactChat'].forEach(function (id) {
         var b = document.getElementById(id);
-        if (b) b.addEventListener('click', function () { open.click(); });
+        if (b) b.addEventListener('click', function () {
+          var open = document.getElementById('openChat');
+          if (open) open.click();
+        });
       });
     })();
 
