@@ -168,15 +168,12 @@ const {
     <AccessibilityToggle />
 
     <script is:inline>
-      /* Header: hide on scroll down, show on scroll up. */
+      /* Header stays visible at all times (owner request) — it only
+         gains a slightly stronger shadow once the page is scrolled. */
       (function () {
         var header = document.getElementById('siteHeader');
-        var lastY = 0;
         window.addEventListener('scroll', function () {
-          var y = window.scrollY;
-          if (y > 120 && y > lastY) header.style.transform = 'translateY(-100%)';
-          else header.style.transform = '';
-          lastY = y;
+          header.style.boxShadow = window.scrollY > 40 ? '0 4px 18px rgba(15,30,40,0.08)' : '';
         }, { passive: true });
       })();
 

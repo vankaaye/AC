@@ -2,19 +2,17 @@
 /**
  * PricingCalculator.astro
  * ------------------------------------------------------------------
- * "Pricing & Fee Transparency Calculator"
+ * "Pricing & Fee Transparency Calculator" — a single compact card
+ * (the surrounding #pricing section, heading and intro live in
+ * index.astro).
  *
- * Lets a family estimate, in plain English:
- *   1. The weekly government subsidy for each HCP level (1–4).
+ * Shows, in plain English:
+ *   1. The weekly government subsidy for each HCP level (1–4),
+ *      with a real-life example of what that level typically covers.
  *   2. Astro Care's Care Management fee (15% of the package).
  *   3. Astro Care's Package Management fee (10% of the package).
  *   4. What's left for actual care, and roughly how many hours of
  *      their chosen service that buys each week.
- *
- * Design rules for seniors:
- *   - Radio buttons and +/− steppers only (56px+ targets), no sliders.
- *   - Results update instantly, in large type, with dollars first.
- *   - A clear "estimate only" disclaimer, as fee schedules change.
  *
  * Rates are indicative and should be kept in step with the published
  * Astro Care price list and My Aged Care subsidy rates.
@@ -22,10 +20,10 @@
  */
 
 const LEVELS = [
-  { level: 1, label: 'Level 1 — basic care needs', weekly: 205 },
-  { level: 2, label: 'Level 2 — low care needs', weekly: 361 },
-  { level: 3, label: 'Level 3 — intermediate care needs', weekly: 786 },
-  { level: 4, label: 'Level 4 — high care needs', weekly: 1192 },
+  { level: 1, label: 'Level 1 — basic', weekly: 205, eg: 'e.g. a weekly clean plus help with the shopping' },
+  { level: 2, label: 'Level 2 — low', weekly: 361, eg: 'e.g. two visits a week — cleaning, meals or a shower assist' },
+  { level: 3, label: 'Level 3 — intermediate', weekly: 786, eg: 'e.g. help most days: personal care, meals, nurse check-ins' },
+  { level: 4, label: 'Level 4 — high', weekly: 1192, eg: 'e.g. daily visits — personal care, nursing, meals and respite' },
 ];
 
 const SERVICES = [
@@ -40,120 +38,108 @@ const CARE_MGMT_PCT = 15;    // % of package — capped at 20% by the Commission
 const PKG_MGMT_PCT = 10;     // % of package — capped at 15% by the Commission
 ---
 
-<section id="pricing" class="py-10 md:py-16" style="background: var(--bg-sand);" aria-labelledby="pricingHeading">
-  <div class="mx-auto w-[min(1220px,100%-2.5rem)]">
-    <div class="max-w-3xl">
-      <h2 id="pricingHeading" class="readable text-3xl md:text-5xl mb-4">
-        Clear fees, <em class="not-italic" style="color: var(--euca);">no surprises</em>
-      </h2>
-      <p class="readable text-xl mb-3" style="color: var(--tx-soft);">
-        Every Home Care Package provider charges management fees — the difference is how honestly
-        they're shown. Here are ours, out in the open. Choose your package level below and see
-        exactly where every dollar goes.
+<div
+  class="grid gap-6 rounded-3xl border hc-border p-4 sm:p-6 lg:grid-cols-2"
+  style="background: var(--bg-card); border-color: var(--line); box-shadow: var(--shadow);"
+>
+  <!-- ============ INPUTS ============ -->
+  <div>
+    <fieldset class="mb-6">
+      <legend class="readable mb-3 text-lg font-black" style="font-family: var(--font-head);">
+        1. Your Home Care Package level
+      </legend>
+      <div class="grid gap-2.5">
+        {
+          LEVELS.map((l, i) => (
+            <label
+              class="block cursor-pointer rounded-2xl border-2 px-3 py-2.5 transition-colors has-checked:border-[var(--euca)] has-checked:bg-[var(--euca-soft)]"
+              style="border-color: var(--line);"
+            >
+              <span class="flex min-h-8 items-center gap-2.5 text-[0.95rem] font-bold">
+                <input
+                  type="radio"
+                  name="hcpLevel"
+                  value={l.weekly}
+                  checked={i === 1}
+                  class="h-5.5 w-5.5 accent-[var(--euca)]"
+                />
+                <span class="flex-1">{l.label}</span>
+                <span class="whitespace-nowrap font-black" style="color: var(--euca);">${l.weekly}/wk</span>
+              </span>
+              <span class="mt-0.5 block pl-8 text-[0.82rem]" style="color: var(--tx-soft);">{l.eg}</span>
+            </label>
+          ))
+        }
+      </div>
+      <p class="mt-2 text-[0.9rem]" style="color: var(--tx-soft);">
+        Not sure of your level? Your My Aged Care letter says — or ask us and we'll check together.
       </p>
-    </div>
+    </fieldset>
 
-    <div
-      class="mt-8 grid gap-6 rounded-3xl border-4 hc-border p-4 sm:p-6 md:p-9 lg:grid-cols-2"
-      style="background: var(--bg-card); border-color: var(--line); box-shadow: var(--shadow);"
-    >
-      <!-- ============ INPUTS ============ -->
-      <div>
-        <fieldset class="mb-7">
-          <legend class="readable text-2xl font-black mb-3" style="font-family: var(--font-head);">
-            1. Your Home Care Package level
-          </legend>
-          <div class="grid gap-3">
-            {
-              LEVELS.map((l, i) => (
-                <label
-                  class="flex min-h-12 cursor-pointer items-center gap-2.5 rounded-2xl border-2 px-3 py-2.5 text-[0.95rem] sm:text-lg font-bold transition-colors has-checked:border-[var(--euca)] has-checked:bg-[var(--euca-soft)]"
-                  style="border-color: var(--line);"
-                >
-                  <input
-                    type="radio"
-                    name="hcpLevel"
-                    value={l.weekly}
-                    checked={i === 1}
-                    class="h-7 w-7 accent-[var(--euca)]"
-                  />
-                  <span class="flex-1">{l.label}</span>
-                  <span class="whitespace-nowrap font-black" style="color: var(--euca);">${l.weekly}/wk</span>
-                </label>
-              ))
-            }
-          </div>
-          <p class="mt-2 text-lg" style="color: var(--tx-soft);">
-            Not sure of your level? Your My Aged Care letter says — or call us and we'll check together.
-          </p>
-        </fieldset>
+    <fieldset class="mb-6">
+      <legend class="readable mb-3 text-lg font-black" style="font-family: var(--font-head);">
+        2. The service you use most
+      </legend>
+      <select
+        id="calcService"
+        class="min-h-11 w-full rounded-xl border-2 px-3 text-[0.95rem] font-bold"
+        style="border-color: var(--line); background: var(--bg);"
+        aria-label="Choose the service you use most"
+      >
+        {SERVICES.map((s) => <option value={s.rate}>{s.label} — ${s.rate}/hour</option>)}
+      </select>
+    </fieldset>
 
-        <fieldset class="mb-7">
-          <legend class="readable text-2xl font-black mb-3" style="font-family: var(--font-head);">
-            2. The service you use most
-          </legend>
-          <select
-            id="calcService"
-            class="min-h-14 w-full rounded-2xl border-4 px-4 text-xl font-bold"
-            style="border-color: var(--line); background: var(--bg);"
-            aria-label="Choose the service you use most"
-          >
-            {SERVICES.map((s) => <option value={s.rate}>{s.label} — ${s.rate}/hour</option>)}
-          </select>
-        </fieldset>
-
-        <fieldset>
-          <legend class="readable text-2xl font-black mb-3" style="font-family: var(--font-head);">
-            3. Hours of help each week
-          </legend>
-          <div class="flex items-center gap-4">
-            <button id="calcLess" class="btn-primary hc-border !min-h-16 !w-16 !p-0 !text-3xl" aria-label="One hour less">−</button>
-            <output id="calcHours" class="min-w-16 text-center text-3xl font-black" style="font-family: var(--font-head);" aria-live="polite">6</output>
-            <button id="calcMore" class="btn-primary hc-border !min-h-16 !w-16 !p-0 !text-3xl" aria-label="One hour more">+</button>
-            <span class="text-xl font-bold" style="color: var(--tx-soft);">hours / week</span>
-          </div>
-        </fieldset>
+    <fieldset>
+      <legend class="readable mb-3 text-lg font-black" style="font-family: var(--font-head);">
+        3. Hours of help each week
+      </legend>
+      <div class="flex items-center gap-3">
+        <button id="calcLess" class="btn-primary hc-border !min-h-11 !w-11 !p-0 !text-xl" aria-label="One hour less">−</button>
+        <output id="calcHours" class="min-w-10 text-center text-2xl font-black" style="font-family: var(--font-head);" aria-live="polite">6</output>
+        <button id="calcMore" class="btn-primary hc-border !min-h-11 !w-11 !p-0 !text-xl" aria-label="One hour more">+</button>
+        <span class="text-[0.95rem] font-bold" style="color: var(--tx-soft);">hours / week</span>
       </div>
-
-      <!-- ============ RESULTS ============ -->
-      <div class="rounded-2xl p-6 md:p-8" style="background: var(--euca-soft);" aria-live="polite">
-        <h3 class="readable text-2xl mb-5">Your weekly estimate</h3>
-        <dl class="grid gap-3 text-[0.95rem] sm:text-lg">
-          <div class="flex items-center justify-between gap-4 border-b-2 pb-3" style="border-color: var(--line);">
-            <dt>Government subsidy for your package</dt>
-            <dd class="whitespace-nowrap text-2xl font-black" style="color: var(--euca);" id="outSubsidy">$361</dd>
-          </div>
-          <div class="flex items-center justify-between gap-4 border-b-2 pb-3" style="border-color: var(--line);">
-            <dt>Care Management fee ({CARE_MGMT_PCT}%)<br /><small class="text-base" style="color: var(--tx-soft);">Your nurse-led care plan, reviews &amp; coordination</small></dt>
-            <dd class="whitespace-nowrap text-2xl font-black" id="outCareMgmt">−$54</dd>
-          </div>
-          <div class="flex items-center justify-between gap-4 border-b-2 pb-3" style="border-color: var(--line);">
-            <dt>Package Management fee ({PKG_MGMT_PCT}%)<br /><small class="text-base" style="color: var(--tx-soft);">Statements, invoicing &amp; compliance</small></dt>
-            <dd class="whitespace-nowrap text-2xl font-black" id="outPkgMgmt">−$36</dd>
-          </div>
-          <div class="flex items-center justify-between gap-4 border-b-2 pb-3" style="border-color: var(--line);">
-            <dt class="font-black">Left for your care each week</dt>
-            <dd class="whitespace-nowrap text-3xl font-black" style="color: var(--euca);" id="outCare">$271</dd>
-          </div>
-          <div class="flex items-center justify-between gap-4">
-            <dt>Covers about</dt>
-            <dd class="whitespace-nowrap text-2xl font-black" id="outHours">3.8 hrs/wk</dd>
-          </div>
-        </dl>
-        <p class="mt-4 rounded-xl p-4 text-lg" style="background: var(--sun-soft); color: var(--tx);" id="outNote">
-          You asked about <strong id="outAskHours">6</strong> hours — a higher package level or a small
-          personal contribution can bridge the gap. Call us and we'll find the kindest way.
-        </p>
-        <p class="mt-4 text-base" style="color: var(--tx-soft);">
-          This is a friendly estimate only, based on Astro Care's published rates and current subsidy
-          levels. Exact figures are always confirmed in writing before any care starts — as required
-          by the Aged Care Quality and Safety Commission.
-        </p>
-        <a href="tel:+611800278762" class="btn-call hc-border mt-5 w-full">Talk fees with a real person</a>
-      </div>
-    </div>
+    </fieldset>
   </div>
-</section>
+
+  <!-- ============ RESULTS ============ -->
+  <div class="rounded-2xl p-5 md:p-6" style="background: var(--euca-soft);" aria-live="polite">
+    <h3 class="readable mb-4 text-xl">Your weekly estimate</h3>
+    <dl class="grid gap-2.5 text-[0.95rem]">
+      <div class="flex items-center justify-between gap-4 border-b pb-2.5" style="border-color: var(--line);">
+        <dt>Government subsidy for your package</dt>
+        <dd class="whitespace-nowrap text-xl font-black" style="color: var(--euca);" id="outSubsidy">$361</dd>
+      </div>
+      <div class="flex items-center justify-between gap-4 border-b pb-2.5" style="border-color: var(--line);">
+        <dt>Care Management fee ({CARE_MGMT_PCT}%)<br /><small class="text-[0.82rem]" style="color: var(--tx-soft);">Your nurse-led care plan, reviews &amp; coordination</small></dt>
+        <dd class="whitespace-nowrap text-xl font-black" id="outCareMgmt">−$54</dd>
+      </div>
+      <div class="flex items-center justify-between gap-4 border-b pb-2.5" style="border-color: var(--line);">
+        <dt>Package Management fee ({PKG_MGMT_PCT}%)<br /><small class="text-[0.82rem]" style="color: var(--tx-soft);">Statements, invoicing &amp; compliance</small></dt>
+        <dd class="whitespace-nowrap text-xl font-black" id="outPkgMgmt">−$36</dd>
+      </div>
+      <div class="flex items-center justify-between gap-4 border-b pb-2.5" style="border-color: var(--line);">
+        <dt class="font-black">Left for your care each week</dt>
+        <dd class="whitespace-nowrap text-2xl font-black" style="color: var(--euca);" id="outCare">$271</dd>
+      </div>
+      <div class="flex items-center justify-between gap-4">
+        <dt>Covers about</dt>
+        <dd class="whitespace-nowrap text-xl font-black" id="outHours">3.8 hrs/wk</dd>
+      </div>
+    </dl>
+    <p class="mt-3 rounded-xl p-3 text-[0.9rem]" style="background: var(--sun-soft); color: var(--tx);" id="outNote">
+      You asked about <strong id="outAskHours">6</strong> hours — a higher package level or a small
+      personal contribution can bridge the gap. Ask us and we'll find the kindest way.
+    </p>
+    <p class="mt-3 text-[0.82rem]" style="color: var(--tx-soft);">
+      A friendly estimate only, based on Astro Care's published rates and current subsidy levels.
+      Exact figures are always confirmed in writing before any care starts — as required by the
+      Aged Care Quality and Safety Commission.
+    </p>
+    <a href="tel:+611800278762" class="btn-call hc-border mt-4 w-full">Talk fees with a real person</a>
+  </div>
+</div>
 
 <script is:inline>
   (function () {
