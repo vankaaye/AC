@@ -112,6 +112,8 @@ Full restore instructions and commit hashes: see `VERSIONS.md`.
 
 | 13 Jul 2026 | **Funding auto-cycle removed + reveals smoothed** (owner: shifting blue border confuses; reveals not smooth) — removed the Stripe-style self-cycling spotlight on the funding cards (the moving blue border read as a false "selected/hover" state); the blue border + lift now appears only on genuine hover/focus. Reveals no longer animate `filter: blur()` (the cause of the stutter) — now opacity + transform only, both GPU-composited, so they glide. | (this commit) |
 
+| 13 Jul 2026 | **Opening hours reformatted + mic-release fix** (owner: hours hard to read; mic kept listening after closing chat) — the run-on hours line ("Mon–Fri 8am–6pm · Sat…") is now a clean bordered table (Mon–Fri, Saturday, Sunday=Closed, and "Care at home 24/7" highlighted). Voice-dictation mic now stops the moment the chat closes (Escape, ✕, or toggling the pill), plus on tab-hide/pagehide — previously the browser kept listening until the window was closed. | (this commit) |
+
 ## 9. Run sheet — everything done so far
 
 | Date | What happened | Commit |

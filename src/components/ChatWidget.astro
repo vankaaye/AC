@@ -97,6 +97,7 @@
     var input = document.getElementById('chatInput');
     var openBtn = document.getElementById('openChat');
     var greeted = false;
+    var stopMic = function () {}; /* replaced by the dictation module when supported */
 
     /* ---------- AI integration ----------
        Set AI_ENDPOINT to the deployed Cloudflare Worker URL (see
@@ -325,6 +326,13 @@
         mic.setAttribute('aria-pressed', 'true');
         try { rec.start(); } catch (err) { stopUI(); }
       });
+      /* Let the rest of the widget force the mic off (e.g. when the chat
+         closes) so the browser stops listening and releases the mic. */
+      stopMic = function () {
+        if (!listening) return;
+        try { rec.abort(); } catch (e) { try { rec.stop(); } catch (e2) {} }
+        stopUI();
+      };
     })();
 
     function answer(text) {
@@ -408,6 +416,7 @@
       }
     }
     function closeChat() {
+      stopMic(); /* release the microphone if dictation was left on */
       panel.classList.add('hidden');
       panel.classList.remove('flex');
       if (openBtn) { openBtn.setAttribute('aria-expanded', 'false'); openBtn.focus(); }
@@ -420,6 +429,9 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && !panel.classList.contains('hidden')) closeChat();
     });
+    /* Belt-and-braces: release the mic if the tab is hidden or navigated away. */
+    document.addEventListener('visibilitychange', function () { if (document.hidden) stopMic(); });
+    window.addEventListener('pagehide', function () { stopMic(); });
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
