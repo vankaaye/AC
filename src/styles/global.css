@@ -118,23 +118,26 @@ html[data-readaloud="on"] .readable:focus-visible {
    BASE (every visitor, incl. Reduce Motion): a gentle opacity fade —
    so the site is never dead-static. The bold slide / blur / zoom is
    layered on only when the visitor hasn't asked to reduce motion. */
-.rv, .sect-rv { opacity: 0; transition: opacity 0.8s ease, transform 1s cubic-bezier(0.16, 1, 0.3, 1), filter 1s cubic-bezier(0.16, 1, 0.3, 1); }
+/* Only opacity + transform are animated — both GPU-composited, so the
+   reveal is smooth. (Animating filter: blur() causes the stutter, so it
+   is deliberately NOT used.) */
+.rv, .sect-rv { opacity: 0; transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
 .rv.in, .sect-rv.in { opacity: 1; }
-.rv-d1 { transition-delay: 0.10s; }
-.rv-d2 { transition-delay: 0.20s; }
-.rv-d3 { transition-delay: 0.30s; }
-.rv-d4 { transition-delay: 0.40s; }
+.rv-d1 { transition-delay: 0.08s; }
+.rv-d2 { transition-delay: 0.16s; }
+.rv-d3 { transition-delay: 0.24s; }
+.rv-d4 { transition-delay: 0.32s; }
 
 @media (prefers-reduced-motion: no-preference) {
-  .rv { transform: translateY(46px); filter: blur(8px); }
-  .rv.in { transform: none; filter: none; }
-  .rv-zoom { transform: translateY(46px) scale(0.92); }
+  .rv { transform: translateY(34px); }
+  .rv.in { transform: none; }
+  .rv-zoom { transform: translateY(34px) scale(0.95); }
   .rv-zoom.in { transform: none; }
-  .sect-rv { transform: translateY(40px) scale(0.985); }
+  .sect-rv { transform: translateY(30px); }
   .sect-rv.in { transform: none; }
   /* Directional reveals (ktechify style) */
-  .rv-left  { transform: translateX(-64px); }
-  .rv-right { transform: translateX(64px);  }
+  .rv-left  { transform: translateX(-48px); }
+  .rv-right { transform: translateX(48px);  }
   .rv-left.in, .rv-right.in { transform: none; }
   /* Ken Burns drift on every media tile — three varied paths so
      neighbouring cards never move in lockstep (ktechify style). */
@@ -288,20 +291,18 @@ html[data-readaloud="on"] .readable:focus-visible {
   bottom: 2.2rem;
 }
 
-/* Funding cards — Stripe-style self-cycling spotlight */
+/* Funding cards — highlight on genuine hover/focus only (no auto-cycle,
+   which read as a confusing moving "selected" state). */
 .fund-card {
   border: 2px solid transparent;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s, border-color 0.5s, opacity 0.5s;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s, border-color 0.3s;
 }
-.fund-cycle .fund-card { opacity: 0.72; }
-.fund-cycle .fund-card.fund-on {
-  opacity: 1;
-  transform: translateY(-6px);
+.fund-card:hover,
+.fund-card:focus-visible {
+  transform: translateY(-4px);
   border-color: var(--euca);
   box-shadow: 0 18px 40px rgba(12, 98, 145, 0.16);
 }
-.fund-cycle:hover .fund-card,
-.fund-cycle:focus-within .fund-card { opacity: 1; transform: none; }
 
 /* Ambient video card */
 .vcard-media { position: relative; overflow: hidden; }

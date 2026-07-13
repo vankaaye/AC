@@ -677,28 +677,6 @@ const funding = [
       });
     })();
 
-    /* Funding cards: Stripe-style self-cycling spotlight — each card
-       takes a turn in focus while the section is on screen. Pauses on
-       hover/focus and respects reduced motion. */
-    (function () {
-      var grid = document.getElementById('fundGrid');
-      if (!grid) return;
-      var cards = Array.from(grid.querySelectorAll('.fund-card'));
-      if (cards.length < 2) return;
-      var idx = 0, timer = null;
-      function tick() {
-        cards.forEach(function (c, i) { c.classList.toggle('fund-on', i === idx); });
-        idx = (idx + 1) % cards.length;
-      }
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting && !timer) { tick(); timer = setInterval(tick, 3200); }
-          else if (!e.isIntersecting && timer) { clearInterval(timer); timer = null; }
-        });
-      }, { threshold: 0.35 });
-      io.observe(grid);
-    })();
-
     /* "Ask our chat helper" buttons open the chat. The chat widget is
        rendered later in the body (in the layout), so resolve #openChat
        at click time — resolving it here would find nothing. */

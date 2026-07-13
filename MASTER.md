@@ -110,6 +110,8 @@ Full restore instructions and commit hashes: see `VERSIONS.md`.
 
 | 13 Jul 2026 | **Animations fixed for everyone** (owner: "no animations anywhere") — root cause: every reveal/Ken Burns/funding-cycle animation was gated behind `prefers-reduced-motion: no-preference`, so a device with **Reduce Motion ON** (very common on iPhone) saw a fully static site. Rebuilt the system: a **gentle opacity fade now runs for all visitors including Reduce-Motion** (accessible — opacity only, no movement), with the bold slide/blur/zoom + Ken Burns layered on only when motion is allowed; reveals made bolder (46px rise, 8px blur); the **Stripe-style funding-card spotlight cycle now runs regardless of the motion setting**. Verified in both modes via Playwright. | (this commit) |
 
+| 13 Jul 2026 | **Funding auto-cycle removed + reveals smoothed** (owner: shifting blue border confuses; reveals not smooth) — removed the Stripe-style self-cycling spotlight on the funding cards (the moving blue border read as a false "selected/hover" state); the blue border + lift now appears only on genuine hover/focus. Reveals no longer animate `filter: blur()` (the cause of the stutter) — now opacity + transform only, both GPU-composited, so they glide. | (this commit) |
+
 ## 9. Run sheet — everything done so far
 
 | Date | What happened | Commit |
