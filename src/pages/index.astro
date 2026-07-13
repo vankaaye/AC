@@ -113,7 +113,23 @@ const funding = [
         <a href="#contact" class="btn-primary !px-6 !py-3 !text-base" style="background: #fff; color: var(--euca);">Get started</a>
         <a href="#services" class="btn-ghost !px-6 !py-3 !text-base">Explore our services</a>
       </div>
-      <ul class="hero-rise-3 mt-8 flex flex-wrap gap-x-6 gap-y-1.5 text-xs font-semibold text-white/70" aria-label="Accreditations">
+      <ul class="hero-rise-3 mt-7 flex flex-wrap gap-2" aria-label="What we offer">
+        {
+          ['Nursing & clinical care', 'Personal care', 'Cleaning & home help', 'Meals', 'Social support & company'].map((s) => (
+            <li>
+              <a
+                href="#services"
+                class="inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[0.82rem] font-bold text-white transition-colors hover:bg-white/30"
+                style="background: rgba(255,255,255,0.13); border: 1px solid rgba(255,255,255,0.32); backdrop-filter: blur(8px);"
+              >
+                <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="#F2B33D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg>
+                {s}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <ul class="hero-rise-3 mt-6 flex flex-wrap gap-x-6 gap-y-1.5 text-xs font-semibold text-white/70" aria-label="Accreditations">
         <li>My Aged Care · Approved Provider</li>
         <li>NDIS · Registered Provider</li>
         <li>Aged Care Quality Standards · Compliant</li>
