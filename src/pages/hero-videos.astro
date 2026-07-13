@@ -1,138 +1,125 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-/* Hero video candidates — preview loops live in /media/hv/ (960×540).
-   Whichever is chosen gets re-cut from the full-resolution source. */
-const candidates = [
-  { n: 1,  title: 'Current hero — 3-scene montage', desc: 'Social visit → sit-down consult → shared moment. The montage running on the homepage today.', src: 'Pexels 7475245 + 7475237', res: '1080p', current: true },
-  { n: 2,  title: 'The first sit-down chat', desc: 'A carer takes notes while the client talks on his own sofa. Calm, professional, personal.', src: 'Pexels 7475237', res: '1080p' },
-  { n: 3,  title: 'A visit that brightens the day', desc: 'Support worker arrives with fresh flowers; the client lights up. Warm and genuinely joyful.', src: 'Pexels 7475245', res: '1080p' },
-  { n: 5,  title: 'Blood-pressure check at home', desc: 'A nurse checks blood pressure in the client’s living room. Clinical care, home comfort.', src: 'Mixkit 5414', res: '720p' },
-  { n: 6,  title: 'A helping hand on the sofa', desc: 'Carer sits beside the client, supporting and reassuring. Gentle one-on-one attention.', src: 'Mixkit 5559', res: '720p' },
-  { n: 7,  title: 'Working through it together', desc: 'Carer and client go through information on a tablet together — modern, capable care.', src: 'Mixkit 5790', res: '720p' },
-  { n: 8,  title: 'Getting moving again', desc: 'A nurse helps with mobility aids — recovery and independence, handled with patience.', src: 'Mixkit 5798', res: '720p' },
-  { n: 9,  title: 'Explaining the plan', desc: 'A nurse walks the client through a device/plan on the couch. Informative and unhurried.', src: 'Mixkit 5795', res: '720p' },
-  { n: 10, title: 'A spotless home', desc: 'Domestic assistance — vacuuming while the client relaxes. The everyday help families ask about first.', src: 'Mixkit 43373', res: '720p' },
-  { n: 11, title: 'Fresh meals, made with care', desc: 'Close-up of colourful, healthy meal preparation. Appetising and universal.', src: 'Mixkit 40524', res: '720p' },
+/* Hero video candidates. Preview loops live in /media/hv/ (960×540);
+   whichever is chosen gets re-cut from the full-resolution source.
+   `care: true` = a support worker actively helping (white cast).
+   `res` is the source resolution, shown honestly on each card. */
+const clips = [
+  /* ---- CARE IN ACTION — a support worker helping (white cast) ---- */
+  { n: 1,  care: true, res: '1080p', current: true, title: 'Current hero — 3-scene montage', desc: 'Social visit → sit-down consult → shared moment. The montage running on the homepage today.', src: 'Pexels 7475245 + 7475237' },
+  { n: 16, care: true, res: '4K',    title: 'A health check at home', desc: 'Keeping an eye on blood pressure at the kitchen table. Everyday health, watched over.', src: 'Pexels 8088986' },
+  { n: 17, care: true, res: '4K',    title: 'A companion visit', desc: 'A support worker drops by for a cuppa and a good chat. Social support that lifts the day.', src: 'Pexels 7231133' },
+  { n: 24, care: true, res: '4K',    title: 'Serving a fresh meal', desc: 'A support worker brings a home-cooked meal to the table. Everyday help, delivered warmly.', src: 'Pexels 6948633' },
+  { n: 30, care: true, res: '4K',    title: 'A friendly visit and a chat', desc: 'A support worker sits and talks warmly with her client over a cuppa. Company that matters.', src: 'Pexels 7231132' },
+  { n: 2,  care: true, res: '1080p', title: 'The first sit-down chat', desc: 'A carer takes notes while the client talks on his own sofa. Calm, professional, personal.', src: 'Pexels 7475237' },
+  { n: 3,  care: true, res: '1080p', title: 'A visit that brightens the day', desc: 'A support worker arrives with fresh flowers; the client lights up. Warm and joyful.', src: 'Pexels 7475245' },
+  { n: 5,  care: true, res: '720p',  title: 'A blood-pressure check', desc: 'A nurse checks blood pressure in the living room. Clinical care, home comfort.', src: 'Mixkit 5414' },
+  { n: 6,  care: true, res: '720p',  title: 'A helping hand on the sofa', desc: 'A carer sits beside the client, supporting and reassuring. Gentle one-on-one attention.', src: 'Mixkit 5559' },
+  { n: 7,  care: true, res: '720p',  title: 'Working through it together', desc: 'A carer and client go through information on a tablet. Modern, capable care.', src: 'Mixkit 5790' },
+  { n: 9,  care: true, res: '720p',  title: 'Explaining the plan', desc: 'A nurse walks the client through their care plan on the couch. Informative, unhurried.', src: 'Mixkit 5795' },
+  { n: 10, care: true, res: '720p',  title: 'Keeping the home lovely', desc: 'Domestic help — a worker tidies while the client relaxes. The everyday help families ask for first.', src: 'Mixkit 43373' },
+
+  /* ---- LIVING WELL AT HOME — happy clients (mostly 4K) ---- */
+  { n: 13, res: '4K',    title: 'Fresh flowers from the garden', desc: 'A woman gathers flowers by her greenhouse — soft light, genuine contentment.', src: 'Pexels 10049403' },
+  { n: 14, res: '4K',    title: 'A quiet coffee together', desc: 'An older couple clink mugs at the kitchen table. Warm, everyday companionship.', src: 'Pexels 6975632' },
+  { n: 15, res: '4K',    title: 'Morning coffee & conversation', desc: 'A couple chat over coffee in soft window light. Calm and unhurried.', src: 'Pexels 7231139' },
+  { n: 18, res: '4K',    title: 'Good news at the kitchen table', desc: 'A woman lights up reading something at home. Bright and hopeful.', src: 'Pexels 6975702' },
+  { n: 20, res: '4K',    title: 'A gentle smile', desc: 'A soft, dignified portrait of an older woman. Understated and human.', src: 'Pexels 6248332' },
+  { n: 21, res: '4K',    title: 'A walk in the park', desc: 'An older couple stroll a leafy path together. Active, independent, content.', src: 'Pexels 8970851' },
+  { n: 22, res: '4K',    title: 'Out for a stroll', desc: 'Two older friends walk and talk along a park path. Companionship outdoors.', src: 'Pexels 27333136' },
+  { n: 25, res: '4K',    title: 'Tending the garden', desc: 'A woman gardens at her front fence. Staying active in her own space.', src: 'Pexels 7655274' },
+  { n: 29, res: '4K',    title: 'Catching up over coffee', desc: 'Two women chat over coffee in a bright cafe. Friendship and connection.', src: 'Pexels 7017911' },
+  { n: 31, res: '4K',    title: 'An afternoon walk together', desc: 'A couple walk arm in arm through the park. Gentle, everyday closeness.', src: 'Pexels 8970858' },
+  { n: 32, res: '4K',    title: 'Friends over lunch', desc: 'Older friends share a meal around a table. Community and good company.', src: 'Pexels 8087301' },
 ];
 
-/* NEW — 20 true-4K candidates. Every source below is native 3840×2160 or
-   4096×2160; the previews here are compressed 960×540 and the chosen clip
-   gets re-cut from the 4K master. */
-const fourK = [
-  { n: 13, title: 'Fresh flowers from the garden', desc: 'A woman gathers flowers by her greenhouse — soft light, genuine contentment.', src: 'Pexels 10049403' },
-  { n: 14, title: 'A quiet coffee together', desc: 'An older couple clink mugs at the kitchen table. Warm, everyday companionship.', src: 'Pexels 6975632' },
-  { n: 15, title: 'Morning coffee & conversation', desc: 'A couple chat over coffee in soft window light. Calm and unhurried.', src: 'Pexels 7231139' },
-  { n: 16, title: 'A health check at home', desc: 'Keeping an eye on blood pressure at the kitchen table. Everyday health, watched over.', src: 'Pexels 8088986', carer: true },
-  { n: 17, title: 'A companion visit', desc: 'A support worker drops by for a cuppa and a good chat. Social support that lifts the day.', src: 'Pexels 7231133', carer: true },
-  { n: 18, title: 'Good news at the kitchen table', desc: 'A woman lights up reading something at home. Bright and hopeful.', src: 'Pexels 6975702' },
-  { n: 19, title: 'Sharing a memory', desc: 'A smiling man at home, glasses on, mid-story. Character and warmth.', src: 'Pexels 8440979' },
-  { n: 20, title: 'A gentle smile', desc: 'A soft, dignified portrait of an older woman. Understated and human.', src: 'Pexels 6248332' },
-  { n: 21, title: 'A walk in the park', desc: 'An older couple stroll a leafy path together. Active, independent, content.', src: 'Pexels 8970851' },
-  { n: 22, title: 'Out for a stroll', desc: 'Two older friends walk and talk along a park path. Companionship outdoors.', src: 'Pexels 27333136' },
-  { n: 23, title: 'A good laugh', desc: 'A man breaks into a warm, natural laugh. Pure, unforced joy.', src: 'Pexels 8724449' },
-  { n: 24, title: 'Serving a fresh meal', desc: 'A support worker brings a home-cooked meal to the table. Everyday help, delivered warmly.', src: 'Pexels 6948633', carer: true },
-  { n: 25, title: 'Tending the garden', desc: 'A woman gardens at her front fence. Staying active in her own space.', src: 'Pexels 7655274' },
-  { n: 26, title: 'A helping hand at home', desc: 'A support worker helps a client settle comfortably. Attentive, respectful care.', src: 'Pexels 7522221' },
-  { n: 27, title: 'Staying active outdoors', desc: 'A group of older people do gentle exercises in a sunny park. Energetic and social.', src: 'Pexels 3191859' },
-  { n: 28, title: 'The exercise class', desc: 'An indoor group stretch class in full swing. Movement, balance, togetherness.', src: 'Pexels 3195810' },
-  { n: 29, title: 'Catching up over coffee', desc: 'Two women chat over coffee in a bright cafe. Friendship and connection.', src: 'Pexels 7017911' },
-  { n: 30, title: 'A friendly visit and a chat', desc: 'A support worker sits and talks warmly with her client over a cuppa. Company that matters.', src: 'Pexels 7231132', carer: true },
-  { n: 31, title: 'An afternoon walk together', desc: 'A couple walk arm in arm through the park. Gentle, everyday closeness.', src: 'Pexels 8970858' },
-  { n: 32, title: 'Friends over lunch', desc: 'Older friends share a meal around a table. Community and good company.', src: 'Pexels 8087301' },
-];
+const care = clips.filter((c) => c.care);
+const living = clips.filter((c) => !c.care);
+
+const resStyle = (res) =>
+  res === '4K' ? 'background: var(--sun); color: var(--tx);'
+  : res === '1080p' ? 'background: var(--euca); color: #fff;'
+  : 'background: #64748b; color: #fff;';
 ---
 
-<Layout
-  title="Hero video candidates — Astro Care"
-  description="Preview reel of candidate hero videos for the Astro Care homepage."
-  noindex={true}
->
+<Layout title="Hero video candidates — Astro Care" description="Preview reel of candidate hero videos for the Astro Care homepage." noindex={true}>
   <section class="mx-auto max-w-6xl px-4 py-12 md:py-16">
     <p class="text-sm font-bold uppercase tracking-widest" style="color: var(--euca);">Internal preview</p>
     <h1 class="mt-2 text-3xl md:text-4xl">Hero video candidates</h1>
     <p class="mt-3 max-w-3xl text-[1.02rem]" style="color: var(--tx-soft);">
-      Thirty options for the homepage hero. These are compressed 960×540 previews so the page loads fast —
-      the chosen clip gets re-cut from the full-resolution source. Tell us the
-      <strong>V-number</strong> you want, or ask for a new montage combining any of them.
+      These are compressed 960×540 previews so the page loads fast — the chosen clip gets re-cut from its
+      full-resolution source. Each card shows its <strong>source resolution</strong>. Tell us the
+      <strong>V-number</strong> you want, or ask for a montage combining any of them.
     </p>
 
-    <h2 class="mt-10 text-xl md:text-2xl" style="font-family: var(--font-head);">✨ True 4K collection — 20 new options</h2>
+    <!-- ============ CARE IN ACTION ============ -->
+    <h2 class="mt-10 flex items-center gap-2 text-xl md:text-2xl" style="font-family: var(--font-head);">🤝 A support worker helping</h2>
     <p class="mt-1 mb-6 max-w-3xl text-[0.95rem]" style="color: var(--tx-soft);">
-      Every clip below comes from a native <strong>4K (3840×2160 or 4096×2160)</strong> source — sharp even on
-      big screens. A mix of <strong>🤝 care in action</strong> (a support worker actually helping — walking,
-      exercises, meals, a friendly visit) and happy clients living well at home (gardens, park walks, coffee).
+      A carer actually helping a client at home — health checks, a companion visit, a meal, a sit-down chat,
+      everyday support. All white cast. Free stock caps this kind of footage at 1080p/720p (only the newer
+      health-check and visit clips are 4K) — sharp on phones and laptops, and the resolution is marked on each.
     </p>
-
-    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-      {fourK.map((c) => (
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {care.map((c) => (
         <figure class="overflow-hidden rounded-2xl border bg-white" style="border-color: var(--line); box-shadow: var(--shadow);">
           <div class="relative aspect-video bg-slate-900">
             <video class="h-full w-full object-cover" src={`/media/hv/v${c.n}.mp4`} poster={`/media/hv/v${c.n}.jpg`} autoplay muted loop playsinline preload="none"></video>
             <span class="absolute left-3 top-3 rounded-full px-3 py-1 text-sm font-extrabold text-white" style="background: var(--euca); font-family: var(--font-head);">V{c.n}</span>
-            <span class="absolute right-3 top-3 rounded-full px-2.5 py-1 text-xs font-extrabold uppercase tracking-wide" style="background: var(--sun); color: var(--tx); font-family: var(--font-head);">4K</span>
-            {c.carer && (
-              <span class="absolute bottom-3 left-3 rounded-full px-2.5 py-1 text-xs font-extrabold text-white" style="background: rgba(12,98,145,0.9); font-family: var(--font-head);">🤝 Care in action</span>
-            )}
+            <span class="absolute right-3 top-3 rounded-full px-2.5 py-1 text-xs font-extrabold uppercase tracking-wide" style={`${resStyle(c.res)} font-family: var(--font-head);`}>{c.res}</span>
+            {c.current && (<span class="absolute bottom-3 left-3 rounded-full px-2.5 py-1 text-xs font-extrabold text-white" style="background: rgba(12,98,145,0.92); font-family: var(--font-head);">Current hero</span>)}
           </div>
           <figcaption class="p-5">
             <h3 class="text-base" style="font-family: var(--font-head);">{c.title}</h3>
             <p class="mt-1.5 text-[0.9rem]" style="color: var(--tx-soft);">{c.desc}</p>
-            <p class="mt-2 text-xs font-semibold uppercase tracking-wide" style="color: var(--tx-soft);">{c.src} · 4K source</p>
+            <p class="mt-2 text-xs font-semibold uppercase tracking-wide" style="color: var(--tx-soft);">{c.src} · {c.res} source</p>
           </figcaption>
         </figure>
       ))}
     </div>
 
-    <h2 class="mt-14 text-xl md:text-2xl" style="font-family: var(--font-head);">Original 10 (1080p / 720p)</h2>
-    <p class="mt-1 mb-2 max-w-3xl text-[0.95rem]" style="color: var(--tx-soft);">The earlier shortlist, including the montage currently live.</p>
-
-    <div class="mt-10 grid gap-8 sm:grid-cols-2">
-      {candidates.map((c) => (
+    <!-- ============ LIVING WELL AT HOME ============ -->
+    <h2 class="mt-14 text-xl md:text-2xl" style="font-family: var(--font-head);">☀️ Living well at home — 4K</h2>
+    <p class="mt-1 mb-6 max-w-3xl text-[0.95rem]" style="color: var(--tx-soft);">
+      Happy clients living well — gardens, coffee, walks, warm portraits. Every one native 4K, sharp on any screen.
+      Great for a hero that leads with the outcome (a good life at home) rather than the carer.
+    </p>
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {living.map((c) => (
         <figure class="overflow-hidden rounded-2xl border bg-white" style="border-color: var(--line); box-shadow: var(--shadow);">
           <div class="relative aspect-video bg-slate-900">
-            <video
-              class="h-full w-full object-cover"
-              src={`/media/hv/v${c.n}.mp4`}
-              poster={`/media/hv/v${c.n}.jpg`}
-              autoplay
-              muted
-              loop
-              playsinline
-              preload="metadata"
-            ></video>
+            <video class="h-full w-full object-cover" src={`/media/hv/v${c.n}.mp4`} poster={`/media/hv/v${c.n}.jpg`} autoplay muted loop playsinline preload="none"></video>
             <span class="absolute left-3 top-3 rounded-full px-3 py-1 text-sm font-extrabold text-white" style="background: var(--euca); font-family: var(--font-head);">V{c.n}</span>
-            {c.current && (
-              <span class="absolute right-3 top-3 rounded-full px-3 py-1 text-xs font-extrabold uppercase tracking-wide" style="background: var(--sun); color: var(--tx); font-family: var(--font-head);">Current hero</span>
-            )}
+            <span class="absolute right-3 top-3 rounded-full px-2.5 py-1 text-xs font-extrabold uppercase tracking-wide" style={`${resStyle(c.res)} font-family: var(--font-head);`}>{c.res}</span>
           </div>
           <figcaption class="p-5">
-            <h2 class="text-lg" style="font-family: var(--font-head);">{c.title}</h2>
-            <p class="mt-1.5 text-[0.95rem]" style="color: var(--tx-soft);">{c.desc}</p>
-            <p class="mt-2 text-xs font-semibold uppercase tracking-wide" style="color: var(--tx-soft);">{c.src} · source {c.res}</p>
+            <h3 class="text-base" style="font-family: var(--font-head);">{c.title}</h3>
+            <p class="mt-1.5 text-[0.9rem]" style="color: var(--tx-soft);">{c.desc}</p>
+            <p class="mt-2 text-xs font-semibold uppercase tracking-wide" style="color: var(--tx-soft);">{c.src} · {c.res} source</p>
           </figcaption>
         </figure>
       ))}
     </div>
 
-    <p class="mt-10 rounded-2xl border p-5 text-[0.95rem]" style="border-color: var(--line); background: var(--bg-sand); color: var(--tx-soft);">
-      <strong style="color: var(--tx);">A note on quality:</strong> the 4K collection is genuinely crisp on big screens.
-      The one thing free stock can’t give us is <em>your</em> team’s real faces — for that, a half-day shoot
-      with real Astro Care staff and clients would let us use authentic footage across the whole site.
+    <p class="mt-12 rounded-2xl border p-5 text-[0.95rem]" style="border-color: var(--line); background: var(--bg-sand); color: var(--tx-soft);">
+      <strong style="color: var(--tx);">On carer footage &amp; resolution:</strong> genuine "white support worker helping a
+      senior at home" footage is scarce on free stock and mostly caps at 1080p/720p — those clips look great on phones
+      and laptops, just slightly soft on a large 4K monitor. For a true-4K uniformed-carer hero the routes are a few
+      paid clips (~$50–100 each) or a half-day shoot with your own Melbourne team — which would also give the whole
+      site authentic faces.
     </p>
   </section>
 
   <script is:inline>
-    /* Play previews only while on screen — kind to data plans with 12 loops. */
     (function () {
       var vids = document.querySelectorAll('video');
       if (!('IntersectionObserver' in window)) { vids.forEach(function (v) { v.play().catch(function () {}); }); return; }
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) {
-          if (e.isIntersecting) e.target.play().catch(function () {});
+          if (e.isIntersecting) { e.target.preload = 'auto'; e.target.play().catch(function () {}); }
           else e.target.pause();
         });
-      }, { rootMargin: '120px' });
+      }, { rootMargin: '150px' });
       vids.forEach(function (v) { io.observe(v); });
     })();
   </script>
