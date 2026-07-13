@@ -297,12 +297,20 @@
       return s;
     }
 
-    /* Voice dictation — Web Speech API (shown only where supported). */
+    /* Voice dictation — Web Speech API. The mic is ALWAYS shown (desktop
+       included); where the browser can't do speech recognition we keep the
+       button but explain on tap instead of silently hiding it. */
     (function () {
       var mic = document.getElementById('chatMic');
+      if (!mic) return;
       var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-      if (!mic || !SR) return;
       mic.hidden = false;
+      if (!SR) {
+        mic.addEventListener('click', function () {
+          bubble("Voice input isn't supported in this browser — it works in Chrome, Edge or Safari. For now, just type your question and I'll help. 🙂", 'bot');
+        });
+        return;
+      }
       var rec = new SR();
       rec.lang = 'en-AU';
       rec.interimResults = true;
@@ -429,8 +437,10 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && !panel.classList.contains('hidden')) closeChat();
     });
-    /* Belt-and-braces: release the mic if the tab is hidden or navigated away. */
+    /* Release the mic whenever the user leaves: tab hidden, window blurred
+       (switched to another app/tab), or the page is being unloaded. */
     document.addEventListener('visibilitychange', function () { if (document.hidden) stopMic(); });
+    window.addEventListener('blur', function () { stopMic(); });
     window.addEventListener('pagehide', function () { stopMic(); });
 
     form.addEventListener('submit', function (e) {

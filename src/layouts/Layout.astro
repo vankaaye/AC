@@ -248,11 +248,16 @@ const {
           document.querySelectorAll('.rv').forEach(function (el) { el.classList.add('in'); });
           return;
         }
+        /* Add .in when an element scrolls into view and remove it when it
+           leaves, so the reveal replays every time — whether you scroll
+           down to it or back up. Trigger a little before it reaches the
+           edges so it eases in, never snaps. */
         var io = new IntersectionObserver(function (entries) {
           entries.forEach(function (e) {
-            if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+            if (e.isIntersecting) e.target.classList.add('in');
+            else e.target.classList.remove('in');
           });
-        }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+        }, { threshold: 0, rootMargin: '-8% 0px -12% 0px' });
         document.querySelectorAll('.rv, .sect-rv').forEach(function (el) { io.observe(el); });
       })();
 

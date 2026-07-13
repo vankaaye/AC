@@ -118,27 +118,31 @@ html[data-readaloud="on"] .readable:focus-visible {
    BASE (every visitor, incl. Reduce Motion): a gentle opacity fade —
    so the site is never dead-static. The bold slide / blur / zoom is
    layered on only when the visitor hasn't asked to reduce motion. */
-/* Only opacity + transform are animated — both GPU-composited, so the
-   reveal is smooth. (Animating filter: blur() causes the stutter, so it
-   is deliberately NOT used.) */
-.rv, .sect-rv { opacity: 0; transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
-.rv.in, .sect-rv.in { opacity: 1; }
-.rv-d1 { transition-delay: 0.08s; }
-.rv-d2 { transition-delay: 0.16s; }
-.rv-d3 { transition-delay: 0.24s; }
-.rv-d4 { transition-delay: 0.32s; }
+/* Scroll reveal — a gentle slide + fade. Only opacity + transform are
+   animated (both GPU-composited) so it glides; filter: blur() is NOT used
+   because animating it stutters. This lives OUTSIDE the reduced-motion gate
+   on purpose: a one-time reveal on scroll is gentle, so every visitor sees
+   it. (Continuous motion — Ken Burns, parallax — stays gated below.)
+   The observer adds/removes .in as elements enter/leave, so reveals replay
+   every time and in both scroll directions. */
+.rv, .sect-rv {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.rv.in, .sect-rv.in { opacity: 1; transform: none; }
+.rv-zoom { transform: translateY(36px) scale(0.95); }
+.rv-zoom.in { transform: none; }
+.rv-left  { transform: translateX(-52px); }
+.rv-right { transform: translateX(52px);  }
+.rv-left.in, .rv-right.in { transform: none; }
+.rv-d1 { transition-delay: 0.09s; }
+.rv-d2 { transition-delay: 0.18s; }
+.rv-d3 { transition-delay: 0.27s; }
+.rv-d4 { transition-delay: 0.36s; }
 
 @media (prefers-reduced-motion: no-preference) {
-  .rv { transform: translateY(34px); }
-  .rv.in { transform: none; }
-  .rv-zoom { transform: translateY(34px) scale(0.95); }
-  .rv-zoom.in { transform: none; }
-  .sect-rv { transform: translateY(30px); }
-  .sect-rv.in { transform: none; }
-  /* Directional reveals (ktechify style) */
-  .rv-left  { transform: translateX(-48px); }
-  .rv-right { transform: translateX(48px);  }
-  .rv-left.in, .rv-right.in { transform: none; }
   /* Ken Burns drift on every media tile — three varied paths so
      neighbouring cards never move in lockstep (ktechify style). */
   .vcard-media { animation: kb-a 9s ease-in-out infinite alternate; }
@@ -175,8 +179,9 @@ html[data-readaloud="on"] .readable:focus-visible {
    the page still feels alive (opacity only — no movement). */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
-  .rv, .sect-rv { transition: opacity 0.7s ease !important; }
+  /* Stop continuous/looping motion (Ken Burns, parallax), but KEEP the
+     one-time scroll reveal — it's gentle and the owner asked for it. */
+  .vcard-media, .vdiv video { animation: none !important; }
   .hero-rise, .hero-rise-2, .hero-rise-3 { animation: fadeInSoft 0.7s ease both !important; }
   @keyframes fadeInSoft { from { opacity: 0; } to { opacity: 1; } }
 }

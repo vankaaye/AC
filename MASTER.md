@@ -114,6 +114,8 @@ Full restore instructions and commit hashes: see `VERSIONS.md`.
 
 | 13 Jul 2026 | **Opening hours reformatted + mic-release fix** (owner: hours hard to read; mic kept listening after closing chat) — the run-on hours line ("Mon–Fri 8am–6pm · Sat…") is now a clean bordered table (Mon–Fri, Saturday, Sunday=Closed, and "Care at home 24/7" highlighted). Voice-dictation mic now stops the moment the chat closes (Escape, ✕, or toggling the pill), plus on tab-hide/pagehide — previously the browser kept listening until the window was closed. | (this commit) |
 
+| 13 Jul 2026 | **Reveals: smooth, both directions, replay + mic always-on desktop** (owner feedback) — reveal now slides+fades for EVERY visitor (moved out of the reduced-motion gate; continuous Ken Burns/parallax still gated), 0.85s GPU-composited ease so it glides not flashes; the observer now adds `.in` on enter and removes it on leave, so reveals replay every time and in both scroll directions. Mic: now always visible incl. desktop (graceful "not supported in this browser" tap message where Web Speech is absent); mic released on chat close, tab-hide, **window blur** (switching app/tab) and pagehide. | (this commit) |
+
 ## 9. Run sheet — everything done so far
 
 | Date | What happened | Commit |
