@@ -1,0 +1,80 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+/* Bright-hero samples — the video shown at full vibrancy (Apple-tile style,
+   no heavy dark wash), with a few different ways to keep the text readable.
+   Internal preview only. */
+const chips = ['Nursing & clinical care', 'Personal care', 'Cleaning & home help', 'Meals', 'Social support'];
+---
+
+<Layout title="Bright hero samples — Astro Care" noindex={true}>
+  <section class="mx-auto w-[min(1000px,100%-2rem)] pt-10">
+    <p class="text-sm font-bold uppercase tracking-widest" style="color: var(--euca);">Internal preview</p>
+    <h1 class="mt-2 text-3xl md:text-4xl">Bright hero samples</h1>
+    <p class="mt-3 max-w-2xl text-[1.02rem]" style="color: var(--tx-soft);">
+      Same video as the live hero, shown at <strong>full vibrancy — no dark overlay</strong>, like an Apple tile.
+      Three ways to keep the words readable without dulling the footage. Tell me which one (A, B or C) and
+      I'll put it on the live homepage.
+    </p>
+  </section>
+
+  <!-- ============ A — Text on top, tiny top scrim only ============ -->
+  <div class="mx-auto mt-8 w-[min(1200px,100%-2rem)]">
+    <p class="mb-2 text-sm font-black" style="color: var(--euca);">A · Text at the top, only a whisper of shade behind it</p>
+    <section class="relative flex min-h-[62svh] items-start justify-center overflow-hidden rounded-3xl">
+      <video class="absolute inset-0 h-full w-full object-cover" src="/media/hero-1080.mp4" poster="/media/hero-1080-poster.jpg" muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video>
+      <!-- only a short soft gradient at the very top, video stays vibrant -->
+      <div class="absolute inset-x-0 top-0 h-2/5" style="background: linear-gradient(to bottom, rgba(10,20,28,0.42), transparent);" aria-hidden="true"></div>
+      <div class="relative w-full px-6 pt-10 text-center">
+        <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl md:text-5xl" style="text-shadow: 0 2px 14px rgba(10,20,28,0.55);">Care at home, done properly.</h2>
+        <p class="mx-auto mt-3 max-w-xl text-[1rem] text-white md:text-lg" style="text-shadow: 0 1px 10px rgba(10,20,28,0.6);">Nursing, everyday help and genuine company across Melbourne.</p>
+        <div class="mt-6 flex flex-wrap justify-center gap-3">
+          <a href="/#contact" class="btn-primary !px-6 !py-3 !text-base" style="background:#fff;color:var(--euca);">Get started</a>
+          <a href="/#services" class="btn-primary !px-6 !py-3 !text-base" style="background:rgba(255,255,255,0.16);border:1.5px solid rgba(255,255,255,0.6);backdrop-filter:blur(6px);">Explore our services</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ B — Split: video full, text on a solid panel ============ -->
+  <div class="mx-auto mt-12 w-[min(1200px,100%-2rem)]">
+    <p class="mb-2 text-sm font-black" style="color: var(--euca);">B · Split — video at 100%, words on a clean panel (most "Apple product page")</p>
+    <section class="grid overflow-hidden rounded-3xl md:grid-cols-2" style="min-height:56svh;">
+      <div class="flex flex-col justify-center gap-4 p-8 md:p-12" style="background: var(--bg-card);">
+        <p class="text-sm font-bold uppercase tracking-widest" style="color: var(--euca);">Aged care at home · Melbourne</p>
+        <h2 class="text-3xl font-extrabold tracking-tight md:text-5xl">Care at home,<br />done properly.</h2>
+        <p class="max-w-md text-[1.02rem]" style="color: var(--tx-soft);">Nursing, everyday help and genuine company for older people — government-funded for most over 65.</p>
+        <div class="mt-2 flex flex-wrap gap-3">
+          <a href="/#contact" class="btn-primary !px-6 !py-3 !text-base">Get started</a>
+          <a href="/#services" class="btn-sun !px-6 !py-3 !text-base">Explore services</a>
+        </div>
+      </div>
+      <div class="relative min-h-[38svh]">
+        <video class="absolute inset-0 h-full w-full object-cover" src="/media/hero-1080.mp4" poster="/media/hero-1080-poster.jpg" muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ C — No overlay at all, text bottom-left with shadow ============ -->
+  <div class="mx-auto mt-12 mb-16 w-[min(1200px,100%-2rem)]">
+    <p class="mb-2 text-sm font-black" style="color: var(--euca);">C · Zero overlay, text sits bottom-left with a soft shadow</p>
+    <section class="relative flex min-h-[62svh] items-end overflow-hidden rounded-3xl">
+      <video class="absolute inset-0 h-full w-full object-cover" src="/media/hero-1080.mp4" poster="/media/hero-1080-poster.jpg" muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video>
+      <div class="relative w-full p-8 md:p-10">
+        <h2 class="max-w-2xl text-3xl font-extrabold tracking-tight text-white sm:text-4xl md:text-5xl" style="text-shadow: 0 3px 18px rgba(10,20,28,0.7);">Care at home, done properly.</h2>
+        <p class="mt-3 max-w-lg text-[1rem] text-white md:text-lg" style="text-shadow: 0 2px 14px rgba(10,20,28,0.75);">Nursing, everyday help and genuine company across Melbourne.</p>
+        <div class="mt-5 flex flex-wrap gap-3">
+          <a href="/#contact" class="btn-primary !px-6 !py-3 !text-base" style="background:#fff;color:var(--euca);">Get started</a>
+          <a href="/#services" class="btn-primary !px-6 !py-3 !text-base" style="background:rgba(255,255,255,0.16);border:1.5px solid rgba(255,255,255,0.6);backdrop-filter:blur(6px);">Explore our services</a>
+        </div>
+        <ul class="mt-5 flex flex-wrap gap-2" aria-label="What we offer">
+          {chips.map((c) => (
+            <li><span class="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[0.8rem] font-bold text-white" style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.35); backdrop-filter: blur(8px);">
+              <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="#F2B33D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 13 4 4L19 7"/></svg>{c}
+            </span></li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  </div>
+</Layout>
