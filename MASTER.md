@@ -75,7 +75,7 @@ Full restore instructions and commit hashes: see `VERSIONS.md`.
 | Voice | Plain Australian English, warm, no invented facts, no fake reviews (new business) | Site-wide |
 | Help persona | Generic "We're here to help" (no invented staff names) | Help bar & chat |
 | Service area | **All of Melbourne** (owner decision 13 Jul) — stated in hero, statement, FAQ, footer, meta description and LocalBusiness areaServed | Site-wide |
-| Colour theme | **Light / Dark / Auto** picker in the accessibility panel; Auto follows the device. Palette via CSS custom properties + `html[data-theme]`. | Site-wide |
+| Colour theme | **Light / Dark toggle** (sun/moon) in the header top-right; default light, saved to localStorage, applied pre-paint. Palette via CSS custom properties + `html[data-theme]`. | Header |
 | AI model | Claude Haiku (claude-haiku-4-5) — fast, ~a few $/month at small-business traffic | Worker |
 
 ## 6. Decisions still pending (your picks)
@@ -118,6 +118,8 @@ Full restore instructions and commit hashes: see `VERSIONS.md`.
 | 13 Jul 2026 | **Reveals: smooth, both directions, replay + mic always-on desktop** (owner feedback) — reveal now slides+fades for EVERY visitor (moved out of the reduced-motion gate; continuous Ken Burns/parallax still gated), 0.85s GPU-composited ease so it glides not flashes; the observer now adds `.in` on enter and removes it on leave, so reveals replay every time and in both scroll directions. Mic: now always visible incl. desktop (graceful "not supported in this browser" tap message where Web Speech is absent); mic released on chat close, tab-hide, **window blur** (switching app/tab) and pagehide. | (this commit) |
 
 | 13 Jul 2026 | **Mic continuous, one-way reveals, clearer calculator, light/dark/system theme** — (1) voice dictation set to `continuous` with auto-restart on Chrome's silence-timeout, so it keeps listening across sentences instead of stopping after the first; (2) scroll reveals reverted to reveal-once (add `.in`, unobserve) so scrolling back up never re-hides/jumps the text; (3) fee calculator given a plain-English "How this works" intro, "Your details"/"Your weekly estimate" column labels, and an emoji money-flow (💰 government gives → ➖ fees → ✅ left for care → ⏱️ buys N hours); (4) **new Light / Dark / Auto (system) theme** picker in the accessibility panel — full dark palette via `html[data-theme]`, applied pre-paint from localStorage (no flash), respects `prefers-color-scheme` on Auto. | (this commit) |
+
+| 13 Jul 2026 | **Header light/dark toggle, slower reveals, 8 services** — moved theme control to a sun/moon **toggle in the header top-right** and dropped the System/Auto option (just Light/Dark, default light); removed the appearance picker from the accessibility panel. Reveals **slowed to 1.25s** with a gentler ease so they no longer rush. **"What we do" expanded from 4 to 8 services** — added Personal care, Allied health & therapy, Transport & getting out, and Respite & overnight care (4 new 1280×720 video loops encoded), better reflecting the full Support-at-Home offering. | (this commit) |
 
 ## 9. Run sheet — everything done so far
 

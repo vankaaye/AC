@@ -180,20 +180,20 @@ html[data-readaloud="on"] .readable:focus-visible {
    every time and in both scroll directions. */
 .rv, .sect-rv {
   opacity: 0;
-  transform: translateY(36px);
-  transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(34px);
+  transition: opacity 1.25s cubic-bezier(0.16, 1, 0.3, 1), transform 1.25s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 .rv.in, .sect-rv.in { opacity: 1; transform: none; }
-.rv-zoom { transform: translateY(36px) scale(0.95); }
+.rv-zoom { transform: translateY(34px) scale(0.95); }
 .rv-zoom.in { transform: none; }
-.rv-left  { transform: translateX(-52px); }
-.rv-right { transform: translateX(52px);  }
+.rv-left  { transform: translateX(-48px); }
+.rv-right { transform: translateX(48px);  }
 .rv-left.in, .rv-right.in { transform: none; }
-.rv-d1 { transition-delay: 0.09s; }
-.rv-d2 { transition-delay: 0.18s; }
-.rv-d3 { transition-delay: 0.27s; }
-.rv-d4 { transition-delay: 0.36s; }
+.rv-d1 { transition-delay: 0.12s; }
+.rv-d2 { transition-delay: 0.24s; }
+.rv-d3 { transition-delay: 0.36s; }
+.rv-d4 { transition-delay: 0.48s; }
 
 @media (prefers-reduced-motion: no-preference) {
   /* Ken Burns drift on every media tile — three varied paths so

@@ -56,14 +56,6 @@
     </button>
     <h2 class="text-2xl mb-4 pr-10">Make this site easier</h2>
 
-    <!-- Appearance: light / dark / system -->
-    <p class="font-bold mb-2" id="a11yThemeLabel">Appearance</p>
-    <div class="mb-5 grid grid-cols-3 gap-1.5 rounded-2xl border p-1.5" role="group" aria-labelledby="a11yThemeLabel" style="border-color: var(--line); background: var(--bg-sand);" id="a11yThemeGroup">
-      <button type="button" data-theme-choice="light" class="flex min-h-11 items-center justify-center gap-1.5 rounded-xl text-[0.9rem] font-bold" aria-pressed="false">☀️ Light</button>
-      <button type="button" data-theme-choice="dark" class="flex min-h-11 items-center justify-center gap-1.5 rounded-xl text-[0.9rem] font-bold" aria-pressed="false">🌙 Dark</button>
-      <button type="button" data-theme-choice="system" class="flex min-h-11 items-center justify-center gap-1.5 rounded-xl text-[0.9rem] font-bold" aria-pressed="false">💻 Auto</button>
-    </div>
-
     <!-- Text size -->
     <p class="font-bold mb-2" id="a11ySizeLabel">Text size: <span id="a11ySizeValue">100%</span></p>
     <div class="flex gap-3 mb-5" role="group" aria-labelledby="a11ySizeLabel">
@@ -98,23 +90,6 @@
     /* ---------- persistence helpers ---------- */
     function save(key, val) { try { localStorage.setItem(key, val); } catch (e) {} }
     function load(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
-
-    /* ---------- colour theme (light / dark / system) ---------- */
-    var themeBtns = Array.prototype.slice.call(document.querySelectorAll('[data-theme-choice]'));
-    function applyTheme(t) {
-      html.setAttribute('data-theme', t);
-      save('astro-theme', t);
-      themeBtns.forEach(function (b) {
-        var on = b.getAttribute('data-theme-choice') === t;
-        b.setAttribute('aria-pressed', String(on));
-        b.style.background = on ? 'var(--euca)' : 'transparent';
-        b.style.color = on ? '#fff' : 'var(--tx)';
-      });
-    }
-    themeBtns.forEach(function (b) {
-      b.addEventListener('click', function () { applyTheme(b.getAttribute('data-theme-choice')); });
-    });
-    applyTheme(load('astro-theme') || html.getAttribute('data-theme') || 'system');
 
     /* ---------- text scaling ---------- */
     var sizeValue = document.getElementById('a11ySizeValue');
