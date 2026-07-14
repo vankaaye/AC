@@ -1,0 +1,74 @@
+---
+import '../styles/global.css';
+const cards = [
+  { img: '/media/poster-clinical.jpg', label: 'Nursing at home' },
+  { img: '/media/loop-personal.jpg', label: 'Personal care' },
+  { img: '/media/loop-allied.jpg', label: 'Allied health' },
+  { img: '/media/loop-transport.jpg', label: 'Out & about' },
+];
+---
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Astro Care — Glass cards concept</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body class="flex min-h-screen items-center justify-center p-3 md:p-8" style="font-family: var(--font-body); background: #b9c4cc;">
+    <div class="relative w-full max-w-6xl overflow-hidden rounded-[1.8rem] shadow-2xl" style="aspect-ratio: 16 / 9; min-height: 470px;">
+      <video class="absolute inset-0 h-full w-full object-cover" src="/media/hero-1080.mp4" poster="/media/hero-1080-poster.jpg" autoplay muted loop playsinline></video>
+
+      <!-- big glass container -->
+      <div class="absolute inset-3 rounded-[1.5rem] md:inset-5" style="background: rgba(255,255,255,0.14); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.35);">
+        <!-- pill nav -->
+        <nav class="flex items-center justify-between p-4 md:p-6">
+          <div class="flex items-center gap-2 font-bold text-white">
+            <svg class="h-7 w-7" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" fill="rgba(255,255,255,0.9)"/><path d="M13 38 L24 12 L35 38" stroke="#0C6291" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Astro Care
+          </div>
+          <div class="hidden items-center gap-1 rounded-full px-2 py-1 text-[0.82rem] font-semibold text-white md:flex" style="background: rgba(255,255,255,0.16);">
+            <span class="rounded-full bg-white px-4 py-1.5" style="color:#22303c;">Home</span>
+            <span class="px-4 py-1.5">Services</span><span class="px-4 py-1.5">Funding</span><span class="px-4 py-1.5">How it works</span><span class="px-4 py-1.5">Contact</span>
+          </div>
+          <span class="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-[0.85rem] font-bold" style="color:#22303c;">Book now <span>↗</span></span>
+        </nav>
+
+        <!-- headline -->
+        <div class="px-6 pt-6 text-center md:pt-10">
+          <span class="inline-block rounded-full bg-white/20 px-4 py-1.5 text-[0.8rem] font-semibold text-white">Aged care at home · Melbourne</span>
+          <h1 class="mx-auto mt-4 max-w-3xl text-white" style="font-family: var(--font-head); font-weight: 500; font-size: clamp(2rem, 5vw, 3.8rem); line-height: 1.05; text-shadow: 0 2px 20px rgba(10,20,28,0.4);">Care at home,<br />beautifully done.</h1>
+        </div>
+
+        <!-- bottom: social proof + cards -->
+        <div class="absolute inset-x-4 bottom-4 flex flex-col gap-4 md:inset-x-6 md:bottom-6 md:flex-row md:items-end md:justify-between">
+          <div class="max-w-xs rounded-2xl p-5" style="background: rgba(255,255,255,0.18); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3);">
+            <div class="flex items-center gap-3">
+              <div class="flex -space-x-2">
+                <span class="h-8 w-8 rounded-full border-2 border-white" style="background:#7fa8c9;"></span>
+                <span class="h-8 w-8 rounded-full border-2 border-white" style="background:#c9a17f;"></span>
+                <span class="h-8 w-8 rounded-full border-2 border-white" style="background:#9fbf9f;"></span>
+                <span class="flex h-8 w-8 items-center justify-center rounded-full border-2 border-white text-[0.65rem] font-bold text-white" style="background:#22303c;">500+</span>
+              </div>
+              <span class="text-[0.85rem] font-bold text-white">families helped</span>
+            </div>
+            <p class="mt-3 text-[0.85rem] text-white/85">Nursing, everyday help and genuine company — funded for most over 65.</p>
+            <a href="/#contact" class="mt-3 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-[0.82rem] font-bold" style="color:#22303c;">Book now ↗</a>
+          </div>
+
+          <div class="flex gap-2.5 overflow-hidden">
+            {cards.map((c) => (
+              <div class="relative h-32 w-24 shrink-0 overflow-hidden rounded-2xl md:h-40 md:w-28" style="border: 1px solid rgba(255,255,255,0.35);">
+                <img src={c.img} alt="" class="h-full w-full object-cover" />
+                <span class="absolute inset-x-0 bottom-0 p-2 text-[0.68rem] font-semibold text-white" style="background: linear-gradient(0deg, rgba(10,20,28,0.7), transparent);">{c.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+---
+import '../styles/global.css';
+---
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Astro Care — Cinematic concept</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>body { background: #0a0b0e; }</style>
+  </head>
+  <body class="flex min-h-screen items-center justify-center p-3 md:p-8" style="font-family: var(--font-body);">
+    <div class="relative w-full max-w-6xl overflow-hidden rounded-[1.8rem] shadow-2xl" style="aspect-ratio: 16 / 9; min-height: 460px;">
+      <video class="absolute inset-0 h-full w-full object-cover" src="/media/hero-1080.mp4" poster="/media/hero-1080-poster.jpg" autoplay muted loop playsinline></video>
+      <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(8,10,14,0.9) 0%, rgba(8,10,14,0.35) 42%, rgba(8,10,14,0) 62%), linear-gradient(0deg, rgba(8,10,14,0.6), transparent 55%);"></div>
+
+      <!-- left rail -->
+      <div class="absolute left-0 top-0 z-10 flex h-full w-14 flex-col items-center justify-between py-5" style="background: rgba(10,12,16,0.45); backdrop-filter: blur(8px);">
+        <div class="flex h-9 w-9 items-center justify-center rounded-full text-white" style="background: var(--euca);">
+          <svg class="h-5 w-5" viewBox="0 0 48 48" fill="none"><path d="M13 38 L24 12 L35 38" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M16.5 29.5 h3.3 l1.65 -3.9 l2.4 7.8 l2.1 -5.1 l1.2 1.2 h4.35" stroke="#F2B33D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="flex flex-col gap-5 text-white/50">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M13 10h3l1-4h-4V4c0-1 .3-1.5 1.7-1.5H17V-.5C16.5-.6 15.3-.7 14-.7 11.2-.7 9.3 1 9.3 4v2H6v4h3.3v12H13z"/></svg>
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5 15.4 17M15.4 7 8.6 10.5"/></svg>
+        </div>
+      </div>
+
+      <!-- top nav -->
+      <nav class="absolute left-20 right-6 top-6 z-10 flex items-center justify-between text-[0.8rem] text-white/80">
+        <div class="flex gap-6 font-semibold"><span>Services</span><span>Funding</span><span class="hidden sm:inline">How it works</span></div>
+        <div class="flex items-center gap-2">
+          <span class="hidden rounded-full px-4 py-1.5 text-xs sm:inline" style="background: rgba(255,255,255,0.14);">Search care…</span>
+          <span class="rounded-full px-4 py-1.5 text-xs font-bold" style="background:#fff;color:#0a0b0e;">Get started</span>
+        </div>
+      </nav>
+
+      <!-- headline -->
+      <div class="absolute bottom-8 left-20 z-10 max-w-lg pr-4 text-white">
+        <h1 style="color: #fff; font-family: var(--font-head); font-weight: 800; font-size: clamp(2.2rem, 5.2vw, 4.2rem); line-height: 1.0; letter-spacing: -0.03em; text-shadow: 0 2px 20px rgba(8,10,14,0.5);">Care at home,<br />done properly.</h1>
+        <p class="mt-4 max-w-sm text-[0.9rem] text-white/70">Nursing, everyday help and genuine company across Melbourne — government-funded for most over 65.</p>
+        <a href="/#contact" class="mt-5 inline-flex items-center gap-2 border-b-2 pb-1 text-sm font-bold text-white" style="border-color: var(--sun);">Book a callback →</a>
+      </div>
+
+      <!-- right glass panel -->
+      <div class="absolute right-6 top-1/2 z-10 hidden w-72 -translate-y-1/2 rounded-3xl p-6 text-white lg:block" style="background: rgba(18,20,26,0.42); backdrop-filter: blur(18px); border: 1px solid rgba(255,255,255,0.12);">
+        <p class="text-xl font-extrabold" style="font-family: var(--font-head);">Support at Home</p>
+        <p class="text-xs text-white/50">Most people start here</p>
+        <div class="mt-5"><p class="text-2xl font-extrabold">1 day</p><p class="text-xs text-white/50">to your callback</p></div>
+        <div class="mt-3"><p class="text-2xl font-extrabold" style="color: var(--sun);">$0</p><p class="text-xs text-white/50">lock-in contracts</p></div>
+        <div class="mt-5 grid grid-cols-2 gap-2">
+          <img src="/media/poster-social.jpg" alt="" class="h-20 w-full rounded-xl object-cover" />
+          <img src="/media/div-2.jpg" alt="" class="h-20 w-full rounded-xl object-cover" />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

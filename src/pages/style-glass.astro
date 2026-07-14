@@ -1,0 +1,54 @@
+---
+import '../styles/global.css';
+---
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Astro Care — Glass concept</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body class="flex min-h-screen items-center justify-center p-3 md:p-8" style="font-family: var(--font-body); background: linear-gradient(160deg, #dbe7f2 0%, #cdd8e8 45%, #e7dfe8 100%);">
+    <div class="relative w-full max-w-6xl overflow-hidden rounded-[2rem]" style="aspect-ratio: 16 / 9; min-height: 470px;">
+      <!-- soft image backdrop -->
+      <img src="/media/loop-transport.jpg" alt="" class="absolute inset-0 h-full w-full object-cover" style="filter: saturate(0.9) brightness(1.05);" />
+      <div class="absolute inset-0" style="background: linear-gradient(180deg, rgba(220,231,242,0.55), rgba(205,216,232,0.35));"></div>
+
+      <!-- frosted glass container -->
+      <div class="absolute inset-3 rounded-[1.6rem] md:inset-5" style="background: rgba(255,255,255,0.28); backdrop-filter: blur(18px); border: 1px solid rgba(255,255,255,0.5); box-shadow: 0 20px 60px rgba(80,100,130,0.18);">
+        <!-- pill nav -->
+        <nav class="flex items-center justify-between px-5 py-4 md:px-7">
+          <div class="flex items-center gap-2 font-bold" style="color: var(--ink, #1c2b36);">
+            <svg class="h-7 w-7" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" fill="#0C6291"/><path d="M13 38 L24 12 L35 38" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M16.5 29.5 h3.3 l1.65 -3.9 l2.4 7.8 l2.1 -5.1 l1.2 1.2 h4.35" stroke="#F2B33D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Astro Care
+          </div>
+          <div class="hidden items-center gap-6 text-[0.85rem] font-semibold md:flex" style="color: #33465a;">
+            <span>Services</span><span>Funding</span><span>Fees</span><span>Contact</span>
+          </div>
+          <span class="flex items-center gap-2 rounded-full px-4 py-2 text-[0.85rem] font-bold text-white" style="background: rgba(28,43,54,0.85);">Book a callback <span>↗</span></span>
+        </nav>
+
+        <!-- centre content -->
+        <div class="flex flex-col items-center px-6 pt-8 text-center md:pt-12">
+          <span class="mb-4 inline-flex items-center gap-2 rounded-full bg-white/70 px-4 py-1.5 text-[0.8rem] font-bold" style="color: var(--euca);">✦ Care that fits your life</span>
+          <h1 style="font-family: var(--font-head); font-weight: 600; font-size: clamp(2.4rem, 6vw, 4.4rem); line-height: 1.02; color: #223243;">Care that flows<br />around you.</h1>
+          <p class="mt-4 max-w-md text-[0.98rem]" style="color: #46596b;">Nursing, personal care, meals, cleaning and good company — at home, across Melbourne, funded for most over 65.</p>
+        </div>
+
+        <!-- floating pills -->
+        <div class="absolute bottom-5 left-5 flex items-center gap-3 rounded-2xl bg-white/75 px-4 py-3 md:bottom-6 md:left-6" style="box-shadow: 0 10px 30px rgba(80,100,130,0.15);">
+          <div><p class="text-lg font-extrabold" style="color:#223243;">1,000s</p><p class="text-[0.72rem]" style="color:#5b6b7b;">of Melbourne families</p></div>
+          <a href="/#contact" class="flex items-center gap-1.5 rounded-full px-3 py-2 text-[0.8rem] font-bold text-white" style="background: var(--euca);">Get started ↗</a>
+        </div>
+        <a href="/#funding" class="absolute bottom-5 right-5 flex items-center gap-2 rounded-2xl bg-white/75 px-4 py-3 md:bottom-6 md:right-6" style="box-shadow: 0 10px 30px rgba(80,100,130,0.15);">
+          <span class="flex h-8 w-8 items-center justify-center rounded-full text-white" style="background:#223243;">↗</span>
+          <span><span class="block text-[0.9rem] font-bold" style="color:#223243;">Funding guide</span><span class="block text-[0.72rem]" style="color:#5b6b7b;">Who pays for what</span></span>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

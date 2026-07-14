@@ -129,6 +129,8 @@ Full restore instructions and commit hashes: see `VERSIONS.md`.
 
 | 14 Jul 2026 | **Removed the blue-scrubs shoot repetition** — one Mixkit home-care shoot (blue-scrubs carer) was appearing in the Personal-care card, step 2 and divider 2. Kept it only in the Personal-care card; step 2 now shows paperwork/funding (7821854), divider 2 shows two older men out walking (27333136, 4K) for "back on your feet". Each stock shoot now appears once (bar a faceless BP-cuff close-up that shares the health shoot). | (this commit) |
 
+| 14 Jul 2026 | **4 design-style concept pages for review** — built hero concepts modelled on the owner's reference screenshots, each with real Astro Care content/media: `/style-cinematic` (Iceland dark — device frame, left rail, glass stat panel), `/style-editorial` (Waterfalls — muted, Fraunces serif, slider + stats row), `/style-glass` (Flowing Liquidity — frosted-glass panel, pastel, floating pills), `/style-cards` (Mount Bromo — glass container, avatars social proof, rounded service-image cards). All noindex. | (this commit) |
+
 ## 9. Run sheet — everything done so far
 
 | Date | What happened | Commit |
