@@ -127,6 +127,8 @@ Full restore instructions and commit hashes: see `VERSIONS.md`.
 
 | 13 Jul 2026 | **Hero brightened** (owner: hero dull from the transparency wash) — replaced the full-frame dark gradient with a **bottom-only** gradient (transparent above 56%), so the top two-thirds of the hero video shows at full vibrancy and only the lower strip is shaded where the text sits. Video reads bright and premium; headline/buttons still legible. (`/hero-bright` sample page kept for reference.) | (this commit) |
 
+| 14 Jul 2026 | **Removed the blue-scrubs shoot repetition** — one Mixkit home-care shoot (blue-scrubs carer) was appearing in the Personal-care card, step 2 and divider 2. Kept it only in the Personal-care card; step 2 now shows paperwork/funding (7821854), divider 2 shows two older men out walking (27333136, 4K) for "back on your feet". Each stock shoot now appears once (bar a faceless BP-cuff close-up that shares the health shoot). | (this commit) |
+
 ## 9. Run sheet — everything done so far
 
 | Date | What happened | Commit |
