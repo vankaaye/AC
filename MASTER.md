@@ -131,6 +131,8 @@ Full restore instructions and commit hashes: see `VERSIONS.md`.
 
 | 14 Jul 2026 | **4 design-style concept pages for review** — built hero concepts modelled on the owner's reference screenshots, each with real Astro Care content/media: `/style-cinematic` (Iceland dark — device frame, left rail, glass stat panel), `/style-editorial` (Waterfalls — muted, Fraunces serif, slider + stats row), `/style-glass` (Flowing Liquidity — frosted-glass panel, pastel, floating pills), `/style-cards` (Mount Bromo — glass container, avatars social proof, rounded service-image cards). All noindex. | (this commit) |
 
+| 14 Jul 2026 | **4 concept pages expanded to full websites** (owner: "give me full websites, not just small hero sections") — each of `/style-cinematic`, `/style-editorial`, `/style-glass`, `/style-cards` now carries the complete site in its own visual language: sticky/pill nav, hero, stats band, **8-service grid**, 3-step how-it-works, 3-card funding, FAQ accordion, contact CTA and footer. Shared content arrays (services/steps/funding/faqs). Scroll reveals via IntersectionObserver (`.rise`, reveal-once). Fixed the recurring `global.css h1–h4{color:var(--tx)}` override on standalone pages with a `body h1,h2,h3{color:inherit}` rule so headings take each palette's contextual colour. All noindex. | (this commit) |
+
 ## 9. Run sheet — everything done so far
 
 | Date | What happened | Commit |

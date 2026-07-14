@@ -1,62 +1,165 @@
 ---
 import '../styles/global.css';
+const services = [
+  ['Clinical & nursing care', 'Wound care, medication, health checks & recovery — by registered nurses.', '/media/poster-clinical.jpg'],
+  ['Personal care', 'A gentle hand with showering, dressing and getting ready for the day.', '/media/loop-personal.jpg'],
+  ['Allied health & therapy', 'Physio, OT and exercise to keep you strong, steady and moving well.', '/media/loop-allied.jpg'],
+  ['Domestic assistance', 'Cleaning, laundry and light gardening — home kept safe and lovely.', '/media/poster-domestic.jpg'],
+  ['Meal preparation', 'Fresh meals cooked your way, with good company while they’re made.', '/media/poster-meals.jpg'],
+  ['Social support & company', 'Friendly visits, outings and someone to share a cuppa and a laugh.', '/media/poster-social.jpg'],
+  ['Transport & getting out', 'Lifts to appointments, the shops or a favourite spot — company along the way.', '/media/loop-transport.jpg'],
+  ['Respite & overnight care', 'A trusted hand so family carers can rest — hours or overnight.', '/media/loop-respite.jpg'],
+];
+const steps = [
+  ['01', 'Say hello', 'Chat with us online or leave your number — no obligation.'],
+  ['02', 'We sort the funding', 'We guide you through My Aged Care and handle the paperwork with you.'],
+  ['03', 'Care begins at home', 'Your support workers arrive when you want them — and it flexes as needs change.'],
+];
+const funding = [
+  ['Support at Home', 'Most people start here', 'The government program for care at home — funded on your assessed needs, from about $11,000 to $78,000 a year.'],
+  ['CHSP', 'Entry-level help', 'A little help — cleaning, meals or transport — with a small contribution per service.'],
+  ['Private care', 'No waiting', 'Start straight away from $65/hour and switch to government funding once approved.'],
+];
+const faqs = [
+  ['Who is eligible for funded care?', 'Generally Australians 65+ (50+ for First Nations people) who need help to keep living at home. A free My Aged Care assessment confirms it — we help you arrange it.'],
+  ['How much will it cost us?', 'The government pays the large majority for most people. Our fees are 15% care + 10% package management, under the caps, all published.'],
+  ['How quickly can care start?', 'Privately within days; government-funded depends on the queue. Many start privately and switch when funding is approved.'],
+  ['Where do you operate?', 'Right across Melbourne — inner suburbs to the outer ring.'],
+];
 ---
 <!doctype html>
 <html lang="en-AU">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="noindex" />
-    <title>Astro Care — Cinematic concept</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="robots" content="noindex" />
+    <title>Astro Care — Cinematic concept (full)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-    <style>body { background: #0a0b0e; }</style>
+    <style>
+      :root { --c-bg:#0a0b0e; --c-card:#14161c; --c-line:rgba(255,255,255,0.1); --c-tx:#eef1f5; --c-mut:#9aa6b2; --c-gold:#E8A33D; --c-blue:#4FA6D6; }
+      * { box-sizing: border-box; }
+      body { margin:0; background:var(--c-bg); color:var(--c-tx); font-family:'Instrument Sans',sans-serif; }
+      h1,h2,h3 { font-family:'Schibsted Grotesk',sans-serif; letter-spacing:-0.02em; }
+      body h1, body h2, body h3, body h4 { color:inherit; }
+      .wrap { width:min(1180px,100%-3rem); margin-inline:auto; }
+      .cn-nav { position:sticky; top:0; z-index:50; background:rgba(10,11,14,0.7); backdrop-filter:blur(14px); border-bottom:1px solid var(--c-line); }
+      .cn-btn { display:inline-flex; align-items:center; gap:.5rem; border-radius:999px; padding:.7rem 1.4rem; font-weight:700; font-size:.9rem; }
+      .cn-card { background:var(--c-card); border:1px solid var(--c-line); border-radius:20px; overflow:hidden; }
+      .rise { opacity:0; transform:translateY(28px); transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+      .rise.in { opacity:1; transform:none; }
+      details { border-bottom:1px solid var(--c-line); }
+      summary { list-style:none; cursor:pointer; padding:1.1rem 0; display:flex; justify-content:space-between; gap:1rem; font-weight:700; font-family:'Schibsted Grotesk',sans-serif; }
+      summary::-webkit-details-marker { display:none; }
+    </style>
   </head>
-  <body class="flex min-h-screen items-center justify-center p-3 md:p-8" style="font-family: var(--font-body);">
-    <div class="relative w-full max-w-6xl overflow-hidden rounded-[1.8rem] shadow-2xl" style="aspect-ratio: 16 / 9; min-height: 460px;">
-      <video class="absolute inset-0 h-full w-full object-cover" src="/media/hero-1080.mp4" poster="/media/hero-1080-poster.jpg" autoplay muted loop playsinline></video>
-      <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(8,10,14,0.9) 0%, rgba(8,10,14,0.35) 42%, rgba(8,10,14,0) 62%), linear-gradient(0deg, rgba(8,10,14,0.6), transparent 55%);"></div>
+  <body>
+    <header class="cn-nav">
+      <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; height:64px;">
+        <a href="/" style="display:flex; align-items:center; gap:.6rem; color:#fff; text-decoration:none; font-weight:800; font-family:'Schibsted Grotesk';">
+          <svg width="30" height="30" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" fill="#0C6291"/><path d="M13 38 L24 12 L35 38" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M16.5 29.5 h3.3 l1.65 -3.9 l2.4 7.8 l2.1 -5.1 l1.2 1.2 h4.35" stroke="#F2B33D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>Astro Care</a>
+        <nav style="display:flex; gap:1.6rem; font-size:.9rem; color:var(--c-mut);" class="hide-sm"><a href="#services" style="color:inherit;text-decoration:none;">Services</a><a href="#how" style="color:inherit;text-decoration:none;">How it works</a><a href="#funding" style="color:inherit;text-decoration:none;">Funding</a><a href="#faq" style="color:inherit;text-decoration:none;">FAQ</a></nav>
+        <a href="#contact" class="cn-btn" style="background:#fff; color:#0a0b0e;">Get started</a>
+      </div>
+    </header>
 
-      <!-- left rail -->
-      <div class="absolute left-0 top-0 z-10 flex h-full w-14 flex-col items-center justify-between py-5" style="background: rgba(10,12,16,0.45); backdrop-filter: blur(8px);">
-        <div class="flex h-9 w-9 items-center justify-center rounded-full text-white" style="background: var(--euca);">
-          <svg class="h-5 w-5" viewBox="0 0 48 48" fill="none"><path d="M13 38 L24 12 L35 38" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M16.5 29.5 h3.3 l1.65 -3.9 l2.4 7.8 l2.1 -5.1 l1.2 1.2 h4.35" stroke="#F2B33D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <div class="flex flex-col gap-5 text-white/50">
-          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M13 10h3l1-4h-4V4c0-1 .3-1.5 1.7-1.5H17V-.5C16.5-.6 15.3-.7 14-.7 11.2-.7 9.3 1 9.3 4v2H6v4h3.3v12H13z"/></svg>
-          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5 15.4 17M15.4 7 8.6 10.5"/></svg>
+    <!-- HERO -->
+    <section style="position:relative; min-height:82vh; display:flex; align-items:flex-end; overflow:hidden;">
+      <video style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;" src="/media/hero-1080.mp4" poster="/media/hero-1080-poster.jpg" autoplay muted loop playsinline></video>
+      <div style="position:absolute; inset:0; background:linear-gradient(90deg, rgba(8,10,14,0.9) 0%, rgba(8,10,14,0.4) 45%, rgba(8,10,14,0) 68%), linear-gradient(0deg, rgba(8,10,14,0.85), transparent 55%);"></div>
+      <div class="wrap" style="position:relative; padding:0 0 4rem;">
+        <div style="max-width:640px;">
+          <span style="display:inline-block; padding:.4rem 1rem; border-radius:999px; background:rgba(255,255,255,0.12); font-size:.78rem; font-weight:700; letter-spacing:.04em;">AGED CARE AT HOME · MELBOURNE</span>
+          <h1 style="margin:1rem 0 0; font-weight:800; font-size:clamp(2.6rem,6vw,5rem); line-height:1; text-shadow:0 2px 24px rgba(8,10,14,0.5);">Care at home,<br/>done properly.</h1>
+          <p style="margin:1.2rem 0 0; max-width:34rem; color:#dfe5ea; font-size:1.05rem;">Nursing, everyday help and genuine company for older people across Melbourne — government-funded for most over 65.</p>
+          <div style="display:flex; gap:.8rem; margin-top:1.8rem; flex-wrap:wrap;">
+            <a href="#contact" class="cn-btn" style="background:#fff; color:#0a0b0e;">Book a callback</a>
+            <a href="#services" class="cn-btn" style="background:rgba(255,255,255,0.14); color:#fff; border:1px solid rgba(255,255,255,0.4);">Explore services</a>
+          </div>
         </div>
       </div>
-
-      <!-- top nav -->
-      <nav class="absolute left-20 right-6 top-6 z-10 flex items-center justify-between text-[0.8rem] text-white/80">
-        <div class="flex gap-6 font-semibold"><span>Services</span><span>Funding</span><span class="hidden sm:inline">How it works</span></div>
-        <div class="flex items-center gap-2">
-          <span class="hidden rounded-full px-4 py-1.5 text-xs sm:inline" style="background: rgba(255,255,255,0.14);">Search care…</span>
-          <span class="rounded-full px-4 py-1.5 text-xs font-bold" style="background:#fff;color:#0a0b0e;">Get started</span>
-        </div>
-      </nav>
-
-      <!-- headline -->
-      <div class="absolute bottom-8 left-20 z-10 max-w-lg pr-4 text-white">
-        <h1 style="color: #fff; font-family: var(--font-head); font-weight: 800; font-size: clamp(2.2rem, 5.2vw, 4.2rem); line-height: 1.0; letter-spacing: -0.03em; text-shadow: 0 2px 20px rgba(8,10,14,0.5);">Care at home,<br />done properly.</h1>
-        <p class="mt-4 max-w-sm text-[0.9rem] text-white/70">Nursing, everyday help and genuine company across Melbourne — government-funded for most over 65.</p>
-        <a href="/#contact" class="mt-5 inline-flex items-center gap-2 border-b-2 pb-1 text-sm font-bold text-white" style="border-color: var(--sun);">Book a callback →</a>
+      <div style="position:absolute; right:1.5rem; top:50%; transform:translateY(-50%); width:270px; border-radius:22px; padding:1.4rem; background:rgba(18,20,26,0.5); backdrop-filter:blur(18px); border:1px solid rgba(255,255,255,0.14);" class="hide-md">
+        <p style="margin:0; font-weight:800; font-family:'Schibsted Grotesk'; font-size:1.25rem;">Support at Home</p>
+        <p style="margin:.1rem 0 1rem; color:var(--c-mut); font-size:.8rem;">Most people start here</p>
+        <p style="margin:0; font-size:1.6rem; font-weight:800;">1 day</p><p style="margin:0 0 .8rem; color:var(--c-mut); font-size:.8rem;">to your callback</p>
+        <p style="margin:0; font-size:1.6rem; font-weight:800; color:var(--c-gold);">$0</p><p style="margin:0; color:var(--c-mut); font-size:.8rem;">lock-in contracts</p>
       </div>
+    </section>
 
-      <!-- right glass panel -->
-      <div class="absolute right-6 top-1/2 z-10 hidden w-72 -translate-y-1/2 rounded-3xl p-6 text-white lg:block" style="background: rgba(18,20,26,0.42); backdrop-filter: blur(18px); border: 1px solid rgba(255,255,255,0.12);">
-        <p class="text-xl font-extrabold" style="font-family: var(--font-head);">Support at Home</p>
-        <p class="text-xs text-white/50">Most people start here</p>
-        <div class="mt-5"><p class="text-2xl font-extrabold">1 day</p><p class="text-xs text-white/50">to your callback</p></div>
-        <div class="mt-3"><p class="text-2xl font-extrabold" style="color: var(--sun);">$0</p><p class="text-xs text-white/50">lock-in contracts</p></div>
-        <div class="mt-5 grid grid-cols-2 gap-2">
-          <img src="/media/poster-social.jpg" alt="" class="h-20 w-full rounded-xl object-cover" />
-          <img src="/media/div-2.jpg" alt="" class="h-20 w-full rounded-xl object-cover" />
+    <!-- STATS -->
+    <section class="wrap" style="display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; padding:2.5rem 0;">
+      {[['24/7','care day & night'],['100%','fee transparency'],['$0','exit fees'],['1 day','to hear back']].map(([n,l])=>(
+        <div class="cn-card rise" style="padding:1.4rem; text-align:center;"><p style="margin:0; font-size:2rem; font-weight:800; color:var(--c-blue); font-family:'Schibsted Grotesk';">{n}</p><p style="margin:.3rem 0 0; color:var(--c-mut); font-size:.85rem;">{l}</p></div>
+      ))}
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" style="padding:3.5rem 0;">
+      <div class="wrap">
+        <p style="color:var(--c-blue); font-weight:700; letter-spacing:.14em; text-transform:uppercase; font-size:.8rem; margin:0;">What we do</p>
+        <h2 style="margin:.4rem 0 2rem; font-size:clamp(1.8rem,4vw,2.8rem);">Our services, your way</h2>
+        <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:1.2rem;">
+          {services.map(([t,d,img])=>(
+            <div class="cn-card rise">
+              <div style="aspect-ratio:16/10; overflow:hidden;"><img src={img} alt="" style="width:100%; height:100%; object-fit:cover;"/></div>
+              <div style="padding:1.2rem;"><h3 style="margin:0; font-size:1.1rem;">{t}</h3><p style="margin:.5rem 0 0; color:var(--c-mut); font-size:.9rem;">{d}</p></div>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
+
+    <!-- HOW -->
+    <section id="how" style="padding:3.5rem 0; background:#0d0f14;">
+      <div class="wrap">
+        <p style="color:var(--c-blue); font-weight:700; letter-spacing:.14em; text-transform:uppercase; font-size:.8rem; margin:0;">Getting started</p>
+        <h2 style="margin:.4rem 0 2rem; font-size:clamp(1.8rem,4vw,2.8rem);">Three easy steps</h2>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.2rem;">
+          {steps.map(([n,t,d])=>(
+            <div class="cn-card rise" style="padding:1.6rem;"><p style="margin:0; font-size:2.4rem; font-weight:800; color:rgba(79,166,214,0.4); font-family:'Schibsted Grotesk';">{n}</p><h3 style="margin:.4rem 0 .4rem; font-size:1.2rem;">{t}</h3><p style="margin:0; color:var(--c-mut); font-size:.92rem;">{d}</p></div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FUNDING -->
+    <section id="funding" style="padding:3.5rem 0;">
+      <div class="wrap">
+        <p style="color:var(--c-blue); font-weight:700; letter-spacing:.14em; text-transform:uppercase; font-size:.8rem; margin:0;">Funding</p>
+        <h2 style="margin:.4rem 0 2rem; font-size:clamp(1.8rem,4vw,2.8rem);">The government pays for most of it</h2>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.2rem;">
+          {funding.map(([t,tag,d])=>(
+            <div class="cn-card rise" style="padding:1.6rem;"><span style="display:inline-block; padding:.3rem .8rem; border-radius:999px; background:rgba(79,166,214,0.16); color:var(--c-blue); font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em;">{tag}</span><h3 style="margin:.7rem 0 .5rem; font-size:1.25rem;">{t}</h3><p style="margin:0; color:var(--c-mut); font-size:.92rem;">{d}</p></div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" style="padding:3.5rem 0; background:#0d0f14;">
+      <div class="wrap" style="max-width:820px;">
+        <h2 style="margin:0 0 1.5rem; font-size:clamp(1.8rem,4vw,2.6rem);">The things families ask first</h2>
+        {faqs.map(([q,a])=>(
+          <details class="rise"><summary>{q}<span style="color:var(--c-blue);">+</span></summary><p style="margin:0 0 1.1rem; color:var(--c-mut); font-size:.95rem;">{a}</p></details>
+        ))}
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" style="padding:4rem 0;">
+      <div class="wrap cn-card rise" style="padding:2.5rem; text-align:center; background:linear-gradient(120deg,#12233a,#0f1620);">
+        <h2 style="margin:0; font-size:clamp(1.8rem,4vw,2.8rem);">Let’s have a chat</h2>
+        <p style="margin:.8rem auto 1.6rem; max-width:36rem; color:#cfd8e0;">No pressure, no obligation — just honest answers about the help you can get. We ring back within one business day.</p>
+        <div style="display:flex; gap:.8rem; justify-content:center; flex-wrap:wrap;"><a href="tel:+611800278762" class="cn-btn" style="background:#fff; color:#0a0b0e;">1800 ASTRO</a><a href="mailto:info@astrocare.com.au" class="cn-btn" style="background:rgba(255,255,255,0.14); color:#fff; border:1px solid rgba(255,255,255,0.4);">Email us</a></div>
+      </div>
+    </section>
+
+    <footer style="border-top:1px solid var(--c-line); padding:2rem 0; color:var(--c-mut); font-size:.85rem;">
+      <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem;"><span>© 2026 Astro Care Group Pty Ltd · ABN 99 700 192 981</span><span>Aged care at home · All of Melbourne</span></div>
+    </footer>
+
+    <script is:inline>
+      var io = new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:0,rootMargin:'0px 0px -8% 0px'});
+      document.querySelectorAll('.rise').forEach(function(el){io.observe(el)});
+      var s=document.createElement('style'); s.textContent='@media(max-width:860px){.hide-md{display:none!important}.wrap section{}}@media(max-width:640px){.hide-sm{display:none!important}section[style*="repeat(4"]{grid-template-columns:repeat(2,1fr)!important}}'; document.head.appendChild(s);
+    </script>
   </body>
 </html>
