@@ -137,6 +137,8 @@ Full restore instructions and commit hashes: see `VERSIONS.md`.
 
 | 2 Sep 2026 | **Fee model updated + worker auto-deploy** — (1) Bot no longer quotes the old "15% care + 10% package management" fees (superseded by Support at Home hourly rates); it now quotes per-service prices and offers a callback for how costs map to a budget. Added an explicit service-area fact (all of Melbourne). Dropped the stale `/#pricing` fee-calculator link from the bot. (2) New GitHub Action `.github/workflows/deploy-worker.yml` deploys the Cloudflare Worker automatically on any `worker/**` change on main (needs a one-time `CLOUDFLARE_API_TOKEN` repo secret; skips cleanly until it's set). The Anthropic key stays a Cloudflare-side secret, preserved across deploys. **Note:** the `/#pricing` calculator on the site is likely stale under the new model — flagged to owner. | (this commit) |
 
+| 2 Sep 2026 | **Rebuilt the `/#pricing` calculator** for the new model — retired the HCP-level + 15%/10% fee "where every dollar goes" tool and replaced it with an **"estimate your costs"** calculator driven by the Support at Home price list: pick a service (grouped dropdown, ~35 services), a day type (weekday / Sat 1.3× / Sun+PH 1.8×) and a quantity (hours/trips/meals), and it shows the per-unit rate, weekly cost and rough monthly cost. GST-free / travel-included / 1-hr-minimum notes; funding + callback CTAs; no fee percentages. Section intro reworded off the old fee model. | (this commit) |
+
 ## 9. Run sheet — everything done so far
 
 | Date | What happened | Commit |
