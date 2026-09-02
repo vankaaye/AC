@@ -1,0 +1,54 @@
+name: Deploy chat Worker
+
+# Deploys the Cloudflare Worker (worker/chat-worker.js) automatically
+# whenever the worker changes on main. The Anthropic API key is already
+# stored as a Cloudflare Worker secret and is preserved across deploys,
+# so this job only needs the Cloudflare API token.
+#
+# One-time setup: add a repository secret named CLOUDFLARE_API_TOKEN
+#   GitHub repo -> Settings -> Secrets and variables -> Actions -> New
+#   repository secret. Use a token with the "Edit Cloudflare Workers"
+#   template (dash.cloudflare.com -> My Profile -> API Tokens).
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'worker/**'
+      - '.github/workflows/deploy-worker.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-worker
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for Cloudflare token
+        id: gate
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          if [ -n "$CF_TOKEN" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::CLOUDFLARE_API_TOKEN secret is not set — skipping worker deploy. Add it under Settings → Secrets and variables → Actions to enable auto-deploy."
+          fi
+
+      - name: Checkout
+        if: steps.gate.outputs.ready == 'true'
+        uses: actions/checkout@v4
+
+      - name: Deploy with Wrangler
+        if: steps.gate.outputs.ready == 'true'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          workingDirectory: worker
+          command: deploy

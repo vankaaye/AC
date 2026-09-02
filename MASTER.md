@@ -135,6 +135,8 @@ Full restore instructions and commit hashes: see `VERSIONS.md`.
 
 | 2 Sep 2026 | **Chatbot given the Support at Home price list** — embedded the full service price schedule (weekday / Sat 1.3× / Sun+PH 1.8×, per-hour/trip/meal units, at-cost items) into the Worker system prompt, with strict quoting rules: never calculate or invent a price, always state period + unit, look-up only, tables for multi-service answers, offer a callback past the list. **Sanitised** — internal-only fields (`internal_flag`, `benchmark_positioning` %s) kept out of the bot's context; indirect/non-face-to-face rates included but only quoted if asked about admin charges; margins/benchmarking never disclosed (may only say "at or below IHACPA 2026-27 advice"). Worker deploy (wrangler) required to go live. | (this commit) |
 
+| 2 Sep 2026 | **Fee model updated + worker auto-deploy** — (1) Bot no longer quotes the old "15% care + 10% package management" fees (superseded by Support at Home hourly rates); it now quotes per-service prices and offers a callback for how costs map to a budget. Added an explicit service-area fact (all of Melbourne). Dropped the stale `/#pricing` fee-calculator link from the bot. (2) New GitHub Action `.github/workflows/deploy-worker.yml` deploys the Cloudflare Worker automatically on any `worker/**` change on main (needs a one-time `CLOUDFLARE_API_TOKEN` repo secret; skips cleanly until it's set). The Anthropic key stays a Cloudflare-side secret, preserved across deploys. **Note:** the `/#pricing` calculator on the site is likely stale under the new model — flagged to owner. | (this commit) |
+
 ## 9. Run sheet — everything done so far
 
 | Date | What happened | Commit |
